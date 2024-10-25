@@ -28,7 +28,7 @@ ingress:
   hosts:
     - host: openeo.develop.eoepca.org
       paths:
-        - path: /
+        - /
 jarDependencies:
   - local:///opt/geotrellis-extensions-static.jar
 mainApplicationFile: local:///opt/openeo/lib64/python3.8/site-packages/openeogeotrellis/deploy/kube.py
