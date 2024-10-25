@@ -1,0 +1,39 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: iam-identity-api
+  namespace: argocd
+  labels:
+    eoepca/app-name: iam-identity-api
+spec:
+  # Ref. https://argo-cd.readthedocs.io/en/stable/user-guide/application-specification/
+  project: eoepca
+  sources:
+    - repoURL: https://eoepca.github.io/helm-charts
+    #https://eoepca.github.io/helm-charts
+      chart: identity-service
+      targetRevision: 1.0.98
+      helm:
+#        releaseName: identity-api
+        valueFiles:
+          - $values/argocd/eoepca/iam/parts/values/identity-service-values.yaml
+#          - $values/argocd/eoepca/identity-service/parts/values/values-identity-service.yaml
+    - repoURL: https://github.com/EOEPCA/eoepca-plus
+      targetRevision: deploy-develop
+      ref: values
+
+  destination:
+    name: in-cluster
+    namespace: iam
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: false
+      allowEmpty: true
+    syncOptions:
+      - Validate=true
+      - CreateNamespace=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
+      - RespectIgnoreDifferences=true
+      - ApplyOutOfSyncOnly=true
