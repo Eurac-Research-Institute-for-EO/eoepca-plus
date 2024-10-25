@@ -8,7 +8,7 @@ driver:
     KUBE: "true"
     KUBE_OPENEO_API_PORT: "50001"
     PYTHONPATH: $PYTHONPATH:/opt/tensorflow/python38/2.3.0/:/opt/openeo/lib/python3.8/site-packages/
-    ZOOKEEPERNODES: zookeeper.openeo-geotrellis.svc.cluster.local:2181
+    ZOOKEEPERNODES: openeo-geotrellis-zookeeper.openeo-geotrellis.svc.cluster.local:2181
   podSecurityContext:
     fsGroup: 18585
     fsGroupChangePolicy: Always
