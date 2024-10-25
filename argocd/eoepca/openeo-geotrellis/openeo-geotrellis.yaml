@@ -11,7 +11,7 @@ spec:
   project: eoepca
   source:
     repoURL: https://github.com/EOEPCA/eoepca-plus
-    targetRevision: openeo-deployment
+    targetRevision: deploy-develop
     path: argocd/eoepca/openeo-geotrellis/parts
   destination:
     name: in-cluster
