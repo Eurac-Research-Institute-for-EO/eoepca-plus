@@ -18,6 +18,17 @@ executor:
 fileDependencies:
   - local:///opt/layercatalog.json
   - local:///opt/log4j2.xml
+ingress:
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+  hosts:
+    - host: openeo.develop.eoepca.org
+      paths:
+        - path: /
 jarDependencies:
   - local:///opt/geotrellis-extensions-static.jar
 mainApplicationFile: local:///opt/openeo/lib64/python3.8/site-packages/openeogeotrellis/deploy/kube.py
