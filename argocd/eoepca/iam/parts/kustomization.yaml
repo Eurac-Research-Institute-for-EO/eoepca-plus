@@ -14,6 +14,7 @@ resources:
   - apisixtls-iam-test.yaml
   - apisixroute-keycloak.yaml
   - apisixroute-opa.yaml
+  - apisixroute-identity-api.yaml
   - apisixroute-dummy-service.yaml
   - apisixroute-zoo.yaml
   - cert-apx-all.yaml
