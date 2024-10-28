@@ -16,7 +16,7 @@ spec:
         servicePort: 8080
     plugins:
       - name: openid-connect
-        enable: true
+        enable: false
         config:
           client_id: "identity-api"
           client_secret: "eBlG9c7IEKlCJglwVC7N8EGwZArl141h"
