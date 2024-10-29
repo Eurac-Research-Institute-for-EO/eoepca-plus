@@ -11,7 +11,7 @@ spec:
   source:
     repoURL: https://eoepca.github.io/helm-charts-dev
     chart: workspace-ui
-    targetRevision: 0.0.2
+    targetRevision: 0.0.3
 
     helm:
       releaseName: workspace-ui
