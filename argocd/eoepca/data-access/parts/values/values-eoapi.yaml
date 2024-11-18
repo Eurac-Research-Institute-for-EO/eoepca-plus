@@ -34,7 +34,7 @@ postgrescluster:
   backupsStorageClassName: managed-nfs-storage-retain
   nfsCustom:  # we added a manual option to our postgresql chart to try and accommodate this b/c it was hardcoded as ReadWriteOnce: https://github.com/developmentseed/eoapi-k8s/pull/147
       - name: repo1
-    
+
 pgstacBootstrap:
   enabled: true
   settings:
@@ -56,6 +56,8 @@ raster:
         memory: "3072Mi"
 stac:
   enabled: true
+  image:
+    name: harbor.develop.eoepca.org/eoapi/stac
   settings:
     envVars:
       ENABLED_EXTENSIONS: "query,sort,fields,pagination,filter"
