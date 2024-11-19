@@ -8,7 +8,6 @@ resources:
   - data-access
   - zoo-dru
   - workspace
-  - workspace-api
   - mlops
   - application-quality
   - portal-v1x
