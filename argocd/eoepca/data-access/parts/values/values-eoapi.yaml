@@ -61,7 +61,7 @@ stac:
     tag: latest
   settings:
     envVars:
-      ENABLED_EXTENSIONS: "query,sort,fields,pagination,filter"
+      ENABLED_EXTENSIONS: "query,sort,fields,pagination,filter,transaction"
     resources:
       limits:
         cpu: "1280m"
