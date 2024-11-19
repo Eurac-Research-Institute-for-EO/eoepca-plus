@@ -58,6 +58,7 @@ stac:
   enabled: true
   image:
     name: harbor.develop.eoepca.org/eoapi/stac
+    tag: latest
   settings:
     envVars:
       ENABLED_EXTENSIONS: "query,sort,fields,pagination,filter"
