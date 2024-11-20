@@ -11,7 +11,7 @@ spec:
   source:
     repoURL: 'https://eoepca.github.io/helm-charts'
     chart: application-hub
-    targetRevision: 2.0.59
+    targetRevision: 2.1.0
 
     helm:
       releaseName: application-hub
