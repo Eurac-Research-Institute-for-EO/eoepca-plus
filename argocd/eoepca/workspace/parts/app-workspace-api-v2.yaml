@@ -37,7 +37,7 @@ spec:
               secretName: workspace-api-v2-tls
         fluxHelmOperator:
           enabled: true
-        prefixForName: "ws-v2"
+        prefixForName: "ws-"
         workspaceSecretName: "bucket"
         s3Endpoint: "https://minio.develop.eoepca.org"
         s3Region: "RegionOne"
