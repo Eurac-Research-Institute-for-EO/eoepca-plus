@@ -18,7 +18,7 @@ spec:
           - subject:
               scope: Path
             op: RegexMatch
-            value: "^/docs(/|$).*"
+            value: "^/(docs(/.*|$)|openapi.json$)"
     - name: workspace-api
       backends:
         - serviceName: workspace-api
