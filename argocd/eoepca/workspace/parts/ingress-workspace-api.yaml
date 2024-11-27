@@ -5,6 +5,20 @@ metadata:
   name: workspace-api
 spec:
   http:
+    - name: workspace-api-docs
+      backends:
+        - serviceName: workspace-api
+          servicePort: 8080
+      match:
+        hosts:
+          - workspace-api.apx.develop.eoepca.org
+        paths:
+          - /docs
+        exprs:
+          - subject:
+              scope: Path
+            op: RegexMatch
+            value: "^/docs(/|$).*"
     - name: workspace-api
       backends:
         - serviceName: workspace-api
@@ -15,14 +29,6 @@ spec:
         paths:
           - /*
       plugins:
-        # TODO: Configure client secrets through secretRef
-        - name: openid-connect
-          enable: true
-          config:
-            client_id: "workspace-bb"
-            client_secret: "nbUmFfzQdfcYiLw0Mo5OMzSaKQfZBv3U"
-            access_token_in_authorization_header: true
-            discovery: "https://iam-auth.develop.eoepca.org/realms/eoepca/.well-known/openid-configuration"
         - name: authz-keycloak
           enable: true
           config:
@@ -35,30 +41,30 @@ spec:
         #   enable: true
         #   config:
         #     http_to_https: true
----
-apiVersion: cert-manager.io/v1
-kind: Certificate
-metadata:
-  name: workspace-api
-spec:
-  dnsNames:
-    - workspace-api.apx.develop.eoepca.org
-  issuerRef:
-    kind: ClusterIssuer
-    name: letsencrypt-dns-prod
-  secretName: workspace-api-tls
-  usages:
-    - digital signature
-    - key encipherment
-    - server auth
----
-apiVersion: apisix.apache.org/v2
-kind: ApisixTls
-metadata:
-  name: workspace-api
-spec:
-  hosts:
-    - workspace-api.apx.develop.eoepca.org
-  secret:
-    name: workspace-api-tls
-    namespace: workspace
+# ---
+# apiVersion: cert-manager.io/v1
+# kind: Certificate
+# metadata:
+#   name: workspace-api
+# spec:
+#   dnsNames:
+#     - workspace-api.apx.develop.eoepca.org
+#   issuerRef:
+#     kind: ClusterIssuer
+#     name: letsencrypt-dns-prod
+#   secretName: workspace-api-tls
+#   usages:
+#     - digital signature
+#     - key encipherment
+#     - server auth
+# ---
+# apiVersion: apisix.apache.org/v2
+# kind: ApisixTls
+# metadata:
+#   name: workspace-api
+# spec:
+#   hosts:
+#     - workspace-api.apx.develop.eoepca.org
+#   secret:
+#     name: workspace-api-tls
+#     namespace: workspace
