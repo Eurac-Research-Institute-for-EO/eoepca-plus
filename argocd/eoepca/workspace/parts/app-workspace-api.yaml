@@ -22,19 +22,19 @@ spec:
           tag: 2.0.0_pre1
           pullPolicy: Always
         ingress:
-          enabled: true
-          annotations:
-            cert-manager.io/cluster-issuer: letsencrypt-prod
-            kubernetes.io/ingress.class: nginx
-            nginx.ingress.kubernetes.io/enable-cors: "true"
-            nginx.ingress.kubernetes.io/proxy-read-timeout: "600"
-          hosts:
-            - host: workspace-api.develop.eoepca.org
-              paths: ["/"]
-          tls:
-            - hosts:
-                - workspace-api.develop.eoepca.org
-              secretName: workspace-api.develop.eoepca.org
+          enabled: false
+          # annotations:
+          #   cert-manager.io/cluster-issuer: letsencrypt-prod
+          #   kubernetes.io/ingress.class: nginx
+          #   nginx.ingress.kubernetes.io/enable-cors: "true"
+          #   nginx.ingress.kubernetes.io/proxy-read-timeout: "600"
+          # hosts:
+          #   - host: workspace-api.develop.eoepca.org
+          #     paths: ["/"]
+          # tls:
+          #   - hosts:
+          #       - workspace-api.develop.eoepca.org
+          #     secretName: workspace-api.develop.eoepca.org
         prefixForName: "ws-"
         workspaceSecretName: "bucket"
         s3Endpoint: "https://minio.develop.eoepca.org"
