@@ -1,20 +1,20 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: workspace-api-v2
+  name: workspace-api
   namespace: argocd
   labels:
-    eoepca/app-name: workspace-api-v2
+    eoepca/app-name: workspace-api
 spec:
   # Ref. https://argo-cd.readthedocs.io/en/stable/user-guide/application-specification/
   project: eoepca
   source:
-    repoURL: https://eoepca.github.io/helm-charts
+    repoURL: https://eoepca.github.io/helm-charts-dev
     chart: rm-workspace-api
-    targetRevision: 1.4.2
+    targetRevision: 2.0.0
 
     helm:
-      releaseName: workspace-api-v2
+      releaseName: workspace-api
       valuesObject:
         existingSecret: harbor
         fullnameOverride: workspace-api
@@ -22,25 +22,23 @@ spec:
           tag: 2.0.0_pre1
           pullPolicy: Always
         ingress:
-          enabled: false
+          enabled: true
           annotations:
             cert-manager.io/cluster-issuer: letsencrypt-prod
             kubernetes.io/ingress.class: nginx
             nginx.ingress.kubernetes.io/enable-cors: "true"
             nginx.ingress.kubernetes.io/proxy-read-timeout: "600"
           hosts:
-            - host: workspace-api-v2.develop.eoepca.org
+            - host: workspace-api.develop.eoepca.org
               paths: ["/"]
           tls:
             - hosts:
-                - workspace-api-v2.develop.eoepca.org
-              secretName: workspace-api-v2-tls
-        fluxHelmOperator:
-          enabled: true
+                - workspace-api.develop.eoepca.org
+              secretName: workspace-api.develop.eoepca.org
         prefixForName: "ws-"
         workspaceSecretName: "bucket"
         s3Endpoint: "https://minio.develop.eoepca.org"
-        s3Region: "RegionOne"
+        s3Region: "eu-central-1"
         harborUrl: "https://harbor.develop.eoepca.org"
         harborUsername: "admin"
         harborPasswordSecretName: "harbor"
