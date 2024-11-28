@@ -17,12 +17,12 @@ NAMESPACE="workspace"
 
 # Note: For now, the workspace API ingress uses the workspace-bb client by default.
 WORKSPACE_API_CLIENT_ID="${2:-${WORKSPACE_API_CLIENT_ID:-workspace-bb}}"
-WORKSPACE_API_CLIENT_PASSWORD="${2:-${WORKSPACE_API_CLIENT_PASSWORD:-changeme}}"
+WORKSPACE_API_CLIENT_SECRET="${2:-${WORKSPACE_API_CLIENT_SECRET:-changeme}}"
 
 secretYaml() {
   kubectl -n "${NAMESPACE}" create secret generic "${SECRET_NAME}" \
     --from-literal="client_id=${WORKSPACE_API_CLIENT_ID}" \
-    --from-literal="client_secret=${WORKSPACE_API_CLIENT_PASSWORD}" \
+    --from-literal="client_secret=${WORKSPACE_API_CLIENT_SECRET}" \
     --dry-run=client -o yaml
 }
 
