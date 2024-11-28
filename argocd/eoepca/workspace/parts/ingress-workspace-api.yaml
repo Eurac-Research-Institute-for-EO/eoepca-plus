@@ -27,10 +27,11 @@ spec:
         - name: openid-connect
           enable: true
           config:
-            client_id: "workspace-bb"
-            client_secret: "nbUmFfzQdfcYiLw0Mo5OMzSaKQfZBv3U"
+#            client_id: "workspace-bb"
+#            client_secret: "nbUmFfzQdfcYiLw0Mo5OMzSaKQfZBv3U"
             access_token_in_authorization_header: true
             discovery: "https://iam-auth.develop.eoepca.org/realms/eoepca/.well-known/openid-configuration"
+          secretRef: workspace-api-client
     - name: workspace-api
       match:
         hosts:
@@ -48,8 +49,9 @@ spec:
         - name: authz-keycloak
           enable: true
           config:
-            client_id: "workspace-bb"
-            client_secret: "nbUmFfzQdfcYiLw0Mo5OMzSaKQfZBv3U"
+#            client_id: "workspace-bb"
+#            client_secret: "nbUmFfzQdfcYiLw0Mo5OMzSaKQfZBv3U"
             discovery: "https://iam-auth.develop.eoepca.org/realms/eoepca/.well-known/uma2-configuration"
             lazy_load_paths: true
             ssl_verify: false
+          secretRef: workspace-api-client
