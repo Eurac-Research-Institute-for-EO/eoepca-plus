@@ -26,6 +26,19 @@ spec:
         releaseName: eoapi
         valueFiles:
           - $values/argocd/eoepca/data-access/parts/values/values-eoapi.yaml
+        environment:
+          AWS_ACCESS_KEY_ID:
+            valueFrom:
+              secretKeyRef:
+                name: data-access
+                key: AWS_ACCESS_KEY_ID
+                namespace: data-access
+          AWS_SECRET_ACCESS_KEY:
+            valueFrom:
+              secretKeyRef:
+                name: data-access
+                key: AWS_SECRET_ACCESS_KEY
+                namespace: data-access
     # - repoURL: https://devseed.com/eoapi-k8s/
     #   chart: eoapi-support
     #   targetRevision: 0.1.7
