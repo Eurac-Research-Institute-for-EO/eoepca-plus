@@ -44,6 +44,7 @@ enableCaBundleFetch: true
 caBundleSecretName: "eoepca-ca-secret"
 metrics-server:
   apiService:
+    create: false
     insecureSkipTLSVerify: false
   commonAnnotations:
     cert-manager.io/inject-ca-from: cert-manager-ns/eoepca-ca
