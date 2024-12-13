@@ -59,6 +59,11 @@ stac:
   image:
     name: harbor.develop.eoepca.org/eoapi/stac
     tag: sha-547ee83
+  command:
+    - "uvicorn"
+    - "eoapi.stac.app:app"
+    - "--host=$(HOST)"
+    - "--port=$(PORT)"
   settings:
     envVars:
       EOAPI_STAC_EXTENSIONS: ["filter", "query", "sort", "fields", "pagination", "filter", "transaction"]
