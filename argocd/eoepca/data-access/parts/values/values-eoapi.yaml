@@ -58,15 +58,13 @@ stac:
   enabled: true
   image:
     name: harbor.develop.eoepca.org/eoapi/stac
-    tag: sha-547ee83
+    tag: sha-3cc298e
   command:
     - "uvicorn"
     - "eoapi.stac.app:app"
     - "--host=0.0.0.0"
     - "--port=8080"
   settings:
-    envVars:
-      EOAPI_STAC_CORS_METHODS: "GET,POST,PUT,OPTIONS"
     resources:
       limits:
         cpu: "1280m"
