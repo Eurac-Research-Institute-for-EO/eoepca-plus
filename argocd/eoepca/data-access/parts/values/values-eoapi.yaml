@@ -56,15 +56,10 @@ raster:
         memory: "3072Mi"
 stac:
   enabled: true
-  image:
-    name: harbor.develop.eoepca.org/eoapi/stac
-    tag: sha-3cc298e
-  command:
-    - "uvicorn"
-    - "eoapi.stac.app:app"
-    - "--host=0.0.0.0"
-    - "--port=8080"
   settings:
+    envVars:
+      EOAPI_STAC_EXTENSIONS: "filter,query,sort,fields,pagination,transaction"
+      EOAPI_STAC_CORS_METHODS: "GET,POST,PUT,OPTIONS"
     resources:
       limits:
         cpu: "1280m"
