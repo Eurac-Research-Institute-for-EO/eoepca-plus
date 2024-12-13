@@ -5,6 +5,17 @@ metadata:
   name: workspace-api
 spec:
   http:
+    - name: workspace-api-no-auth
+      match:
+        hosts:
+          - workspace-api.apx.develop.eoepca.org
+        paths:
+          - "/metrics*"
+          - "/probe*"
+      backends:
+        - serviceName: workspace-api
+          servicePort: 8080
+      plugins: []    
     - name: workspace-api-docs
       match:
         hosts:
