@@ -16,10 +16,12 @@ image:
 server:
   port: 7002
   # policyRepoUrl: "https://github.com/permitio/opal-example-policy-repo"
-  policyRepoUrl: https://github.com/EOEPCA/keycloak-opa-plugin.git/
+  # policyRepoUrl: https://github.com/EOEPCA/keycloak-opa-plugin.git/
+  policyRepoUrl: https://github.com/EOEPCA/iam-policies.git
   policyRepoSshKey: null
   policyRepoClonePath: null
-  policyRepoMainBranch: opatest
+  # policyRepoMainBranch: opatest
+  policyRepoMainBranch: main
   # Poll only every 5min for now. May be reduced or reconfigured to use webhooks if required.
   pollingInterval: 300
   dataConfigSources:
@@ -89,6 +91,12 @@ client:
         "GET" == input.method
         [""] == input.path
         print("GET /, Input: ", input)
+      }
+      allow_policy_evaluation if {
+        # Generally allow GET on /health
+        "GET" == input.method
+        ["health"] == input.path
+        print("GET /health, Input: ", input)
       }
       # Claims from JWT if JWT is present and can be verified; null otherwise 
       default verified_claims = null
