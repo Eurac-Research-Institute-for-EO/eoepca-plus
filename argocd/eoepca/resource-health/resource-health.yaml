@@ -50,7 +50,7 @@ spec:
               schedule: "0 8 * * *"
               # This is an empty base64 encoding
               requirements: "data:text/plain;base64,"
-              script: "https://github.com/EOEPCA/resource-health/blob/main/pytest-health/lib/BB-examples/data_access_tests.py"
+              script: "https://github.com/EOEPCA/resource-health/blob/main/pytest-health/lib/BB-examples/data_access_tests.py?raw=true"
               env:
                 - name: DATA_ACCESS_HOST
                   value: https://eoapi.develop.eoepca.org
@@ -58,7 +58,7 @@ spec:
             - name: daily-iam-check
               schedule: "0 8 * * *"
               requirements: "data:text/plain;base64,"
-              script: "https://github.com/EOEPCA/resource-health/blob/main/pytest-health/lib/BB-examples/iam_tests.py"
+              script: "https://github.com/EOEPCA/resource-health/blob/main/pytest-health/lib/BB-examples/iam_tests.py?raw=true"
               env:
                 - name: OPEN_ID_CONFIGURATION_HOST
                   value: https://iam-auth.apx.develop.eoepca.org/realms/eoepca/.well-known
@@ -70,7 +70,7 @@ spec:
             - name: daily-data-mlops-check
               schedule: "0 8 * * *"
               requirements: "data:text/plain;base64,"
-              script: "https://github.com/EOEPCA/resource-health/blob/main/pytest-health/lib/BB-examples/mlops_tests.py"
+              script: "https://github.com/EOEPCA/resource-health/blob/main/pytest-health/lib/BB-examples/mlops_tests.py?raw=true"
               env:
                 - name: SHARING_HUB_HOST
                   value: https://sharinghub.develop.eoepca.org
@@ -80,7 +80,7 @@ spec:
             - name: daily-resource-discovery-check
               schedule: "0 8 * * *"
               requirements: "data:text/plain;base64,"
-              script: "https://github.com/EOEPCA/resource-health/blob/main/pytest-health/lib/BB-examples/resource_discovery_tests.py"
+              script: "https://github.com/EOEPCA/resource-health/blob/main/pytest-health/lib/BB-examples/resource_discovery_tests.py?raw=true"
               env:
                 - name: RESOURCE_CATALOGUE_ENDPOINT
                   value: https://resource-catalogue.develop.eoepca.org
@@ -88,7 +88,7 @@ spec:
             - name: daily-resource-registration-check
               schedule: "0 8 * * *"
               requirements: "data:text/plain;base64,"
-              script: "https://github.com/EOEPCA/resource-health/blob/main/pytest-health/lib/BB-examples/resource_registration_tests.py"
+              script: "https://github.com/EOEPCA/resource-health/blob/main/pytest-health/lib/BB-examples/resource_registration_tests.py?raw=true"
               env:
                 - name: HARVESTER_WORKFLOW_ENGINE_HOST
                   value: https://registration-harvester-api.develop.eoepca.org
@@ -102,7 +102,7 @@ spec:
             - name: daily-workspace-check
               schedule: "0 8 * * *"
               requirements: "data:text/plain;base64,"
-              script: "https://github.com/EOEPCA/resource-health/blob/main/pytest-health/lib/BB-examples/workspace_tests.py"
+              script: "https://github.com/EOEPCA/resource-health/blob/main/pytest-health/lib/BB-examples/workspace_tests.py?raw=true"
               env:
                 - name: WORKSPACE_HOST
                   value: https://workspace-api.apx.develop.eoepca.org
