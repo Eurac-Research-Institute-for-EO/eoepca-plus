@@ -8,10 +8,10 @@ resources:
   - ss-kc-postgres.yaml
   - ss-identity-api.yaml
   - apisixtls-apx-all.yaml
-  - apisixtls-iam.yaml
-  - apisixtls-iam-auth.yaml
-  - apisixtls-iam-opa.yaml
-  - apisixtls-iam-test.yaml
+#  - apisixtls-iam.yaml
+#  - apisixtls-iam-auth.yaml
+#  - apisixtls-iam-opa.yaml
+#  - apisixtls-iam-test.yaml
   - apisixroute-keycloak.yaml
   - apisixroute-opa.yaml
   - apisixroute-identity-api.yaml
