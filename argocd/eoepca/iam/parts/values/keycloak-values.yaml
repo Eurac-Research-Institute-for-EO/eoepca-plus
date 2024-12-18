@@ -274,9 +274,9 @@ extraEnvVars:
   - name: KC_SPI_POLICY_OPA_OPA_POLICY_DIR
     value: "/opt/bitnami/keycloak/conf/opa-policies"
   - name: KC_HOSTNAME_URL
-    value: "https://iam-auth.develop.eoepca.org"
+    value: "https://iam-auth.apx.develop.eoepca.org"
   - name: KC_HOSTNAME_ADMIN_URL
-    value: "https://iam-auth.develop.eoepca.org"
+    value: "https://iam-auth.apx.develop.eoepca.org"
 
 ## @param extraEnvVarsCM Name of existing ConfigMap containing extra env vars
 ##
