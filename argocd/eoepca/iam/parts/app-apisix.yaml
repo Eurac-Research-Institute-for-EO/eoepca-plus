@@ -22,7 +22,7 @@ spec:
         releaseName: apisix
         valueFiles:
           # Bitnami:
-          #- $values/argocd/eoepca/iam/parts/values/apisix-values.yaml
+          #- $values/argocd/eoepca/iam/parts/values/apisix-values-bitnami.yaml
           # Apache:
           - $values/argocd/eoepca/iam/parts/values/apisix-values-asf.yaml
     - repoURL: https://github.com/EOEPCA/eoepca-plus
