@@ -3,6 +3,7 @@ apiVersion: apisix.apache.org/v2
 kind: ApisixRoute
 metadata:
   name: workspace-api
+  namespace: workspace
 spec:
   http:
     - name: workspace-api-no-auth
@@ -15,7 +16,7 @@ spec:
       backends:
         - serviceName: workspace-api
           servicePort: 8080
-      plugins: []    
+      plugins: []
     - name: workspace-api-docs
       match:
         hosts:
@@ -28,18 +29,12 @@ spec:
             op: RegexMatch
             value: "^/(docs(/.*|$)|openapi.json$)"
       backends:
-        - serviceName: workspace-api
+        - serviceName: workspace-api-opa
           servicePort: 8080
       plugins:
-        - name: redirect
-          enable: true
-          config:
-            http_to_https: true
         - name: openid-connect
           enable: true
           config:
-#            client_id: "workspace-bb"
-#            client_secret: "nbUmFfzQdfcYiLw0Mo5OMzSaKQfZBv3U"
             access_token_in_authorization_header: true
             discovery: "https://iam-auth.develop.eoepca.org/realms/eoepca/.well-known/openid-configuration"
           secretRef: workspace-api-client
@@ -53,16 +48,14 @@ spec:
         - serviceName: workspace-api
           servicePort: 8080
       plugins:
-        - name: redirect
+        - name: openid-connect
           enable: true
           config:
-            http_to_https: true
-        - name: authz-keycloak
-          enable: true
-          config:
-#            client_id: "workspace-bb"
-#            client_secret: "nbUmFfzQdfcYiLw0Mo5OMzSaKQfZBv3U"
-            discovery: "https://iam-auth.develop.eoepca.org/realms/eoepca/.well-known/uma2-configuration"
-            lazy_load_paths: true
-            ssl_verify: false
+            access_token_in_authorization_header: true
+            discovery: https://iam-auth.develop.eoepca.org/realms/eoepca/.well-known/openid-configuration
           secretRef: workspace-api-client
+        - name: opa
+          enable: true
+          config:
+            host: http://iam-opal-opal-client:8181
+            policy: eoepca/workspace/wsapi
