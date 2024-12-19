@@ -1,8 +1,7 @@
----
+# Probably not needed, but kept as an example for now
 apiVersion: bitnami.com/v1alpha1
 kind: SealedSecret
 metadata:
-  creationTimestamp: null
   name: ovh-image-repo
   namespace: iam
 spec:
