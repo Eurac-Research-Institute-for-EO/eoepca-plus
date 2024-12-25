@@ -12,7 +12,7 @@ spec:
   source:
     repoURL: 'https://github.com/EOEPCA/application-quality'
     path: helm
-    targetRevision: HEAD
+    targetRevision: 3-deployment-automation
     helm:
       valueFiles:
         - eoepca-develop-values.yaml
