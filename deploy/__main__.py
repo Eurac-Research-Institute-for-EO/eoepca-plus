@@ -70,34 +70,8 @@ def main():
         "control_node": control_node,
         "worker_nodes": worker_nodes,
     }
-    cluster, kubeconfig = rke_cluster.deploy(
+    rke_cluster.deploy(
         nodes, bastion_instance, subnet_instance, api_pool, load_balancer_floating_ip
-    )
-
-    # Connect kubeconfig to the RKE cluster
-    k8s_provider = k8s.Provider(
-        "k8s-provider",
-        kubeconfig=kubeconfig,
-        opts=pulumi.ResourceOptions(
-            depends_on=[cluster], ignore_changes=["kubeconfig", "deleteUnreachable"]
-        ),
-        enable_server_side_apply=True,
-    )
-
-    # Deploy Ingress Nginx
-    ingress_chart = ingress_nginx.deploy(k8s_provider)
-
-    # Deploy Cert Manager
-    cluster_issuer = cert_manager.deploy(k8s_provider)
-
-    # Add NFS Provisioner to the RKE cluster
-    nfs_provisioner.deploy(k8s_provider, nfs_instance)
-    nfs_pvc.deploy(k8s_provider)
-
-    # Deploy ArgoCD onto the RKE cluster
-    argocd_chart = argocd.deploy(
-        k8s_provider,
-        ingress_chart,
     )
 
 
