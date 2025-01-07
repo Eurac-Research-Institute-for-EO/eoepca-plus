@@ -353,7 +353,7 @@ apisix:
       #   port: 9445
       #   enable_http3: true
     # -- Specifies the name of Secret contains trusted CA certificates in the PEM format used to verify the certificate when APISIX needs to do SSL/TLS handshaking with external services (e.g. etcd)
-    existingCASecret: "apisix-data-plane-tls"
+    existingCASecret: "apx-all-tls"
     # -- Filename be used in the apisix.ssl.existingCASecret
     certCAFilename: "ca.crt"
     enableHTTP3: false
@@ -571,7 +571,9 @@ apisix:
   stream_plugins: []
 
   # -- Set APISIX plugin attributes, see [config-default.yaml](https://github.com/apache/apisix/blob/master/conf/config-default.yaml#L376) for more details
-  pluginAttrs: {}
+  pluginAttrs:
+    redirect:
+      https_port: 443
 
   extPlugin:
     # -- Enable External Plugins. See [external plugin](https://apisix.apache.org/docs/apisix/next/external-plugin/)
