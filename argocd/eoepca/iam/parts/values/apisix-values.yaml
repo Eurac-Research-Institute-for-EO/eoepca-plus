@@ -355,7 +355,7 @@ apisix:
     # -- Specifies the name of Secret contains trusted CA certificates in the PEM format used to verify the certificate when APISIX needs to do SSL/TLS handshaking with external services (e.g. etcd)
     existingCASecret: "apx-all-tls"
     # -- Filename be used in the apisix.ssl.existingCASecret
-    certCAFilename: "ca.crt"
+    certCAFilename: "tls.crt"
     enableHTTP3: false
     # -- TLS protocols allowed to use.
     sslProtocols: "TLSv1.2 TLSv1.3"
