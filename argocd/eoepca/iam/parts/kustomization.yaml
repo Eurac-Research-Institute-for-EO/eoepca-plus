@@ -12,5 +12,4 @@ resources:
   - apisixroute-opa.yaml
   - apisixroute-identity-api.yaml
   - apisixroute-dummy-service.yaml
-  - apisixroute-zoo.yaml
   - cert-apx-all.yaml
