@@ -11,11 +11,11 @@ spec:
   project: eoepca
   source:
     repoURL: 'https://github.com/EOEPCA/application-quality'
-    path: helm
+    path: application-quality-reference-deployment
     targetRevision: 3-deployment-automation
     helm:
       valueFiles:
-        - eoepca-develop-values.yaml
+        - values.yaml
   destination:
     name: in-cluster
     namespace: application-quality
