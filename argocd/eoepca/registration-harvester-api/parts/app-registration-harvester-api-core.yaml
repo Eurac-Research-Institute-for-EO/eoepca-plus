@@ -4,7 +4,7 @@ metadata:
   name: registration-harvester-api-core
   namespace: argocd
   labels:
-    eoepca/app-name: registration-harvester-api
+    eoepca/app-name: registration-harvester
 spec:
   # Ref. https://argo-cd.readthedocs.io/en/stable/user-guide/application-specification/
   project: eoepca
@@ -15,7 +15,7 @@ spec:
       helm:
         releaseName: registration-harvester-api-engine
         valueFiles:
-          - $values/argocd/eoepca/registration-harvester-api/parts/values.yaml
+          - $values/argocd/eoepca/registration-harvester-api/parts/values/values-flowable.yaml
     - repoURL: https://github.com/EOEPCA/eoepca-plus
       targetRevision: deploy-develop
       ref: values
