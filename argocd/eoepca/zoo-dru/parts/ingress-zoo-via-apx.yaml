@@ -39,6 +39,29 @@ spec:
         # Allow CORS access
         - name: cors
           enable: true
+    # Access to jobs for any authenticated user - relies on obscurity of Job ID
+    - name: zoo-jobs
+      match:
+        hosts:
+          - zoo.apx.develop.eoepca.org
+        paths:
+          - /jobs/*
+      backends:
+        - serviceName: zoo-project-dru-service
+          servicePort: 80
+      plugins:
+        # Authn - expect JWT in `Authorization: Bearer` header
+        - name: openid-connect
+          enable: true
+          config:
+            client_id: "zoo"
+            client_secret: "Fsw9DtGQ52lje15lQtPC8CDxhpwqE8Di"
+            discovery: "https://iam-auth.apx.develop.eoepca.org/realms/eoepca/.well-known/openid-configuration"
+            realm: eoepca
+            bearer_only: true
+        # Allow CORS access
+        - name: cors
+          enable: true
     # Authorized access to zoo API
     - name: zoo-protected
       match:
