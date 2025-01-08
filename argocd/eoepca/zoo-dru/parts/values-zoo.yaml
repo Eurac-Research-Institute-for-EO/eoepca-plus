@@ -30,22 +30,22 @@ workflow:
     minikube.k8s.io/primary: "true"
   storageClass: managed-nfs-storage-retain
 ingress:
-  enabled: true
-  hosturl: https://zoo.develop.eoepca.org
+  enabled: false
+  hosturl: https://zoo.apx.develop.eoepca.org
   annotations:
     kubernetes.io/ingress.class: nginx
     ingress.kubernetes.io/ssl-redirect: "true"
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
     cert-manager.io/cluster-issuer: letsencrypt-prod
   hosts:
-  - host: zoo-open.develop.eoepca.org
+  - host: zoo.apx.develop.eoepca.org
     paths:
     - path: /
       pathType: ImplementationSpecific
   tls:
   - hosts:
-    - zoo-open.develop.eoepca.org
-    secretName: zoo-open-tls
+    - zoo.apx.develop.eoepca.org
+    secretName: zoo-tls
 persistence:
   procServicesStorageClass: managed-nfs-storage-retain
   storageClass: managed-nfs-storage-retain
