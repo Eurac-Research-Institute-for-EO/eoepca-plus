@@ -45,7 +45,7 @@ spec:
         hosts:
           - zoo.apx.develop.eoepca.org
         paths:
-          - /jobs/*
+          - /ogc-api/jobs/*
       backends:
         - serviceName: zoo-project-dru-service
           servicePort: 80
