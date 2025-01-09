@@ -22,7 +22,7 @@ spec:
       targetRevision: 0.2.0
       #targetRevision: 2.0.0-beta2
       helm:
-        releaseName: identity-api
+        #releaseName: iam-identity-api
         valueFiles:
           - $values/argocd/eoepca/iam/parts/values/iam-values.yaml
         # For now, all services are disabled by default in iam-values.yaml in order to

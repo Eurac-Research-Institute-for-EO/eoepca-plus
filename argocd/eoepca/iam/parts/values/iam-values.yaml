@@ -325,18 +325,22 @@ identity-service:
     enabled: false
   identity-api:
     enabled: *identityApiEnabled #true #"{{ .Values.identityApi.enabled }}"
-    secrets:
+    secrets: {}
       # Values for secret 'identity-api'
       # Note - if ommitted, these can instead be set by creating the secret independently
       # e.g. as a SealedSecret via GitOps.
-      adminPassword: *adminPwd
+      #adminPassword: *adminPwd
     deployment:
       # Config values that can be passed via env vars
       extraEnv:
         - name: AUTH_SERVER_URL  # see configMap.authServerUrl instead
-          value: *kcurl
+          # Use internal Keycloak URL
+          value: http://iam-keycloak.iam.svc.cluster.local
+          #value: *kcurl
         - name: ADMIN_USERNAME
-          value: *adminUser #"admin"
+          # Use dedicated identity-api user
+          value: identity-api
+          #value: *adminUser
         - name: REALM
           value: "eoepca"
         # - name: VERSION
