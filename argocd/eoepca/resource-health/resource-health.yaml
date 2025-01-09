@@ -107,6 +107,14 @@ spec:
                 - name: WORKSPACE_HOST
                   value: https://workspace-api.apx.develop.eoepca.org
 
+            - name: daily-processing-check
+              schedule: "0 8 * * *"
+              requirements: "data:text/plain;base64,"
+              script: "https://github.com/EOEPCA/resource-health/blob/2.0.0-beta2/pytest-health/lib/BB-examples/generic_test.py?raw=true"
+              env:
+                - name: GENERIC_ENDPOINT
+                  value: https://zoo.develop.eoepca.org/swagger-ui/oapip/
+
   destination:
     namespace: resource-health
     server: https://kubernetes.default.svc
