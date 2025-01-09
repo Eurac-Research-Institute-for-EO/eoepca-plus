@@ -16,7 +16,7 @@ harvester:
         user: eoepca
         password: eoepca
         tls: "true"
-        #cacert: ./etc/eoepca-ca-chain.pem
+        cacert: ./etc/eoepca-ca-chain.pem
       topics:
         landsat_discover_data:
           module: worker.landsat.tasks
