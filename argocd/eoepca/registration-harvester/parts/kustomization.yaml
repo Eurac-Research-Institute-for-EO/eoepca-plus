@@ -1,0 +1,4 @@
+
+resources:
+  - app-registration-harvester-flowable.yaml
+  - app-registration-harvester-worker.yaml

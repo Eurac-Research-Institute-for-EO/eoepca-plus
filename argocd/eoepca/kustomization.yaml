@@ -11,7 +11,7 @@ resources:
   - mlops
   - application-quality
   - portal-v1x
-  - registration-harvester-api
+  - registration-harvester
   - iam
   - application-hub
   - resource-health

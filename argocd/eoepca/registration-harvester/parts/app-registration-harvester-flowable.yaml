@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: registration-harvester-api-core
+  name: registration-harvester-flowable
   namespace: argocd
   labels:
     eoepca/app-name: registration-harvester
@@ -13,16 +13,16 @@ spec:
       chart: flowable
       targetRevision: 7.0.0
       helm:
-        releaseName: registration-harvester-api-engine
+        releaseName: registration-harvester-flowable
         valueFiles:
-          - $values/argocd/eoepca/registration-harvester-api/parts/values/values-flowable.yaml
+          - $values/argocd/eoepca/registration-harvester/parts/values/values-flowable.yaml
     - repoURL: https://github.com/EOEPCA/eoepca-plus
       targetRevision: deploy-develop
       ref: values
 
   destination:
     name: in-cluster
-    namespace: registration-harvester-api
+    namespace: registration-harvester
   syncPolicy:
     automated:
       prune: true
