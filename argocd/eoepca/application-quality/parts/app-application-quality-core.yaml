@@ -4,15 +4,14 @@ metadata:
   name: application-quality
   namespace: argocd
   labels:
-    eoepca/is-root-app: "true"
     eoepca/app-name: application-quality
 spec:
   # Ref. https://argo-cd.readthedocs.io/en/stable/user-guide/application-specification/
   project: eoepca
   source:
-    repoURL: https://github.com/EOEPCA/eoepca-plus
-    targetRevision: deploy-develop
-    path: argocd/eoepca/application-quality/parts
+    repoURL: https://github.com/EOEPCA/application-quality
+    path: application-quality-reference-deployment
+    targetRevision: 3-deployment-automation
   destination:
     name: in-cluster
     namespace: application-quality
