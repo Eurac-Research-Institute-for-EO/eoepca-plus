@@ -15,7 +15,7 @@ harvester:
         host: https://registration-harvester-api.develop.eoepca.org/flowable-rest
         user: eoepca
         password: eoepca
-        tls: "true"
+        tls: true
         cacert: ./etc/eoepca-ca-chain.pem
       topics:
         landsat_discover_data:
@@ -44,7 +44,7 @@ harvester:
           usgs_api_url: https://landsatlook.usgs.gov/stac-server
           page_size: 100
         LandsatContinuousDiscoveryHandler:
-          enabled: "false"
+          enabled: false
           usgs_api_url: https://landsatlook.usgs.gov/stac-server
           page_size: 100      
           datetime_property: created
@@ -54,7 +54,7 @@ harvester:
         LandsatGetDownloadUrlHandler:
           m2m_user: eoepca
           m2m_password: "UnUA7x7aZMu30Len10LF9aojpAdidU5ni0jTEiMG5Rz8nD6TtKrG__fBHJSL_XN!"
-          m2m_use_token: "true"
+          m2m_use_token: true
           m2m_api_url: https://m2m.cr.usgs.gov/api/api/json/stable/
         LandsatDownloadHandler:
           subscription:
@@ -62,8 +62,8 @@ harvester:
           download_base_dir: "/eodata/landsat"
           download_timeout: 300
         LandsatUntarHandler:
-          remove_tar: "false"
-          create_folder: "true"
+          remove_tar: false
+          create_folder: true
         LandsatRegisterMetadataHandler:
           stac_api_url: https://resource-catalogue.develop.eoepca.org/stac/
-          stac_file_deletion: "true"
+          stac_file_deletion: true
