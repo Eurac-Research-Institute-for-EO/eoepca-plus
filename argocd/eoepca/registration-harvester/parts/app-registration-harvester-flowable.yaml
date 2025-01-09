@@ -13,7 +13,7 @@ spec:
       chart: flowable
       targetRevision: 7.0.0
       helm:
-        releaseName: registration-harvester-api-core
+        releaseName: registration-harvester-api-engine
         valueFiles:
           - $values/argocd/eoepca/registration-harvester/parts/values/values-flowable.yaml
     - repoURL: https://github.com/EOEPCA/eoepca-plus
