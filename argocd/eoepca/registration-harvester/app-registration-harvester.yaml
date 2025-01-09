@@ -15,7 +15,7 @@ spec:
     path: argocd/eoepca/registration-harvester/parts
   destination:
     name: in-cluster
-    namespace: registration-harvester
+    namespace: registration-harvester-api
   syncPolicy:
     automated:
       prune: true
