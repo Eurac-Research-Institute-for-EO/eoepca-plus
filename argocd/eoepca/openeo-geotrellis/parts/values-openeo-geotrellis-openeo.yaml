@@ -54,6 +54,40 @@ configMaps:
         enable_basic_auth=True,
         valid_basic_auth=lambda u, p: p == f"{u}123",
     )
+  layerCatalog:
+    [
+      {
+        "id": "TestCollection-LonLat16x16",
+        "description": "[DEBUGGING] Fast and predictable layer for debugging purposes. One sample every 5 days. Resolution will vary, to always output 16x16 pixels.",
+        "experimental": true,
+        "_vito": {"data_source": {"type": "testing"}},
+        "cube:dimensions": {
+          "x": {"type": "spatial", "axis": "x", "reference_system": 4326},
+          "y": {"type": "spatial", "axis": "y", "reference_system": 4326},
+          "t": {"type": "temporal"},
+          "bands": {
+            "type": "bands",
+            "values": [
+              "Flat:0",
+              "Flat:1",
+              "Flat:2",
+              "TileCol",
+              "TileRow",
+              "TileColRow:10",
+              "Longitude",
+              "Latitude",
+              "Year",
+              "Month",
+              "Day"
+            ]
+          }
+        },
+        "extent": {
+          "spatial": {"bbox": [[-180, -56, 180, 83]]},
+          "temporal": {"interval": [["2000-01-01", null]]}
+        }
+      }
+    ]
 driver:
   env:
     KUBE: "true"
@@ -151,6 +185,8 @@ rbac:
 volumeMounts:
   - mountPath: /opt/backend_config/
     name: backend-config-configmap
+  - mountPath: /opt
+    name: layercatalog-configmap
 volumes:
   - configMap:
       name: openeo-geotrellis-openeo-sparkapplication
@@ -158,3 +194,9 @@ volumes:
         - key: backendconfig.py
           path: backendconfig.py
     name: backend-config-configmap
+  - configMap:
+      name: openeo-geotrellis-openeo-sparkapplication
+      items:
+        - key: layercatalog.json
+          path: layercatalog.json
+    name: layercatalog-configmap
