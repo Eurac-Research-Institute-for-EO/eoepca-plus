@@ -21,6 +21,12 @@ spec:
             environmentFixed:
               - name: FAST_API_ROOT_PATH
                 value: "/api/telemetry"
+
+          check_api:
+            environmentFixed:
+              - name: FAST_API_ROOT_PATH
+                value: "/api/healthchecks"
+
           healthchecks:
             checks:
             - name: hourly-mockapi-check
