@@ -1,5 +1,9 @@
+# Note: This file is *not* used if Identity API is installed via the iam-bb
+# Helm chart. Values are taken from iam-values.yaml instead in this case.
+
 # Note: Only identity-api is installed.
 # All other services are disabled.
+
 identity-postgres:
   enabled: false
 identity-keycloak:

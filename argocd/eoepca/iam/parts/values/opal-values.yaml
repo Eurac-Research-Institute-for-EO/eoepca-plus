@@ -1,3 +1,6 @@
+# Note: This file is *not* used if OPAL is installed via the iam-bb
+# Helm chart. Values are taken from iam-values.yaml instead in this case.
+
 # Adapted values.yaml for EOEPCA IAM BB (derived from
 # https://github.com/permitio/opal-helm-chart/blob/master/values.yaml)
 
