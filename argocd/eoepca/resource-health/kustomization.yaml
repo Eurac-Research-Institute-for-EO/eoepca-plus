@@ -1,2 +1,5 @@
 resources:
   - resource-health.yaml
+  # - ingress/ingress.yaml
+  - ingress/ingress-plugin.yaml
+  - secrets/resource-health-iam-client-sealedsecret.yaml

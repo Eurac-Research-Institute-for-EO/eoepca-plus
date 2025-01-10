@@ -1,0 +1,14 @@
+apiVersion: apisix.apache.org/v2
+kind: ApisixPluginConfig
+metadata:
+  name: resource-health-route-plugin
+  namespace: resource-health
+spec:
+  plugins:
+  - name: openid-connect
+    enable: true
+    config:
+      access_token_in_authorization_header: true
+      bearer_only: false
+      discovery: "https://iam-auth.develop.eoepca.org/realms/eoepca/.well-known/openid-configuration"
+    secretRef: resource-health-iam-client-credentials

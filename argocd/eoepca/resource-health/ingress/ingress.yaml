@@ -1,0 +1,84 @@
+apiVersion: apisix.apache.org/v2
+kind: ApisixRoute
+metadata:
+  name: resource-health-route
+  namespace: resource-health
+spec:
+  http:
+  - name: resource-health-web-route
+    match:
+      hosts:
+        - resource-health.apx.develop.eoepca.org
+      paths:
+        - /
+        - /_next/*
+        - /.apisix/*
+    backends:
+      - serviceName: resource-health-web
+        servicePort: 80
+    plugins:
+    plugin_config_name: resource-health-route-plugin
+  - name: resource-health-telemetry-api-doc-route
+    match:
+      hosts:
+        - resource-health.apx.develop.eoepca.org
+      paths:
+        - /api/telemetry/docs
+        - /api/telemetry/docs/*
+        #- /api/telemetry/openapi.json
+    backends:
+      - serviceName: resource-health-telemetry-api
+        servicePort: 8080
+    plugins:
+      - name: proxy-rewrite
+        enable: true
+        config:
+          regex_uri: ["^/api/telemetry/(.*)","/$1"]
+    plugin_config_name: resource-health-route-plugin
+  - name: resource-health-telemetry-api-route
+    match:
+      hosts:
+        - resource-health.apx.develop.eoepca.org
+      paths:
+        - /api/telemetry/*
+    backends:
+      - serviceName: resource-health-telemetry-api
+        servicePort: 8080
+    plugins:
+      - name: proxy-rewrite
+        enable: true
+        config:
+          regex_uri: ["^/api/telemetry/(.*)","/$1"]
+    plugin_config_name: resource-health-route-plugin
+  - name: resource-health-check-api-doc-route
+    match:
+      hosts:
+        - resource-health.apx.develop.eoepca.org
+      paths:
+        - /api/healthchecks/docs
+        - /api/healthchecks/docs/*
+        #- /api/healthchecks/openapi.json
+    backends:
+      - serviceName: resource-health-check-api
+        servicePort: 8000
+    plugins:
+      - name: proxy-rewrite
+        enable: true
+        config:
+          regex_uri: ["^/api/healthchecks/(.*)","/$1"]
+    plugin_config_name: resource-health-route-plugin
+  - name: resource-health-check-api-route
+    match:
+      hosts:
+        - resource-health.apx.develop.eoepca.org
+      paths:
+        - /api/healthchecks/*
+    backends:
+      - serviceName: resource-health-check-api
+        servicePort: 8000
+    plugins:
+      - name: proxy-rewrite
+        enable: true
+        config:
+          regex_uri: ["^/api/healthchecks/(.*)","/$1"]
+    plugin_config_name: resource-health-route-plugin
