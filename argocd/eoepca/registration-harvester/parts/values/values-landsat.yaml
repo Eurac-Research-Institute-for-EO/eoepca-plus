@@ -7,14 +7,14 @@ harvester:
     repository: eoepca/registration-harvester
     pullPolicy: Always
     tag: latest
+  secret:
+    name: registration-harvester
   container_port: 8080
   config:
     worker:
       log_level: INFO
       flowable:
         host: https://registration-harvester-api.develop.eoepca.org/flowable-rest
-        user: eoepca
-        password: eoepca
         tls: true
         cacert: ./etc/eoepca-ca-chain.pem
       topics:
@@ -52,8 +52,6 @@ harvester:
           bbox: "8,40,18,60"
           collections: landsat-c2l2-sr
         LandsatGetDownloadUrlHandler:
-          m2m_user: eoepca
-          m2m_password: "UnUA7x7aZMu30Len10LF9aojpAdidU5ni0jTEiMG5Rz8nD6TtKrG__fBHJSL_XN!"
           m2m_use_token: true
           m2m_api_url: https://m2m.cr.usgs.gov/api/api/json/stable/
         LandsatDownloadHandler:

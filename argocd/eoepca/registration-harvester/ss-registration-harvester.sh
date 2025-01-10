@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+
+ORIG_DIR="$(pwd)"
+cd "$(dirname "$0")"
+BIN_DIR="$(pwd)"
+
+onExit() {
+  cd "${ORIG_DIR}"
+}
+trap onExit EXIT
+
+# Optional local .env file for secret values as env vars
+source .env 2>/dev/null
+
+SECRET_NAME="registration-harvester"
+NAMESPACE="registration-harvester-api"
+
+FLOWABLE_USER="${1:-${FLOWABLE_USER:-someuser}}"
+FLOWABLE_PASSWORD="${2:-${FLOWABLE_PASSWORD:-somepw}}"
+M2M_USER="${3:-${M2M_USER:-someuser}}"
+M2M_PASSWORD="${4:-${M2M_PASSWORD:-somepw}}"
+CDSE_USER="${5:-${CDSE_USER:-someuser}}"
+CDSE_PASSWORD="${6:-${CDSE_PASSWORD:-somepw}}"
+
+secretYaml() {
+  kubectl -n "${NAMESPACE}" create secret generic "${SECRET_NAME}" \
+    --from-literal="FLOWABLE_USER=${FLOWABLE_USER}" \
+    --from-literal="FLOWABLE_PASSWORD=${FLOWABLE_PASSWORD}" \
+    --from-literal="M2M_USER=${M2M_USER}" \
+    --from-literal="M2M_PASSWORD=${M2M_PASSWORD}" \
+    --from-literal="CDSE_USER=${CDSE_USER}" \
+    --from-literal="CDSE_PASSWORD=${CDSE_PASSWORD}" \
+    --dry-run=client -o yaml
+}
+
+# Create Secret and then pipe to kubeseal to create the SealedSecret
+secretYaml \
+  | kubeseal -o yaml --controller-name sealed-secrets --controller-namespace infra > parts/ss-${SECRET_NAME}.yaml
