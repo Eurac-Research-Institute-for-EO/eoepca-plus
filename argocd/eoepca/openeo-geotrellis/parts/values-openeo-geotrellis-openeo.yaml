@@ -103,7 +103,7 @@ executor:
     PYTHONPATH: $PYTHONPATH:/opt/tensorflow/python38/2.3.0/:/opt/openeo/lib/python3.8/site-packages/
 existingConfigMaps: false
 fileDependencies:
-  - local:///opt/layercatalog.json
+  - local:///opt/layercatalog/layercatalog.json
   - local:///opt/log4j2.xml
 ingress:
   enabled: true
@@ -185,7 +185,7 @@ rbac:
 volumeMounts:
   - mountPath: /opt/backend_config/
     name: backend-config-configmap
-  - mountPath: /opt
+  - mountPath: /opt/layercatalog/
     name: layercatalog-configmap
 volumes:
   - configMap:
