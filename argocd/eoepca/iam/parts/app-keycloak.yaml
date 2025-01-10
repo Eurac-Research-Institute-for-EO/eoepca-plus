@@ -11,14 +11,31 @@ spec:
   # Ref. https://argo-cd.readthedocs.io/en/stable/user-guide/application-specification/
   project: eoepca
   sources:
-    - repoURL: https://charts.bitnami.com/bitnami
-#    - repoURL: oci://registry-1.docker.io/bitnamicharts/
-    #https://eoepca.github.io/helm-charts
-      chart: keycloak
-      targetRevision: 21.4.4
+#    - repoURL: https://charts.bitnami.com/bitnami
+##    - repoURL: oci://registry-1.docker.io/bitnamicharts/
+#    #https://eoepca.github.io/helm-charts
+#      chart: keycloak
+#      targetRevision: 21.4.4
+#      helm:
+#        valueFiles:
+#          - $values/argocd/eoepca/iam/parts/values/keycloak-values.yaml
+    - repoURL: https://eoepca.github.io/helm-charts-dev
+      chart: iam-bb
+      targetRevision: 0.2.3
+      #targetRevision: 2.0.0-beta2
       helm:
+        #releaseName: iam-keycloak
         valueFiles:
-          - $values/argocd/eoepca/iam/parts/values/keycloak-values.yaml
+          - $values/argocd/eoepca/iam/parts/values/iam-values.yaml
+        # For now, all services are disabled by default in iam-values.yaml in order to
+        # allow installing them as separate ArgoCD Applications.
+        # This explicitly enables Keycloak.
+        valuesObject:
+          iam:
+            keycloak:
+              enabled: true
+          keycloak:
+            enabled: true
     - repoURL: https://github.com/EOEPCA/eoepca-plus
       targetRevision: deploy-develop
       ref: values

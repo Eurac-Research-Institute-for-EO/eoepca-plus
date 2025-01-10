@@ -8,7 +8,7 @@ resources:
   - ss-kc-postgres.yaml
   - ss-identity-api.yaml
   - apisixtls-apx-all.yaml
-  - apisixroute-keycloak.yaml
+#  - apisixroute-keycloak.yaml
 #  - apisixroute-opa.yaml
 #  - apisixroute-identity-api.yaml
   - apisixroute-dummy-service.yaml
