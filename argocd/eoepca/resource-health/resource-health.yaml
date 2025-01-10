@@ -17,6 +17,10 @@ spec:
 
         ## Example health checks to deploy with the resource health BB itself
         resource-health:
+          telemetry_api:
+            environmentFixed:
+              - name: FAST_API_ROOT_PATH
+                value: "/api/telemetry"
           healthchecks:
             checks:
             - name: hourly-mockapi-check
