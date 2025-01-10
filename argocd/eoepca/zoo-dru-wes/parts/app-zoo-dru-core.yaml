@@ -13,7 +13,7 @@ spec:
       chart: zoo-project-dru
       targetRevision: 0.3.21
       helm:
-        releaseName: zoo-project-dru
+        releaseName: zoo-project-dru-wes
         valueFiles:
           - $values/argocd/eoepca/zoo-dru-wes/parts/values-zoo.yaml
           - $values/argocd/eoepca/zoo-dru-wes/parts/values-stageout.yaml
