@@ -55,7 +55,6 @@ configMaps:
 envVars:
   ENV: "prod"
   ZOOKEEPERNODES: openeo-geotrellis-zookeeper.openeo-geotrellis.svc.cluster.local:2181
-  OPENEO_BACKEND_CONFIG: "/conf/openeofed.conf.py"
   GUNICORN_CMD_ARGS: "--bind=0.0.0.0:8080 --workers=10 --threads=1 --timeout=900"
 existingConfigMaps: false
 fullnameOverride: openeofed
@@ -82,13 +81,3 @@ ingress:
     - secretName: openeofed-cert
       hosts:
         - openeofed.develop.eoepca.org
-volumeMounts:
-  - mountPath: /conf
-    name: openeofed-config
-volumes:
-  - configMap:
-      name: openeofed
-      items:
-        - key: conf.py
-          path: openeofed.conf.py
-    name: openeofed-config
