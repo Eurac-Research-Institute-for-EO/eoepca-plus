@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: zoo-protection
+  name: zoo-protection-wes
   namespace: argocd
   labels:
     eoepca/app-name: zoo-project-dru-wes
