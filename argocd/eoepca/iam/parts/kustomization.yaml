@@ -13,3 +13,4 @@ resources:
 #  - apisixroute-identity-api.yaml
   - apisixroute-dummy-service.yaml
   - cert-apx-all.yaml
+  - apisixglobalrule-redirect-to-tls.yaml
