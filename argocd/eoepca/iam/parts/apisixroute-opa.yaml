@@ -1,3 +1,5 @@
+# Note: This file is not needed if OPAL is deployed via the iam-bb Helm chart,
+# because the chart is able to create the route automatically.
 apiVersion: apisix.apache.org/v2
 kind: ApisixRoute
 metadata:
