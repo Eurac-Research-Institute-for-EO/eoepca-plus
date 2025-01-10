@@ -8,7 +8,7 @@ harvester:
     pullPolicy: Always
     tag: latest
   secret:
-    name: registration-harvester
+    name: registration-harvester-secret
   container_port: 8080
   config:
     worker:

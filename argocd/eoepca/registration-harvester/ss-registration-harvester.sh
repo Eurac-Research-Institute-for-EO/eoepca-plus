@@ -12,7 +12,7 @@ trap onExit EXIT
 # Optional local .env file for secret values as env vars
 source .env 2>/dev/null
 
-SECRET_NAME="registration-harvester"
+SECRET_NAME="registration-harvester-secret"
 NAMESPACE="registration-harvester-api"
 
 FLOWABLE_USER="${1:-${FLOWABLE_USER:-someuser}}"
