@@ -27,6 +27,13 @@ spec:
               - name: FAST_API_ROOT_PATH
                 value: "/api/healthchecks"
 
+          web:
+            environmentFixed:
+              - name: NEXT_PUBLIC_CHECK_MANAGER_ENDPOINT
+                value: https://resource-health.apx.develop.eoepca.org/api/healthchecks
+              - name: NEXT_PUBLIC_TELEMETRY_ENDPOINT
+                value: https://resource-health.apx.develop.eoepca.org/api/telemetry/v1
+
           healthchecks:
             checks:
             - name: hourly-mockapi-check
