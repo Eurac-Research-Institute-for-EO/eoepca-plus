@@ -22,7 +22,7 @@ spec:
             cookie-domain: develop.eoepca.org
           targetService:
             host: zoowes.develop.eoepca.org
-            name: zoo-project-dru-service
+            name: zoo-project-dru-wes-service
             port:
               number: 80
           # Values for secret 'zoo-project-dru-protection'
@@ -39,7 +39,7 @@ spec:
               cert-manager.io/cluster-issuer: letsencrypt-prod
             # open access to swagger docs
             openUri:
-              - ^/(ogc-api/api.*|swagger-ui.*)
+              - ^/(ogc-api/api.*|swagger-ui.*|conformance.*)
 
   destination:
     name: in-cluster
