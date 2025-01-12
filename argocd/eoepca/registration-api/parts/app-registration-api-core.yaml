@@ -11,7 +11,7 @@ spec:
   source:
     repoURL: 'https://eoepca.github.io/helm-charts-dev'
     chart: registration-api
-    targetRevision: 2.0.0-beta1
+    targetRevision: 2.0.0-beta2
 
     helm:
       releaseName: registration-api
@@ -24,7 +24,7 @@ spec:
           image:
             repository: eoepca/registration-api
             pullPolicy: Always
-            tag: "latest"
+            tag: "2.0.0-beta2"
           config:
             server:
               url: https://registration-api.develop.eoepca.org
