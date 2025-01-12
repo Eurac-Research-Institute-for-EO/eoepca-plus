@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: registration-harvester-worker
+  name: registration-harvester-worker-landsat
   namespace: argocd
   labels:
     eoepca/app-name: registration-harvester
@@ -11,9 +11,9 @@ spec:
   sources:
     - repoURL: https://eoepca.github.io/helm-charts-dev
       chart: registration-harvester
-      targetRevision: 2.0.0-develop1
+      targetRevision: 2.0.0-develop2
       helm:
-        releaseName: registration-harvester-worker
+        releaseName: registration-harvester-worker-landsat
         valueFiles:
           - $values/argocd/eoepca/registration-harvester/parts/values/values-landsat.yaml
     - repoURL: https://github.com/EOEPCA/eoepca-plus
