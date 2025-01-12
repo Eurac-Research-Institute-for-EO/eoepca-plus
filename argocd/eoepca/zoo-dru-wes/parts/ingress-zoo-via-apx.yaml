@@ -31,7 +31,7 @@ spec:
           - subject:
               scope: Path
             op: RegexMatch
-            value: "^/(ogc-api/api.*|swagger-ui.*|conformance)"
+            value: "^/(ogc-api/api.*|swagger-ui.*|conformance.*)"
       backends:
         - serviceName: zoo-project-dru-wes-service
           servicePort: 80
