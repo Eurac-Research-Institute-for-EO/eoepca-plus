@@ -41,8 +41,6 @@ harvester:
           handler: SentinelRegisterMetadataHandler  
       handlers:
         SentinelDiscoverHandler:
-          subscription:
-            number_of_retries: 10
           api_url: https://datahub.creodias.eu/odata/v1
           limit: 1000
         SentinelContinuousDiscoveryHandler:
@@ -53,27 +51,17 @@ harvester:
           filter: (startswith(Name,'S2') and contains(Name,'L2A') and not contains(Name,'_N9999')) and (intersects(area=geography'SRID=4326;POLYGON((3 55, 3 47, 18 47, 18 55, 3 55))'))
         SentinelDownloadHandler:
           subscription:
-            number_of_retries: 20
             lock_duration: PT30M  # 30 minute lock duration
           base_dir: /eodata/sentinel
           retryTimeout: 10
         SentinelUnzipHandler:
-          subscription:
-            number_of_retries: 10
-            lock_duration: PT10M  # 10 minute lock duration
           remove_zip: false
         SentinelCheckIntegrityHandler:
           subscription:
-            number_of_retries: 10
+            number_of_retries: 3
             lock_duration: PT10M  # 10 minute lock duration
         SentinelExtractMetadataHandler:
-          subscription:
-            number_of_retries: 10
-            lock_duration: PT5M  # 5 minute lock duration
           collections_dir: ./etc/collections
         SentinelRegisterMetadataHandler:
-          subscription:
-            number_of_retries: 10
-            lock_duration: PT5M  # 5 minute lock duration
           stac_api_url: https://resource-catalogue.develop.eoepca.org/stac/
           stac_file_deletion: true
