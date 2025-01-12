@@ -3,3 +3,4 @@ resources:
   - ss-registration-harvester-secret.yaml
   - app-registration-harvester-flowable.yaml
   - app-registration-harvester-worker.yaml
+  - app-registration-harvester-worker-sentinel.yaml
