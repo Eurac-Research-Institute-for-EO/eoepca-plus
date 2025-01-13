@@ -26,7 +26,7 @@ workflow:
     STAGEOUT_AWS_SECRET_ACCESS_KEY: changeme
     STAGEOUT_AWS_REGION: RegionOne
     STAGEOUT_OUTPUT: eoepca
-    WES_URL: "http://145.239.195.35:8100/ga4gh/wes/v1/"
+    WES_URL: "http://145.239.195.35:8101/ga4gh/wes/v1/"
     WES_USER: "test"
     WES_PASSWORD: "$$2y$$12$$ci.4U63YX83CwkyUrjqxAucnmi2xXOIlEF6T/KdP9824f1Rf1iyNG"
   nodeSelector:
