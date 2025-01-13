@@ -29,7 +29,7 @@ spec:
             op: RegexMatch
             value: "^/(docs(/.*|$)|openapi.json$)"
       backends:
-        - serviceName: workspace-api-opa
+        - serviceName: workspace-api
           servicePort: 8080
       plugins:
         - name: openid-connect
