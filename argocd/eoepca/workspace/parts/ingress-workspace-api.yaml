@@ -58,7 +58,7 @@ spec:
             discovery: https://iam-auth.apx.develop.eoepca.org/realms/eoepca/.well-known/uma2-configuration
             lazy_load_paths: true
             ssl_verify: false
-          secretRef: workspace-api-client
+          secretRef: workspace-api
     - name: workspace-api-user
       match:
         hosts:
@@ -69,7 +69,7 @@ spec:
         - serviceName: workspace-api
           servicePort: 8080
       plugins:
-        - name: authz-opa
+        - name: opa
           enable: true
           config:
             host: http://iam-opal-opal-client:8181
