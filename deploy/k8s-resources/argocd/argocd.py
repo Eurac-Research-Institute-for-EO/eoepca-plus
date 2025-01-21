@@ -6,6 +6,7 @@ from pulumi_kubernetes.yaml import ConfigFile
 
 config = pulumi.Config()
 
+
 def ignore_crd_spec(args):
     if args.props.get("kind") and args.props.get("kind") == "CustomResourceDefinition":
         if args.opts.ignore_changes:
@@ -18,16 +19,14 @@ def ignore_crd_spec(args):
         else:
             args.opts.ignore_changes = ["spec"]
 
-    
 
-def deploy(k8s_provider, ingress_chart):
+def deploy(ingress_chart):
     # Create Argo CD namespace
     argocd_namespace = Namespace(
         "argocd",
         metadata={"name": "argocd"},
         opts=ResourceOptions(
-            provider=k8s_provider,
-            depends_on=[k8s_provider],
+            depends_on=[],
         ),
     )
 
@@ -93,7 +92,6 @@ def deploy(k8s_provider, ingress_chart):
             },
         ),
         opts=ResourceOptions(
-            provider=k8s_provider,
             depends_on=[argocd_namespace, ingress_chart],
         ),
     )
@@ -103,7 +101,6 @@ def deploy(k8s_provider, ingress_chart):
         "argocd-crd",
         file="https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/crds/application-crd.yaml",
         opts=ResourceOptions(
-            provider=k8s_provider,
             depends_on=[argocd_namespace],
             transformations=[ignore_crd_spec],
         ),
@@ -112,18 +109,14 @@ def deploy(k8s_provider, ingress_chart):
     # Set up ArgoCD Application and Project
     project = ConfigFile(
         "project",
-        file="k8s/argocd/project.yaml",
-        opts=ResourceOptions(
-            provider=k8s_provider, depends_on=[argo_chart, argocd_crd]
-        ),
+        file="argocd/project.yaml",
+        opts=ResourceOptions(depends_on=[argo_chart, argocd_crd]),
     )
 
     application = ConfigFile(
         "application",
-        file="k8s/argocd/application.yaml",
-        opts=ResourceOptions(
-            provider=k8s_provider, depends_on=[argo_chart, project, argocd_crd]
-        ),
+        file="argocd/application.yaml",
+        opts=ResourceOptions(depends_on=[argo_chart, project, argocd_crd]),
     )
 
     return argo_chart

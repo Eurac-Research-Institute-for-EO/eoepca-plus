@@ -2,10 +2,7 @@ import pulumi
 from pulumi import ResourceOptions
 from pulumi_openstack import blockstorage, compute
 
-from infra.bastion import bastion
-from infra.instance.instance import create_instance, get_node_security_groups
-from infra.keys.keys import private_key
-from infra.network.security_group import deploy as deploy_sg
+from instance.instance import create_instance, get_node_security_groups
 
 config = pulumi.Config()
 
@@ -33,7 +30,7 @@ def attach_volume(instance, size_gb):
 # Alternate function to return user_data script for NFS server
 def get_user_data_script():
     # Open the nfs-setup and read the content
-    with open("infra/nfs/nfs-setup.sh", "r") as file:
+    with open("nfs/nfs-setup.sh", "r") as file:
         user_data = file.read()
     return user_data
 
@@ -44,7 +41,7 @@ def deploy(network_instance):
     # Deploy NFS Server using the shared function
     nfs_server = create_instance(
         "nfs-server",
-        config.require("keyPairName"),
+        "eoepca-dev-keypair",
         config.require("nfsFlavour"),
         config.require("nodeImage"),
         [{"uuid": network_instance.id}],

@@ -1,17 +1,12 @@
 import pulumi
-import pulumi_kubernetes as k8s
 
-from infra.bastion import bastion
-from infra.cluster import rke_cluster
-from infra.instance import instance
-from infra.keys import keys
-from infra.load_balancer import load_balancer
-from infra.network import network
-from infra.nfs import nfs
-from k8s.argocd import argocd
-from k8s.certs import cert_manager
-from k8s.ingress_nginx import ingress_nginx
-from k8s.nfs import nfs_provisioner, nfs_pvc
+from bastion import bastion
+from cluster import rke_cluster
+from instance import instance
+from keys import keys
+from load_balancer import load_balancer
+from network import network
+from nfs import nfs
 
 config = pulumi.Config()
 
@@ -41,7 +36,7 @@ def main():
     bastion_instance = bastion.Bastion(network_instance, key_pair)
 
     # Deploy NFS
-    nfs_instance = nfs.deploy(network_instance)
+    nfs.deploy(network_instance)
 
     # Deploy Control Node Instance
     control_node = instance.deploy(

@@ -1,18 +1,16 @@
 import pulumi
-from pulumi import Config
 from pulumi_kubernetes.core.v1 import Namespace
 from pulumi_kubernetes.helm.v3 import Chart, ChartOpts, FetchOpts
-from pulumi_openstack import loadbalancer
 
 config = pulumi.Config()
 
 
-def deploy(k8s_provider):
+def deploy():
     # Create Ingress Nginx namespace if it doesn't already exist
     ingress_namespace = Namespace(
         "ingress-nginx-ns",
         metadata={"name": "ingress-nginx-ns"},
-        opts=pulumi.ResourceOptions(provider=k8s_provider, depends_on=[k8s_provider]),
+        opts=pulumi.ResourceOptions( depends_on=[]),
     )
 
     # Deploy Ingress Nginx using Helm Chart
@@ -36,7 +34,7 @@ def deploy(k8s_provider):
             },
         ),
         opts=pulumi.ResourceOptions(
-            provider=k8s_provider, depends_on=[ingress_namespace]
+             depends_on=[ingress_namespace]
         ),
     )
 
