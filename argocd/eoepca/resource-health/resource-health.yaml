@@ -15,6 +15,10 @@ spec:
           defaultInternalIssuerRef:
             name: eoepca-ca-clusterissuer
 
+        opensearch-dashboards:
+          server:
+            basePath: "/dashboards"
+
         ## Example health checks to deploy with the resource health BB itself
         resource-health:
           telemetry_api:
