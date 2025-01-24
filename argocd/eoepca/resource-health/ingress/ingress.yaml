@@ -82,13 +82,19 @@ spec:
         config:
           regex_uri: ["^/api/healthchecks/(.*)","/$1"]
     plugin_config_name: resource-health-route-plugin
-  - name: resource-health-check-api-route
+  - name: resource-health-dashboards-route
     match:
       hosts:
         - resource-health.apx.develop.eoepca.org
       paths:
+        - /dashboards
         - /dashboards/*
     backends:
       - serviceName: resource-health-opensearch-dashboards
         servicePort: 5601
+    plugins:
+      - name: proxy-rewrite
+        enable: true
+        config:
+          regex_uri: ["^/dashboards/(.*)","/$1"]
     plugin_config_name: resource-health-route-plugin

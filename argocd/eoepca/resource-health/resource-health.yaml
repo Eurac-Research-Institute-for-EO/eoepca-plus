@@ -20,6 +20,8 @@ spec:
             opensearch_dashboards.yml:
               server:
                 basePath: "/dashboards"
+                ssl:
+                  enabled: false
 
         ## Example health checks to deploy with the resource health BB itself
         resource-health:
