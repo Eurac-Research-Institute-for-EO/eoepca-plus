@@ -67,6 +67,7 @@ spec:
                             config:
                               subject_key: preferred_username
                               roles_key: roles
+                              jwt_header: X-ID-Token
                               openid_connect_url: "https://iam-auth.develop.eoepca.org/realms/eoepca/.well-known/openid-configuration"
                           authentication_backend:
                             type: noop
