@@ -81,6 +81,9 @@ spec:
                   enabled: false
               opensearch:
                 requestHeadersAllowlist: [ authorization,securitytenant,x-access-token ]
+              opensearch_security:
+                auth:
+                  type: "jwt"
 
         ## Example health checks to deploy with the resource health BB itself
         resource-health:
