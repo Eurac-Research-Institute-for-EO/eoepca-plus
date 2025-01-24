@@ -6,9 +6,9 @@ config = Config()
 
 
 def deploy():
-    network_name = config.require("networkName")
-    subnet_name = config.require("subnetName")
-    router_name = config.require("routerName")
+    network_name = "eoepca-dev-network"
+    subnet_name = "eoepca-dev-subnet"
+    router_name = "eoepca-dev-router"
     cidr = config.require("networkCIDR")
     external_network_id = config.get("externalNetworkID")
 

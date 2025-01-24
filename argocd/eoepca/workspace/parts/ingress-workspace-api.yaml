@@ -29,7 +29,7 @@ spec:
             op: RegexMatch
             value: "^/(docs(/.*|$)|openapi.json$)"
       backends:
-        - serviceName: workspace-api-opa
+        - serviceName: workspace-api
           servicePort: 8080
       plugins:
         - name: openid-connect
@@ -38,7 +38,28 @@ spec:
             access_token_in_authorization_header: true
             discovery: "https://iam-auth.develop.eoepca.org/realms/eoepca/.well-known/openid-configuration"
           secretRef: workspace-api-client
-    - name: workspace-api
+    - name: workspace-api-admin
+      match:  
+        hosts:
+          - workspace-api.apx.develop.eoepca.org
+        paths:
+          - /workspaces
+          - /workspaces/*
+        methods:
+          - POST
+          - DELETE
+      backends:
+        - serviceName: workspace-api
+          servicePort: 8080
+      plugins:
+        - name: authz-keycloak
+          enable: true
+          config:
+            discovery: https://iam-auth.apx.develop.eoepca.org/realms/eoepca/.well-known/uma2-configuration
+            lazy_load_paths: true
+            ssl_verify: false
+          secretRef: workspace-api
+    - name: workspace-api-user
       match:
         hosts:
           - workspace-api.apx.develop.eoepca.org
@@ -48,12 +69,6 @@ spec:
         - serviceName: workspace-api
           servicePort: 8080
       plugins:
-        - name: openid-connect
-          enable: true
-          config:
-            access_token_in_authorization_header: true
-            discovery: https://iam-auth.develop.eoepca.org/realms/eoepca/.well-known/openid-configuration
-          secretRef: workspace-api-client
         - name: opa
           enable: true
           config:

@@ -1,29 +1,28 @@
----
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: openeo-geotrellis-openeo
+  name: registration-harvester-worker-landsat
   namespace: argocd
   labels:
-    eoepca/app-name: openeo-geotrellis-openeo
+    eoepca/app-name: registration-harvester
 spec:
   # Ref. https://argo-cd.readthedocs.io/en/stable/user-guide/application-specification/
   project: eoepca
   sources:
-    - repoURL: https://artifactory.vgt.vito.be/artifactory/helm-charts
-      chart: sparkapplication
-      targetRevision: 0.16.3
+    - repoURL: https://eoepca.github.io/helm-charts-dev
+      chart: registration-harvester
+      targetRevision: 2.0.0-beta2
       helm:
-        releaseName: openeo-geotrellis-openeo
+        releaseName: registration-harvester-worker-landsat
         valueFiles:
-          - $values/argocd/eoepca/openeo-geotrellis/parts/values-openeo-geotrellis-openeo.yaml
+          - $values/argocd/eoepca/registration-harvester/parts/values/values-landsat.yaml
     - repoURL: https://github.com/EOEPCA/eoepca-plus
       targetRevision: deploy-develop
       ref: values
 
   destination:
     name: in-cluster
-    namespace: openeo-geotrellis
+    namespace: registration-harvester-api
   syncPolicy:
     automated:
       prune: true

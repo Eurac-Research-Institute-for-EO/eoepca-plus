@@ -1,12 +1,11 @@
 import pulumi
-from pulumi import Config
 from pulumi_kubernetes.helm.v3 import Chart, ChartOpts, FetchOpts
 
 config = pulumi.Config()
 
 
-def deploy(k8s_provider, nfs_instance):
-    NFS_IP = nfs_instance.access_ip_v4
+def deploy():
+    NFS_IP = config.require("nfsServerIP")
 
     # Deploy the NFS provisioner from its Helm chart
     nfs_provisioner_chart = Chart(
@@ -29,7 +28,7 @@ def deploy(k8s_provider, nfs_instance):
                 "nfs": {"server": NFS_IP, "path": "/data/dynamic"},
             },
         ),
-        opts=pulumi.ResourceOptions(provider=k8s_provider),
+        opts=pulumi.ResourceOptions(),
     )
 
     # Deploy the NFS provisioner from its Helm chart
@@ -53,7 +52,7 @@ def deploy(k8s_provider, nfs_instance):
                 "nfs": {"server": NFS_IP, "path": "/data/dynamic"},
             },
         ),
-        opts=pulumi.ResourceOptions(provider=k8s_provider),
+        opts=pulumi.ResourceOptions(),
     )
 
     return nfs_provisioner_chart, nfs_provisioner_chart_retain

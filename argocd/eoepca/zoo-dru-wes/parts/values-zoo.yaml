@@ -1,12 +1,12 @@
 cookiecutter:
-  templateUrl: https://github.com/EOEPCA/eoepca-proc-service-template.git
-  templateBranch: master
+  templateUrl: https://github.com/gfenoy/eoepca-proc-service-template-wes.git
+  templateBranch: develop
 zoofpm:
   image:
-    tag: eoepca-092ea7a2c6823dba9c6d52c383a73f5ff92d0762
+    tag: eoepca-83f593861bbadd1a969c5ab33bda3f264cc6a1c9
 zookernel:
   image:
-    tag: eoepca-092ea7a2c6823dba9c6d52c383a73f5ff92d0762
+    tag: eoepca-83f593861bbadd1a969c5ab33bda3f264cc6a1c9
 customConfig:
   main:
     eoepca: |-
@@ -26,25 +26,28 @@ workflow:
     STAGEOUT_AWS_SECRET_ACCESS_KEY: changeme
     STAGEOUT_AWS_REGION: RegionOne
     STAGEOUT_OUTPUT: eoepca
+    WES_URL: "http://145.239.195.35:8101/ga4gh/wes/v1/"
+    WES_USER: "test"
+    WES_PASSWORD: "$$2y$$12$$ci.4U63YX83CwkyUrjqxAucnmi2xXOIlEF6T/KdP9824f1Rf1iyNG"
   nodeSelector:
     minikube.k8s.io/primary: "true"
   storageClass: managed-nfs-storage-retain
 ingress:
   enabled: false
-  hosturl: https://zoo-open.apx.develop.eoepca.org
+  hosturl: https://zoowes.apx.develop.eoepca.org
   annotations:
     kubernetes.io/ingress.class: nginx
     ingress.kubernetes.io/ssl-redirect: "true"
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
     cert-manager.io/cluster-issuer: letsencrypt-prod
   hosts:
-  - host: zoo-open.apx.develop.eoepca.org
+  - host: zoowes.apx.develop.eoepca.org
     paths:
     - path: /
       pathType: ImplementationSpecific
   tls:
   - hosts:
-    - zoo-open.apx.develop.eoepca.org
+    - zoowes.apx.develop.eoepca.org
     secretName: zoo-tls
 persistence:
   procServicesStorageClass: managed-nfs-storage-retain

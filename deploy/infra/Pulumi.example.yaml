@@ -1,0 +1,27 @@
+encryptionsalt: XXXXX
+config:
+  eoepca-infra:nodeImage: Ubuntu 22.04 LTS
+  eoepca-infra:sshUser: eouser # The default user on Openstack instances is eouser.
+
+  # Networking
+  eoepca-infra:domainName: develop.eoepca.org
+  eoepca-infra:loadBalancerFloatingIPID: "f962cfb1-3125-4a0b-afa0-f0544956486a"
+  eoepca-infra:externalNetworkID: 22d18510-faec-4d77-974b-ce4f16825b20
+  eoepca-infra:networkCIDR: 192.168.9.0/24
+
+  eoepca-infra:lbMethod: ROUND_ROBIN
+  eoepca-infra:floatingIpPool: external
+
+  # Config for control plane / etcd flavor
+  eoepca-infra:controlPlaneNodeFlavour: eo2a.xlarge
+
+  # Config for workers
+  eoepca-infra:workerNodeCount: "5"
+  eoepca-infra:workerNodeFlavour: eo2a.3xlarge
+
+  # NFS
+  eoepca-infra:nfsFlavour: eo2a.large
+  eoepca-infra:nfsVolumeSize: 960
+
+  # Bastion
+  eoepca-infra:bastionFlavour: eo1.xsmall

@@ -1,29 +1,29 @@
----
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: openeo-geotrellis-openeo
+  name: zoo-project-dru-core-wes
   namespace: argocd
   labels:
-    eoepca/app-name: openeo-geotrellis-openeo
+    eoepca/app-name: zoo-project-dru-wes
 spec:
   # Ref. https://argo-cd.readthedocs.io/en/stable/user-guide/application-specification/
   project: eoepca
   sources:
-    - repoURL: https://artifactory.vgt.vito.be/artifactory/helm-charts
-      chart: sparkapplication
-      targetRevision: 0.16.3
+    - repoURL: https://zoo-project.github.io/charts/
+      chart: zoo-project-dru
+      targetRevision: 0.3.21
       helm:
-        releaseName: openeo-geotrellis-openeo
+        releaseName: zoo-project-dru-wes
         valueFiles:
-          - $values/argocd/eoepca/openeo-geotrellis/parts/values-openeo-geotrellis-openeo.yaml
+          - $values/argocd/eoepca/zoo-dru-wes/parts/values-zoo.yaml
+          - $values/argocd/eoepca/zoo-dru-wes/parts/values-stageout.yaml
     - repoURL: https://github.com/EOEPCA/eoepca-plus
       targetRevision: deploy-develop
       ref: values
 
   destination:
     name: in-cluster
-    namespace: openeo-geotrellis
+    namespace: zoowes
   syncPolicy:
     automated:
       prune: true

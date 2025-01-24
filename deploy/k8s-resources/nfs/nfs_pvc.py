@@ -2,7 +2,7 @@ import pulumi
 import pulumi_kubernetes as k8s
 
 
-def deploy(k8s_provider):
+def deploy():
     # Create a PVC
     nfs_pvc = k8s.core.v1.PersistentVolumeClaim(
         "nfs-pvc",
@@ -15,7 +15,7 @@ def deploy(k8s_provider):
             "accessModes": ["ReadWriteMany"],
             "resources": {"requests": {"storage": "5Gi"}},
         },
-        opts=pulumi.ResourceOptions(provider=k8s_provider),
+        opts=pulumi.ResourceOptions(),
     )
 
     # Create a PVC for retain
@@ -30,7 +30,7 @@ def deploy(k8s_provider):
             "accessModes": ["ReadWriteMany"],
             "resources": {"requests": {"storage": "5Gi"}},
         },
-        opts=pulumi.ResourceOptions(provider=k8s_provider),
+        opts=pulumi.ResourceOptions(),
     )
 
     return nfs_pvc

@@ -16,8 +16,10 @@ spec:
             name: eoepca-ca-clusterissuer
 
         opensearch-dashboards:
-          server:
-            basePath: "/dashboards"
+          config:
+            opensearch_dashboards.yml:
+              server:
+                basePath: "/dashboards"
 
         ## Example health checks to deploy with the resource health BB itself
         resource-health:

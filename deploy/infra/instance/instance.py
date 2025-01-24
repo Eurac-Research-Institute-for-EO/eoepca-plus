@@ -3,8 +3,7 @@ from pulumi import Config, ResourceOptions
 from pulumi_command import remote
 from pulumi_openstack import compute, networking
 
-from infra.keys.keys import private_key
-from infra.network import security_group
+from network import security_group
 
 config = Config()
 
@@ -28,7 +27,8 @@ def create_instance(
         networks=networks,
         user_data=user_data,
         opts=ResourceOptions(
-            depends_on=[network_instance], ignore_changes=["security_groups"]
+            depends_on=[network_instance],
+            ignore_changes=["security_groups", "imageName"],
         ),
     )
 
@@ -79,7 +79,7 @@ def deploy(instance_name, flavour, network_instance):
     # Create instance
     test_instance = create_instance(
         instance_name=instance_name,
-        key_pair_name=config.require("keyPairName"),
+        key_pair_name="eoepca-dev-keypair",
         flavor=flavour,
         image=config.require("nodeImage"),
         security_groups=security_groups,

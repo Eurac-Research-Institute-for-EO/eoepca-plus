@@ -4,6 +4,5 @@ resources:
   - app-workspace-api.yaml
   - app-workspace-crossplane.yaml  
   - app-workspace-pipelines.yaml
-  - app-workspace-ui.yaml
   - ingress-workspace-api.yaml
-  - ss-workspace-api-client.yaml
+  - ss-workspace-api.yaml

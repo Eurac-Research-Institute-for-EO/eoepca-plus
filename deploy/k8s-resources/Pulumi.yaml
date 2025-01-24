@@ -1,9 +1,9 @@
-name: eoepca-pulumi
+name: k8s-resources
 runtime:
   name: python
   options:
     virtualenv: venv
-description: EOEPCA Plus
+description: EOEPCA Kubernetes Resources
 config:
   pulumi:tags:
     value:

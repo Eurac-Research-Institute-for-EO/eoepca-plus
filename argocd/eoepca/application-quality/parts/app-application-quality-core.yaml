@@ -11,7 +11,7 @@ spec:
   source:
     repoURL: https://github.com/EOEPCA/application-quality
     path: application-quality-reference-deployment
-    targetRevision: 3-deployment-automation
+    targetRevision: reference-deployment
   destination:
     name: in-cluster
     namespace: application-quality

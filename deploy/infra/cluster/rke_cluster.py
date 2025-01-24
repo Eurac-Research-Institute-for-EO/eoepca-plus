@@ -1,11 +1,15 @@
 import pulumi
-from pulumi import Config, ResourceOptions
+from pulumi import Config
 from pulumi_openstack import loadbalancer
-from pulumi_rke import (Cluster, ClusterAuthenticationArgs,
-                        ClusterBastionHostArgs, ClusterDnsArgs,
-                        ClusterIngressArgs, ClusterNodeArgs)
+from pulumi_rke import (
+    Cluster,
+    ClusterAuthenticationArgs,
+    ClusterBastionHostArgs,
+    ClusterIngressArgs,
+    ClusterNodeArgs,
+)
 
-from infra.keys.keys import private_key
+from keys.keys import private_key
 
 config = Config()
 
@@ -62,7 +66,6 @@ def deploy(nodes, bastion_instance, subnet_instance, pool, load_balancer_floatin
                 pool,
                 load_balancer_floating_ip,
             ],
-            ignore_changes=["ingress"],
         ),
     )
 
@@ -81,7 +84,7 @@ def deploy(nodes, bastion_instance, subnet_instance, pool, load_balancer_floatin
     modified_kubeconfig.apply(lambda v: open("kubeconfig.yaml", "w").write(v))
 
     # Create a member for the pool
-    member = loadbalancer.Member(
+    loadbalancer.Member(
         "k8s-member",
         pool_id=pool.id,
         address=nodes["control_node"].access_ip_v4,

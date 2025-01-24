@@ -7,6 +7,7 @@ configMaps:
   backendConfig: |
     from pathlib import Path
 
+
     from openeo_driver.users.oidc import OidcProvider
     from openeogeotrellis.config import GpsBackendConfig
     from openeogeotrellis.deploy import (
@@ -109,7 +110,6 @@ driver:
   env:
     KUBE: "true"
     KUBE_OPENEO_API_PORT: "50001"
-    OPENEO_BACKEND_CONFIG: /opt/backend_config/backendconfig.py
     PYTHONPATH: $PYTHONPATH:/opt/tensorflow/python38/2.3.0/:/opt/openeo/lib/python3.8/site-packages/
     ZOOKEEPERNODES: openeo-geotrellis-zookeeper.openeo-geotrellis.svc.cluster.local:2181
   podSecurityContext:
@@ -199,21 +199,3 @@ rbac:
           - deletecollection
           - list
   serviceAccountDriver: openeo
-volumeMounts:
-  - mountPath: /opt/backend_config/
-    name: backend-config-configmap
-  - mountPath: /opt/layercatalog/
-    name: layercatalog-configmap
-volumes:
-  - configMap:
-      name: openeo-geotrellis-openeo-sparkapplication
-      items:
-        - key: backendconfig.py
-          path: backendconfig.py
-    name: backend-config-configmap
-  - configMap:
-      name: openeo-geotrellis-openeo-sparkapplication
-      items:
-        - key: layercatalog.json
-          path: layercatalog.json
-    name: layercatalog-configmap

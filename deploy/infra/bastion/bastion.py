@@ -2,9 +2,9 @@ import pulumi
 from pulumi import Config, ResourceOptions
 from pulumi_command import remote
 
-from infra.instance import instance
-from infra.keys.keys import private_key
-from infra.network import security_group
+from instance import instance
+from keys.keys import private_key
+from network import security_group
 
 config = Config()
 

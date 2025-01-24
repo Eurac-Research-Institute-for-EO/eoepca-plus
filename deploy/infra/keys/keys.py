@@ -16,7 +16,7 @@ def deploy():
     # Create key pair
     key_pair = compute.Keypair(
         "ssh-key-pair",
-        name=config.require("keyPairName"),
+        name="eoepca-dev-keypair",
         public_key=private_key.public_key_openssh,
     )
 

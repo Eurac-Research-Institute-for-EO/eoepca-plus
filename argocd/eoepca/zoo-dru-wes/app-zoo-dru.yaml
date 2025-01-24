@@ -1,35 +1,25 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: workspace-admin
+  name: zoo-project-dru-wes
   namespace: argocd
   labels:
-    eoepca/app-name: workspace-admin
+    eoepca/is-root-app: "true"
+    eoepca/app-name: zoo-project-dru-wes
 spec:
   # Ref. https://argo-cd.readthedocs.io/en/stable/user-guide/application-specification/
   project: eoepca
   source:
-    repoURL: https://kubernetes.github.io/dashboard/
-    chart: kubernetes-dashboard
-    targetRevision: 7.10.1
-    helm:
-      releaseName: workspace-admin
-      valuesObject:
-        fullnameOverride: workspace-admin
-        kong:
-         admin:
-          tls:
-            enabled: false
-        app:
-          ingress:
-            enabled: false
+    repoURL: https://github.com/EOEPCA/eoepca-plus
+    targetRevision: deploy-develop
+    path: argocd/eoepca/zoo-dru-wes/parts
   destination:
     name: in-cluster
-    namespace: workspace
+    namespace: zoowes
   syncPolicy:
     automated:
       prune: true
-      selfHeal: true
+      selfHeal: false
       allowEmpty: true
     syncOptions:
       - Validate=true

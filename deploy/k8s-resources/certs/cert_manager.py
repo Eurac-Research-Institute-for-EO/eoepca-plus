@@ -8,12 +8,12 @@ config = Config()
 
 
 # Function to deploy cert-manager and configure a ClusterIssuer
-def deploy(k8s_provider):
+def deploy():
     namespace_name = "cert-manager-ns"
     ns = Namespace(
         "cert-manager-ns",
         metadata={"name": namespace_name},
-        opts=pulumi.ResourceOptions(provider=k8s_provider, depends_on=[k8s_provider]),
+        opts=pulumi.ResourceOptions(depends_on=[]),
     )
 
     cert_manager = CertManager(
@@ -22,9 +22,9 @@ def deploy(k8s_provider):
         helm_options=ReleaseArgs(
             namespace=namespace_name,
             values={"meta": {"helm.sh/release-namespace": namespace_name}},
-            version="v1.15.1",
+            version=config.require("certManagerVersion"),
         ),
-        opts=pulumi.ResourceOptions(provider=k8s_provider, depends_on=[ns], ignore_changes=["helm_options.version"]),
+        opts=pulumi.ResourceOptions(depends_on=[ns]),
     )
 
     issuer = CustomResource(
@@ -42,7 +42,7 @@ def deploy(k8s_provider):
                 "solvers": [{"http01": {"ingress": {"class": "nginx"}}}],
             }
         },
-        opts=pulumi.ResourceOptions(provider=k8s_provider, depends_on=[cert_manager]),
+        opts=pulumi.ResourceOptions(depends_on=[cert_manager]),
     )
 
     return issuer
