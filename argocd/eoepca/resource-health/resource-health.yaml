@@ -84,6 +84,7 @@ spec:
               opensearch_security:
                 auth:
                   type: ["basicauth","jwt"]
+                  multiple_auth_enabled: true
 
         ## Example health checks to deploy with the resource health BB itself
         resource-health:
