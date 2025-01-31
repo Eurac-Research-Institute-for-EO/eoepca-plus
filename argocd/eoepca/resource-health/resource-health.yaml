@@ -35,16 +35,16 @@ spec:
                       http:
                         anonymous_auth_enabled: false
                       authc:
-                        basic_internal_auth_domain:
-                          description: "Authenticate via HTTP Basic against internal users database"
-                          http_enabled: true
-                          transport_enabled: true
-                          order: 2
-                          http_authenticator:
-                            type: basic
-                            challenge: true
-                          authentication_backend:
-                            type: intern
+                        #basic_internal_auth_domain:
+                        #  description: "Authenticate via HTTP Basic against internal users database"
+                        #  http_enabled: true
+                        #  transport_enabled: true
+                        #  order: 2
+                        #  http_authenticator:
+                        #    type: basic
+                        #    challenge: true
+                        #  authentication_backend:
+                        #    type: intern
                         clientcert_auth_domain:
                           description: "Authenticate via SSL client certificates"
                           http_enabled: true
