@@ -78,7 +78,7 @@ spec:
               server:
                 basePath: "/dashboards"
                 ssl:
-                  enabled: false
+                  enabled: true # false
               opensearch:
                 requestHeadersAllowlist: [ authorization,securitytenant,x-access-token ]
               opensearch_security:
