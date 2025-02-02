@@ -3,6 +3,7 @@ kubeconfig
 argocd.yaml
 vcluster
 venv/
+.venv/
 k.yaml
 *.crt
 *.key
