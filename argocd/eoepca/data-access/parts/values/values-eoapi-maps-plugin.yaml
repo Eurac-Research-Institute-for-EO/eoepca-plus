@@ -16,7 +16,6 @@ ingress:
     secretName: data-access-maps-tls
 image:
   tag: latest
-  pullPolicy: Always
 resources:
   requests:
     memory: "64Mi"
