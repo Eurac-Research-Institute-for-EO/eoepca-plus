@@ -1,0 +1,83 @@
+apiVersion: openidclient.keycloak.crossplane.io/v1alpha1
+kind: Client
+metadata: 
+  name: eoapi
+spec:
+  providerConfigRef:
+    name: provider-keycloak
+  forProvider:
+    realmId: eoepca
+    name: eoapi
+    accessType: PUBLIC
+    clientId: eoapi
+    standardFlowEnabled: true
+    implicitFlowEnabled: true
+    directAccessGrantsEnabled: false
+    serviceAccountsEnabled: false
+    oauth2DeviceAuthorizationGrantEnabled: true    
+    rootUrl: https://eoapi.apx.develop.eoepca.org
+    webOrigins: 
+      - '/*'
+    validRedirectUris:
+      - '/*'
+---
+apiVersion: role.keycloak.crossplane.io/v1alpha1
+kind: Role
+metadata: 
+  name: stac-editor
+spec:
+  providerConfigRef:
+    name: provider-keycloak
+  forProvider:
+    realmId: eoepca
+    name: stac_editor
+    clientIdRef:
+      name: eoapi
+      policy:
+        resolution: Required
+---
+apiVersion: group.keycloak.crossplane.io/v1alpha1
+kind: Group
+metadata: 
+  name: data-access-admin
+spec:
+  providerConfigRef:
+    name: provider-keycloak
+  forProvider:
+    realmId: eoepca
+    name: data-access-admin    
+---
+apiVersion: group.keycloak.crossplane.io/v1alpha1
+kind: Roles
+metadata: 
+  name: data-access-admin
+spec:
+  providerConfigRef:
+    name: provider-keycloak
+  forProvider:
+    realmId: eoepca
+    groupIdRef:
+      name: data-access-admin
+      policy:
+        resolution: Required
+    roleIdsRefs:
+      - name: stac-editor
+        policy:
+          resolution: Required
+---
+apiVersion: group.keycloak.crossplane.io/v1alpha1
+kind: Memberships
+metadata: 
+  name: data-access-admin
+spec:
+  providerConfigRef:
+    name: provider-keycloak
+  forProvider:
+    groupIdRef:
+      name: data-access-admin
+      policy:
+        resolution: Required
+    members:
+    - example-admin
+    - example-user-1 # for demo purposes add example-user1 but not example-user2 to data-access-admin group
+    realmId: eoepca
