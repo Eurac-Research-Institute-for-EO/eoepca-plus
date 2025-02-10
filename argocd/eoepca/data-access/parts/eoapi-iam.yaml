@@ -12,7 +12,7 @@ spec:
     clientId: eoapi
     standardFlowEnabled: true
     implicitFlowEnabled: true
-    directAccessGrantsEnabled: false
+    directAccessGrantsEnabled: true # allow for now to simplify testing
     serviceAccountsEnabled: false
     oauth2DeviceAuthorizationGrantEnabled: true    
     rootUrl: https://eoapi.apx.develop.eoepca.org
