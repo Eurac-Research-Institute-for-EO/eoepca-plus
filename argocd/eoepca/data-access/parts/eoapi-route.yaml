@@ -47,7 +47,11 @@ spec:
       methods:
       - GET
       paths:
-      - /stac/*
+      - /stac
+      - /stac/
+      - /stac/collections
+      - /stac/collections/
+      - /stac/collections/public*
     plugins:
     - name: proxy-rewrite
       config:
