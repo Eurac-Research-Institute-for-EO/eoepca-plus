@@ -80,8 +80,6 @@ spec:
     match:
       hosts:
       - eoapi.apx.develop.eoepca.org
-      methods:
-      - POST
       paths:
       - /stac/*
     plugins:
