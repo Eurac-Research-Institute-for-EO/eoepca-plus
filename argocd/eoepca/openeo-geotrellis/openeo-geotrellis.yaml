@@ -15,7 +15,7 @@ spec:
     path: argocd/eoepca/openeo-geotrellis/parts
   destination:
     name: in-cluster
-    namespace: openeo
+    namespace: openeo-geotrellis
   syncPolicy:
     automated:
       prune: true
