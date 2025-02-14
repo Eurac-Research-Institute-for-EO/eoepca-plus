@@ -14,8 +14,6 @@ ingress:
   - hosts:
       - maps.develop.eoepca.org
     secretName: data-access-maps-tls
-image:
-  tag: latest
 resources:
   requests:
     memory: "256Mi"
