@@ -83,7 +83,7 @@ config:
       address: Thurngasse 8/4
       city: Vienna
       stateorprovince: Vienna
-      postalcode: 1090
+      postalcode: "1090"
       country: Austria
       # phone: +xx-xxx-xxx-xxxx
       # fax: +xx-xxx-xxx-xxxx
