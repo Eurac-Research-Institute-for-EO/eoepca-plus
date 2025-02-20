@@ -16,3 +16,11 @@ body:
         - label: System
         - label: Resource Discovery
         - label: Data Access
+  - type: textarea
+    id: details
+    attributes:
+      label: Bug details
+      description: Provide full details of the bug
+      placeholder:  Please prpvide as much information as possible
+    validations:
+      required: true
