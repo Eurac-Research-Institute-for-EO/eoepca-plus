@@ -1,10 +1,12 @@
-name: Bug or Feature
-description: Raise a bug or a feature request
+name: Bug Report
+description: Raise a bug report
+title: "[Bug]: "
+labels: ["bug", "triage"]
 body:
   - type: markdown
     attributes:
       value: |
-        Testing the template
+        Use this form to raise a bug report
   - type: checkboxes
     id: building-block
     attributes:
