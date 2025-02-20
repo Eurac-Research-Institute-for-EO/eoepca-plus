@@ -3,5 +3,5 @@ description: Raise a bug or a feature request
 body:
   - type: markdown
     attributes:
-      values: |
+      value: |
         Testing the template
