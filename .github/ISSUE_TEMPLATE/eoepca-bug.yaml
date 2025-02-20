@@ -1,6 +1,5 @@
 name: EOEPCA+ Bug Report
 description: Raise a bug report
-title: ""
 labels: ["bug", "triage"]
 body:
   - type: markdown
