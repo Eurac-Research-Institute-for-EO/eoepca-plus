@@ -6,27 +6,27 @@ body:
     attributes:
       value: |
         Use this form to raise a bug report
-  - type: checkboxes
+  - type: dropdown
     id: building-block
     attributes:
       label: Building Block
-      description: To which building block(s) does this request apply?
+      description: To which building block does this request apply?
       options:
-        - label: System
-        - label: Resource Discovery
-        - label: Resource Registration
-        - label: Data Access
-        - label: Datacube Access
-        - label: Workspace
-        - label: Processing
-        - label: MLOps
-        - label: Resource Health
-        - label: Notification & Automation
-        - label: Data Gateway
-        - label: Federated Orchestrator
-        - label: Identity & Access Management
-        - label: Application Hub
-        - label: Application Quality
+        - System
+        - Resource Discovery
+        - Resource Registration
+        - Data Access
+        - Datacube Access
+        - Workspace
+        - Processing
+        - MLOps
+        - Resource Health
+        - Notification & Automation
+        - Data Gateway
+        - Federated Orchestrator
+        - Identity & Access Management
+        - Application Hub
+        - Application Quality
   - type: textarea
     id: details
     attributes:
