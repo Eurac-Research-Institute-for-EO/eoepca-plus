@@ -5,3 +5,12 @@ body:
     attributes:
       value: |
         Testing the template
+  - type: checkboxes
+    id: building-block
+    attributes:
+      label: Building Block
+      description: To which building blocks does this request apply?
+      options:
+        - label: System
+        - label: Resource Discovery
+        - label: Data Access
