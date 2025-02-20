@@ -1,6 +1,6 @@
-name: Bug Report
+name: EOEPCA+ Bug Report
 description: Raise a bug report
-title: "[Bug]: "
+title: ""
 labels: ["bug", "triage"]
 body:
   - type: markdown
@@ -11,11 +11,23 @@ body:
     id: building-block
     attributes:
       label: Building Block
-      description: To which building blocks does this request apply?
+      description: To which building block(s) does this request apply?
       options:
         - label: System
         - label: Resource Discovery
+        - label: Resource Registration
         - label: Data Access
+        - label: Datacube Access
+        - label: Workspace
+        - label: Processing
+        - label: MLOps
+        - label: Resource Health
+        - label: Notification & Automation
+        - label: Data Gateway
+        - label: Federated Orchestrator
+        - label: Identity & Access Management
+        - label: Application Hub
+        - label: Application Quality
   - type: textarea
     id: details
     attributes:
