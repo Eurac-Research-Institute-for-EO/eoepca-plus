@@ -11,6 +11,7 @@ body:
     attributes:
       label: Building Block
       description: To which building block does this request apply?
+      multiple: true
       options:
         - System
         - Resource Discovery
@@ -27,6 +28,8 @@ body:
         - Identity & Access Management
         - Application Hub
         - Application Quality
+    validations:
+      required: true
   - type: textarea
     id: details
     attributes:
