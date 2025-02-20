@@ -1,2 +1,7 @@
 name: Bug or Feature
 description: Raise a bug or a feature request
+body:
+  - type: markdown
+    attributes:
+      values: |
+        Testing the template
