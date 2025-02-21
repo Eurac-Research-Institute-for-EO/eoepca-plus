@@ -1,16 +1,16 @@
-name: EOEPCA+ Bug Report
-description: Raise a bug report
-labels: ["bug", "triage"]
+name: EOEPCA+ Feature Request
+description: Submit a Feature Request
+labels: ["feature", "triage"]
 body:
   - type: markdown
     attributes:
       value: |
-        Use this form to report a bug
+        Use this form to request a new feature
   - type: dropdown
     id: building-block
     attributes:
       label: Building Block
-      description: To which building block(s) does the bug apply? (multi selection supported)
+      description: To which building block(s) does the new feature apply? (multi selection supported)
       multiple: true
       options:
         - System
@@ -31,8 +31,8 @@ body:
   - type: textarea
     id: details
     attributes:
-      label: Bug details
-      description: Provide full details of the bug
+      label: Feature description
+      description: Provide full details of the requested feature
       placeholder:  Please provide as much information as possible
     validations:
       required: true
