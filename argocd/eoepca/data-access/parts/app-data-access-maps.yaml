@@ -11,7 +11,7 @@ spec:
   sources:
     - repoURL: https://charts-public.hub.eox.at/
       chart: eoapi-maps-plugin
-      targetRevision: 0.0.3
+      targetRevision: 0.0.4
       helm:
         releaseName: eoapi-maps-plugin
         valueFiles:
