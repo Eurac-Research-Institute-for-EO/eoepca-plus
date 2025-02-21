@@ -111,10 +111,17 @@ config:
       providers:
         - type: map
           name: eoapi_maps_plugin.EOAPIProvider
-          data: https://eoapi.develop.eoepca.org/raster
-          options:
-            stac_collection: sentinel-2-l2a
-            default_asset: TCI_10m
+          data: https://eoapi.develop.eoepca.org/stac/collections/sentinel-2-l2a
           format:
             name: png
             mimetype: image/png
+
+sync:
+  enabled: true
+  schedule: "0 */1 * * *"
+  eoapiUrl: "https://eoapi.develop.eoepca.org"
+  pygeoapiUrl: "https://maps.develop.eoepca.org"
+  create: true
+  update: true
+  delete: true
+  forceLinkMimetypeCheck: false
