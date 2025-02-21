@@ -117,7 +117,7 @@ config:
             mimetype: image/png
 
 sync:
-  enabled: true
+  enabled: false
   schedule: "*/10 * * * *"
   eoapiUrl: "https://eoapi.develop.eoepca.org"
   pygeoapiUrl: "https://maps.develop.eoepca.org"
