@@ -7,6 +7,16 @@ body:
       value: |
         Use this form to raise a bug report
   - type: dropdown
+    id: testing
+    attributes:
+      label: Testing
+      description: Testing
+      # multiple: true
+      options:
+        - foo
+        - bar
+        - zzz
+  - type: dropdown
     id: building-block
     attributes:
       label: Building Block
