@@ -1,5 +1,0 @@
-global:
-  redis:
-    passSecret:
-      name: tyk-redis
-      keyName: redis-password
