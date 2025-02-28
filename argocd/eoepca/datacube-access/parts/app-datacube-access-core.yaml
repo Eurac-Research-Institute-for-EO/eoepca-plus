@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: datacube-access
+  name: datacube-access-core
   namespace: argocd
   labels:
     eoepca/app-name: datacube-access
@@ -15,7 +15,7 @@ spec:
       helm:
         releaseName: datacube-access
         valueFiles:
-          - $values/argocd/eoepca/datacube-access/parts/values/values-datacube-access.yaml
+          - $values/argocd/eoepca/datacube-access/parts/values/values-datacube-access-core.yaml
     - repoURL: https://github.com/EOEPCA/eoepca-plus
       targetRevision: deploy-develop
       ref: values

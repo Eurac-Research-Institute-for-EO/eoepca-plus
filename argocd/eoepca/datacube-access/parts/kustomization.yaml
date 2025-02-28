@@ -1,2 +1,3 @@
+
 resources:
-  - app-datacube-access.yaml
+  - app-datacube-access-core.yaml
