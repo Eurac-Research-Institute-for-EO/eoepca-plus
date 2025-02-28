@@ -4,7 +4,7 @@ metadata:
   name: datacube-access-core
   namespace: argocd
   labels:
-    eoepca/app-name: datacube-access-core
+    eoepca/app-name: datacube-access
 spec:
   # Ref. https://argo-cd.readthedocs.io/en/stable/user-guide/application-specification/
   project: eoepca
