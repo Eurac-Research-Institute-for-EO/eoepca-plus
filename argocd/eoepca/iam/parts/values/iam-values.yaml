@@ -22,6 +22,27 @@ iam:
       - iam-auth.develop.eoepca.org
     paths:
       - /*
+    # Optional configuration to apply as Crossplane CRs
+    configuration:
+      # Set this to true to enable generation of Crossplane CRs;
+      # if set to false, Crossplane is not used and no CRs are generated.
+      useCrossplane: false
+      # Set to true to auto-generate clients as Crossplane CRs.
+      createClients: false
+      realm:
+        # Set to true to auto-generate realm as Crossplane CR.
+        create: false
+        # Name of realm to create or of existing realm to create clients in
+        name: eoepca
+        displayName: EOEPCA
+      provider:
+        # Set to true to generate Provider config for Keycloak
+        create: false
+        # Reference to existing secret containing Keycloak location and credentials
+        secretRef:
+          name: keycloak-credentials
+          key: credentials
+          namespace: crossplane-system
   opa:
     enabled: &opaEnabled false
     createRoute: true
@@ -178,6 +199,21 @@ keycloak:
 
 opal:
   enabled: *opaEnabled
+  # Override actual OPAL version to 0.8.0. Unfortunately though, this does not match the chart's app version and might be confusing.
+  # Note: Commented out, thus defaults from Helm chart are used.
+  #image:
+  #  client:
+  #    registry: docker.io
+  #    repository: permitio/opal-client
+  #    tag: 0.8.0
+  #  server:
+  #    registry: docker.io
+  #    repository: permitio/opal-server
+  #    tag: 0.8.0
+  #  pgsql:
+  #    registry: docker.io
+  #    repository: postgres
+  #    tag: alpine
   server:
     port: 7002
     policyRepoUrl: https://github.com/EOEPCA/iam-policies.git
@@ -305,11 +341,18 @@ opal:
 
 apisix:
   enabled: *apisixEnabled
+  service:
+    # -- Apache APISIX service type for user access itself
+    type: NodePort
+    # -- Setting how the Service route external traffic
+    # ref: https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/#preserving-the-client-source-ip
+    externalTrafficPolicy: Cluster
+    externalIPs: []
   apisix:
     enableIPv6: false
     enableServerTokens: false
     ssl:
-      enabled: false
+      enabled: true
       existingCASecret: "apx-all-tls"
       certCAFilename: "tls.crt"
     pluginAttrs:

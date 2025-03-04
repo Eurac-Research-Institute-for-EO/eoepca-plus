@@ -4,13 +4,16 @@
 # Adapted values.yaml for EOEPCA IAM BB (derived from
 # https://github.com/permitio/opal-helm-chart/blob/master/values.yaml)
 
+# Override actual OPAL version to 0.8.0. Unfortunately though, this does not match the chart's app version and might be confusing.
 image:
   client:
     registry: docker.io
     repository: permitio/opal-client
+    tag: 0.8.0
   server:
     registry: docker.io
     repository: permitio/opal-server
+    tag: 0.8.0
   pgsql:
     registry: docker.io
     repository: postgres
