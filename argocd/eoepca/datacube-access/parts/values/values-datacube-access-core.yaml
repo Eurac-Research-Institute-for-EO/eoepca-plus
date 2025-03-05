@@ -22,4 +22,4 @@ resources:
     memory: "512Mi"
     cpu: "500m"
 config:
-  stacApi: https://eoapi.develop.eoepca.org/stac
+  dataBackend: https://eoapi.develop.eoepca.org/stac

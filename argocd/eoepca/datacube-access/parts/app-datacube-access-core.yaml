@@ -11,7 +11,7 @@ spec:
   sources:
     - repoURL: https://charts-public.hub.eox.at/
       chart: datacube-access
-      targetRevision: 0.0.0
+      targetRevision: 0.0.2
       helm:
         releaseName: datacube-access
         valueFiles:
