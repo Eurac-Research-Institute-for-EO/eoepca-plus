@@ -14,4 +14,5 @@ spec:
       set_refresh_token_header: true
       access_token_in_authorization_header: true
       discovery: "https://iam-auth.develop.eoepca.org/realms/eoepca/.well-known/openid-configuration"
+      scope: openid email profile offline_access
     secretRef: resource-health-iam-client-credentials
