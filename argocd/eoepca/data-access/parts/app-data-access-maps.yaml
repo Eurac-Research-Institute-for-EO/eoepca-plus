@@ -9,7 +9,7 @@ spec:
   # Ref. https://argo-cd.readthedocs.io/en/stable/user-guide/application-specification/
   project: eoepca
   sources:
-    - repoURL: https://charts-public.hub.eox.at/
+    - repoURL: https://eoepca.github.io/helm-charts-dev/
       chart: eoapi-maps-plugin
       targetRevision: 0.0.11
       helm:
