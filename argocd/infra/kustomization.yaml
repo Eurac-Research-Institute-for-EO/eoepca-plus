@@ -4,5 +4,4 @@ resources:
   - cert-manager
   - harbor
   - minio
-  - istio
   - knative-operator
