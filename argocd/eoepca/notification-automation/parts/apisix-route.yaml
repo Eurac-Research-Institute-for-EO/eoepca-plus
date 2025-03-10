@@ -1,0 +1,16 @@
+apiVersion: apisix.apache.org/v2
+kind: ApisixRoute
+metadata:
+  name: notifications-wildcard-route
+  namespace: notifications
+spec:
+  http:
+  - name: knative-serving-default
+    match:
+      hosts:
+        - "*.notifications.develop.eoepca.org"
+      paths:
+        - "/*"
+    backends:
+    - serviceName: kourier
+      servicePort: 80
