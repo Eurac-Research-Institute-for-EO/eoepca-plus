@@ -17,10 +17,23 @@ jobs:
     name: Debugging
     runs-on: ubuntu-latest
     environment: develop
+    env:
+      OAPIP_CLIENT_SECRET: ${{ secrets.OAPIP_CLIENT_SECRET }}
     steps:
       - run: |
           echo "SECRET: ${{ secrets.OAPIP_CLIENT_SECRET }}"
+          echo "SECRET (from env): ${{ env.OAPIP_CLIENT_SECRET }}"
 
+  debugging-no-env:
+    name: Debugging (no env)
+    runs-on: ubuntu-latest
+    env:
+      OAPIP_CLIENT_SECRET: ${{ secrets.OAPIP_CLIENT_SECRET }}
+    steps:
+      - run: |
+          echo "SECRET: ${{ secrets.OAPIP_CLIENT_SECRET }}"
+          echo "SECRET (from env): ${{ env.OAPIP_CLIENT_SECRET }}"
+        
   run-smoke-tests:
     uses: ./.github/workflows/run-tests.yaml
     with:
