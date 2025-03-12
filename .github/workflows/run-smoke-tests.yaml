@@ -13,42 +13,8 @@ on:
       - deploy-*
 
 jobs:
-  debugging:
-    name: Debugging
-    runs-on: ubuntu-latest
-    environment: develop
-    env:
-      OAPIP_CLIENT_SECRET: ${{ secrets.OAPIP_CLIENT_SECRET }}
-    steps:
-      - run: |
-          echo "SECRET: ${{ secrets.OAPIP_CLIENT_SECRET }}"
-          echo "SECRET (from env): ${{ env.OAPIP_CLIENT_SECRET }}"
-
-  debugging-no-env:
-    name: Debugging (no env)
-    runs-on: ubuntu-latest
-    env:
-      OAPIP_CLIENT_SECRET: ${{ secrets.OAPIP_CLIENT_SECRET }}
-    steps:
-      - run: |
-          echo "SECRET: ${{ secrets.OAPIP_CLIENT_SECRET }}"
-          echo "SECRET (from env): ${{ env.OAPIP_CLIENT_SECRET }}"
-
-  # deduce-environment:
-  #   name: Deduce the GitHub Environment
-  #   runs-on: ubuntu-latest
-  #   outputs:
-  #     environment: ${{ steps.deduce.outputs.environment }}
-  #   steps:
-  #     - name: Extract environment name
-  #       id: deduce
-  #       run: echo "environment=${BRANCH#deploy-}" >> $GITHUB_OUTPUT
-  #       env:
-  #         BRANCH: ${{ github.ref_name }}
-                  
   run-smoke-tests:
     uses: ./.github/workflows/run-tests.yaml
     secrets: inherit
     with:
       pytest-options: "-m smoketest"
-      environment: develop

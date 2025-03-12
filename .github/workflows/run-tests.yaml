@@ -7,23 +7,31 @@ name: ♻️ Run Tests
 on:
   workflow_call:
     inputs:
-      environment:
-        description: "GitHub environment"
-        required: true
-        type: string
       pytest-options:
         description: "Additional options for pytest"
         required: false
         type: string
 
 jobs:
+  deduce-environment:
+    name: Deduce the GitHub Environment
+    runs-on: ubuntu-latest
+    outputs:
+      environment: ${{ steps.deduce.outputs.environment }}
+    steps:
+      - name: Extract environment name
+        id: deduce
+        run: echo "environment=${BRANCH#deploy-}" >> $GITHUB_OUTPUT
+        env:
+          BRANCH: ${{ github.ref_name }}
+
   run-tests:
     name: Run Tests
     runs-on: ubuntu-latest
-    environment: ${{ inputs.environment }}
+    needs: deduce-environment
+    environment: ${{ needs.deduce-environment.outputs.environment }}
     env:
-      ENVIRONMENT: ${{ inputs.environment }}
-      FRED: bob
+      ENVIRONMENT: ${{ needs.deduce-environment.outputs.environment }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -42,9 +50,9 @@ jobs:
         env:
           OAPIP_CLIENT_SECRET: ${{ secrets.OAPIP_CLIENT_SECRET }}
         run: |
-          echo "ENVIRONMENT value: ${{ inputs.environment }}"
-          echo "ENVIRONMENT value (from env): ${{ env.ENVIRONMENT }}"
-          echo "FRED value (from env): ${{ env.FRED }}"
+          echo "ENVIRONMENT value: ${{ needs.deduce-environment.outputs.environment }}"
+          echo "ENVIRONMENT value (from GITHUB.env): ${{ env.ENVIRONMENT }}"
+          echo "ENVIRONMENT value (from env): $ENVIRONMENT"
           echo "SECRET value: ${{ secrets.OAPIP_CLIENT_SECRET }}"
           echo "SECRET value (from env): $OAPIP_CLIENT_SECRET"
           echo "pytest.env..."
