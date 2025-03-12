@@ -24,9 +24,6 @@ jobs:
         run: echo "::set-output name=environment::${BRANCH#deploy-}"
         env:
           BRANCH: ${{ github.ref_name }}
-      - name: Check envsubst
-        run: |
-          cat pytest.env
 
   run-tests:
     name: Run Smoke Tests
@@ -48,6 +45,10 @@ jobs:
             $OAPIP_CLIENT_SECRET
           files: |
             pytest.env
+
+      - name: Check envsubst
+        run: |
+          cat pytest.env
 
       - name: Invoke pytest
         run: |
