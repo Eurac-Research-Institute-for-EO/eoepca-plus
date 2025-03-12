@@ -55,7 +55,7 @@ jobs:
           echo "TARGET is ${{ env.ENVIRONMENT }}"
           docker run --rm -t \
             -e target=${{ env.ENVIRONMENT }} \
-            -v pytest.env:/work/test/.env.${{ env.ENVIRONMENT }} \
+            -v ./pytest.env:/work/test/.env.${{ env.ENVIRONMENT }} \
             -v ./out:/work/out \
             eoepca/system-test \
             pytest test -m smoketest -v --junit-xml=out/report.xml
