@@ -47,7 +47,6 @@ jobs:
   #         BRANCH: ${{ github.ref_name }}
                   
   run-smoke-tests:
-    environment: develop
     uses: ./.github/workflows/run-tests.yaml
     secrets: inherit
     with:
