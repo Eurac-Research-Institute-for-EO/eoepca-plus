@@ -14,6 +14,7 @@ on:
 
 jobs:
   run-smoke-tests:
+    name: "Run Smoke Tests"
     uses: ./.github/workflows/run-tests.yaml
     secrets: inherit
     with:

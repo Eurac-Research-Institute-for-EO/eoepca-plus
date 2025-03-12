@@ -36,7 +36,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Prepare pytest env file
+      - name: Substitute SECRETS into pytest env
         uses: tvarohohlavy/inplace-envsubst-action@v1.0.0
         env:
           OAPIP_CLIENT_SECRET: ${{ secrets.OAPIP_CLIENT_SECRET }}
@@ -45,18 +45,6 @@ jobs:
             $OAPIP_CLIENT_SECRET
           files: |
             pytest.env
-
-      - name: Debug GitHub Action
-        env:
-          OAPIP_CLIENT_SECRET: ${{ secrets.OAPIP_CLIENT_SECRET }}
-        run: |
-          echo "ENVIRONMENT value: ${{ needs.deduce-environment.outputs.environment }}"
-          echo "ENVIRONMENT value (from GITHUB.env): ${{ env.ENVIRONMENT }}"
-          echo "ENVIRONMENT value (from env): $ENVIRONMENT"
-          echo "SECRET value: ${{ secrets.OAPIP_CLIENT_SECRET }}"
-          echo "SECRET value (from env): $OAPIP_CLIENT_SECRET"
-          echo "pytest.env..."
-          cat pytest.env
 
       - name: Invoke pytest
         run: |
