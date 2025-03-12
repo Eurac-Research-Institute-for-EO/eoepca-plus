@@ -26,7 +26,7 @@ jobs:
           BRANCH: ${{ github.ref_name }}
 
   run-tests:
-    name: Run Smoke Tests
+    name: Run Tests
     runs-on: ubuntu-latest
     needs: deduce-environment
     environment: ${{ needs.deduce-environment.outputs.environment }}
@@ -45,6 +45,15 @@ jobs:
             $OAPIP_CLIENT_SECRET
           files: |
             pytest.env
+
+      - name: Debug GitHub Action
+        env:
+          OAPIP_CLIENT_SECRET: ${{ secrets.OAPIP_CLIENT_SECRET }}
+        run: |
+          echo "SECRET value: ${{ secrets.OAPIP_CLIENT_SECRET }}"
+          echo "SECRET value (from env): ${{ env.OAPIP_CLIENT_SECRET }}"
+          echo "pytest.env..."
+          cat pytest.env
 
       - name: Invoke pytest
         run: |
