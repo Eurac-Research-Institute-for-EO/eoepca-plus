@@ -32,6 +32,7 @@ jobs:
     environment: ${{ needs.deduce-environment.outputs.environment }}
     env:
       ENVIRONMENT: ${{ needs.deduce-environment.outputs.environment }}
+      FRED: bob
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -50,8 +51,11 @@ jobs:
         env:
           OAPIP_CLIENT_SECRET: ${{ secrets.OAPIP_CLIENT_SECRET }}
         run: |
+          echo "ENVIRONMENT value: ${{ needs.deduce-environment.outputs.environment }}"
+          echo "ENVIRONMENT value (from env): ${{ env.ENVIRONMENT }}"
+          echo "FRED value (from env): ${{ env.FRED }}"
           echo "SECRET value: ${{ secrets.OAPIP_CLIENT_SECRET }}"
-          echo "SECRET value (from env): ${{ env.OAPIP_CLIENT_SECRET }}"
+          echo "SECRET value (from env): $OAPIP_CLIENT_SECRET"
           echo "pytest.env..."
           cat pytest.env
 
