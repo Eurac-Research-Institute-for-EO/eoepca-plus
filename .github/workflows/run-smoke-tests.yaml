@@ -13,6 +13,14 @@ on:
       - deploy-*
 
 jobs:
+  debugging:
+    name: Debugging
+    runs-on: ubuntu-latest
+    environment: develop
+    steps:
+      - run: |
+          echo "SECRET: ${{ secrets.OAPIP_CLIENT_SECRET }}"
+
   run-smoke-tests:
     uses: ./.github/workflows/run-tests.yaml
     with:
