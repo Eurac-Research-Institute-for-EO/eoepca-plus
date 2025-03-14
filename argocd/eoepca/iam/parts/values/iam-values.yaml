@@ -5,6 +5,9 @@
 
 global:
   storageClass: "managed-nfs-storage-retain"
+  security:
+    # Required for Keycloak custom image with OPA adapter
+    allowInsecureImages: true
 
 # Settings for the IAM BB chart as a whole.
 # Some settings made here are propagated to the service-specific sections
@@ -23,7 +26,7 @@ iam: &iam
     paths:
       - /*
     # Optional configuration to apply as Crossplane CRs
-    configuration:
+    configuration: &kcConfig
       # Set this to true to enable generation of Crossplane CRs;
       # if set to false, Crossplane is not used and no CRs are generated.
       useCrossplane: false
@@ -89,7 +92,7 @@ keycloak:
     # The following settings must point to a custom Keycloak image that includes the Keycloak OPA Plugin.
     registry: byud8gih.c1.de1.container-registry.ovh.net
     repository: eoepca/keycloak-with-opa-plugin
-    tag: 0.4.0
+    tag: 0.5.0-beta1
     digest: ""
     pullPolicy: IfNotPresent
   auth:
@@ -107,10 +110,13 @@ keycloak:
   ## @param production Run Keycloak in production mode. TLS configuration is required except when using proxy=edge.
   ##
   production: false
+  ## @param proxyHeaders Set Keycloak proxy headers
+  ##
+  proxyHeaders: "xforwarded"
   ## @param proxy reverse Proxy mode edge, reencrypt, passthrough or none
   ## ref: https://www.keycloak.org/server/reverseproxy
   ##
-  proxy: edge
+  #proxy: edge
   ## @param httpRelativePath Set the path relative to '/' for serving resources. Useful if you are migrating from older version which were using '/auth/'
   ## ref: https://www.keycloak.org/migration/migrating-to-quarkus#_default_context_path_changed
   ##
@@ -128,8 +134,11 @@ keycloak:
     # policies and should not be changed.
     - name: KC_SPI_POLICY_OPA_OPA_POLICY_DIR
       value: "/opt/bitnami/keycloak/conf/opa-policies"
-    # KC_HOSTNAME_URL and KC_HOSTNAME_ADMIN_URL should be set to the official base URL
-    # of Keycloak (usually the same as iam.keycloak.url)
+    # KC_HOSTNAME and optionally KC_HOSTNAME_ADMIN should be set to the official base
+    # URL of Keycloak (usually the same as iam.keycloak.url)
+    - name: KC_HOSTNAME
+      value: *kcurl
+    # TODO: Remove the following two variables:
     - name: KC_HOSTNAME_URL
       value: *kcurl
     - name: KC_HOSTNAME_ADMIN_URL
@@ -201,6 +210,9 @@ keycloak:
       database: bitnami_keycloak
       existingSecret: "kc-postgres"
     architecture: standalone
+    image:
+      # Use PostgreSQL 16.4 for existing deployments instead of migrating the data
+      tag: 16.4.0-debian-12-r14
 
 opal:
   enabled: *opaEnabled
