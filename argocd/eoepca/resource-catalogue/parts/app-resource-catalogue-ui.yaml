@@ -4,7 +4,6 @@ metadata:
   name: resource-catalogue-ui
   namespace: argocd
   labels:
-    eoepca/is-root-app: "true"
     eoepca/app-name: resource-catalogue
 spec:
   # Ref. https://argo-cd.readthedocs.io/en/stable/user-guide/application-specification/
