@@ -1,10 +1,10 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: resource-catalogue-ui
+  name: data-access-ui
   namespace: argocd
   labels:
-    eoepca/app-name: resource-catalogue
+    eoepca/app-name: data-access
 spec:
   # Ref. https://argo-cd.readthedocs.io/en/stable/user-guide/application-specification/
   project: eoepca
@@ -15,13 +15,13 @@ spec:
       helm:
         releaseName: stac-manager
         valueFiles:
-          - $values/argocd/eoepca/resource-catalogue/parts/values/values-stac-manager.yaml
+          - $values/argocd/eoepca/data-access/parts/values/values-stac-manager.yaml
     - repoURL: https://github.com/EOEPCA/eoepca-plus
       targetRevision: deploy-develop
       ref: values
   destination:
     name: in-cluster
-    namespace: rm
+    namespace: data-access
   syncPolicy:
     automated:
       prune: true
