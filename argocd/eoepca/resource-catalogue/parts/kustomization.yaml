@@ -2,3 +2,4 @@
 resources:
   - app-resource-catalogue-core.yaml
   - app-resource-catalogue-protection.yaml
+  - app-resource-catalogue-ui.yaml
