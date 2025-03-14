@@ -1,19 +1,5 @@
 ingress:
-  enabled: true
-  className: nginx
-  annotations:
-    ingress.kubernetes.io/ssl-redirect: "true"
-    nginx.ingress.kubernetes.io/ssl-redirect: "true"
-    cert-manager.io/cluster-issuer: letsencrypt-prod
-  hosts:
-    - host: stac-manager.develop.eoepca.org
-      paths:
-        - path: /
-          pathType: ImplementationSpecific
-  tls:
-  - hosts:
-      - stac-manager.develop.eoepca.org
-    secretName: stac-manager-tls
+  enabled: false
 resources:
   requests:
     memory: "512Mi"

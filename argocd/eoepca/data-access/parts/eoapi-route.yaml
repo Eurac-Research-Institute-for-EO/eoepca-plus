@@ -11,9 +11,9 @@ spec:
       servicePort: 9000
     match:
       hosts:
-      - stac-manager.apx.develop.eoepca.org
+      - eoapi.apx.develop.eoepca.org
       paths:
-      - /
+      - /manager/*
   - name: vector-route
     backends:
     - serviceName: vector
