@@ -14,6 +14,13 @@ spec:
       - eoapi.apx.develop.eoepca.org
       paths:
       - /manager/*
+    plugins:
+    - name: proxy-rewrite
+      config:
+        regex_uri:
+        - ^(/manager)($|/.*)
+        - $2
+      enable: true
   - name: vector-route
     backends:
     - serviceName: vector
