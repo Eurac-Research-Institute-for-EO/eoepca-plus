@@ -5,6 +5,15 @@ metadata:
   namespace: data-access
 spec:
   http:
+  - name: stac-manager-route
+    backends:
+    - serviceName: stac-manager
+      servicePort: 9000
+    match:
+      hosts:
+      - stac-manager.apx.develop.eoepca.org
+      paths:
+      - /
   - name: vector-route
     backends:
     - serviceName: vector
@@ -13,14 +22,14 @@ spec:
       hosts:
       - eoapi.apx.develop.eoepca.org
       paths:
-      - /vector/*    
+      - /vector/*
     plugins:
     - name: proxy-rewrite
       config:
         regex_uri:
         - ^(/vector)($|/.*)
         - $2
-      enable: true      
+      enable: true
   - name: raster-route
     backends:
     - serviceName: raster
@@ -36,7 +45,7 @@ spec:
         regex_uri:
         - ^(/raster)($|/.*)
         - $2
-      enable: true      
+      enable: true
   - name: stac-open-route
     backends:
     - serviceName: stac
@@ -118,4 +127,3 @@ spec:
       - eoapi.apx.develop.eoepca.org
       paths:
       - /*
-    

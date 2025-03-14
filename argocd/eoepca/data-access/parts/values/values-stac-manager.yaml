@@ -17,8 +17,7 @@ ingress:
 resources:
   requests:
     memory: "512Mi"
-    cpu: "500m"
   limits:
-    memory: "1Gi"
+    memory: "4Gi"
 
 stacApi: https://eoapi.develop.eoepca.org/stac
