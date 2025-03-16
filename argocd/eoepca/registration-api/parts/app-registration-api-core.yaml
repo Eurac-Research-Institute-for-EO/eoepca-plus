@@ -34,6 +34,22 @@ spec:
             metadata:
               identification:
                 title: EOEPCA+ Registration API
+                description: EOEPCA+ Registration API
+                keywords:
+                    - EOEPCA+
+                    - Earth observation
+                    - exploitation
+                    - processing
+                    - registration
+                keywords_type: theme
+                terms_of_service: https://creativecommons.org/licenses/by/4.0
+                url: https://eoepca.org
+              license:
+                name: CC-BY 4.0 license
+                url: https://creativecommons.org/licenses/by/4.0
+              provider:
+                name: EOEPCA+
+                url: https://eoepca.org
             resources:
               register:
                 type: process
