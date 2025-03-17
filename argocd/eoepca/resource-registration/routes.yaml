@@ -5,7 +5,7 @@ metadata:
   namespace: resource-registration
 spec:
   http:
-  - name: resource-catalogue-public
+  - name: resource-catalogue-redirect
     backends:
     - serviceName: resource-catalogue-service
       servicePort: 80
@@ -14,6 +14,19 @@ spec:
       - resource-registration.apx.develop.eoepca.org
       paths:
       - /catalogue
+    plugins:
+    - name: redirect
+      enable: true
+      config:
+        uri: /catalogue/
+  - name: resource-catalogue-public
+    backends:
+    - serviceName: resource-catalogue-service
+      servicePort: 80
+    match:
+      hosts:
+      - resource-registration.apx.develop.eoepca.org
+      paths:
       - /catalogue/
       - /catalogue/*
     plugins:
@@ -23,6 +36,20 @@ spec:
         - ^(/catalogue)($|/.*)
         - $2
       enable: true
+  - name: registration-api-redirect
+    backends:
+    - serviceName: registration-api-service
+      servicePort: 80
+    match:
+      hosts:
+      - resource-registration.apx.develop.eoepca.org
+      paths:
+      - /processes
+    plugins:
+    - name: redirect
+      enable: true
+      config:
+        uri: /processes/
   - name: registration-api-protected
     backends:
     - serviceName: registration-api-service
@@ -35,7 +62,6 @@ spec:
       - DELETE
       - GET
       paths:
-      - /processes*
       - /processes/
       - /processes/*
     plugins:
@@ -63,6 +89,6 @@ spec:
       hosts:
       - resource-registration.apx.develop.eoepca.org
       paths:
-      - /
+      - /*
   
       
