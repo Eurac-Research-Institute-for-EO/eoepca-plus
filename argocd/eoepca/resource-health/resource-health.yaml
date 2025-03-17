@@ -102,7 +102,7 @@ spec:
           web:
             environmentFixed:
               - name: NEXT_PUBLIC_CHECK_MANAGER_ENDPOINT
-                value: https://resource-health.apx.develop.eoepca.org/api/healthchecks
+                value: https://resource-health.apx.develop.eoepca.org/api/healthchecks/v1
               - name: NEXT_PUBLIC_TELEMETRY_ENDPOINT
                 value: https://resource-health.apx.develop.eoepca.org/api/telemetry/v1
 
