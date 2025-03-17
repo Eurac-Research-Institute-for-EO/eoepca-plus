@@ -128,8 +128,8 @@ spec:
       paths:
       - /stac/
       - /stac/collections
-      - /stac/collections/
-      - /stac/collections/public*
+      - /stac/collections/*
+      #- /stac/collections/public*
     plugins:
     - name: proxy-rewrite
       config:
@@ -188,6 +188,7 @@ spec:
         host: http://iam-opal-opal-client:8181
         policy: eoepca/dataaccess/eoapi
   - name: stac-manager-route
+    websocket: true
     backends:
     - serviceName: stac-manager
       servicePort: 9000
