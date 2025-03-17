@@ -2,20 +2,18 @@
 # To get a newer version, you will need to update the SHA.
 # You can also reference a tag or branch, but the action may change without warning.
 
-name: ▶️ Run Smoke Tests
+name: ▶️ Run Acceptance Tests
 
 on:
   # via github UI
   workflow_dispatch:
-  # commits
-  push:
-    branches:
-      - deploy-*
+  # # commits
+  # push:
+  #   branches:
+  #     - deploy-*
 
 jobs:
-  run-smoke-tests:
-    name: "Run Smoke Tests"
+  run-acceptance-tests:
+    name: "Run Acceptance Tests"
     uses: ./.github/workflows/run-tests.yaml
     secrets: inherit
-    with:
-      pytest-options: "-m smoketest"

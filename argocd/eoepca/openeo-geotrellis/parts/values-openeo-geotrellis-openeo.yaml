@@ -1,6 +1,12 @@
 ---
-image: vito-docker.artifactory.vgt.vito.be/openeo-geotrellis-kube
-imageVersion: latest
+#---
+# NOTE: This `latest` image seems broken, so reverting to a snapshot image
+# that seems to work (snapshot for eoepca release 2.0-beta2)...
+# image: vito-docker.artifactory.vgt.vito.be/openeo-geotrellis-kube
+# imageVersion: latest
+image: eoepca/openeo-geotrellis-kube
+imageVersion: 2.0-beta2
+#---
 imagePullPolicy: Always
 sparkVersion: 3.2.0
 configMaps:

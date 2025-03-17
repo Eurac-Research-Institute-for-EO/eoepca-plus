@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: data-access-maps
+  name: data-access-ui
   namespace: argocd
   labels:
     eoepca/app-name: data-access
@@ -10,16 +10,15 @@ spec:
   project: eoepca
   sources:
     - repoURL: https://eoepca.github.io/helm-charts-dev/
-      chart: eoapi-maps-plugin
-      targetRevision: 0.0.13
+      chart: stac-manager
+      targetRevision: 0.0.3
       helm:
-        releaseName: eoapi-maps-plugin
+        releaseName: stac-manager
         valueFiles:
-          - $values/argocd/eoepca/data-access/parts/values/values-eoapi-maps-plugin.yaml
+          - $values/argocd/eoepca/data-access/parts/values/values-stac-manager.yaml
     - repoURL: https://github.com/EOEPCA/eoepca-plus
       targetRevision: deploy-develop
       ref: values
-
   destination:
     name: in-cluster
     namespace: data-access

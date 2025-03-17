@@ -1,34 +1,23 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: resource-catalogue-core
+  name: resource-catalogue-v2
   namespace: argocd
   labels:
     eoepca/app-name: resource-catalogue
 spec:
-  # Ref. https://argo-cd.readthedocs.io/en/stable/user-guide/application-specification/
   project: eoepca
   source:
     repoURL: 'https://eoepca.github.io/helm-charts-dev'
     chart: rm-resource-catalogue
     targetRevision: 2.0.0-dev5
-
     helm:
       releaseName: resource-catalogue
       valuesObject:
         global:
-          namespace: rm
+          namespace: resource-registration
         ingress:
           enabled: false
-          name: resource-catalogue-open
-          host: resource-catalogue-open.develop.eoepca.org
-          tls_host: resource-catalogue-open.develop.eoepca.org
-          tls_secret_name: resource-catalogue-open-tls
-          annotations:
-            kubernetes.io/ingress.class: nginx
-            ingress.kubernetes.io/ssl-redirect: "true"
-            nginx.ingress.kubernetes.io/ssl-redirect: "true"
-            cert-manager.io/cluster-issuer: letsencrypt-prod
         db:
           volume_storage_type: managed-nfs-storage-retain
         pycsw:
@@ -38,7 +27,7 @@ spec:
             pullPolicy: Always
           config:
             server:
-              url: https://resource-catalogue.develop.eoepca.org/
+              url: https://resource-registration.apx.develop.eoepca.org/catalogue
             manager:
               transactions: "true"
               allowed_ips:
@@ -63,10 +52,9 @@ spec:
             repository:
               facets:
                   - type
-
   destination:
     name: in-cluster
-    namespace: rm
+    namespace: resource-registration
   syncPolicy:
     automated:
       prune: true

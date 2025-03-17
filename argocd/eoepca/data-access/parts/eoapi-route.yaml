@@ -5,6 +5,51 @@ metadata:
   namespace: data-access
 spec:
   http:
+  - name: docs-redirect
+    backends:
+    - serviceName: doc-server-eoapi
+      servicePort: 80
+    match:
+      hosts:
+      - eoapi.apx.develop.eoepca.org
+      paths:
+      - /docs
+    plugins:
+    - name: redirect
+      enable: true
+      config:
+        uri: /docs/
+  - name: docs-route
+    backends:
+    - serviceName: doc-server-eoapi
+      servicePort: 80
+    match:
+      hosts:
+      - eoapi.apx.develop.eoepca.org
+      paths:
+      - /docs/
+      - /docs/*
+    plugins:
+    - name: proxy-rewrite
+      config:
+        regex_uri:
+        - ^(/docs)($|/.*)
+        - $2
+      enable: true
+  - name: vector-redirect
+    backends:
+    - serviceName: vector
+      servicePort: 8080
+    match:
+      hosts:
+      - eoapi.apx.develop.eoepca.org
+      paths:
+      - /vector
+    plugins:
+    - name: redirect
+      enable: true
+      config:
+        uri: /vector/
   - name: vector-route
     backends:
     - serviceName: vector
@@ -13,14 +58,31 @@ spec:
       hosts:
       - eoapi.apx.develop.eoepca.org
       paths:
-      - /vector/*    
+      - /vector/
+      - /vector/*
     plugins:
     - name: proxy-rewrite
       config:
         regex_uri:
         - ^(/vector)($|/.*)
         - $2
-      enable: true      
+      enable: true
+  - name: raster-redirect
+    backends:
+    - serviceName: raster
+      servicePort: 8080
+    match:
+      hosts:
+      - eoapi.apx.develop.eoepca.org
+      paths:
+      - /raster
+    plugins:
+    - name: proxy-rewrite
+      config:
+        regex_uri:
+        - ^(/raster)($|/.*)
+        - $2
+      enable: true
   - name: raster-route
     backends:
     - serviceName: raster
@@ -29,6 +91,7 @@ spec:
       hosts:
       - eoapi.apx.develop.eoepca.org
       paths:
+      - /raster/
       - /raster/*
     plugins:
     - name: proxy-rewrite
@@ -36,8 +99,8 @@ spec:
         regex_uri:
         - ^(/raster)($|/.*)
         - $2
-      enable: true      
-  - name: stac-open-route
+      enable: true
+  - name: stac-redirect
     backends:
     - serviceName: stac
       servicePort: 8080
@@ -48,10 +111,25 @@ spec:
       - GET
       paths:
       - /stac
+    plugins:
+    - name: redirect
+      enable: true
+      config:
+        uri: /stac/
+  - name: stac-open-route
+    backends:
+    - serviceName: stac
+      servicePort: 8080
+    match:
+      hosts:
+      - eoapi.apx.develop.eoepca.org
+      methods:
+      - GET
+      paths:
       - /stac/
       - /stac/collections
-      - /stac/collections/
-      - /stac/collections/public*
+      - /stac/collections/*
+      #- /stac/collections/public*
     plugins:
     - name: proxy-rewrite
       config:
@@ -109,13 +187,25 @@ spec:
       config:
         host: http://iam-opal-opal-client:8181
         policy: eoepca/dataaccess/eoapi
-  - name: doc-server-route
+  - name: stac-manager-route
+    websocket: true
     backends:
-    - serviceName: doc-server-eoapi
-      servicePort: 80
+    - serviceName: stac-manager
+      servicePort: 9000
     match:
       hosts:
       - eoapi.apx.develop.eoepca.org
       paths:
       - /*
-    
+    plugins:
+    - name: openid-connect
+      enable: true
+      config:
+        discovery: "https://iam-auth.apx.develop.eoepca.org/realms/eoepca/.well-known/openid-configuration"
+        bearer_only: false # as we want to redirect to login screen (default: false)
+        set_access_token_header: false
+        access_token_in_authorization_header: false
+        set_id_token_header: true # so UI can customize e.g. menu 
+        set_userinfo_header: true # so UI can customize e.g. menu
+        client_id: eoapi
+        client_secret: ""
