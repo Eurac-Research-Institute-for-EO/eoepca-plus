@@ -5,5 +5,5 @@ resources:
     memory: "512Mi"
   limits:
     memory: "4Gi"
-stacApi: https://eoapi.apx.develop.eoepca.org/stac/
+stacApi: https://eoapi.apx.develop.eoepca.org/stac
 publicUrl: https://eoapi.apx.develop.eoepca.org
