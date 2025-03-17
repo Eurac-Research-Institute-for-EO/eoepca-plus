@@ -1,0 +1,68 @@
+apiVersion: apisix.apache.org/v2
+kind: ApisixRoute
+metadata:
+  name: registration-api
+  namespace: resource-registration
+spec:
+  http:
+  - name: resource-catalogue-public
+    backends:
+    - serviceName: resource-catalogue-service
+      servicePort: 80
+    match:
+      hosts:
+      - resource-registration.apx.develop.eoepca.org
+      paths:
+      - /catalogue
+      - /catalogue/
+      - /catalogue/*
+    plugins:
+    - name: proxy-rewrite
+      config:
+        regex_uri:
+        - ^(/catalogue)($|/.*)
+        - $2
+      enable: true
+  - name: registration-api-protected
+    backends:
+    - serviceName: registration-api-service
+      servicePort: 80
+    match:
+      hosts:
+      - resource-registration.apx.develop.eoepca.org
+      methods:
+      - POST
+      - DELETE
+      - GET
+      paths:
+      - /processes*
+      - /processes/
+      - /processes/*
+    plugins:
+    - name: openid-connect
+      enable: true
+      config:
+        discovery: "https://iam-auth.apx.develop.eoepca.org/realms/eoepca/.well-known/openid-configuration"
+        bearer_only: false # as we want to redirect to login screen (default: false)
+        set_access_token_header: true # required for subsequent OPA check (default: true)
+        access_token_in_authorization_header: true # required for subsequent OPA check (default: false)
+        set_id_token_header: false # not needed (default: true)
+        set_userinfo_header: false # not needed (default: true)
+        client_id: resource_registration
+        client_secret: ""
+    - name: opa
+      enable: true
+      config:
+        host: http://iam-opal-opal-client:8181
+        policy: eoepca/resourceregistration/registrationapi
+  - name: registration-api-public
+    backends:
+    - serviceName: registration-api-service
+      servicePort: 80
+    match:
+      hosts:
+      - resource-registration.apx.develop.eoepca.org
+      paths:
+      - /
+  
+      
