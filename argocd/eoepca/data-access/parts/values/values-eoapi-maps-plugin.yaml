@@ -124,4 +124,5 @@ sync:
   create: true
   update: true
   delete: true
+  debug: true
   forceLinkMimetypeCheck: false
