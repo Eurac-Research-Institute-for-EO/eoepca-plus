@@ -32,7 +32,7 @@ spec:
             allow-public: true
 
           docs:
-            url: /docs
+            url: https://gitlab.develop.eoepca.org/docs/
 
           mlflow:
             type: mlflow-sharinghub
