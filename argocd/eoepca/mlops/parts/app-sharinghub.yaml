@@ -20,7 +20,7 @@ spec:
         config: |-
           services:
             store:
-              https://sharinghub.develop.eoepca.org/api/store
+              url: https://sharinghub.develop.eoepca.org/api/store
               mode: http
 
           server:
