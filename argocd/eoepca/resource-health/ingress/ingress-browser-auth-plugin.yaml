@@ -1,7 +1,7 @@
 apiVersion: apisix.apache.org/v2
 kind: ApisixPluginConfig
 metadata:
-  name: resource-health-route-plugin
+  name: resource-health-route-browser-auth-plugin
   namespace: resource-health
 spec:
   plugins:
