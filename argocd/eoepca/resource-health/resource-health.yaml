@@ -203,6 +203,8 @@ spec:
               env:
                 - name: GENERIC_ENDPOINT
                   value: https://zoo.develop.eoepca.org/swagger-ui/oapip/
+                - name: EXPECTED_STATUS_CODE
+                  value: 200
 
   destination:
     namespace: resource-health
