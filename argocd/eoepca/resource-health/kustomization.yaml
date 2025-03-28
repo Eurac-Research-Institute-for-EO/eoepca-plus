@@ -4,3 +4,4 @@ resources:
   - ingress/ingress-auth-plugin.yaml
   - ingress/ingress-browser-auth-plugin.yaml
   - secrets/resource-health-iam-client-sealedsecret.yaml
+  - secrets/resource-health-bob-offline-sealedsecret.yaml
