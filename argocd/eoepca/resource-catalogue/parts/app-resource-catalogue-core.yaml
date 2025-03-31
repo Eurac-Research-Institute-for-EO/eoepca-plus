@@ -36,7 +36,7 @@ spec:
             # repository: geopython/pycsw
             tag: "eoepca-staging"
             pullPolicy: Always
-          replicas: 1
+          replicas: 2
           config:
             server:
               url: https://resource-catalogue.develop.eoepca.org/
