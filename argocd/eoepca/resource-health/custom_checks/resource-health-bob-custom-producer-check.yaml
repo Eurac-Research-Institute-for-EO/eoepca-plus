@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: resource-health-bob-historical-ping-check
+  name: resource-health-bob-custom-producer-check
   namespace: resource-health
 spec:
   jobTemplate:
@@ -51,15 +51,15 @@ spec:
                   value: /tls/tls.crt
                 - name: OTEL_RESOURCE_ATTRIBUTES
                   value: >-
-                    k8s.cronjob.name=resource-health-bob-historical-ping-check,
+                    k8s.cronjob.name=resource-health-bob-custom-producer-check,
                     user.id=bob,
-                    health_check.name=hourly-historical-ping-time
-                - name: RESOURCE_HEALTH_RUNNER_REQUIREMENTS
-                  value: >-
-                    https://gist.github.com/tilowiklundSensmetry/8b641d48693d3daed76caa7c283d2f09/raw/de7322a55d1e1ac1b3c3ecf84a0c1eb991d8f620/requirements.txt
+                    health_check.name=hourly-custom-data
+                #- name: RESOURCE_HEALTH_RUNNER_REQUIREMENTS
+                #  value: >-
+                #    https://gist.github.com/tilowiklundSensmetry/aa8a28ab9bc432b8a76635a238c9aa11/raw/9dc5847959a909ffbaeb1a9239bbf10ad442266f/requirements.txt
                 - name: RESOURCE_HEALTH_RUNNER_SCRIPT
                   value: >-
-                    https://gist.github.com/tilowiklundSensmetry/8b641d48693d3daed76caa7c283d2f09/raw/dfea0056ded69d163e22d116406300107d4ae032/test_check_previous_pings.py
+                    https://gist.github.com/tilowiklundSensmetry/aa8a28ab9bc432b8a76635a238c9aa11/raw/9dc5847959a909ffbaeb1a9239bbf10ad442266f/test_producing_custom_data.py
               image: 'docker.io/eoepca/healthcheck_runner:v0.3.0-internal5'
               imagePullPolicy: IfNotPresent
               name: health-check-runner
@@ -73,5 +73,5 @@ spec:
               secret:
                 secretName: resource-health-healthchecks-certificate
   
-  suspend: false 
+  suspend: false
   schedule: '@hourly'

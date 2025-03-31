@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: resource-health-bob-historical-ping-check
+  name: resource-health-bob-custom-consumer-check
   namespace: resource-health
 spec:
   jobTemplate:
@@ -39,7 +39,7 @@ spec:
               name: proxy-oidc-sidecar
 
             - command: ["/usr/bin/bash"]
-              args: ["-c", "/app/run_script.sh pytest --export-traces --suppress-tests-failed-exit-code tests.py --user-id bob; ret=$?; curl -s 'http://127.0.0.1:8080/quitquitquit'; exit $ret"]
+              args: ["-c", "/app/run_script.sh pytest --export-traces -rP --suppress-tests-failed-exit-code tests.py --user-id bob; ret=$?; curl -s 'http://127.0.0.1:8080/quitquitquit'; exit $ret"]
               env:
                 - name: OTEL_EXPORTER_OTLP_ENDPOINT
                   value: 'https://resource-health-opentelemetry-collector:4317'
@@ -51,15 +51,15 @@ spec:
                   value: /tls/tls.crt
                 - name: OTEL_RESOURCE_ATTRIBUTES
                   value: >-
-                    k8s.cronjob.name=resource-health-bob-historical-ping-check,
+                    k8s.cronjob.name=resource-health-bob-custom-consumer-check,
                     user.id=bob,
-                    health_check.name=hourly-historical-ping-time
-                - name: RESOURCE_HEALTH_RUNNER_REQUIREMENTS
-                  value: >-
-                    https://gist.github.com/tilowiklundSensmetry/8b641d48693d3daed76caa7c283d2f09/raw/de7322a55d1e1ac1b3c3ecf84a0c1eb991d8f620/requirements.txt
+                    health_check.name=hourly-custom-data
+                #- name: RESOURCE_HEALTH_RUNNER_REQUIREMENTS
+                #  value: >-
+                #    https://gist.github.com/tilowiklundSensmetry/aa8a28ab9bc432b8a76635a238c9aa11/raw/9dc5847959a909ffbaeb1a9239bbf10ad442266f/requirements.txt
                 - name: RESOURCE_HEALTH_RUNNER_SCRIPT
                   value: >-
-                    https://gist.github.com/tilowiklundSensmetry/8b641d48693d3daed76caa7c283d2f09/raw/dfea0056ded69d163e22d116406300107d4ae032/test_check_previous_pings.py
+                    https://gist.github.com/tilowiklundSensmetry/47d5a9bb2a9aa66ca4cfc71ba70814ff/raw/72755d75c4e85dd9ea651e1c963502c4244119f7/test_consuming_custom_data.py
               image: 'docker.io/eoepca/healthcheck_runner:v0.3.0-internal5'
               imagePullPolicy: IfNotPresent
               name: health-check-runner
@@ -73,5 +73,5 @@ spec:
               secret:
                 secretName: resource-health-healthchecks-certificate
   
-  suspend: false 
-  schedule: '@hourly'
+  suspend: false
+  schedule: '@daily'

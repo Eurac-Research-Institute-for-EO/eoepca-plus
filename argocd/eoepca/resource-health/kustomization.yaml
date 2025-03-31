@@ -5,3 +5,6 @@ resources:
   - ingress/ingress-browser-auth-plugin.yaml
   - secrets/resource-health-iam-client-sealedsecret.yaml
   - secrets/resource-health-bob-offline-sealedsecret.yaml
+  - custom_checks/resource-health-bob-custom-consumer-check.yaml
+  - custom_checks/resource-health-bob-custom-producer-check.yaml
+  - custom_checks/resource-health-bob-historical-ping-check.yaml
