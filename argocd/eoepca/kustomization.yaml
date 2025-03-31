@@ -7,7 +7,7 @@ resources:
   - data-access-v1x
   - data-access
   - datacube-access
-  # - zoo-dru
+  - zoo-dru
   - zoo-dru-wes
   - workspace
   - mlops
