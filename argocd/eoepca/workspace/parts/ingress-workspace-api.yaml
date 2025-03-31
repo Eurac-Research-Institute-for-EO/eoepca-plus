@@ -96,6 +96,7 @@ spec:
           enable: true
           config:
             discovery: "https://iam-auth.apx.develop.eoepca.org/realms/eoepca/.well-known/openid-configuration"
+            introspection_endpoint: "https://iam-auth.apx.develop.eoepca.org/realms/eoepca/protocol/openid-connect/token/introspect"
             bearer_only: false
             set_access_token_header: true
             access_token_in_authorization_header: true
