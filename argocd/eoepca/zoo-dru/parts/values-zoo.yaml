@@ -26,8 +26,7 @@ workflow:
     STAGEOUT_AWS_SECRET_ACCESS_KEY: changeme
     STAGEOUT_AWS_REGION: RegionOne
     STAGEOUT_OUTPUT: eoepca
-  nodeSelector:
-    minikube.k8s.io/primary: "true"
+  nodeSelector: {}
   storageClass: managed-nfs-storage-retain
 ingress:
   enabled: false
