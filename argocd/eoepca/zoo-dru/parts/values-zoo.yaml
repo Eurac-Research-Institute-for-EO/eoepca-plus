@@ -61,3 +61,5 @@ rabbitmq:
     storageClass: managed-nfs-storage-retain
 iam:
   enabled: false
+documentation:
+  enabled: true
