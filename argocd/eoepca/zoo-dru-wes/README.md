@@ -15,6 +15,6 @@ The values files are referenced using the approach described in the ArgoCD docum
 * The values files are then referenced from this source...
   ```
   valueFiles:
-    - $values/argocd/eoepca/zoo-dru/values-zoo.yaml
-    - $values/argocd/eoepca/zoo-dru/values-stageout.yaml
+    - $values/argocd/eoepca/zoo-dru-wes/values-zoo.yaml
+    - $values/argocd/eoepca/zoo-dru-wes/values-stageout.yaml
   ```

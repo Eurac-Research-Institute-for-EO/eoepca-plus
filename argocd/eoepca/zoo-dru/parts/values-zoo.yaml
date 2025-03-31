@@ -1,17 +1,17 @@
 cookiecutter:
   templateUrl: https://github.com/EOEPCA/eoepca-proc-service-template.git
-  templateBranch: master
+  templateBranch: feature/python3.8
 zoofpm:
   image:
-    tag: eoepca-092ea7a2c6823dba9c6d52c383a73f5ff92d0762
+    tag: eoepca-31140bbde13c7deb8f08acf44dd8c94836c483bc
 zookernel:
   image:
-    tag: eoepca-092ea7a2c6823dba9c6d52c383a73f5ff92d0762
+    tag: eoepca-31140bbde13c7deb8f08acf44dd8c94836c483bc
 customConfig:
   main:
     eoepca: |-
-      domain=develop.eoepca.org
-      workspace_url=https://workspace-api.develop.eoepca.org
+      domain=apx.develop.eoepca.org
+      workspace_url=https://workspace-api.apx.develop.eoepca.org
       workspace_prefix=ws
 workflow:
   defaultMaxRam: 1024
