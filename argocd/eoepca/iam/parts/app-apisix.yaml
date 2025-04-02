@@ -30,6 +30,12 @@ spec:
       kind: CustomResourceDefinition
       jqPathExpressions:
         - .spec.versions[].additionalPrinterColumns[].priority | select(. == 0)
+    - group: ""
+      kind: Secret
+      name: apisix-etcd-jwt-token
+      namespace: iam
+      jsonPointers:
+        - /data
   syncPolicy:
     automated:
       prune: true
