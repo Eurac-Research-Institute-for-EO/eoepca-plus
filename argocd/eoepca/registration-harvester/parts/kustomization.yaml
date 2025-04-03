@@ -4,3 +4,4 @@ resources:
   - app-registration-harvester-flowable.yaml
   - app-registration-harvester-worker-landsat.yaml
   - app-registration-harvester-worker-sentinel.yaml
+  - app-registration-harvester-worker-stac.yaml
