@@ -36,6 +36,12 @@ spec:
       namespace: iam
       jsonPointers:
         - /data
+    - group: apps
+      kind: StatefulSet
+      name: apisix-etcd
+      namespace: iam
+      jqPathExpressions:
+        - '.spec.template.metadata.annotations["checksum/token-secret"]'
   syncPolicy:
     # automated:
     #   prune: true
