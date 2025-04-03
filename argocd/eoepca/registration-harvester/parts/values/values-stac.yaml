@@ -1,0 +1,56 @@
+harvester:
+  service:
+    name: registration-harvester
+    type: ClusterIP
+    port: 8080
+  image:
+    repository: eoepca/registration-harvester
+    pullPolicy: Always
+    tag: main
+  secret:
+    name: registration-harvester-secret
+  container_port: 8080
+  config:
+    worker:
+      log_level: INFO
+      flowable:
+        host: https://registration-harvester-api.develop.eoepca.org/flowable-rest
+        tls: true
+        cacert: ./etc/eoepca-ca-chain.pem
+      topics:
+        stac_publish_catalog:
+          module: worker.stac.tasks
+          handler: StacCatalogHandler
+        stac_publish_collection:
+          module: worker.stac.tasks
+          handler: StacCollectionHandler
+        stac_publish_item:
+          module: worker.stac.tasks
+          handler: StacItemHandler
+      handlers:
+        StacCatalogHandler:
+          subscription:
+            lock_duration: PT1M
+            number_of_retries: 0
+            wait_period_seconds: 1
+            number_of_tasks: 1
+        StacCollectionHandler:
+          subscription:
+            lock_duration: PT1M
+            number_of_retries: 5
+            wait_period_seconds: 1
+            number_of_tasks: 1
+          stac_api_url: https://otter.eoc.dlr.de/stac/api
+          stac_api_ca_cert: ./etc/otter-ca-chain.pem
+          stac_api_user: ""
+          stac_api_pw: ""
+        StacItemHandler:
+          subscription:
+            lock_duration: PT1M
+            number_of_retries: 5
+            wait_period_seconds: 1
+            number_of_tasks: 1
+          stac_api_url: https://otter.eoc.dlr.de/stac/api
+          stac_api_ca_cert: ./etc/otter-ca-chain.pem      
+          stac_api_user: ""
+          stac_api_pw: ""  
