@@ -12,7 +12,7 @@ harvester:
   container_port: 8080
   config:
     worker:
-      log_level: DEBUG
+      log_level: INFO
       flowable:
         host: https://registration-harvester-api.develop.eoepca.org/flowable-rest
         tls: true
@@ -30,13 +30,13 @@ harvester:
       handlers:
         StacCatalogHandler:
           subscription:
-            lock_duration: PT1M
-            number_of_retries: 0
+            lock_duration: PT10M
+            number_of_retries: 5
             wait_period_seconds: 1
             number_of_tasks: 1
         StacCollectionHandler:
           subscription:
-            lock_duration: PT1M
+            lock_duration: PT10M
             number_of_retries: 5
             wait_period_seconds: 1
             number_of_tasks: 1
@@ -46,7 +46,7 @@ harvester:
           stac_api_pw: ""
         StacItemHandler:
           subscription:
-            lock_duration: PT1M
+            lock_duration: PT10M
             number_of_retries: 5
             wait_period_seconds: 1
             number_of_tasks: 1
