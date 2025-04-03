@@ -12,7 +12,7 @@ harvester:
   container_port: 8080
   config:
     worker:
-      log_level: INFO
+      log_level: DEBUG
       flowable:
         host: https://registration-harvester-api.develop.eoepca.org/flowable-rest
         tls: true
