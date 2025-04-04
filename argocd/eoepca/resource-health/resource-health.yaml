@@ -98,6 +98,10 @@ spec:
             environmentFixed:
               - name: FAST_API_ROOT_PATH
                 value: "/api/healthchecks"
+              - name: OPEN_ID_CONNECT_URL
+                value: "https://iam-auth.develop.eoepca.org/realms/eoepca/.well-known/openid-configuration"
+              - name: OPEN_ID_CONNECT_AUDIENCE
+                value: "account"
 
           web:
             environmentFixed:
