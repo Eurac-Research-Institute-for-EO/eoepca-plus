@@ -179,7 +179,7 @@ spec:
                 def on_template_access(userinfo: UserInfo, template: CheckTemplate) -> bool:
                     print("ON TEMPLATE_ACCESS")
 
-                    if template.id == "default_k8s_template" and userinfo["username"] != "bob":
+                    if userinfo["username"] != "bob" and template.id != "simple_ping":
                         return False
 
                     return True
@@ -188,17 +188,11 @@ spec:
                 def on_check_create(userinfo: UserInfo, check: InCheckAttributes) -> bool:
                     print("ON CHECK CREATE")
 
-                    if userinfo["username"] not in ["alice", "bob"]:
-                        return False
-
                     return True
 
 
                 def on_check_remove(userinfo: UserInfo, check: OutCheck) -> bool:
                     print("ON CHECK REMOVE")
-
-                    if userinfo["username"] not in ["alice", "bob"]:
-                        return False
 
                     return True
 
@@ -312,20 +306,52 @@ spec:
                 from check_backends.k8s_backend.template_utils import *
 
 
-                class DefaultK8sArguments(BaseModel):
+                class ScriptTemplateArguments(BaseModel):
                     script: str = Field(json_schema_extra={"format": "textarea"})
                     requirements: str = Field(json_schema_extra={"format": "textarea"}, default="")
 
 
                 GenericScriptTemplate = simple_runner_template(
                     template_id="generic_script_template",
-                    argument_type=DefaultK8sArguments,
+                    argument_type=ScriptTemplateArguments,
                     label="Generic script template",
                     description="Runs a user-provided pytest script from a specified remote or data url",
                     script_url=lambda template_args, userinfo: template_args.script,
                     requirements_url=lambda template_args, userinfo: template_args.requirements,
                     user_id=lambda template_args, userinfo: userinfo["username"],
                     otlp_tls_secret="resource-health-healthchecks-certificate",
+                )
+
+              telemetry_access.py: |
+                from check_backends.k8s_backend.template_utils import *
+                import os
+
+
+                class TelemetryAccessArguments(BaseModel):
+                    script: str = Field(json_schema_extra={"format": "textarea"})
+                    requirements: str = Field(json_schema_extra={"format": "textarea"}, default="")
+
+
+                TelemetryAccessTemplate = simple_runner_template(
+                    template_id="telemetry_access_template",
+                    argument_type=TelemetryAccessArguments,
+                    label="Script with telemetry access",
+                    description="Health check template that runs a userscript with telemetry access on localhost:8080",
+                    script_url=lambda template_args, userinfo: template_args.script,
+                    requirements_url=lambda template_args, userinfo: template_args.requirements,
+                    user_id=lambda template_args, userinfo: userinfo["username"],
+                    otlp_tls_secret="resource-health-healthchecks-certificate",
+                    proxy=True,
+                    proxy_oidc_client_secret=(
+                        "resource-health-iam-client-credentials",
+                        "client_id",
+                        "client_secret",
+                    ),
+                    proxy_oidc_refresh_token_secret=lambda template_args, userinfo: (
+                        f"resource-health-{userinfo['username']}-offline-secret",
+                        "offline_token",
+                    ),
+                    proxy_oidc_url=os.environ.get("OPEN_ID_CONNECT_URL"),
                 )
 
             checks:
