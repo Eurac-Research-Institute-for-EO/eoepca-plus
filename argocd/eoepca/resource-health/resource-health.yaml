@@ -426,6 +426,7 @@ spec:
               env:
                 - name: MOCK_API_HOST
                   value: http://resource-health-mock-api:5000
+              userid: "bob"
               annotations:
                 owner: "bob"
 
@@ -435,6 +436,7 @@ spec:
               # This is an empty requirements file
               requirements: "https://gist.githubusercontent.com/tilowiklundSensmetry/a9fefe2873b731b483f554607a82deaa/raw/1136a82ca3c8f28b1ad4d895871514185927dd1c/requirements.txt"
               script: "https://raw.githubusercontent.com/EOEPCA/resource-health/refs/tags/v0.1.0-demo/pytest-health/instrumentation/examples/trivial_check.py"
+              userid: "bob"
               annotations:
                 owner: "bob"
 
@@ -443,6 +445,7 @@ spec:
               # This is an empty requirements file
               requirements: "https://gist.githubusercontent.com/tilowiklundSensmetry/a9fefe2873b731b483f554607a82deaa/raw/1136a82ca3c8f28b1ad4d895871514185927dd1c/requirements.txt"
               script: "https://gist.githubusercontent.com/tilowiklundSensmetry/b75b3bf435e366b2fd5155a41d8f1cb9/raw/892e0e89d078f1f2683b89a1101e31683f77dcee/health_check.py"
+              userid: "bob"
               annotations:
                 owner: "bob"
 
@@ -450,6 +453,7 @@ spec:
               schedule: "@hourly"
               requirements: "https://gist.githubusercontent.com/soxofaan/7a634cfb0cc6bc0e8281d152a270ea4e/raw/ef77bc9b2c70cc070259715fea63e288026bb6b8/requirements.txt"
               script: "https://gist.githubusercontent.com/soxofaan/7a634cfb0cc6bc0e8281d152a270ea4e/raw/ef77bc9b2c70cc070259715fea63e288026bb6b8/test_cdse.py"
+              userid: "alice"
               annotations:
                 owner: "alice"
 
@@ -461,6 +465,7 @@ spec:
               env:
                 - name: DATA_ACCESS_HOST
                   value: https://eoapi.develop.eoepca.org
+              userid: "alice"
               annotations:
                 owner: "alice"
 
@@ -475,6 +480,7 @@ spec:
                   value: http://iam-opal-opal-client.iam.svc.cluster.local:8181/
                 - name: IDENTITY_API_ENDPOINT
                   value: http://identity-api.iam.svc.cluster.local:8080/
+              userid: "alice"
               annotations:
                 owner: "alice"
 
@@ -487,6 +493,7 @@ spec:
                   value: https://sharinghub.develop.eoepca.org
                 - name: MFLOW_SHARING_HUB_HOST
                   value: https://sharinghub.p2.csgroup.space
+              userid: "alice"
               annotations:
                 owner: "alice"
 
@@ -497,6 +504,7 @@ spec:
               env:
                 - name: RESOURCE_CATALOGUE_ENDPOINT
                   value: https://resource-catalogue.develop.eoepca.org
+              userid: "alice"
               annotations:
                 owner: "alice"
 
@@ -513,6 +521,7 @@ spec:
                   value: "eoepca"
                 - name: REGISTRATION_API_ENDPOINT
                   value: https://registration-api.develop.eoepca.org/
+              userid: "alice"
               annotations:
                 owner: "alice"
 
@@ -523,6 +532,7 @@ spec:
               env:
                 - name: WORKSPACE_HOST
                   value: https://workspace-api.apx.develop.eoepca.org
+              userid: "eric"
               annotations:
                 owner: "eric"
 
@@ -535,6 +545,7 @@ spec:
                   value: https://zoo.develop.eoepca.org/swagger-ui/oapip/
                 - name: EXPECTED_STATUS_CODE
                   value: "200"
+              userid: "eric"
               annotations:
                 owner: "eric"
 
