@@ -106,7 +106,7 @@ spec:
             use_hook_configmap: True
             hooks:
               oidc_auth_hooks.py: |
-                from check_api.hook_utils import *
+                from check_hooks.hook_utils import *
 
                 from eoepca_security import OIDCProxyScheme, Tokens
                 from typing import TypedDict
@@ -196,16 +196,14 @@ spec:
 
 
                 def on_k8s_cronjob_access(
-                    userinfo: UserInfo, client: K8sClient, cronjob: CronJob
+                    userinfo: UserInfo, client: K8sClient, cronjob: K8sCronJob
                 ) -> bool:
                     return cronjob.metadata.annotations.get("owner") == userinfo["username"]
 
 
-                def on_k8s_cronjob_create(
-                    userinfo: UserInfo, client: K8sClient, cronjob: CronJob
+                async def on_k8s_cronjob_create(
+                    userinfo: UserInfo, client: K8sClient, cronjob: K8sCronJob
                 ) -> bool:
-                    print("on_k8s_cronjob_create")
-
                     ## Ensure cronjob is tagged with correct owner
 
                     if (
@@ -215,6 +213,33 @@ spec:
                         return False
 
                     cronjob.metadata.annotations["owner"] = userinfo["username"]
+
+                    ## Ensure the user has an offline token set
+                    ## Note: Would be more robust to check on every access but use a cache
+                    secret_name = f"resource-health-{userinfo['username']}-offline-secret"
+                    secret_namespace = get_k8s_namespace(userinfo)
+
+                    offline_secret = await lookup_k8s_secret(
+                        client=client,
+                        namespace=secret_namespace,
+                        name=secret_name
+                    )
+
+                    if offline_secret is None:
+                        if userinfo['refresh_token'] is None:
+                            raise APIException(Error(
+                                status="404",
+                                code="MissingOfflineToken",
+                                title="Missing offline token, please create at least one check using the website",
+                            ))
+                        await create_k8s_secret(
+                            client=client,
+                            name=secret_name,
+                            namespace=secret_namespace,
+                            string_data={
+                                "offline_token": userinfo['refresh_token']
+                            }
+                        )
 
                     return True
 
