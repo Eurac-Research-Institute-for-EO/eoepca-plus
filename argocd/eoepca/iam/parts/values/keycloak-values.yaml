@@ -103,19 +103,18 @@ diagnosticMode:
 ##
 image:
   registry: byud8gih.c1.de1.container-registry.ovh.net
-#  registry: docker.io
-#  repository: bitnami/keycloak
+  #  registry: docker.io
+  #  repository: bitnami/keycloak
   repository: eoepca/keycloak-with-opa-plugin
-#  repository: pro-ez/keycloak-with-opa-plugin
+  #  repository: pro-ez/keycloak-with-opa-plugin
   # Note: Maybe update to 25.x
-#  tag: 24.0.5-debian-12-r0
-  tag: 0.3.1
+  tag: 0.5.0
   digest: ""
   ## Specify a imagePullPolicy
   ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
   ## ref: https://kubernetes.io/docs/concepts/containers/images/#pre-pulled-images
   ##
-#  pullPolicy: IfNotPresent
+  #  pullPolicy: IfNotPresent
   pullPolicy: Always
   ## Optionally specify an array of imagePullSecrets.
   ## Secrets must be manually created in the namespace.
@@ -125,7 +124,7 @@ image:
   ##   - myRegistryKeySecretName
   ##
   pullSecrets: []
-#    - ovh-image-repo
+  #    - ovh-image-repo
   ## Set to true if you would like to see extra information on logs
   ##
   debug: false
@@ -213,10 +212,13 @@ spi:
 ## @param production Run Keycloak in production mode. TLS configuration is required except when using proxy=edge.
 ##
 production: false
+## @param proxyHeaders Set Keycloak proxy headers
+##
+proxyHeaders: "xforwarded"
 ## @param proxy reverse Proxy mode edge, reencrypt, passthrough or none
 ## ref: https://www.keycloak.org/server/reverseproxy
 ##
-proxy: edge
+#proxy: edge
 ## @param httpRelativePath Set the path relative to '/' for serving resources. Useful if you are migrating from older version which were using '/auth/'
 ## ref: https://www.keycloak.org/migration/migrating-to-quarkus#_default_context_path_changed
 ##
@@ -276,10 +278,14 @@ extraEnvVars:
     value: "http://iam-opal-opal-client:8181/v1/data/"
   - name: KC_SPI_POLICY_OPA_OPA_POLICY_DIR
     value: "/opt/bitnami/keycloak/conf/opa-policies"
-  - name: KC_HOSTNAME_URL
+  # KC_HOSTNAME and optionally KC_HOSTNAME_ADMIN should be set to the official base
+  # URL of Keycloak (usually the same as iam.keycloak.url)
+  - name: KC_HOSTNAME
     value: "https://iam-auth.apx.develop.eoepca.org"
-  - name: KC_HOSTNAME_ADMIN_URL
-    value: "https://iam-auth.apx.develop.eoepca.org"
+  #- name: KC_HOSTNAME_URL
+  #  value: "https://iam-auth.apx.develop.eoepca.org"
+  #- name: KC_HOSTNAME_ADMIN_URL
+  #  value: "https://iam-auth.apx.develop.eoepca.org"
 
 ## @param extraEnvVarsCM Name of existing ConfigMap containing extra env vars
 ##
@@ -1293,9 +1299,9 @@ keycloakConfigCli:
 postgresql:
   enabled: true
   auth:
-#    postgresPassword: "KhM7sUWrqp"
+    #    postgresPassword: "KhM7sUWrqp"
     username: bn_keycloak
-#    password: "6CEMdE5WqZ"
+    #    password: "6CEMdE5WqZ"
     database: bitnami_keycloak
     existingSecret: "kc-postgres"
   architecture: standalone
