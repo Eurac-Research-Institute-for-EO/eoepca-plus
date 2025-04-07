@@ -326,7 +326,7 @@ spec:
               script: "https://raw.githubusercontent.com/EOEPCA/resource-health/refs/tags/v0.1.0-demo/pytest-health/instrumentation/examples/mock_api_check.py"
               env:
                 - name: MOCK_API_HOST
-                  value: http://resource-health-mockapi:5000
+                  value: http://resource-health-mock-api:5000
               annotations:
                 owner: "bob"
 
