@@ -169,8 +169,6 @@ spec:
 
 
           check_api:
-            image:
-              pullPolicy: Always
             environmentFixed:
               - name: FAST_API_ROOT_PATH
                 value: "/api/healthchecks"
