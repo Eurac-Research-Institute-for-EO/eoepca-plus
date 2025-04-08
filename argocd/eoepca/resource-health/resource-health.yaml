@@ -90,6 +90,9 @@ spec:
         ## Example health checks to deploy with the resource health BB itself
         resource-health:
           telemetry_api:
+            # To avoid proliferation of images during debugging
+            image:
+              pullPolicy: Always
             environmentFixed:
               - name: FAST_API_ROOT_PATH
                 value: "/api/telemetry"
@@ -169,6 +172,9 @@ spec:
 
 
           check_api:
+            # To avoid proliferation of images during debugging
+            image:
+              pullPolicy: Always
             environmentFixed:
               - name: FAST_API_ROOT_PATH
                 value: "/api/healthchecks"
