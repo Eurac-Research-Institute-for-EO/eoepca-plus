@@ -260,11 +260,11 @@ spec:
                     print("ON TEMPLATE_ACCESS")
 
                     ## Only bob can use/access unsafe templates
-                    if (userinfo["username"] != "bob" and template.id != "simple_ping":
+                    if userinfo["username"] != "bob" and template.id != "simple_ping":
                         return False
 
                     ## Only bob, alice, and eric can access the templates
-                    if (userinfo["username"] not in ["bob", "alice", "eric"])
+                    if userinfo["username"] not in ["bob", "alice", "eric"]:
                         return False
 
                     return True
