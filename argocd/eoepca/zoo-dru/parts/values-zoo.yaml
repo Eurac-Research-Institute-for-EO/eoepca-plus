@@ -3,10 +3,12 @@ cookiecutter:
   templateBranch: feature/python3.8
 zoofpm:
   image:
-    tag: eoepca-31140bbde13c7deb8f08acf44dd8c94836c483bc
+    tag: eoepca-e912be9fd38445c7416a2b4b3d749b1ae67247ea
 zookernel:
+  env:
+    ZOO_OUTPUT_FORMAT: "stac-collection"
   image:
-    tag: eoepca-31140bbde13c7deb8f08acf44dd8c94836c483bc
+    tag: eoepca-e912be9fd38445c7416a2b4b3d749b1ae67247ea
 customConfig:
   main:
     eoepca: |-
