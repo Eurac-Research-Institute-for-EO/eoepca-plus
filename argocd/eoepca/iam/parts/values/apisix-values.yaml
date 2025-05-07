@@ -158,7 +158,7 @@ nameOverride: ""
 fullnameOverride: ""
 
 serviceAccount:
-  create: false
+  create: true #false
   annotations: {}
   name: ""
 
@@ -698,3 +698,5 @@ ingress-controller:
     apisix:
       adminAPIVersion: "v3"
       serviceNamespace: iam
+    kubernetes:
+      ingressVersion: "networking/v1"
