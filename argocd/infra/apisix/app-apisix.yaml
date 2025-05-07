@@ -15,7 +15,7 @@ spec:
       helm:
         releaseName: apisix
         valueFiles:
-          - $values/argocd/infra/parts/values/apisix-values.yaml
+          - $values/argocd/infra/apisix/parts/values/apisix-values.yaml
     - repoURL: https://github.com/EOEPCA/eoepca-plus
       targetRevision: deploy-develop
       ref: values
