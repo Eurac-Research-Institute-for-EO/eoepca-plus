@@ -6,4 +6,4 @@ resources:
   - minio
   - knative-operator
   - strimzi-operator
-  - apisix
+  # - apisix
