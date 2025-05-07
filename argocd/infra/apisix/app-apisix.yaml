@@ -1,51 +1,28 @@
+# Copied from Workspace and adapted
+
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: apisix
   namespace: argocd
   labels:
+    eoepca/is-root-app: "true"
     eoepca/app-name: apisix
 spec:
   # Ref. https://argo-cd.readthedocs.io/en/stable/user-guide/application-specification/
   project: eoepca
-  sources:
-#    - repoURL: https://charts.apiseven.com
-    - repoURL: https://apache.github.io/apisix-helm-chart/
-      chart: apisix
-      targetRevision: 2.10.0
-      helm:
-        releaseName: apisix
-        valueFiles:
-          - $values/argocd/infra/apisix/parts/values/apisix-values.yaml
-    - repoURL: https://github.com/EOEPCA/eoepca-plus
-      targetRevision: deploy-develop
-      ref: values
-
+  source:
+    repoURL: https://github.com/EOEPCA/eoepca-plus
+    targetRevision: deploy-develop
+    path: argocd/infra/apisix/parts
   destination:
     name: in-cluster
     namespace: ingress-apisix
-  ignoreDifferences:
-    - group: apiextensions.k8s.io
-      kind: CustomResourceDefinition
-      jqPathExpressions:
-        - .spec.versions[].additionalPrinterColumns[].priority | select(. == 0)
-    - group: ""
-      kind: Secret
-      name: apisix-etcd-jwt-token
-      namespace: ingress-apisix
-      jsonPointers:
-        - /data
-    - group: apps
-      kind: StatefulSet
-      name: apisix-etcd
-      namespace: ingress-apisix
-      jqPathExpressions:
-        - '.spec.template.metadata.annotations["checksum/token-secret"]'
   syncPolicy:
-    # automated:
-    #   prune: true
-    #   # selfHeal: false
-    #   allowEmpty: true
+    automated:
+      prune: true
+      selfHeal: false
+      allowEmpty: true
     syncOptions:
       - Validate=true
       - CreateNamespace=true

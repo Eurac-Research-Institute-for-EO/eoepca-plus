@@ -1,5 +1,6 @@
 
 resources:
+  - app-apisix-core.yaml
   - apisixtls-apx-all.yaml
   - cert-apx-all.yaml
   - apisixglobalrule-redirect-to-tls.yaml
