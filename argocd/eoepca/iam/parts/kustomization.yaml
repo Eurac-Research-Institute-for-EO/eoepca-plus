@@ -2,15 +2,12 @@
 resources:
   - app-keycloak.yaml
   - app-opal.yaml
-  - app-apisix.yaml
+#  - app-apisix.yaml
   - app-identity-api.yaml
 #  - pvc-kc-database.yaml
   - ss-kc-postgres.yaml
   - ss-identity-api.yaml
   - apisixtls-apx-all.yaml
-#  - apisixroute-keycloak.yaml
-#  - apisixroute-opa.yaml
-#  - apisixroute-identity-api.yaml
   - apisixroute-dummy-service.yaml
   - cert-apx-all.yaml
   - apisixglobalrule-redirect-to-tls.yaml
