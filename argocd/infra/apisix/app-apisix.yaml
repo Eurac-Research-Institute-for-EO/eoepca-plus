@@ -9,8 +9,8 @@ spec:
   # Ref. https://argo-cd.readthedocs.io/en/stable/user-guide/application-specification/
   project: eoepca
   sources:
-    - repoURL: https://charts.apiseven.com
-#    - repoURL: https://apache.github.io/apisix-helm-chart/
+#    - repoURL: https://charts.apiseven.com
+    - repoURL: https://apache.github.io/apisix-helm-chart/
       chart: apisix
       targetRevision: 2.10.0
       helm:
@@ -19,8 +19,6 @@ spec:
           - $values/argocd/infra/apisix/parts/values/apisix-values.yaml
     - repoURL: https://github.com/EOEPCA/eoepca-plus
       targetRevision: deploy-develop
-# TODO: Uncomment the following line and remove the corresponding resources from IAM
-#      path: argocd/infra/apisix/parts
       ref: values
 
   destination:
