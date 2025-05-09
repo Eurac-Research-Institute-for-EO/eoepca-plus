@@ -21,6 +21,29 @@ spec:
     validRedirectUris:
       - '/*'
 ---
+apiVersion: openidclient.keycloak.crossplane.io/v1alpha1
+kind: Client
+metadata:
+  name: eoapi-develop
+spec:
+  providerConfigRef:
+    name: provider-keycloak
+  forProvider:
+    realmId: eoepca
+    name: eoapi-develop
+    accessType: PUBLIC
+    clientId: eoapi-develop
+    standardFlowEnabled: true
+    implicitFlowEnabled: false
+    directAccessGrantsEnabled: true # allow for now to simplify testing
+    serviceAccountsEnabled: false
+    oauth2DeviceAuthorizationGrantEnabled: true
+    rootUrl: https://stac-manager.develop.eoepca.org
+    webOrigins:
+      - '/*'
+    validRedirectUris:
+      - '/*'
+---
 apiVersion: role.keycloak.crossplane.io/v1alpha1
 kind: Role
 metadata: 
