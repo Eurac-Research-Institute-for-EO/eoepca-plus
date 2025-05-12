@@ -34,7 +34,7 @@ spec:
         pycsw:
           image:
             # repository: geopython/pycsw
-            tag: "eoepca-staging"
+            tag: "latest"
             pullPolicy: Always
           replicas: 1
           config:
