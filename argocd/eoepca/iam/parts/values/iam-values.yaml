@@ -19,7 +19,7 @@ iam: &iam
   keycloak:
     enabled: &keycloakEnabled false
     # "Official" Keycloak URL
-    url: &kcurl https://iam-auth.develop.eoepca.org
+    url: &kcurl https://iam-auth.apx.develop.eoepca.org
     hosts:
       - iam-auth.apx.develop.eoepca.org
       - iam-auth.develop.eoepca.org
