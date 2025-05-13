@@ -49,6 +49,7 @@ configMaps:
         aggregator_backends={
             "terrascope": "https://openeo-dev.vito.be/openeo/1.2/",
             "eoepca": "https://openeo.develop.eoepca.org/openeo/1.2/",
+            "developmentseed": "https://openeo.ds.io/",
         },
     )
 
