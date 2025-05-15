@@ -14,14 +14,14 @@ spec:
     - repoURL: 'registry.developers.crunchydata.com/crunchydata'
       path: 'pgo'
       chart: pgo
-      targetRevision: 5.6.0
+      targetRevision: 5.7.4
       helm:
         releaseName: pgo
         valueFiles:
           - $values/argocd/eoepca/data-access/parts/values/values-pgo.yaml
     - repoURL: https://devseed.com/eoapi-k8s/
       chart: eoapi
-      targetRevision: 0.6.0
+      targetRevision: 0.7.0
       helm:
         releaseName: eoapi
         valueFiles:
