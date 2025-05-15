@@ -7,8 +7,3 @@ resources:
   - ss-kc-postgres.yaml
   - ss-identity-api.yaml
   - apisixroute-dummy-service.yaml
-  # - app-apisix.yaml
-  # - apisixtls-apx-all.yaml
-  # - cert-apx-all.yaml
-  # - apisixglobalrule-redirect-to-tls.yaml
-  # - apisixglobalrule-tls-port-correction.yaml
