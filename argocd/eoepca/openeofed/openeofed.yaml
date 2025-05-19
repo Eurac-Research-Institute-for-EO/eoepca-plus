@@ -11,7 +11,7 @@ spec:
   sources:
     - repoURL: https://artifactory.vgt.vito.be/artifactory/helm-charts
       chart: openeo-aggregator
-      targetRevision: 2025.01.10-14
+      targetRevision: 2025.01.14-17
       helm:
         releaseName: openeofed
         valueFiles:
