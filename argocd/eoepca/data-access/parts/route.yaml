@@ -11,7 +11,7 @@ spec:
       servicePort: 80
     match:
       hosts:
-      - stac.test.terrabyte.lrz.de
+      - eoapi.apx.develop.eoepca.org
       paths:
       - /docs
     plugins:
@@ -25,7 +25,7 @@ spec:
       servicePort: 80
     match:
       hosts:
-      - stac.test.terrabyte.lrz.de
+      - eoapi.apx.develop.eoepca.org
       paths:
       - /docs/
       - /docs/*
@@ -36,13 +36,44 @@ spec:
         - ^(/docs)($|/.*)
         - $2
       enable: true
+  - name: browser-redirect
+    backends:
+    - serviceName: browser-eoapi
+      servicePort: 8080
+    match:
+      hosts:
+      - eoapi.apx.develop.eoepca.org
+      paths:
+      - /browser
+    plugins:
+    - name: redirect
+      enable: true
+      config:
+        uri: /browser/
+  - name: browser-route
+    backends:
+    - serviceName: browser-eoapi
+      servicePort: 8080
+    match:
+      hosts:
+      - eoapi.apx.develop.eoepca.org
+      paths:
+      - /browser/
+      - /browser/*
+    plugins:
+    - name: proxy-rewrite
+      config:
+        regex_uri:
+        - ^(/browser)($|/.*)
+        - $2
+      enable: true
   - name: vector-redirect
     backends:
     - serviceName: vector-eoapi
       servicePort: 8080
     match:
       hosts:
-      - stac.test.terrabyte.lrz.de
+      - eoapi.apx.develop.eoepca.org
       paths:
       - /vector
     plugins:
@@ -56,7 +87,7 @@ spec:
       servicePort: 8080
     match:
       hosts:
-      - stac.test.terrabyte.lrz.de
+      - eoapi.apx.develop.eoepca.org
       paths:
       - /vector/
       - /vector/*
@@ -73,7 +104,7 @@ spec:
       servicePort: 8080
     match:
       hosts:
-      - stac.test.terrabyte.lrz.de
+      - eoapi.apx.develop.eoepca.org
       paths:
       - /raster
     plugins:
@@ -89,7 +120,7 @@ spec:
       servicePort: 8080
     match:
       hosts:
-      - stac.test.terrabyte.lrz.de
+      - eoapi.apx.develop.eoepca.org
       paths:
       - /raster/
       - /raster/*
@@ -106,7 +137,7 @@ spec:
       servicePort: 8080
     match:
       hosts:
-      - stac.test.terrabyte.lrz.de
+      - eoapi.apx.develop.eoepca.org
       methods:
       - GET
       paths:
@@ -122,7 +153,7 @@ spec:
       servicePort: 8080
     match:
       hosts:
-      - stac.test.terrabyte.lrz.de
+      - eoapi.apx.develop.eoepca.org
       methods:
       - GET
       paths:
@@ -143,7 +174,7 @@ spec:
       servicePort: 8080
     match:
       hosts:
-      - stac.test.terrabyte.lrz.de
+      - eoapi.apx.develop.eoepca.org
       methods:
       - POST
       paths:
@@ -161,7 +192,7 @@ spec:
       servicePort: 8080
     match:
       hosts:
-      - stac.test.terrabyte.lrz.de
+      - eoapi.apx.develop.eoepca.org
       paths:
       - /stac/*
     plugins:
@@ -188,29 +219,6 @@ spec:
       config:
         host: http://iam-opal-opal-client:8181
         policy: eoepca/dataaccess/stac
-  # - name: stac-manager-redirect
-  #   backends:
-  #   - serviceName: doc-server-eoapi
-  #     servicePort: 80
-  #   match:
-  #     hosts:
-  #     - stac.test.terrabyte.lrz.de
-  #     paths:
-  #     - /browser
-  #   plugins:
-  #   - name: redirect
-  #     enable: true
-  #     config:
-  #       uri: /.
-  # - name: stac-manager-assets
-  #   backends:
-  #   - serviceName: stac-manager
-  #     servicePort: 80
-  #   match:
-  #     hosts:
-  #     - stac.test.terrabyte.lrz.de
-  #     paths:
-  #     - ~*/.*\.(js|css|png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot|ico)$
   - name: stac-manager-route
     websocket: true
     backends:
@@ -218,20 +226,7 @@ spec:
       servicePort: 80
     match:
       hosts:
-      - stac.test.terrabyte.lrz.de
+      - eoapi.apx.develop.eoepca.org
       paths:
       - /
       - /*
-      - ~/*
-    # plugins:
-    # - name: openid-connect
-    #   enable: true
-    #   config:
-    #     discovery: "https://iam-auth.test.terrabyte.lrz.de/realms/eoepca/.well-known/openid-configuration"
-    #     bearer_only: false # as we want to redirect to login screen (default: false)
-    #     set_access_token_header: false
-    #     access_token_in_authorization_header: false
-    #     set_id_token_header: true # so UI can customize e.g. menu 
-    #     set_userinfo_header: true # so UI can customize e.g. menu
-    #     client_id: stac
-    #     client_secret: ""
