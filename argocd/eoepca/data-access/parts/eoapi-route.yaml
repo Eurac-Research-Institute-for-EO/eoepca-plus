@@ -36,37 +36,37 @@ spec:
         - ^(/docs)($|/.*)
         - $2
       enable: true
-  # - name: browser-redirect
-  #   backends:
-  #   - serviceName: browser-eoapi
-  #     servicePort: 8080
-  #   match:
-  #     hosts:
-  #     - eoapi.apx.develop.eoepca.org
-  #     paths:
-  #     - /browser
-  #   plugins:
-  #   - name: redirect
-  #     enable: true
-  #     config:
-  #       uri: /browser/
-  # - name: browser-route
-  #   backends:
-  #   - serviceName: browser-eoapi
-  #     servicePort: 8080
-  #   match:
-  #     hosts:
-  #     - eoapi.apx.develop.eoepca.org
-  #     paths:
-  #     - /browser/
-  #     - /browser/*
-  #   plugins:
-  #   - name: proxy-rewrite
-  #     config:
-  #       regex_uri:
-  #       - ^(/browser)($|/.*)
-  #       - $2
-  #     enable: true
+  - name: browser-redirect
+    backends:
+    - serviceName: browser-eoapi
+      servicePort: 8080
+    match:
+      hosts:
+      - eoapi.apx.develop.eoepca.org
+      paths:
+      - /browser
+    plugins:
+    - name: redirect
+      enable: true
+      config:
+        uri: /browser/
+  - name: browser-route
+    backends:
+    - serviceName: browser-eoapi
+      servicePort: 8080
+    match:
+      hosts:
+      - eoapi.apx.develop.eoepca.org
+      paths:
+      - /browser/
+      - /browser/*
+    # plugins:
+    # - name: proxy-rewrite
+    #   config:
+    #     regex_uri:
+    #     - ^(/browser)($|/.*)
+    #     - $2
+    #   enable: true
   - name: vector-redirect
     backends:
     - serviceName: vector-eoapi
@@ -217,7 +217,7 @@ spec:
       config:
         host: http://iam-opal-opal-client:8181
         policy: eoepca/dataaccess/eoapi
-  - name: browser-route
+  - name: stac-manager-route
     websocket: true
     backends:
     - serviceName: eoapi-browser
