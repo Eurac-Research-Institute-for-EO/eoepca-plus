@@ -220,8 +220,8 @@ spec:
   - name: stac-manager-route
     websocket: true
     backends:
-    - serviceName: eoapi-browser
-      servicePort: 8080
+    - serviceName: stac-manager
+      servicePort: 80
     match:
       hosts:
       - eoapi.apx.develop.eoepca.org
