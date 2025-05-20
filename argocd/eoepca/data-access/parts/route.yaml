@@ -1,7 +1,7 @@
 apiVersion: apisix.apache.org/v2
 kind: ApisixRoute
 metadata:
-  name: eoapi
+  name: stac
   namespace: data-access
 spec:
   http:
@@ -11,7 +11,7 @@ spec:
       servicePort: 80
     match:
       hosts:
-      - eoapi.apx.develop.eoepca.org
+      - stac.test.terrabyte.lrz.de
       paths:
       - /docs
     plugins:
@@ -25,7 +25,7 @@ spec:
       servicePort: 80
     match:
       hosts:
-      - eoapi.apx.develop.eoepca.org
+      - stac.test.terrabyte.lrz.de
       paths:
       - /docs/
       - /docs/*
@@ -38,11 +38,11 @@ spec:
       enable: true
   - name: vector-redirect
     backends:
-    - serviceName: vector
+    - serviceName: vector-eoapi
       servicePort: 8080
     match:
       hosts:
-      - eoapi.apx.develop.eoepca.org
+      - stac.test.terrabyte.lrz.de
       paths:
       - /vector
     plugins:
@@ -52,11 +52,11 @@ spec:
         uri: /vector/
   - name: vector-route
     backends:
-    - serviceName: vector
+    - serviceName: vector-eoapi
       servicePort: 8080
     match:
       hosts:
-      - eoapi.apx.develop.eoepca.org
+      - stac.test.terrabyte.lrz.de
       paths:
       - /vector/
       - /vector/*
@@ -69,11 +69,11 @@ spec:
       enable: true
   - name: raster-redirect
     backends:
-    - serviceName: raster
+    - serviceName: raster-eoapi
       servicePort: 8080
     match:
       hosts:
-      - eoapi.apx.develop.eoepca.org
+      - stac.test.terrabyte.lrz.de
       paths:
       - /raster
     plugins:
@@ -85,11 +85,11 @@ spec:
       enable: true
   - name: raster-route
     backends:
-    - serviceName: raster
+    - serviceName: raster-eoapi
       servicePort: 8080
     match:
       hosts:
-      - eoapi.apx.develop.eoepca.org
+      - stac.test.terrabyte.lrz.de
       paths:
       - /raster/
       - /raster/*
@@ -102,11 +102,11 @@ spec:
       enable: true
   - name: stac-redirect
     backends:
-    - serviceName: stac
+    - serviceName: stac-eoapi
       servicePort: 8080
     match:
       hosts:
-      - eoapi.apx.develop.eoepca.org
+      - stac.test.terrabyte.lrz.de
       methods:
       - GET
       paths:
@@ -118,11 +118,11 @@ spec:
         uri: /stac/
   - name: stac-open-route
     backends:
-    - serviceName: stac
+    - serviceName: stac-eoapi
       servicePort: 8080
     match:
       hosts:
-      - eoapi.apx.develop.eoepca.org
+      - stac.test.terrabyte.lrz.de
       methods:
       - GET
       paths:
@@ -139,11 +139,11 @@ spec:
       enable: true
   - name: stac-open-search-route
     backends:
-    - serviceName: stac
+    - serviceName: stac-eoapi
       servicePort: 8080
     match:
       hosts:
-      - eoapi.apx.develop.eoepca.org
+      - stac.test.terrabyte.lrz.de
       methods:
       - POST
       paths:
@@ -157,11 +157,11 @@ spec:
       enable: true
   - name: stac-protected-route
     backends:
-    - serviceName: stac
+    - serviceName: stac-eoapi
       servicePort: 8080
     match:
       hosts:
-      - eoapi.apx.develop.eoepca.org
+      - stac.test.terrabyte.lrz.de
       paths:
       - /stac/*
     plugins:
@@ -174,16 +174,64 @@ spec:
     - name: openid-connect
       enable: true
       config:
-        discovery: "https://iam-auth.apx.develop.eoepca.org/realms/eoepca/.well-known/openid-configuration"
+        discovery: "https://iam-auth.test.terrabyte.lrz.de/realms/eoepca/.well-known/openid-configuration"
+        use_jwks: true
         bearer_only: false # as we want to redirect to login screen (default: false)
         set_access_token_header: true # required for subsequent OPA check (default: true)
         access_token_in_authorization_header: true # required for subsequent OPA check (default: false)
         set_id_token_header: false # not needed (default: true)
         set_userinfo_header: false # not needed (default: true)
-        client_id: eoapi
+        client_id: stac
         client_secret: ""
     - name: opa
       enable: true
       config:
         host: http://iam-opal-opal-client:8181
-        policy: eoepca/dataaccess/eoapi
+        policy: eoepca/dataaccess/stac
+  # - name: stac-manager-redirect
+  #   backends:
+  #   - serviceName: doc-server-eoapi
+  #     servicePort: 80
+  #   match:
+  #     hosts:
+  #     - stac.test.terrabyte.lrz.de
+  #     paths:
+  #     - /browser
+  #   plugins:
+  #   - name: redirect
+  #     enable: true
+  #     config:
+  #       uri: /.
+  # - name: stac-manager-assets
+  #   backends:
+  #   - serviceName: stac-manager
+  #     servicePort: 80
+  #   match:
+  #     hosts:
+  #     - stac.test.terrabyte.lrz.de
+  #     paths:
+  #     - ~*/.*\.(js|css|png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot|ico)$
+  - name: stac-manager-route
+    websocket: true
+    backends:
+    - serviceName: stac-manager
+      servicePort: 80
+    match:
+      hosts:
+      - stac.test.terrabyte.lrz.de
+      paths:
+      - /
+      - /*
+      - ~/*
+    # plugins:
+    # - name: openid-connect
+    #   enable: true
+    #   config:
+    #     discovery: "https://iam-auth.test.terrabyte.lrz.de/realms/eoepca/.well-known/openid-configuration"
+    #     bearer_only: false # as we want to redirect to login screen (default: false)
+    #     set_access_token_header: false
+    #     access_token_in_authorization_header: false
+    #     set_id_token_header: true # so UI can customize e.g. menu 
+    #     set_userinfo_header: true # so UI can customize e.g. menu
+    #     client_id: stac
+    #     client_secret: ""

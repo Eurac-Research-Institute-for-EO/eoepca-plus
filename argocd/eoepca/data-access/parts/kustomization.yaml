@@ -3,3 +3,4 @@ resources:
   - app-data-access-core.yaml
   - app-data-access-maps.yaml
   - app-data-access-ui.yaml
+  - route.yaml
