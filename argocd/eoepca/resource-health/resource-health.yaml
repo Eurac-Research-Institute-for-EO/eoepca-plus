@@ -513,7 +513,7 @@ spec:
               script: "https://github.com/EOEPCA/resource-health/blob/main/pytest-health/lib/BB-examples/resource_discovery_tests.py?raw=true"
               env:
                 - name: RESOURCE_CATALOGUE_ENDPOINT
-                  value: https://resource-catalogue.develop.eoepca.org
+                  value: https://resource-catalogue.apx.develop.eoepca.org
               userid: "alice"
               annotations:
                 owner: "alice"
