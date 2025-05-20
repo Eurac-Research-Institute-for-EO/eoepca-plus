@@ -1,7 +1,7 @@
 apiVersion: apisix.apache.org/v2
 kind: ApisixRoute
 metadata:
-  name: stac
+  name: eoapi
   namespace: data-access
 spec:
   http:
@@ -14,6 +14,7 @@ spec:
       - eoapi.develop.eoepca.org
       paths:
       - /docs
+      - /
     plugins:
     - name: redirect
       enable: true
@@ -60,13 +61,6 @@ spec:
       paths:
       - /browser/
       - /browser/*
-    plugins:
-    - name: proxy-rewrite
-      config:
-        regex_uri:
-        - ^(/browser)($|/.*)
-        - $2
-      enable: true
   - name: vector-redirect
     backends:
     - serviceName: vector-eoapi
@@ -210,22 +204,10 @@ spec:
         access_token_in_authorization_header: true # required for subsequent OPA check (default: false)
         set_id_token_header: false # not needed (default: true)
         set_userinfo_header: false # not needed (default: true)
-        client_id: stac
+        client_id: eoapi
         client_secret: ""
     - name: opa
       enable: true
       config:
         host: http://iam-opal-opal-client:8181
         policy: eoepca/dataaccess/eoapi
-  - name: stac-manager-route
-    websocket: true
-    backends:
-    - serviceName: stac-manager
-      servicePort: 80
-    match:
-      hosts:
-      - eoapi.develop.eoepca.org
-      paths:
-      - /
-      - /*
-      - /.
