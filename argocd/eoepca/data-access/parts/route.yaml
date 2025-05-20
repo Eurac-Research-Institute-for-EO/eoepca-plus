@@ -203,7 +203,7 @@ spec:
     - name: openid-connect
       enable: true
       config:
-        discovery: "https://iam-auth.test.terrabyte.lrz.de/realms/eoepca/.well-known/openid-configuration"
+        discovery: "https://iam-auth.develop.eoepca.org/realms/eoepca/.well-known/openid-configuration"
         use_jwks: true
         bearer_only: false # as we want to redirect to login screen (default: false)
         set_access_token_header: true # required for subsequent OPA check (default: true)
@@ -228,3 +228,4 @@ spec:
       paths:
       - /
       - /*
+      - /.
