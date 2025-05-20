@@ -108,12 +108,10 @@ spec:
       paths:
       - /raster
     plugins:
-    - name: proxy-rewrite
-      config:
-        regex_uri:
-        - ^(/raster)($|/.*)
-        - $2
+    - name: redirect
       enable: true
+      config:
+        uri: /raster/
   - name: raster-route
     backends:
     - serviceName: raster-eoapi
