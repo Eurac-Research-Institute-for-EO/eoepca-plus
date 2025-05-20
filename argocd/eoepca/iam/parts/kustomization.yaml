@@ -6,4 +6,3 @@ resources:
 #  - pvc-kc-database.yaml
   - ss-kc-postgres.yaml
   - ss-identity-api.yaml
-  - apisixroute-dummy-service.yaml
