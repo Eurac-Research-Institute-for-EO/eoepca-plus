@@ -1,40 +1,37 @@
 apiVersion: apisix.apache.org/v2
 kind: ApisixRoute
 metadata:
-  name: eoapi
+  name: stac
   namespace: data-access
 spec:
   http:
-  - name: docs-redirect
+  - name: manager-js-css-assets # hack until stac-manager can handle subpaths
     backends:
-    - serviceName: doc-server-eoapi
+    - serviceName: stac-manager
       servicePort: 80
     match:
       hosts:
       - eoapi.apx.develop.eoepca.org
       paths:
-      - /docs
-      - /
-    plugins:
-    - name: redirect
-      enable: true
-      config:
-        uri: /docs/
-  - name: docs-route
+      - /index.*
+      - /logo.*
+  - name: manager-route
+    websocket: true
     backends:
-    - serviceName: doc-server-eoapi
+    - serviceName: stac-manager
       servicePort: 80
     match:
       hosts:
       - eoapi.apx.develop.eoepca.org
       paths:
-      - /docs/
-      - /docs/*
+      - /manager*
+      - /manager/
+      - /manager/*
     plugins:
     - name: proxy-rewrite
       config:
         regex_uri:
-        - ^(/docs)($|/.*)
+        - ^(/manager)($|/.*)
         - $2
       enable: true
   - name: browser-redirect
@@ -211,3 +208,35 @@ spec:
       config:
         host: http://iam-opal-opal-client:8181
         policy: eoepca/dataaccess/eoapi
+  - name: docs-redirect
+    backends:
+    - serviceName: doc-server-eoapi
+      servicePort: 80
+    match:
+      hosts:
+      - eoapi.apx.develop.eoepca.org
+      paths:
+      - /docs
+      - /
+    plugins:
+    - name: redirect
+      enable: true
+      config:
+        uri: /docs/
+  - name: docs-route
+    backends:
+    - serviceName: doc-server-eoapi
+      servicePort: 80
+    match:
+      hosts:
+      - eoapi.apx.develop.eoepca.org
+      paths:
+      - /docs/
+      - /docs/*
+    plugins:
+    - name: proxy-rewrite
+      config:
+        regex_uri:
+        - ^(/docs)($|/.*)
+        - $2
+      enable: true
