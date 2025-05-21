@@ -209,5 +209,5 @@ spec:
     - name: opa
       enable: true
       config:
-        host: http://iam-opal-opal-client:8181
+        host: http://iam-opal-opal-client.iam:8181
         policy: eoepca/dataaccess/eoapi
