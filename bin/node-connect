@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+ORIG_DIR="$(pwd)"
+cd "$(dirname "$0")"
+BIN_DIR="$(pwd)"
+
+trap "cd '${ORIG_DIR}'" EXIT
+
+NODE=${1}
+STEM="192.168.9"
+KEYFILE="~/.ssh/eoepca-develop.pem"
+
+BOLD="\033[1m"
+RESET="\033[0m"
+
+if [ -z "${NODE}" ]; then
+  echo ; kubectl get nodes
+  echo -e "\nSupply a ${BOLD}node number${RESET} ${STEM}.${BOLD}xxx${RESET}\n"
+  exit
+fi
+
+ssh -i "${KEYFILE}" -oProxyCommand="ssh -i ${KEYFILE} eouser@64.225.138.43 -W %h:%p" eouser@${STEM}.${NODE}
