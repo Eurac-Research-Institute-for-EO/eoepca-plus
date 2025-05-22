@@ -8,10 +8,15 @@ trap "cd '${ORIG_DIR}'" EXIT
 
 NODE=${1}
 STEM="192.168.9"
-KEYFILE="~/.ssh/eoepca-develop.pem"
+KEYFILE="$HOME/.ssh/eoepca-develop.pem"
 
 BOLD="\033[1m"
 RESET="\033[0m"
+
+if [ ! -e "${KEYFILE}" ]; then
+  echo "ERROR: missing KEYFILE ${KEYFILE}"
+  exit 1
+fi
 
 if [ -z "${NODE}" ]; then
   echo ; kubectl get nodes
