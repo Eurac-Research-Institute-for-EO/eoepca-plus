@@ -269,6 +269,14 @@ spec:
 
                     return True
 
+
+                def on_check_create(userinfo: UserInfo, check: hu.InCheckAttributes) -> bool:
+                    if userinfo["username"] == "eric" and check.metadata.template_id == "simple_ping":
+                        return False
+
+                    return True
+
+
                 ## For the k8s backend
 
                 async def get_k8s_config(userinfo: UserInfo) -> hu.K8sConfiguration:
