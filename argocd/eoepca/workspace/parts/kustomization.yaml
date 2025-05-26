@@ -7,3 +7,4 @@ resources:
   - app-workspace-pipelines.yaml
   - ingress-workspace-api.yaml
   - ss-workspace-api.yaml
+  - environment.yaml
