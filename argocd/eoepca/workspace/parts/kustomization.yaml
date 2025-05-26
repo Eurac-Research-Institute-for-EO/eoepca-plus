@@ -2,8 +2,8 @@
 resources:
   - app-workspace-admin.yaml
   - app-workspace-api.yaml
-  - app-workspace-crossplane.yaml  
+  - app-workspace-common.yaml  
+  - app-workspace-examples.yaml
   - app-workspace-pipelines.yaml
-  - app-workspace-common.yaml
   - ingress-workspace-api.yaml
   - ss-workspace-api.yaml
