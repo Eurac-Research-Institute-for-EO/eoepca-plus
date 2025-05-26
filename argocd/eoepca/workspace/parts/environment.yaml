@@ -6,7 +6,7 @@ data:
   domain: develop.eoepca.org
   separator: ".apx."
   storage:
-    provider: minio
+    provider: Minio
     endpoint: https://minio.develop.eoepca.org
     region: eoepca-demo
   iam:
