@@ -8,10 +8,15 @@ metadata:
 spec:
   # Ref. https://argo-cd.readthedocs.io/en/stable/user-guide/application-specification/
   project: eoepca
-  source:
-    repoURL: https://github.com/EOEPCA/workspace
-    targetRevision: 2.0.0
-    path: setup/common
+  sources:
+    - repoURL: https://charts.crossplane.io/stable
+      chart: crossplane
+      targetRevision: v1.18.1
+      helm:
+        releaseName: workspace-crossplane
+    - repoURL: https://github.com/EOEPCA/workspace
+      targetRevision: main
+      path: setup/common    
   destination:
     name: in-cluster
     namespace: workspace

@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: workspace-crossplane
+  name: workspace-examples
   namespace: argocd
   labels:
     eoepca/app-name: workspace
@@ -9,11 +9,9 @@ spec:
   # Ref. https://argo-cd.readthedocs.io/en/stable/user-guide/application-specification/
   project: eoepca
   source:
-    repoURL: https://charts.crossplane.io/stable
-    chart: crossplane
-    targetRevision: v1.18.1
-    helm:
-      releaseName: workspace-crossplane
+    repoURL: https://github.com/EOEPCA/workspace
+    targetRevision: main
+    path: setup/examples
   destination:
     name: in-cluster
     namespace: workspace

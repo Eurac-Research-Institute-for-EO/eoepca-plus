@@ -1,0 +1,19 @@
+apiVersion: apiextensions.crossplane.io/v1beta1
+kind: EnvironmentConfig
+metadata:
+  name: workspace
+data:
+  domain: develop.eoepca.org
+  separator: ".apx."
+  storage:
+    provider: minio
+    endpoint: https://minio.develop.eoepca.org
+    region: eoepca-demo
+  iam:
+    discovery: https://iam-auth.apx.develop.eoepca.org/realms/eoepca/.well-known/openid-configuration
+  opa: 
+    host: http://iam-opal-opal-client.iam:8181
+    policy: eoepca/workspace/wsui
+  vcluster:
+    separator: "." 
+    

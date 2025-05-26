@@ -8,10 +8,16 @@ metadata:
 spec:
   # Ref. https://argo-cd.readthedocs.io/en/stable/user-guide/application-specification/
   project: eoepca
-  source:
-    repoURL: https://github.com/EOEPCA/workspace
-    targetRevision: 2.0.0
-    path: setup/pipelines
+  sources:
+    - repoURL: https://github.com/EOEPCA/workspace
+      targetRevision: main
+      path: setup/prerequisites
+    - repoURL: https://github.com/EOEPCA/workspace
+      targetRevision: main
+      path: setup/storage/minio
+    - repoURL: https://github.com/EOEPCA/workspace
+      targetRevision: main
+      path: setup/workspace/vcluster
   destination:
     name: in-cluster
     namespace: workspace
