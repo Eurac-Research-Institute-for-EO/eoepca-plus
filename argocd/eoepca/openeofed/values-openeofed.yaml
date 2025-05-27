@@ -56,6 +56,22 @@ configMaps:
                 }
             ],
         ),
+        OidcProvider(
+            id="eoepca-iam",
+            title="EOEPCA",
+            issuer="https://iam-auth.develop.eoepca.org/realms/eoepca/",
+            default_clients=[
+                {
+                    "id": "openeo-default-client",
+                    "grant_types": [
+                        "authorization_code+pkce",
+                        "urn:ietf:params:oauth:grant-type:device_code+pkce",
+                        "refresh_token",
+                    ],
+                    "redirect_urls": ["https://editor.openeo.org"],
+                }
+            ],
+        ),
     ]
 
     config = AggregatorBackendConfig(
