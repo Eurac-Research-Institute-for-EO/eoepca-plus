@@ -23,6 +23,7 @@ spec:
     - repoURL: https://github.com/developmentseed/eoAPI-k8s
       # chart: eoapi
       # targetRevision: 0.7.2
+      path: helm-chart/eoapi/
       targetRevision: create_role
       helm:
         releaseName: eoapi
