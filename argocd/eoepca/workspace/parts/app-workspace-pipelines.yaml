@@ -5,6 +5,8 @@ metadata:
   namespace: argocd
   labels:
     eoepca/app-name: workspace
+  annotations:
+    argocd.argoproj.io/sync-wave: "10"
 spec:
   # Ref. https://argo-cd.readthedocs.io/en/stable/user-guide/application-specification/
   project: eoepca
