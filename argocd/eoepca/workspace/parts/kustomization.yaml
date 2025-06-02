@@ -2,7 +2,6 @@
 resources:
   - app-workspace-admin.yaml
   - app-workspace-api.yaml
-  - app-workspace-common.yaml  
   - app-workspace-examples.yaml
   - app-workspace-pipelines.yaml
   - ingress-workspace-api.yaml
