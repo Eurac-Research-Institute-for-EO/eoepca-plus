@@ -13,7 +13,7 @@ spec:
   sources:
     - repoURL: https://github.com/EOEPCA/workspace
       targetRevision: main
-      path: setup/storage/minio/main
+      path: setup/storage-minio/main
   destination:
     name: in-cluster
     namespace: workspace
