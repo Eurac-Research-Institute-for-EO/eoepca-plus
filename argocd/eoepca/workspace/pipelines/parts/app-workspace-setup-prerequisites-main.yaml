@@ -1,31 +1,31 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: workspace-examples
+  name: workspace-setup-prerequisites-main
   namespace: argocd
   labels:
     eoepca/app-name: workspace
   annotations:
-    argocd.argoproj.io/sync-wave: "15"
+    argocd.argoproj.io/sync-wave: "24"
 spec:
   # Ref. https://argo-cd.readthedocs.io/en/stable/user-guide/application-specification/
   project: eoepca
-  source:
-    repoURL: https://github.com/EOEPCA/workspace
-    targetRevision: main
-    path: setup/examples
+  sources:
+    - repoURL: https://github.com/EOEPCA/workspace
+      targetRevision: main
+      path: setup/prerequisites/main
   destination:
     name: in-cluster
     namespace: workspace
   syncPolicy:
     automated:
-      prune: false # no prune!!!
-      selfHeal: true
+      prune: true
+      selfHeal: false
       allowEmpty: true
     syncOptions:
       - Validate=true
       - CreateNamespace=true
-      #- PrunePropagationPolicy=foreground
-      #- PruneLast=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
       - RespectIgnoreDifferences=true
       - ApplyOutOfSyncOnly=true

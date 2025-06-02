@@ -1,24 +1,19 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: workspace-common
+  name: workspace-setup-common-main
   namespace: argocd
   labels:
     eoepca/app-name: workspace
   annotations:
-    argocd.argoproj.io/sync-wave: "0"
+    argocd.argoproj.io/sync-wave: "13"
 spec:
   # Ref. https://argo-cd.readthedocs.io/en/stable/user-guide/application-specification/
   project: eoepca
   sources:
-    - repoURL: https://charts.crossplane.io/stable
-      chart: crossplane
-      targetRevision: v1.18.1
-      helm:
-        releaseName: workspace-crossplane
     - repoURL: https://github.com/EOEPCA/workspace
       targetRevision: main
-      path: setup/common    
+      path: setup/common/main
   destination:
     name: in-cluster
     namespace: workspace

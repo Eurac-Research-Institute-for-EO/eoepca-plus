@@ -1,26 +1,19 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: workspace
+  name: workspace-setup-prerequisites-init
   namespace: argocd
   labels:
-    eoepca/is-root-app: "true"
     eoepca/app-name: workspace
   annotations:
-    argocd.argoproj.io/sync-wave: "5"
+    argocd.argoproj.io/sync-wave: "21"
 spec:
   # Ref. https://argo-cd.readthedocs.io/en/stable/user-guide/application-specification/
   project: eoepca
   sources:
-    - repoURL: https://github.com/EOEPCA/eoepca-plus
-      targetRevision: deploy-develop
-      path: argocd/eoepca/workspace/common
-    - repoURL: https://github.com/EOEPCA/eoepca-plus
-      targetRevision: deploy-develop
-      path: argocd/eoepca/workspace/pipelines
-    - repoURL: https://github.com/EOEPCA/eoepca-plus
-      targetRevision: deploy-develop
-      path: argocd/eoepca/workspace/admin
+    - repoURL: https://github.com/EOEPCA/workspace
+      targetRevision: main
+      path: setup/prerequisites/init
   destination:
     name: in-cluster
     namespace: workspace

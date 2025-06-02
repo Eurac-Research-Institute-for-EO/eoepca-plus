@@ -1,4 +1,3 @@
 
 resources:
-  - app-workspace-common.yaml
   - app-workspace.yaml

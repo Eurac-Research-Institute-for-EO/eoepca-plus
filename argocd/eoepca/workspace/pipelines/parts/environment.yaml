@@ -15,5 +15,4 @@ data:
     host: http://iam-opal-opal-client.iam:8181
     policy: eoepca/workspace/wsui
   vcluster:
-    separator: "." 
-    
+    separator: "."  

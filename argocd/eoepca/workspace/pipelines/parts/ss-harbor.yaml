@@ -1,0 +1,15 @@
+---
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  creationTimestamp: null
+  name: harbor
+  namespace: workspace
+spec:
+  encryptedData:
+    HARBOR_ADMIN_PASSWORD: AgAd7+TpXomgWmlICLwMJrxVHXunkwEsh7OrADzoCuYUklbd3dt2arukaHrJiBPQYWZK/VG385OPGgN15z3GbnpvuHAQAhQ+a0M9IibES6VmFabcpjodt1riYpWKfvw4r0pkCLcpdZWX+PNMOx6sMcniy5VLqF9nlIg3Veu9v90Yz5FW3TmaCcTPFqeevXRzUyH+ReTBafAYNJqkZe6AfXLuZCWC83yvSr+mEryIf1v4zqzbXxf4ggHMNgJQXyOmzh9Dcq8diPvLSuYew6CZgF1IcA00JwGsSuHO/b62glq1Smc99GkPpmVLRJHSSmx3+gXj6LX/RMMw+xlyUCJUAfkn5RID8y43BhSiQwRfr2WZm/Sq+w7/nZ+kRZT9/ee1DqzYpKeylyru0H8iTUq7RRXNjhYziEYrjHgaSYDCCXWFU2Ry5GeM1ls/syPy2yWGLfcMEy4uWDEmMCnwKueWN4KfvwgyRzrob6VAt3EMGADo7V5Og9LbspSxbnVMLKWGlL/CI5MVD1XLgGqg2bo/g/jTiG9pnsm1IB/PbJZM0tHAhsI/CuKFOy+y5mC03coWRzhOg8WQZFpYcjKPTl1xda/IBqkX2NF0n64tZ2a7P8UUGfHTdaL0FGgnMUcxDKB6e4hDgfddlQkU+vpNHIXVBFKu/4fGCT2p+a1x5gzQgrascBPN7TIWfGnSM3RHg8F/qKJE0Uz9DyOocA==
+  template:
+    metadata:
+      creationTimestamp: null
+      name: harbor
+      namespace: workspace

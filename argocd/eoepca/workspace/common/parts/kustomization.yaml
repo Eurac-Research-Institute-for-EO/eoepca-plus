@@ -1,0 +1,5 @@
+
+resources:
+  - app-workspace-crossplane.yaml
+  - app-workspace-setup-common-init.yaml
+  - app-workspace-setup-common-main.yaml

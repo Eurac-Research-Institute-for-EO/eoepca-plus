@@ -1,9 +1,0 @@
-
-resources:
-  - app-workspace-admin.yaml
-  - app-workspace-api.yaml
-  - app-workspace-examples.yaml
-  - app-workspace-pipelines.yaml
-  - ingress-workspace-api.yaml
-  - ss-workspace-api.yaml
-  - environment.yaml

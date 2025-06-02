@@ -9,7 +9,7 @@ spec:
     - name: workspace-api-no-auth
       match:
         hosts:
-          - workspace-api.apx.develop.eoepca.org
+          - https://workspace-api.apx.develop.eoepca.org
         paths:
           - "/metrics*"
           - "/probe*"
@@ -20,7 +20,7 @@ spec:
     - name: workspace-api-debug
       match:
         hosts:
-          - workspace-api.apx.develop.eoepca.org
+          - https://workspace-api.apx.develop.eoepca.org
         paths:
           - /debug*
       backends:
@@ -47,7 +47,7 @@ spec:
     - name: workspace-api-docs
       match:
         hosts:
-          - workspace-api.apx.develop.eoepca.org
+          - https://workspace-api.apx.develop.eoepca.org
         paths:
           - /docs*
           - /openapi.json*
@@ -64,7 +64,7 @@ spec:
     - name: workspace-api-admin
       match:  
         hosts:
-          - workspace-api.apx.develop.eoepca.org
+          - https://workspace-api.apx.develop.eoepca.org
         paths:
           - /workspaces
           - /workspaces/*
@@ -85,7 +85,7 @@ spec:
     - name: workspace-api-user
       match:
         hosts:
-          - workspace-api.apx.develop.eoepca.org
+          - https://workspace-api.apx.develop.eoepca.org
         paths:
           - /*
       backends:
