@@ -21,6 +21,8 @@ M2M_USER="${3:-${M2M_USER:-someuser}}"
 M2M_PASSWORD="${4:-${M2M_PASSWORD:-somepw}}"
 CDSE_USER="${5:-${CDSE_USER:-someuser}}"
 CDSE_PASSWORD="${6:-${CDSE_PASSWORD:-somepw}}"
+IAM_CLIENT_ID="${7:-${IAM_CLIENT_ID:-somepw}}"
+IAM_CLIENT_SECRET="${8:-${IAM_CLIENT_SECRET:-somepw}}"
 
 secretYaml() {
   kubectl -n "${NAMESPACE}" create secret generic "${SECRET_NAME}" \
@@ -30,6 +32,8 @@ secretYaml() {
     --from-literal="M2M_PASSWORD=${M2M_PASSWORD}" \
     --from-literal="CDSE_USER=${CDSE_USER}" \
     --from-literal="CDSE_PASSWORD=${CDSE_PASSWORD}" \
+    --from-literal="IAM_CLIENT_ID=${IAM_CLIENT_ID}" \
+    --from-literal="IAM_CLIENT_SECRET=${IAM_CLIENT_SECRET}" \
     --dry-run=client -o yaml
 }
 
