@@ -13,7 +13,7 @@ spec:
   sources:
     - repoURL: https://github.com/EOEPCA/workspace
       targetRevision: main
-      path: setup/workspace/dummy/main
+      path: setup/workspace/vcluster/main
   destination:
     name: in-cluster
     namespace: workspace
