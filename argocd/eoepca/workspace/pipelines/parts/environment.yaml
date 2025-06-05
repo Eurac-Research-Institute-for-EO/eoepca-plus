@@ -16,3 +16,9 @@ data:
     policy: eoepca/workspace/wsui
   vcluster:
     separator: "."  
+    prefix: ""
+  workspace:
+    pvcs:
+    - "rclone"
+    auth:
+      mapper: "reader-share"
