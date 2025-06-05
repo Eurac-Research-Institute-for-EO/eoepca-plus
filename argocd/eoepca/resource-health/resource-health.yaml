@@ -337,9 +337,10 @@ spec:
 
           web:
             environmentFixed:
+              - name: NEXT_PUBLIC_TELEMETRY_DURATION_DAYS
+                value: 5
               - name: NEXT_PUBLIC_RELOGIN_URL
-                # The relogin link is temporary, should replace with a proper relogin link
-                value: https://resource-health.apx.develop.eoepca.org
+                value: https://resource-health.apx.develop.eoepca.org/login
               - name: NEXT_PUBLIC_CHECK_MANAGER_ENDPOINT
                 value: https://resource-health.apx.develop.eoepca.org/api/healthchecks/v1
               - name: NEXT_PUBLIC_TELEMETRY_ENDPOINT
