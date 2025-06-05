@@ -12,7 +12,7 @@ spec:
   project: eoepca
   sources:
     - repoURL: https://github.com/EOEPCA/workspace
-      targetRevision: main
+      targetRevision: v2025.06.05
       path: setup/storage-minio/main
   destination:
     name: in-cluster
