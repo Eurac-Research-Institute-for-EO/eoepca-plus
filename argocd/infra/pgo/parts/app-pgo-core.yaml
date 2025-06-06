@@ -16,7 +16,7 @@ spec:
       helm:
         releaseName: pgo
         valueFiles:
-          - $values/argocd/infra/pgo/parts/values/values-pgo.yaml
+          - argocd/infra/pgo/parts/values/values-pgo.yaml
   destination:
     name: in-cluster
     namespace: infra
