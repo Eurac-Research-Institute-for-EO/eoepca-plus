@@ -7,3 +7,4 @@ resources:
   - knative-operator
   - strimzi-operator
   - apisix
+  - pgo
