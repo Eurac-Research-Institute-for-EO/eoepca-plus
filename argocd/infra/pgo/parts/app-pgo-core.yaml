@@ -3,20 +3,17 @@ kind: Application
 metadata:
   name: pgo-core
   namespace: argocd
-  labels:
-    eoepca/app-name: pgo
 spec:
-  # Ref. https://argo-cd.readthedocs.io/en/stable/user-guide/application-specification/
   project: eoepca
-  sources:
-    - repoURL: 'registry.developers.crunchydata.com/crunchydata'
-      path: 'pgo'
-      chart: pgo
-      targetRevision: 5.7.4
-      helm:
-        releaseName: pgo
-        valueFiles:
-          - argocd/infra/pgo/parts/values/values-pgo.yaml
+  source:
+    repoURL: 'registry.developers.crunchydata.com/crunchydata'
+    targetRevision: 5.7.4
+    path: 'pgo'
+    helm:
+      releaseName: pgo
+      values: |
+        disable_check_for_upgrades: true
+        singleNamespace: true
   destination:
     name: in-cluster
     namespace: infra
