@@ -1,2 +1,4 @@
 resources:
   - app-pgo-core.yaml
+  - postgrescluster.yaml
+  - cm-initdb.yaml

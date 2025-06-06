@@ -1,0 +1,49 @@
+apiVersion: postgres-operator.crunchydata.com/v1beta1
+kind: PostgresCluster
+metadata:
+  name: default
+  namespace: infra
+spec:
+  databaseInitSQL:
+    key: initdb.sql
+    name: initdb
+  instances:
+  - dataVolumeClaimSpec:
+      accessModes:
+      - ReadWriteMany
+      resources:
+        requests:
+          storage: 1Gi
+      storageClassName: managed-nfs-storage-retain
+    name: default
+    replicas: 1
+  patroni:
+    dynamicConfiguration:
+      postgresql:
+        parameters:
+          shared_preload_libraries: pg_stat_statements, auto_explain
+        pg_hba:
+        - host all all 0.0.0.0/0 md5
+    leaderLeaseDurationSeconds: 30
+    port: 8008
+    syncPeriodSeconds: 10
+  port: 5432
+  postGISVersion: "3.4"
+  postgresVersion: 16
+  proxy:
+    pgBouncer:
+      port: 5432
+      replicas: 1
+  users:
+  - databases:
+    - eoapi
+    - postgres
+    name: postgres
+    options: SUPERUSER
+  - databases:
+    - eoapi
+    - postgres
+    name: eoapi
+    options: CREATEDB CREATEROLE
+    password:
+      type: AlphaNumeric
