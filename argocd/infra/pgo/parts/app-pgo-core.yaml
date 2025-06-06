@@ -9,6 +9,7 @@ spec:
     repoURL: 'registry.developers.crunchydata.com/crunchydata'
     targetRevision: 5.7.4
     path: 'pgo'
+    chart: pgo
     helm:
       releaseName: pgo
       values: |
