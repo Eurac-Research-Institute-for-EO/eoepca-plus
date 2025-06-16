@@ -1,0 +1,45 @@
+apiVersion: apisix.apache.org/v2
+kind: ApisixRoute
+metadata:
+  name: nginx
+spec:
+  http:
+    # Open access
+    - name: nginx-open
+      match:
+        hosts:
+          - nginx-open.develop.eoepca.org
+        paths:
+          - /*
+      backends:
+        - serviceName: nginx
+          servicePort: 80
+    # Protected access
+    - name: nginx
+      match:
+        hosts:
+          - nginx.develop.eoepca.org
+        paths:
+          - /*
+      backends:
+        - serviceName: nginx
+          servicePort: 80
+      plugins:
+        # Authenticate - expect JWT in `Authorization: Bearer` header
+        - name: openid-connect
+          enable: true
+          config:
+            discovery: "https://auth.develop.eoepca.org/realms/eoepca/.well-known/openid-configuration"
+            realm: eoepca
+            client_id: "opa"
+            client_secret: "RkAUBGEzUCCgKBydiagDGqW5JJeXYdDQ"
+            use_jwks: true
+            bearer_only: true
+            set_access_token_header: true
+            access_token_in_authorization_header: true
+        # Authorization - required for access to API
+        - name: opa
+          enable: true
+          config:
+            host: http://iam-opal-opal-client.iam:8181
+            policy: example.tutorial.allow_all
