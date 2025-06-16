@@ -2,4 +2,4 @@
 resources:
   - app-application-quality-core.yaml
   - ss-application-quality-auth-client.yaml
-  - ss-opensearch-dashboards-openid-config.yaml
+  - ss-grafana-dashboards-oauth-config.yaml
