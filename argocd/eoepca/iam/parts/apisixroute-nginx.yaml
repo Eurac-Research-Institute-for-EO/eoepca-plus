@@ -14,6 +14,9 @@ spec:
       backends:
         - serviceName: nginx
           servicePort: 80
+      plugins:
+        - name: redirect
+          enable: false
     # Protected access
     - name: nginx
       match:
@@ -25,6 +28,8 @@ spec:
         - serviceName: nginx
           servicePort: 80
       plugins:
+        - name: redirect
+          enable: false
         # Authenticate - expect JWT in `Authorization: Bearer` header
         - name: openid-connect
           enable: true
