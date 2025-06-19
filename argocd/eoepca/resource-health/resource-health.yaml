@@ -100,6 +100,10 @@ spec:
                 value: "https://iam-auth.develop.eoepca.org/realms/eoepca/.well-known/openid-configuration"
               - name: OPEN_ID_CONNECT_AUDIENCE
                 value: "account"
+              - name: RH_TELEMETRY_API_DEFAULT_PAGE_SIZE
+                value: 100
+              - name: RH_TELEMETRY_API_MAX_PAGE_SIZE
+                value: 10000
 
             use_hook_configmap: True
             hooks:
@@ -343,6 +347,8 @@ spec:
                 value: https://resource-health.apx.develop.eoepca.org/api/healthchecks/v1
               - name: NEXT_PUBLIC_TELEMETRY_ENDPOINT
                 value: https://resource-health.apx.develop.eoepca.org/api/telemetry/v1
+              - name: NEXT_PUBLIC_QUERY_PAGE_SIZE
+                value: 2000
 
           healthchecks:
             use_template_configmap: True
