@@ -1,7 +1,7 @@
 
 resources:
   - app-workspace-api.yaml
-  - app-workspace-setup-examples.yaml
+  #- app-workspace-setup-examples.yaml
   - app-workspace-setup-prerequisites-init.yaml
   - app-workspace-setup-prerequisites-main.yaml
   - app-workspace-setup-storage-init.yaml
@@ -12,5 +12,4 @@ resources:
   - route-workspace-api.yaml
   - ss-harbor.yaml
   - ss-workspace-api-client.yaml
-  - ss-workspace-api.yaml
-  
+  - ss-workspace-api.yaml 
