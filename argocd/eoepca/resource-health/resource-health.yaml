@@ -348,7 +348,7 @@ spec:
               - name: NEXT_PUBLIC_TELEMETRY_ENDPOINT
                 value: https://resource-health.apx.develop.eoepca.org/api/telemetry/v1
               - name: NEXT_PUBLIC_QUERY_PAGE_SIZE
-                value: "10000"
+                value: "1000"
 
           healthchecks:
             use_template_configmap: True
