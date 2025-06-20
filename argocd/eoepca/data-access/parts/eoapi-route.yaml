@@ -147,7 +147,7 @@ spec:
       - GET
       paths:
       - /stac/
-      - /stac/api
+      - /stac/api*
       - /stac/collections
       - /stac/collections/*
       #- /stac/collections/public*
