@@ -12,7 +12,7 @@ spec:
   sources:
     - repoURL: https://artifactory.vgt.vito.be/artifactory/helm-charts
       chart: sparkapplication
-      targetRevision: 0.16.3
+      targetRevision: 1.0.1
       helm:
         releaseName: openeo-geotrellis-openeo
         valueFiles:
