@@ -20,10 +20,11 @@ spec:
         config: |-
           services:
             store:
-              url: https://sharinghub.develop.eoepca.org/api/store
+              url: https://develop.eoepca.org/sharinghub/api/store
               mode: http
 
           server:
+            prefix: /sharinghub
             allowed-origins:
               - https://eoepca.readthedocs.io
 
@@ -32,11 +33,11 @@ spec:
             allow-public: true
 
           docs:
-            url: https://sharinghub.p2.csgroup.space/docs/
+            url: https://develop.eoepca.org/sharinghub/docs/
 
           mlflow:
             type: mlflow-sharinghub
-            url: https://sharinghub.develop.eoepca.org/mlflow
+            url: https://develop.eoepca.org/mlflow
 
           s3:
             bucket: mlopsbb-sharinghub
@@ -137,7 +138,7 @@ spec:
           external-urls:
             - name: Privacy
               footer: true
-              url: https://sharinghub.develop.eoepca.org/docs/legal/privacy/
+              url: https://develop.eoepca.org/sharinghub/docs/legal/privacy/
               locales:
                 fr:
                   name: Confidentialité
@@ -154,14 +155,14 @@ spec:
             nginx.ingress.kubernetes.io/ssl-redirect: "true"
             nginx.ingress.kubernetes.io/proxy-body-size: 10g
           hosts:
-            - host: sharinghub.develop.eoepca.org
+            - host: develop.eoepca.org
               paths:
-                - path: /
+                - path: /sharinghub/
                   pathType: ImplementationSpecific
           tls:
-            - secretName: sharinghub.develop.eoepca.org-tls
+            - secretName: develop.eoepca.org-tls
               hosts:
-                - sharinghub.develop.eoepca.org
+                - develop.eoepca.org
 
   syncPolicy:
     syncOptions:

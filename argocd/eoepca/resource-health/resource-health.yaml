@@ -518,9 +518,9 @@ spec:
               script: "https://github.com/EOEPCA/resource-health/blob/main/pytest-health/lib/BB-examples/mlops_tests.py?raw=true"
               env:
                 - name: SHARING_HUB_HOST
-                  value: https://sharinghub.develop.eoepca.org
+                  value: https://develop.eoepca.org/sharinghub
                 - name: MFLOW_SHARING_HUB_HOST
-                  value: https://sharinghub.p2.csgroup.space
+                  value: https://develop.eoepca.org
               userid: "alice"
               annotations:
                 owner: "alice"
