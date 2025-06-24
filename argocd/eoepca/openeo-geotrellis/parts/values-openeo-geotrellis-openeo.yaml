@@ -145,7 +145,7 @@ configMaps:
         }
       }
     ]
-  log4j2:
+  log4j2: |
     <Configuration>
         <Appenders>
             <Console name="stdout" target="SYSTEM_OUT">
