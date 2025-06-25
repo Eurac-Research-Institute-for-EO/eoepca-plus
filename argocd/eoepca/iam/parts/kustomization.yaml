@@ -7,3 +7,4 @@ resources:
   - ss-kc-postgres.yaml
   - ss-identity-api.yaml
   - apisixroute-nginx.yaml
+  - apisixroute-pathbased.yaml
