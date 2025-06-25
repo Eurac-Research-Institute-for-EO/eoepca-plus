@@ -20,6 +20,13 @@ spec:
     backends:
       - serviceName: iam-keycloak
         servicePort: 80
+    plugins:
+      - name: proxy-rewrite
+        config:
+          regex_uri:
+            - ^(/iam/auth)($|/.*)
+            - $2
+        enable: true
   - name: opa
     match:
       hosts:
@@ -47,3 +54,9 @@ spec:
           discovery: "https://iam-auth.develop.eoepca.org/realms/eoepca/.well-known/uma2-configuration"
           lazy_load_paths: true
           ssl_verify: false
+      - name: proxy-rewrite
+        config:
+          regex_uri:
+            - ^(/iam/opa|/iam/policies)($|/.*)
+            - $2
+        enable: true

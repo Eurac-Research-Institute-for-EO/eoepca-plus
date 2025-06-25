@@ -7,4 +7,6 @@ resources:
   - ss-kc-postgres.yaml
   - ss-identity-api.yaml
   - apisixroute-nginx.yaml
+  # Preliminary configuration for path-based routing (to be removed later)
+  - ingress-pathbased.yaml
   - apisixroute-pathbased.yaml
