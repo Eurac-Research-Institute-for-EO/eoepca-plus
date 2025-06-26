@@ -9,7 +9,7 @@ spec:
   # Ref. https://argo-cd.readthedocs.io/en/stable/user-guide/application-specification/
   project: eoepca
   sources:
-    - repoURL: https://eoepca.github.io/helm-charts-dev/
+    - repoURL: https://stac-manager.ds.io/
       chart: stac-manager
       targetRevision: 0.0.4
       helm:

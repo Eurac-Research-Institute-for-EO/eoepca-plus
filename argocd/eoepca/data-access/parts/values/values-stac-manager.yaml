@@ -6,5 +6,6 @@ resources:
   limits:
     memory: "4Gi"
 image:
+  repository: eoepca/stac-manager
   tag: latest
   pullPolicy: Always
