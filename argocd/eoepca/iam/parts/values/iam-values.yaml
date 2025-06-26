@@ -101,6 +101,8 @@ iam: &iam
     # thus be required.
     enabled: &identityApiEnabled false
     createRoute: true
+    # "Official" Identity API URL (used as root URL for the client if one is created)
+    url: https://identity-api.apx.develop.eoepca.org
     hosts:
       - identity-api.apx.develop.eoepca.org
       - identity-api.develop.eoepca.org
