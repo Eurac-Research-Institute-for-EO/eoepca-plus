@@ -31,20 +31,20 @@ spec:
           iam:
             identityApi:
               enabled: true
-#            # Create Crossplane CR for Identity API client (experimental, move to values.yaml later)
-#            keycloak:
-#              configuration:
+            # Create Crossplane CR for Identity API client (experimental, move to values.yaml later)
+            keycloak:
+              configuration:
 #                createClients: true
-#                provider:
-#                  create: true
-#          # Create Crossplane CR for Identity API client (experimental, move to values.yaml later)
+                provider:
+                  create: true
+          # Create Crossplane CR for Identity API client (experimental, move to values.yaml later)
           iam-bb-config:
             iam:
               keycloak:
-#                configuration:
+                configuration:
 #                  createClients: true
-#                  provider:
-#                    create: true
+                  provider:
+                    create: true
               identityApi:
                 enabled: true
           identityApi:

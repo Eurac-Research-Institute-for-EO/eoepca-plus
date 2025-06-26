@@ -33,17 +33,17 @@ spec:
           iam:
             keycloak:
               enabled: true
-              # Create Crossplane Provider Config
-              configuration:
-                provider:
-                  create: true
-          iam-bb-config:
-            iam:
-              keycloak:
-                enabled: true
-                configuration:
-                  provider:
-                    create: true
+#              # Create Crossplane Provider Config
+#              configuration:
+#                provider:
+#                  create: true
+#          iam-bb-config:
+#            iam:
+#              keycloak:
+#                enabled: true
+#                configuration:
+#                  provider:
+#                    create: true
           keycloak:
             enabled: true
     - repoURL: https://github.com/EOEPCA/eoepca-plus
