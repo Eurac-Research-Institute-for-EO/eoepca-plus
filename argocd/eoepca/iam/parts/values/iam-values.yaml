@@ -74,9 +74,9 @@ iam: &iam
         clientSecret: ""
         # Reference to existing secret containing Keycloak location and credentials
         secretRef:
-          name: keycloak-credentials
+          name: keycloak-secret
           key: credentials
-          namespace: crossplane-system
+          namespace: workspace
   opa:
     enabled: &opaEnabled false
     createRoute: true
