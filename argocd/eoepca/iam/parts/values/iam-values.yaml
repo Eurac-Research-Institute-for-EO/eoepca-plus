@@ -40,7 +40,7 @@ iam: &iam
     configuration:
       # Set this to true to enable generation of Crossplane CRs;
       # if set to false, Crossplane is not used and no CRs are generated.
-      useCrossplane: false
+      useCrossplane: true
       # Set this to true to enable Keycloak Config CLI for initial realm
       # setup. The realm configuration must be provided in the
       # keycloak.keycloakConfigCli section.
@@ -119,7 +119,7 @@ iam: &iam
   config:
     # Set this to true in order to apply iam-bb-config as a subchart.
     # If set to false, iam-bb-config must be applied separately if needed.
-    enabled: &configEnabled false
+    enabled: &configEnabled true
   secretGenerator:
     # Set to true to install kubernetes-secret-generator as a subchart (EXPERIMENTAL)
     enabled: false

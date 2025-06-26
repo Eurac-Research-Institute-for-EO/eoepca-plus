@@ -29,6 +29,11 @@ spec:
         # This explicitly enables Identity API.
         valuesObject:
           iam:
+            # Create Crossplane CR for Identity API client (experimental, move to values.yaml later)
+            keycloak:
+              configuration:
+                useCrossplane: true
+                createClients: true
             identityApi:
               enabled: true
           identityApi:
