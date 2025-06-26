@@ -47,6 +47,8 @@ spec:
                   createClients: true
                   provider:
                     create: true
+              identityApi:
+                enabled: true
           identityApi:
             enabled: true
           identity-service:
