@@ -34,6 +34,8 @@ spec:
               configuration:
                 useCrossplane: true
                 createClients: true
+                provider:
+                  create: true
             identityApi:
               enabled: true
           identityApi:
