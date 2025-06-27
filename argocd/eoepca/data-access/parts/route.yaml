@@ -37,16 +37,30 @@ spec:
         - ^(/docs)($|/.*)
         - $2
       enable: true
+  - name: stac-manager-redirect
+    backends:
+    - serviceName: stac-manager
+      servicePort: 80
+    match:
+      hosts:
+      - eoapi.develop.eoepca.org
+      paths:
+      - /manager
+    plugins:
+    - name: redirect
+      enable: true
+      config:
+        uri: /manager/
   - name: stac-manager-route
     backends:
     - serviceName: stac-manager
       servicePort: 80
     match:
       hosts:
-      - stac-manager.develop.eoepca.org
+      - eoapi.develop.eoepca.org
       paths:
-      - /
-      - /*
+      - /manager/
+      - /manager/*
   - name: browser-redirect
     backends:
     - serviceName: browser-eoapi
