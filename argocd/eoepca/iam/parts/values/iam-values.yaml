@@ -60,6 +60,8 @@ iam: &iam
         displayName: &realmDisplayName EOEPCA
         # TODO: Maybe add spec or forProvider section here and reference it from template
       provider:
+        # Reference to existing ProviderConfig to use (created by iam-keycloak app)
+        existingConfigRef: "iam-keycloak-keycloak-provider-config"
         # Set to true to generate Provider config for Keycloak (only honoured if
         # useCrossplane is true)
         create: false

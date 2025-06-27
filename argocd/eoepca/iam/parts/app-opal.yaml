@@ -22,7 +22,7 @@ spec:
 ##          - $values/argocd/eoepca/identity-service/parts/values/values-identity-service.yaml
     - repoURL: https://eoepca.github.io/helm-charts-dev
       chart: iam-bb
-      targetRevision: 2.0.0-rc.1.3
+      targetRevision: 2.0.0-rc.1.4
       helm:
         #releaseName: iam-opal
         valueFiles:
@@ -34,6 +34,10 @@ spec:
           iam:
             opa:
               enabled: true
+          iam-bb-config:
+            iam:
+              opa:
+                enabled: true
           opal:
             enabled: true
     - repoURL: https://github.com/EOEPCA/eoepca-plus
