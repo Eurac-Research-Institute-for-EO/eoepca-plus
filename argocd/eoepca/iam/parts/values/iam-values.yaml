@@ -49,7 +49,7 @@ iam: &iam
       # Set to false (default) to generate them using Helm random functions.
       useSecretGenerator: false
       # Set to true to auto-generate clients as Crossplane CRs.
-      createClients: true
+      createClients: false
       realm:
         # Set to true to auto-generate realm as Crossplane CR.
         # Note that this only makes sense if useKeycloakConfigCli is set to
