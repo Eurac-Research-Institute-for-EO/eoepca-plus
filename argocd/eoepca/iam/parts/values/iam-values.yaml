@@ -76,9 +76,9 @@ iam: &iam
         clientSecret: ""
         # Reference to existing secret containing Keycloak location and credentials
         secretRef:
-          name: keycloak-secret
+          name: keycloak-provider-secret
           key: credentials
-          namespace: workspace
+          namespace: iam
   opa:
     enabled: &opaEnabled false
     createRoute: true
