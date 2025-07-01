@@ -19,7 +19,7 @@ spec:
 #          - $values/argocd/eoepca/iam/parts/values/identity-service-values.yaml
     - repoURL: https://eoepca.github.io/helm-charts-dev
       chart: iam-bb
-      targetRevision: 2.0.0-rc.1.4
+      targetRevision: 2.0.0-rc.1.5
       helm:
         #releaseName: iam-identity-api
         valueFiles:
