@@ -1,3 +1,5 @@
 ---
 resources:
   - openeo-geotrellis.yaml
+  - ss-openeo-geotrellis-data-bucket-credentials.yaml
+
