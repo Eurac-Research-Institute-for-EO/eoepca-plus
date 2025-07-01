@@ -10,4 +10,4 @@ image:
   pullPolicy: Always
 
 publicUrl: https://eoapi.apx.develop.eoepca.org/manage/
-stacApi: https://eoapi.apx.develop.eoepca.org/stac/
+stacApi: https://openveda.cloud/api/stac/
