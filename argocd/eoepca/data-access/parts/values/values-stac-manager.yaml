@@ -2,7 +2,7 @@ ingress:
   enabled: false
 resources:
   requests:
-    memory: "512Mi"
+    memory: "1Gi"
   limits:
     memory: "4Gi"
 image:
