@@ -6,6 +6,8 @@ resources:
   limits:
     memory: "4Gi"
 image:
-  repository: eoepca/stac-manager
   tag: latest
   pullPolicy: Always
+
+publicUrl: https://eoapi.apx.develop.eoepca.org/manage/
+stacApi: https://eoapi.apx.develop.eoepca.org/stac/
