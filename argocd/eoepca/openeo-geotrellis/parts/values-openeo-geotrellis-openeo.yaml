@@ -186,6 +186,14 @@ driver:
     KUBE_OPENEO_API_PORT: "50001"
     PYTHONPATH: $PYTHONPATH:/opt/tensorflow/python38/2.3.0/:/opt/openeo/lib/python3.8/site-packages/
     ZOOKEEPERNODES: openeo-geotrellis-zookeeper.openeo-geotrellis.svc.cluster.local:2181
+    SWIFT_BUCKET: "openeo-geotrellis-data"
+    AWS_ACCESS_KEY_ID: "nSwekdG7oR5ax6rIdZ6D"
+  extraEnv:
+    - name: AWS_SECRET_ACCESS_KEY
+      valueFrom:
+        secretKeyRef:
+          name: openeo-geotrellis-data-bucket-credentials
+          key: AWS_SECRET_ACCESS_KEY
   podSecurityContext:
     fsGroup: 18585
     fsGroupChangePolicy: Always
