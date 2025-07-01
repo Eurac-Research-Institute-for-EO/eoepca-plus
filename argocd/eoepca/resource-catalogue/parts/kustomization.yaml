@@ -1,4 +1,4 @@
 
 resources:
   - app-resource-catalogue-core.yaml
-  - apisixroute-resource-catalogue.yaml
+  - app-resource-catalogue-route.yaml
