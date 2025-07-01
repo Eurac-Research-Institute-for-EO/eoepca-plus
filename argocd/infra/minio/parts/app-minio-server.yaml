@@ -62,6 +62,7 @@ spec:
           - name: gitlab-lfs-storage
           - name: mlopbb-mlflow-sharinghub
           - name: mlopbb-sharinghub
+          - name: openeo-geotrellis-data
 
   destination:
     name: in-cluster
