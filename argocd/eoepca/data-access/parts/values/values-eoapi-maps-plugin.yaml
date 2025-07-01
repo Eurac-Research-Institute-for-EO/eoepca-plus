@@ -119,7 +119,7 @@ config:
 sync:
   enabled: true
   schedule: "*/10 * * * *"
-  eoapiUrl: "https://eoapi.develop.eoepca.org"
+  eoapiUrl: "https://eoapi.apx.develop.eoepca.org"
   pygeoapiUrl: "https://maps.develop.eoepca.org"
   create: true
   update: true
