@@ -35,6 +35,8 @@ spec:
           discovery: "https://iam-auth.apx.develop.eoepca.org/realms/eoepca/.well-known/uma2-configuration"
           lazy_load_paths: true
           ssl_verify: false
+      - name: cors
+        enable: true
   - name: resource-catalogue-open
     match:
       hosts:
@@ -44,3 +46,6 @@ spec:
     backends:
       - serviceName: resource-catalogue-service
         servicePort: 80
+    plugins:
+      - name: cors
+        enable: true
