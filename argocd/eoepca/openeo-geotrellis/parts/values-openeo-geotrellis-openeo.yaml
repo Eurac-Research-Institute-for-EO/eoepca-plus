@@ -188,6 +188,7 @@ driver:
     ZOOKEEPERNODES: openeo-geotrellis-zookeeper.openeo-geotrellis.svc.cluster.local:2181
     SWIFT_BUCKET: "openeo-geotrellis-data"
     AWS_ACCESS_KEY_ID: "nSwekdG7oR5ax6rIdZ6D"
+    SWIFT_URL: "https://minio.develop.eoepca.org"
   extraEnv:
     - name: AWS_SECRET_ACCESS_KEY
       valueFrom:
