@@ -3,4 +3,4 @@ resources:
   - openeo-geotrellis-zookeeper.yaml
   - openeo-geotrellis-sparkoperator.yaml
   - openeo-geotrellis-openeo.yaml
-
+  - openeo-geotrellis-batch-rbac.yaml
