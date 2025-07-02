@@ -254,7 +254,7 @@ configMaps:
           - name: EODATA_S3_ENDPOINT
             value: https://eodata.cloudferro.com
           - name: EODATA_ACCESS_KEY_ID
-            value: "QXRC4RMAE67FMZ114E8M"
+            value: "WGXGQKFBNSLN0FZXRJVG"
           - name: EODATA_SECRET_ACCESS_KEY
             valueFrom:
               secretKeyRef:
@@ -271,7 +271,7 @@ driver:
     SWIFT_URL: "https://minio.develop.eoepca.org"
     SWIFT_ACCESS_KEY_ID: "nSwekdG7oR5ax6rIdZ6D"
     EODATA_S3_ENDPOINT: https://eodata.cloudferro.com
-    EODATA_ACCESS_KEY_ID: "QXRC4RMAE67FMZ114E8M"
+    EODATA_ACCESS_KEY_ID: "WGXGQKFBNSLN0FZXRJVG"
   extraEnv:
     - name: EODATA_SECRET_ACCESS_KEY
       valueFrom:
