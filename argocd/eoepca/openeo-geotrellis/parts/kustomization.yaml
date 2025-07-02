@@ -4,3 +4,5 @@ resources:
   - openeo-geotrellis-sparkoperator.yaml
   - openeo-geotrellis-openeo.yaml
   - openeo-geotrellis-batch-rbac.yaml
+  - ss-openeo-geotrellis-data-bucket-credentials.yaml
+  - ss-openeo-geotrellis-eodata-credentials.yaml

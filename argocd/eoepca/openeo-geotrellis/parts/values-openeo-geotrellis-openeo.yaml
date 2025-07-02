@@ -242,13 +242,22 @@ configMaps:
     {% endblock -%}
     {%- block driver_env %}
           {{ "{{" }} super() }}
-          - name: AWS_ACCESS_KEY_ID
-            value: "nSwekdG7oR5ax6rIdZ6D"
-          - name: AWS_SECRET_ACCESS_KEY
+          - name: SWIFT_ACCESS_KEY_ID
+            value: ""
+          - name: SWIFT_SECRET_ACCESS_KEY
             valueFrom:
               secretKeyRef:
                 name: openeo-geotrellis-data-bucket-credentials
-                key: AWS_SECRET_ACCESS_KEY
+                key: SWIFT_SECRET_ACCESS_KEY
+          - name: EODATA_S3_ENDPOINT
+            value: https://eodata.cloudferro.com
+          - name: EODATA_ACCESS_KEY_ID
+            value: "QXRC4RMAE67FMZ114E8M"
+          - name: EODATA_SECRET_ACCESS_KEY
+            valueFrom:
+              secretKeyRef:
+                name: openeo-geotrellis-eodata-credentials
+                key: EODATA_SECRET_ACCESS_KEY
     {% endblock -%}
 driver:
   env:
@@ -257,14 +266,21 @@ driver:
     PYTHONPATH: $PYTHONPATH:/opt/tensorflow/python38/2.3.0/:/opt/openeo/lib/python3.8/site-packages/
     ZOOKEEPERNODES: openeo-geotrellis-zookeeper.openeo-geotrellis.svc.cluster.local:2181
     SWIFT_BUCKET: "openeo-geotrellis-data"
-    AWS_ACCESS_KEY_ID: "nSwekdG7oR5ax6rIdZ6D"
     SWIFT_URL: "https://minio.develop.eoepca.org"
+    SWIFT_ACCESS_KEY_ID: "nSwekdG7oR5ax6rIdZ6D"
+    EODATA_S3_ENDPOINT: https://eodata.cloudferro.com
+    EODATA_ACCESS_KEY_ID: "QXRC4RMAE67FMZ114E8M"
   extraEnv:
-    - name: AWS_SECRET_ACCESS_KEY
+    - name: EODATA_SECRET_ACCESS_KEY
+      valueFrom:
+        secretKeyRef:
+          name: openeo-geotrellis-eodata-credentials
+          key: EODATA_SECRET_ACCESS_KEY
+    - name: SWIFT_SECRET_ACCESS_KEY
       valueFrom:
         secretKeyRef:
           name: openeo-geotrellis-data-bucket-credentials
-          key: AWS_SECRET_ACCESS_KEY
+          key: SWIFT_SECRET_ACCESS_KEY
   podSecurityContext:
     fsGroup: 18585
     fsGroupChangePolicy: Always

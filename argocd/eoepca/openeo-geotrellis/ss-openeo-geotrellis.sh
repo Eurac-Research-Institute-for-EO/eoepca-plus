@@ -16,11 +16,11 @@ source .env 2>/dev/null
 SECRET_NAME="openeo-geotrellis-data-bucket-credentials"
 NAMESPACE="openeo-geotrellis"
 
-AWS_SECRET_ACCESS_KEY="${2:-${AWS_SECRET_ACCESS_KEY:-changeme}}"
+SWIFT_SECRET_ACCESS_KEY="${2:-${SWIFT_SECRET_ACCESS_KEY:-changeme}}"
 
 secretYaml() {
   kubectl -n "${NAMESPACE}" create secret generic "${SECRET_NAME}" \
-    --from-literal="AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}" \
+    --from-literal="SWIFT_SECRET_ACCESS_KEY=${SWIFT_SECRET_ACCESS_KEY}" \
     --dry-run=client -o yaml
 }
 
