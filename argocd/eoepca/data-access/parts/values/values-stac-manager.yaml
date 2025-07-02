@@ -16,5 +16,5 @@ stacApi: https://eoapi.apx.develop.eoepca.org/stac/
 
 oidc:
   providerUrl: https://iam-auth.apx.develop.eoepca.org
-  clientId: eoapi-develop
+  clientId: eoapi
   realm: eoepca
