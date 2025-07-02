@@ -11,7 +11,7 @@ spec:
   sources:
     - repoURL: https://stac-manager.ds.io/
       chart: stac-manager
-      targetRevision: 0.0.7
+      targetRevision: 0.0.8
       helm:
         releaseName: stac-manager
         valueFiles:
