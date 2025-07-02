@@ -243,7 +243,7 @@ configMaps:
     {%- block driver_env %}
           {{ "{{" }} super() }}
           - name: SWIFT_ACCESS_KEY_ID
-            value: ""
+            value: "nSwekdG7oR5ax6rIdZ6D"
           - name: SWIFT_SECRET_ACCESS_KEY
             valueFrom:
               secretKeyRef:
