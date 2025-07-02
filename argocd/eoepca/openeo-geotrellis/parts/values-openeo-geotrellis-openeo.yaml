@@ -184,7 +184,7 @@ configMaps:
     {% extends "sparkapplication_template.yaml.j2" -%}
     {% block sparkConf %}
         {{ "{{" }} super() }}
-        "spark.eventLog.dir": ""
+        "spark.eventLog.enabled": "false"
         "spark.excludeOnFailure.enabled": "true"
         "spark.excludeOnFailure.killExcludedExecutors": "false"
         "spark.excludeOnFailure.task.maxTaskAttemptsPerExecutor": "2"

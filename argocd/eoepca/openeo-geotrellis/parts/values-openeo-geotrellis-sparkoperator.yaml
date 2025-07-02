@@ -2,7 +2,7 @@
 image:
   registry: vito-docker.artifactory.vgt.vito.be
   repository: spark-operator
-  tag: "v1beta2-2.0.2-3.5.2"
+  tag: "v1beta2-2.0.2-3.5.2b"
 controller:
   batchScheduler:
     enable: true
