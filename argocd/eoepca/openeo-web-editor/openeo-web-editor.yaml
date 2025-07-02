@@ -9,11 +9,18 @@ metadata:
     eoepca/app-name: openeo-web-editor
 spec:
   project: eoepca
-  source:
-    repoURL: https://github.com/EOEPCA/eoepca-plus
-    targetRevision: deploy-develop
-    #path: argocd/eoepca/openeo-web-editor/values-openeo-web-editor.yaml
-    ref: values
+  sources:
+    - repoURL: https://eoepca.github.io/helm-charts-dev/
+      chart: openeo-web-editor
+      targetRevision: 0.1.0
+      helm:
+        releaseName: openeo-web-editor
+        valueFiles:
+          - $values/argocd/eoepca/openeo-web-editor/values-openeo-web-editor.yaml
+    - repoURL: https://github.com/EOEPCA/eoepca-plus
+      targetRevision: deploy-develop
+      #path: argocd/eoepca/openeo-web-editor/values-openeo-web-editor.yaml
+      ref: values
   destination:
     name: in-cluster
     namespace: openeo-web-editor
