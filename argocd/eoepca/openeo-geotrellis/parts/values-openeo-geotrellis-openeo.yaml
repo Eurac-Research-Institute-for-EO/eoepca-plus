@@ -207,7 +207,6 @@ configMaps:
           deploy_env: "eoepca"
     {% endblock -%}
     {% block driver_volumeMounts %}
-          {{ "{{" }} super() }}
           - mountPath: /opt/backend_config/backendconfig.py
             name: openeo-geotrellis-openeo-sparkapplication-backend-config
             subPath: backendconfig.py
@@ -219,7 +218,6 @@ configMaps:
             subPath: log4j2.xml
     {% endblock -%}
     {% block executor_volumeMounts %}
-          {{ "{{" }} super() }}
           - mountPath: /opt/backend_config/backendconfig.py
             name: openeo-geotrellis-openeo-sparkapplication-backend-config
             subPath: backendconfig.py
