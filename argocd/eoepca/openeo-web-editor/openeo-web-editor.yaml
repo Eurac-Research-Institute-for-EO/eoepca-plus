@@ -1,0 +1,31 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: openeo-web-editor
+  namespace: argocd
+  labels:
+    #eoepca/is-root-app: "true"
+    eoepca/app-name: openeo-web-editor
+spec:
+  project: eoepca
+  source:
+    repoURL: https://github.com/EOEPCA/eoepca-plus
+    targetRevision: deploy-develop
+    path: argocd/eoepca/openeo-web-editor/values-openeo-web-editor.yaml
+    ref: values
+  destination:
+    name: in-cluster
+    namespace: openeo-web-editor
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      allowEmpty: true
+    syncOptions:
+      - Validate=true
+      - CreateNamespace=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
+      - RespectIgnoreDifferences=true
+      - ApplyOutOfSyncOnly=true

@@ -1,0 +1,23 @@
+---
+image:
+  #pullPolicy: Always
+  registry: docker.io
+  repository: mundialis/openeo-web-editor
+  tag: sha-614a443
+replicaCount: 1
+ingress:
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+  hosts:
+    - host: editor.develop.eoepca.org
+      paths:
+        - path: /
+          pathType: Prefix
+  #tls:
+  #  - secretName: openeo-web-editor-cert
+  #    hosts:
+  #      - editor.develop.eoepca.org

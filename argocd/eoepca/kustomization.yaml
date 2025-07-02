@@ -16,5 +16,6 @@ resources:
   - application-hub
   - resource-health
   - openeo-geotrellis
+  - openeo-web-editor
   - openeofed
   - notification-automation
