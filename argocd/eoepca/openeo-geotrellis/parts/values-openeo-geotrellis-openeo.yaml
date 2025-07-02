@@ -180,6 +180,77 @@ configMaps:
             </Root>
         </Loggers>
     </Configuration>
+  customBatchConfig: |
+    {% extends "sparkapplication_template.yaml.j2" -%}
+    {% block sparkConf %}
+        {{ "{{" }} super() }}
+        "spark.excludeOnFailure.enabled": "true"
+        "spark.excludeOnFailure.killExcludedExecutors": "false"
+        "spark.excludeOnFailure.task.maxTaskAttemptsPerExecutor": "2"
+        "spark.hadoop.fs.s3a.committer.name": "directory"
+        "spark.hadoop.mapreduce.fileoutputcommitter.cleanup-failures.ignored": "true"
+        "spark.hadoop.mapreduce.outputcommitter.factory.scheme.file": "org.apache.hadoop.mapreduce.lib.output.committer.manifest.ManifestCommitterFactory"
+        "spark.sql.sources.commitProtocolClass": "org.apache.spark.internal.io.cloud.PathOutputCommitProtocol"
+        "spark.sql.parquet.output.committer.class": "org.apache.spark.internal.io.cloud.BindingParquetOutputCommitter"
+    {% endblock -%}
+    {% block driver_labels %}
+          {{ "{{" }} super() }}
+          role: "driver"
+          driver-type: "batch"
+          openeo_component: "batchjobs"
+          deploy_env: "eoepca"
+    {% endblock -%}
+    {% block executor_labels %}
+          {{ "{{" }} super() }}
+          openeo_component: "batchjobs"
+          deploy_env: "eoepca"
+    {% endblock -%}
+    {% block driver_volumeMounts %}
+          {{ "{{" }} super() }}
+          - mountPath: /opt/backend_config/backendconfig.py
+            name: openeo-geotrellis-openeo-sparkapplication-backend-config
+            subPath: backendconfig.py
+          - mountPath: /opt/layercatalog.json
+            name: openeo-geotrellis-openeo-sparkapplication-layercatalog
+            subPath: layercatalog.json
+          - mountPath: /opt/log4j2.xml
+            name: openeo-geotrellis-openeo-sparkapplication-log4j2
+            subPath: log4j2.xml
+    {% endblock -%}
+    {% block executor_volumeMounts %}
+          {{ "{{" }} super() }}
+          - mountPath: /opt/backend_config/backendconfig.py
+            name: openeo-geotrellis-openeo-sparkapplication-backend-config
+            subPath: backendconfig.py
+          - mountPath: /opt/layercatalog.json
+            name: openeo-geotrellis-openeo-sparkapplication-layercatalog
+            subPath: layercatalog.json
+          - mountPath: /opt/log4j2.xml
+            name: openeo-geotrellis-openeo-sparkapplication-log4j2
+            subPath: log4j2.xml
+    {% endblock -%}
+    {% block volumes %}
+        {{ "{{" }} super() }}
+        - configMap:
+            name: openeo-geotrellis-openeo-sparkapplication-backend-config
+          name: openeo-geotrellis-openeo-sparkapplication-backend-config
+        - configMap:
+            name: openeo-geotrellis-openeo-sparkapplication-log4j2
+          name: openeo-geotrellis-openeo-sparkapplication-log4j2
+        - configMap:
+            name: openeo-geotrellis-openeo-sparkapplication-layercatalog
+          name: openeo-geotrellis-openeo-sparkapplication-layercatalog
+    {% endblock -%}
+    {%- block driver_env %}
+          {{ "{{" }} super() }}
+          - name: AWS_ACCESS_KEY_ID
+            value: "nSwekdG7oR5ax6rIdZ6D"
+          - name: AWS_SECRET_ACCESS_KEY
+            valueFrom:
+              secretKeyRef:
+                name: openeo-geotrellis-data-bucket-credentials
+                key: AWS_SECRET_ACCESS_KEY
+    {% endblock -%}
 driver:
   env:
     KUBE: "true"
