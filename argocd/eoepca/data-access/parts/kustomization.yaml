@@ -5,3 +5,4 @@ resources:
   - app-data-access-ui.yaml
   - eoapi-route.yaml
   - route.yaml
+  - eoapi-iam.yaml
