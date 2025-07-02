@@ -12,7 +12,7 @@ spec:
   source:
     repoURL: https://github.com/EOEPCA/eoepca-plus
     targetRevision: deploy-develop
-    path: argocd/eoepca/openeo-web-editor/values-openeo-web-editor.yaml
+    #path: argocd/eoepca/openeo-web-editor/values-openeo-web-editor.yaml
     ref: values
   destination:
     name: in-cluster
