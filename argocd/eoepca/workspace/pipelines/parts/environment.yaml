@@ -17,8 +17,11 @@ data:
   vcluster:
     separator: "."  
     prefix: ""
+  storageClassName: managed-nfs-storage
   workspace:
-    pvcs:
+    storageClassName: managed-nfs-storage
+    storageSize: 10Gi
+    pvcs: # obsolete
     - "rclone"
     auth:
       mapper: "reader-share"
