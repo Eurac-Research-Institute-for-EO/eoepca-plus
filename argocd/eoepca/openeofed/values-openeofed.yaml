@@ -17,7 +17,12 @@ configMaps:
                         "urn:ietf:params:oauth:grant-type:device_code+pkce",
                         "refresh_token",
                     ],
-                    "redirect_urls": ["https://editor.openeo.org"],
+                    "redirect_urls": [
+                        "https://editor.openeo.org",
+                        "https://eoepca.github.io/processing-editor",
+                        "https://editor.develop.eoepca.org",
+                        "http://localhost:1410/",
+                    ],
                 }
             ],
         ),
@@ -34,7 +39,12 @@ configMaps:
                         "urn:ietf:params:oauth:grant-type:device_code+pkce",
                         "refresh_token",
                     ],
-                    "redirect_urls": ["https://editor.openeo.org"],
+                    "redirect_urls": [
+                        "https://editor.openeo.org",
+                        "https://eoepca.github.io/processing-editor",
+                        "https://editor.develop.eoepca.org",
+                        "http://localhost:1410/",
+                    ],
                 }
             ],
         ),
@@ -51,7 +61,12 @@ configMaps:
                         "urn:ietf:params:oauth:grant-type:device_code+pkce",
                         "refresh_token",
                     ],
-                    "redirect_urls": ["https://editor.openeo.org"],
+                    "redirect_urls": [
+                        "https://editor.openeo.org",
+                        "https://eoepca.github.io/processing-editor",
+                        "https://editor.develop.eoepca.org",
+                        "http://localhost:1410/",
+                    ],
                 },
             ],
         ),
@@ -68,7 +83,12 @@ configMaps:
                         "urn:ietf:params:oauth:grant-type:device_code+pkce",
                         "refresh_token",
                     ],
-                    "redirect_urls": ["https://editor.openeo.org"],
+                    "redirect_urls": [
+                        "https://editor.openeo.org",
+                        "https://eoepca.github.io/processing-editor",
+                        "https://editor.develop.eoepca.org",
+                        "http://localhost:1410/",
+                    ],
                 }
             ],
         ),
