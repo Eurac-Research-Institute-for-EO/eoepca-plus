@@ -2,8 +2,8 @@
 image:
   #pullPolicy: Always
   registry: docker.io
-  repository: mundialis/openeo-web-editor
-  tag: sha-614a443
+  repository: eoepca/processing-editor
+  tag: sha-b2c2441
 replicaCount: 1
 ingress:
   enabled: true
