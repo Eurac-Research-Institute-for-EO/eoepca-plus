@@ -3,18 +3,10 @@ kind: ApisixRoute
 metadata:
   name: stac
   namespace: data-access
+  annotations:
+    argocd.argoproj.io/sync-options: skip
 spec:
   http:
-  - name: manager-js-css-assets # hack until stac-manager can handle subpaths
-    backends:
-    - serviceName: stac-manager
-      servicePort: 80
-    match:
-      hosts:
-      - eoapi.apx.develop.eoepca.org
-      paths:
-      - /index.*
-      - /logo.*
   - name: manager-route
     websocket: true
     backends:
@@ -142,15 +134,20 @@ spec:
       servicePort: 8080
     match:
       hosts:
-      - eoapi.apx.develop.eoepca.org
+        - eoapi.apx.develop.eoepca.org
       methods:
-      - GET
+        - GET
       paths:
-      - /stac/
-      - /stac/api*
-      - /stac/collections
-      - /stac/collections/*
-      #- /stac/collections/public*
+        - /stac/
+        - /stac/api*
+        - /stac/collections
+        - /stac/collections/*
+      exprs:
+      - subject:
+          scope: Path
+          name: uri
+        op: RegexNotMatch
+        value: '^/stac/collections/ws_.*'
     plugins:
     - name: proxy-rewrite
       config:
