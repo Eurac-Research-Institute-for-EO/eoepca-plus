@@ -2,7 +2,7 @@ apiVersion: apisix.apache.org/v2
 kind: ApisixRoute
 metadata:
   name: notifications-wildcard-route
-  namespace: notifications
+  namespace: knative-eventing
 spec:
   http:
   - name: knative-serving-default
