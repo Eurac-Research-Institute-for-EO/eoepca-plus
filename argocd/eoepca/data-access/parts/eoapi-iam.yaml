@@ -17,9 +17,9 @@ spec:
     oauth2DeviceAuthorizationGrantEnabled: true    
     rootUrl: https://eoapi.apx.develop.eoepca.org
     webOrigins: 
-      - '/*'
+      - '*'
     validRedirectUris:
-      - '/*'
+      - '*'
 ---
 apiVersion: openidclient.keycloak.crossplane.io/v1alpha1
 kind: Client
@@ -40,9 +40,9 @@ spec:
     oauth2DeviceAuthorizationGrantEnabled: true
     rootUrl: https://eoapi.apx.develop.eoepca.org/manager
     webOrigins:
-      - '/*'
+      - '*'
     validRedirectUris:
-      - '/*'
+      - '*'
 ---
 apiVersion: role.keycloak.crossplane.io/v1alpha1
 kind: Role
