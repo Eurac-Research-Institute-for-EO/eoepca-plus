@@ -17,7 +17,7 @@ ingress:
       paths:
         - path: /
           pathType: Prefix
-  #tls:
-  #  - secretName: openeo-web-editor-cert
-  #    hosts:
-  #      - editor.develop.eoepca.org
+  tls:
+    - secretName: openeo-web-editor-cert
+      hosts:
+        - editor.develop.eoepca.org
