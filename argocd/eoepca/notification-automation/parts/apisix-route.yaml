@@ -9,6 +9,8 @@ spec:
     match:
       hosts:
         - "*.notifications.develop.eoepca.org"
+        - "*.default.notifications.develop.eoepca.org"
+        - "*.knative-serving.notifications.develop.eoepca.org"
       paths:
         - "/*"
     backends:
