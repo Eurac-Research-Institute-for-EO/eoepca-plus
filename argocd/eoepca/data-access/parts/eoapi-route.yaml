@@ -147,7 +147,7 @@ spec:
           scope: Path
           name: uri
         op: RegexNotMatch
-        value: '^/stac/collections/ws_.*'
+        value: '^/stac/collections/ws-.*'
     plugins:
     - name: proxy-rewrite
       config:
