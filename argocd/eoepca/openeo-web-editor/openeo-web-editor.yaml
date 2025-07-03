@@ -12,7 +12,7 @@ spec:
   sources:
     - repoURL: https://eoepca.github.io/helm-charts-dev/
       chart: openeo-web-editor
-      targetRevision: 0.1.0
+      targetRevision: 0.1.1
       helm:
         releaseName: openeo-web-editor
         valueFiles:
