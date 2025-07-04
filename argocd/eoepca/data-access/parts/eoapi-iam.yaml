@@ -64,20 +64,3 @@ spec:
       - name: stac-editor
         policy:
           resolution: Required
----
-apiVersion: group.keycloak.crossplane.io/v1alpha1
-kind: Memberships
-metadata: 
-  name: data-access-admin
-spec:
-  providerConfigRef:
-    name: provider-keycloak
-  forProvider:
-    groupIdRef:
-      name: data-access-admin
-      policy:
-        resolution: Required
-    members:
-    - example-admin
-    - example-user-1 # for demo purposes add example-user1 but not example-user2 to data-access-admin group
-    realmId: eoepca
