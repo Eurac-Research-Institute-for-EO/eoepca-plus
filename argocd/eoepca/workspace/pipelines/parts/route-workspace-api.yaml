@@ -31,11 +31,12 @@ spec:
           enable: true
           config:
             discovery: "https://iam-auth.apx.develop.eoepca.org/realms/eoepca/.well-known/openid-configuration"
-            bearer_only: false # as we want to redirect to login screen (default: false)
-            set_access_token_header: false # UI endpoint so don't pass access token (default: true)
-            access_token_in_authorization_header: false # not necessary here is it just defines if the access token (if passed) should be in x-access-token or authroization header (default: false)
-            set_id_token_header: true # UI endpoint so pass (default: true)
-            set_userinfo_header: true # UI endpoint so pass (default: true)
+            use_jwks: true
+            bearer_only: false
+            set_access_token_header: false
+            access_token_in_authorization_header: false
+            set_id_token_header: true
+            set_userinfo_header: true
           secretRef: workspace-api
         # - name: serverless-pre-function
         #   config:
@@ -96,7 +97,7 @@ spec:
           enable: true
           config:
             discovery: "https://iam-auth.apx.develop.eoepca.org/realms/eoepca/.well-known/openid-configuration"
-            introspection_endpoint: "https://iam-auth.apx.develop.eoepca.org/realms/eoepca/protocol/openid-connect/token/introspect"
+            use_jwks: true
             bearer_only: false
             set_access_token_header: true
             access_token_in_authorization_header: true
