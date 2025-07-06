@@ -13,6 +13,7 @@ spec:
         paths:
           - "/metrics*"
           - "/probe*"
+          - "/ui_*"
       backends:
         - serviceName: workspace-api
           servicePort: 8080
