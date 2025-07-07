@@ -1,6 +1,7 @@
 cookiecutter:
   templateUrl: https://github.com/EOEPCA/eoepca-proc-service-template.git
-  templateBranch: feature/python3.8
+  # templateBranch: feature/python3.8
+  templateBranch: feature/optional-catalogue-registration
 zoofpm:
   image:
     tag: eoepca-e912be9fd38445c7416a2b4b3d749b1ae67247ea
@@ -15,6 +16,7 @@ customConfig:
       domain=apx.develop.eoepca.org
       workspace_url=https://workspace-api.apx.develop.eoepca.org
       workspace_prefix=ws
+      workspace_catalog_register=false
 workflow:
   defaultMaxRam: 1024
   defaultMaxCores: 2
