@@ -32,20 +32,20 @@ workflow:
   storageClass: managed-nfs-storage-retain
 ingress:
   enabled: false
-  hosturl: https://zoo-open.apx.develop.eoepca.org
+  hosturl: https://zoo.apx.develop.eoepca.org
   annotations:
-    kubernetes.io/ingress.class: nginx
+    kubernetes.io/ingress.class: apisix
     ingress.kubernetes.io/ssl-redirect: "true"
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
-    cert-manager.io/cluster-issuer: letsencrypt-prod
+    cert-manager.io/cluster-issuer: letsencrypt-dns-prod
   hosts:
-  - host: zoo-open.apx.develop.eoepca.org
+  - host: zoo.apx.develop.eoepca.org
     paths:
     - path: /
       pathType: ImplementationSpecific
   tls:
   - hosts:
-    - zoo-open.apx.develop.eoepca.org
+    - zoo.apx.develop.eoepca.org
     secretName: zoo-tls
 persistence:
   procServicesStorageClass: managed-nfs-storage-retain
