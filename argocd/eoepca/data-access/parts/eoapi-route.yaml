@@ -81,6 +81,37 @@ spec:
         - ^(/vector)($|/.*)
         - $2
       enable: true
+  - name: multidim-redirect
+    backends:
+    - serviceName: multidim-eoapi
+      servicePort: 8080
+    match:
+      hosts:
+      - eoapi.apx.develop.eoepca.org
+      paths:
+      - /multidim
+    plugins:
+    - name: redirect
+      enable: true
+      config:
+        uri: /multidim/
+  - name: multidim-route
+    backends:
+    - serviceName: multidim-eoapi
+      servicePort: 8080
+    match:
+      hosts:
+      - eoapi.apx.develop.eoepca.org
+      paths:
+      - /multidim/
+      - /multidim/*
+    plugins:
+    - name: proxy-rewrite
+      config:
+        regex_uri:
+        - ^(/raster)($|/.*)
+        - $2
+      enable: true
   - name: raster-redirect
     backends:
     - serviceName: raster-eoapi
