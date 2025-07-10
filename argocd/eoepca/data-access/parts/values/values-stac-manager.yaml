@@ -13,6 +13,8 @@ image:
 
 publicUrl: https://eoapi.apx.develop.eoepca.org/manager/
 stacApi: https://eoapi.apx.develop.eoepca.org/stac/
+primaryColor: "#005ACD"
+secondaryColor: "#048A81"
 
 oidc:
   providerUrl: https://iam-auth.apx.develop.eoepca.org
