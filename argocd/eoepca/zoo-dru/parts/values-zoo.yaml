@@ -1,7 +1,6 @@
 cookiecutter:
   templateUrl: https://github.com/EOEPCA/eoepca-proc-service-template.git
-  # templateBranch: feature/python3.8
-  templateBranch: feature/optional-catalogue-registration
+  templateBranch: master
 zoofpm:
   image:
     tag: eoepca-e912be9fd38445c7416a2b4b3d749b1ae67247ea
