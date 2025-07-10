@@ -10,9 +10,10 @@ zookernel:
 customConfig:
   main:
     eoepca: |-
-      domain=develop.eoepca.org
-      workspace_url=https://workspace-api.develop.eoepca.org
+      domain=apx.develop.eoepca.org
+      workspace_url=https://workspace-api.apx.develop.eoepca.org
       workspace_prefix=ws
+      workspace_catalog_register=false
 workflow:
   defaultMaxRam: 1024
   defaultMaxCores: 2
@@ -36,10 +37,10 @@ ingress:
   enabled: false
   hosturl: https://zoowes.apx.develop.eoepca.org
   annotations:
-    kubernetes.io/ingress.class: nginx
+    kubernetes.io/ingress.class: apisix
     ingress.kubernetes.io/ssl-redirect: "true"
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
-    cert-manager.io/cluster-issuer: letsencrypt-prod
+    cert-manager.io/cluster-issuer: letsencrypt-dns-prod
   hosts:
   - host: zoowes.apx.develop.eoepca.org
     paths:
@@ -65,3 +66,5 @@ rabbitmq:
     storageClass: managed-nfs-storage-retain
 iam:
   enabled: false
+documentation:
+  enabled: true
