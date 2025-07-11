@@ -44,8 +44,8 @@ pgstacBootstrap:
 raster:
   enabled: true
   ingress:
-    path: "/"
-  overrideRootPath: "/raster"
+    path: "/raster"
+  overrideRootPath: "/"
   image:
     tag: "1.4.0"
   settings:
@@ -61,8 +61,8 @@ raster:
 multidim:
   enabled: true
   ingress:
-    path: "/"
-  overrideRootPath: "/multidim"
+    path: "/multidim"
+  overrideRootPath: "/"
   settings:
     envSecrets:
           - data-access
