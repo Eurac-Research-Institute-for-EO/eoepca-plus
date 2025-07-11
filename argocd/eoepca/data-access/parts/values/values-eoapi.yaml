@@ -43,6 +43,8 @@ pgstacBootstrap:
 
 raster:
   enabled: true
+  ingress:
+    path: "/"
   image:
     tag: "1.4.0"
   settings:
@@ -54,8 +56,11 @@ raster:
     resources:
       requests:
         memory: "3072Mi"
+
 multidim:
   enabled: true
+  ingress:
+    path: "/"
   settings:
     envSecrets:
           - data-access
@@ -74,6 +79,7 @@ stac:
         memory: "1536Mi"
       requests:
         cpu: "512m"
+
 vector:
   enabled: true
   settings:
