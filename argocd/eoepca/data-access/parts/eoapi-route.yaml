@@ -109,7 +109,7 @@ spec:
     - name: proxy-rewrite
       config:
         regex_uri:
-        - ^(/raster)($|/.*)
+        - ^(/multidim)($|/.*)
         - $2
       enable: true
   - name: raster-redirect
