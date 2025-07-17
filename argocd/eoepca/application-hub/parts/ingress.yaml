@@ -1,0 +1,30 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: application-hub
+  namespace: app-hub
+  annotations:
+    kubernetes.io/ingress.class: apisix
+    apisix.apache.org/ssl-redirect: "true"
+    apisix.ingress.kubernetes.io/use-regex: "true"
+    cert-manager.io/cluster-issuer: "letsencrypt-http01-apisix"
+    k8s.apisix.apache.org/enable-cors: "true"
+    k8s.apisix.apache.org/upstream-read-timeout: "600s"
+    k8s.apisix.apache.org/enable-websocket: "true"
+spec:
+  ingressClassName: apisix
+  rules:
+    - host: applicationhub.apx.develop.eoepca.org
+      http:
+        paths:
+          - path: "/"
+            pathType: Prefix
+            backend:
+              service:
+                name: application-hub-proxy-public
+                port:
+                  number: 80
+  tls:
+    - hosts:
+        - applicationhub.apx.develop.eoepca.org
+      secretName: applicationhub-apx-tls

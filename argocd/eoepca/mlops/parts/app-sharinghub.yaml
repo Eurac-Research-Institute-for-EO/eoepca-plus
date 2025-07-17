@@ -45,7 +45,7 @@ spec:
             endpoint: https://minio.develop.eoepca.org
 
           jupyterlab:
-            url: https://applicationhub.develop.eoepca.org
+            url: https://applicationhub.apx.develop.eoepca.org
 
           stac:
             projects:
