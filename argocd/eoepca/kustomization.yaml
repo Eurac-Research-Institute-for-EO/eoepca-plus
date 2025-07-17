@@ -1,6 +1,5 @@
 
 resources:
-  - identity-service
   - resource-catalogue
   - registration-api
   - data-access
@@ -19,3 +18,4 @@ resources:
   - openeo-web-editor
   - openeofed
   - notification-automation
+  # - identity-service
