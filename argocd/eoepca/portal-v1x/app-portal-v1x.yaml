@@ -17,37 +17,39 @@ spec:
       releaseName: eoepca-portal-v1x
       valuesObject:
         configMap:
-          identity_url: "https://keycloak-v1x.develop.eoepca.org"
+          identity_url: "https://iam-auth.apx.develop.eoepca.org"
           realm: "master"
           client_id: "eoepca-portal"
-          identity_api_url: "https://identity-api.develop.eoepca.org"
-          ades_url: "https://zoo.develop.eoepca.org/ogc-api/processes"
+          identity_api_url: "https://identity-api.apx.develop.eoepca.org"
+          ades_url: "https://zoo.apx.develop.eoepca.org/ogc-api/processes"
           resource_catalogue_url: "https://resource-catalogue.apx.develop.eoepca.org"
-          data_access_url: "https://data-access-v1x.develop.eoepca.org"
-          workspace_url: "https://workspace-api.develop.eoepca.org"
-          workspace_docs_url: "https://workspace-api.develop.eoepca.org/docs#"
-          images_registry_url: "https://harbor.develop.eoepca.org"
-          dummy_service_url: "https://dummy-service.develop.eoepca.org"
+          data_access_url: "https://eoapi.apx.develop.eoepca.org"
+          workspace_url: "https://workspace-api.apx.develop.eoepca.org"
+          workspace_docs_url: "https://workspace-api.apx.develop.eoepca.org/docs#"
+          images_registry_url: "https://harbor.apx.develop.eoepca.org"
+          dummy_service_url: "https://dummy-service.apx.develop.eoepca.org"
           access_token_name: "auth_user_id"
-          access_token_domain: ".develop.eoepca.org"
+          access_token_domain: ".apx.develop.eoepca.org"
           refresh_token_name: "auth_refresh_token"
-          refresh_token_domain: ".develop.eoepca.org"
+          refresh_token_domain: ".apx.develop.eoepca.org"
         ingress:
           enabled: true
           annotations:
-            kubernetes.io/ingress.class: nginx
-            ingress.kubernetes.io/ssl-redirect: "true"
-            nginx.ingress.kubernetes.io/ssl-redirect: "true"
-            cert-manager.io/cluster-issuer: letsencrypt-prod
+            kubernetes.io/ingress.class: apisix
+            cert-manager.io/cluster-issuer: letsencrypt-http01-apisix
+            apisix.ingress.kubernetes.io/use-regex: "true"
+            k8s.apisix.apache.org/upstream-read-timeout: "600s"
+            k8s.apisix.apache.org/enable-cors: "true"
+            k8s.apisix.apache.org/http-to-https: "true"
           hosts:
-            - host: eoepca-portal-v1x.develop.eoepca.org
+            - host: eoepca-portal-v1x.apx.develop.eoepca.org
               paths:
                 - path: /
                   pathType: Prefix
           tls:
-            - secretName: eoepca-portal-v1x-tls
+            - secretName: eoepca-portal-v1x-apx-tls
               hosts:
-                - eoepca-portal-v1x.develop.eoepca.org
+                - eoepca-portal-v1x.apx.develop.eoepca.org
 
   destination:
     name: in-cluster
