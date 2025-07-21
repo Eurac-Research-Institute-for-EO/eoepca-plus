@@ -2,18 +2,19 @@ ingress:
   enabled: true
   className: nginx
   annotations:
-    ingress.kubernetes.io/ssl-redirect: "true"
-    nginx.ingress.kubernetes.io/ssl-redirect: "true"
-    cert-manager.io/cluster-issuer: letsencrypt-prod
+    cert-manager.io/cluster-issuer: letsencrypt-http01-apisix
+    k8s.apisix.apache.org/upstream-read-timeout: "600s"
+    k8s.apisix.apache.org/enable-cors: "true"
+    apisix.apache.org/ssl-redirect: "true"
   hosts:
-    - host: maps.develop.eoepca.org
+    - host: maps.apx.develop.eoepca.org
       paths:
         - path: /
           pathType: ImplementationSpecific
   tls:
   - hosts:
-      - maps.develop.eoepca.org
-    secretName: data-access-maps-tls
+      - maps.apx.develop.eoepca.org
+    secretName: data-access-maps-apx-tls
 resources:
   requests:
     memory: "256Mi"
@@ -27,7 +28,7 @@ config:
     bind:
       host: 0.0.0.0
       port: 5000
-    url: https://maps.develop.eoepca.org
+    url: https://maps.apx.develop.eoepca.org
     mimetype: application/json; charset=UTF-8
     encoding: utf-8
     gzip: false
@@ -120,7 +121,7 @@ sync:
   enabled: true
   schedule: "*/10 * * * *"
   eoapiUrl: "https://eoapi.apx.develop.eoepca.org"
-  pygeoapiUrl: "https://maps.develop.eoepca.org"
+  pygeoapiUrl: "https://maps.apx.develop.eoepca.org"
   create: true
   update: true
   delete: true
