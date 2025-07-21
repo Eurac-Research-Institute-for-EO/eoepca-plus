@@ -1,0 +1,74 @@
+
+global:
+  defaultExternalIssuerRef:
+    kind: ClusterIssuer
+    name: letsencrypt-http01-apisix
+
+application-quality:
+  # Values for deploying the Application Quality Building Block in the EOEPCA Develop cluster.
+
+  publicUrl: "https://application-quality.apx.develop.eoepca.org"
+
+  # Application Quality frontend
+  web:
+    publicUrl: "https://application-quality.apx.develop.eoepca.org"
+
+  persistence:
+    enabled: true
+    storageClassName: managed-nfs-storage-retain
+
+  calrissian:
+    storageClassName: managed-nfs-storage-retain
+
+  oidc:
+    enabled: true
+    realmBaseUrl: "https://iam-auth.apx.develop.eoepca.org/realms/eoepca"
+    clientId: application-quality-bb
+    clientSecret: ""
+    postLogoutRedirectUrl: "https://application-quality.apx.develop.eoepca.org/"
+    loginRedirectUrl: "https://application-quality.apx.develop.eoepca.org/"
+    rpRedirectUri: "https://application-quality.apx.develop.eoepca.org/"
+
+  ingress:
+    enabled: true
+    className: apisix
+    domain: application-quality.apx.develop.eoepca.org
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt-http01-apisix
+      apisix.ingress.kubernetes.io/use-regex: "true"
+      k8s.apisix.apache.org/upstream-read-timeout: "600s"
+      k8s.apisix.apache.org/enable-cors: "true"
+      apisix.apache.org/ssl-redirect: "true"
+    tls:
+      - hosts:
+        - application-quality.apx.develop.eoepca.org
+        secretName: application-quality-apx-tls
+
+# https://github.com/grafana/helm-charts/blob/main/charts/grafana/values.yaml
+grafana:
+  ingress:
+    enabled: true
+    ingressClassName: apisix
+    hosts:
+      - application-quality.apx.develop.eoepca.org
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt-http01-apisix
+      k8s.apisix.apache.org/rewrite-target-regex: "/dashboards/?(.*)"
+      k8s.apisix.apache.org/rewrite-target-regex-template: "/$1"
+      k8s.apisix.apache.org/upstream-read-timeout: "600s"
+      k8s.apisix.apache.org/enable-cors: "true"
+      apisix.apache.org/ssl-redirect: "true"
+    path: /dashboards/?(.*)
+    pathType: Prefix
+    tls:
+      - secretName: application-quality-apx-tls
+        hosts:
+          - application-quality.apx.develop.eoepca.org
+
+  persistence:
+    enabled: true
+    storageClassName: managed-nfs-storage-retain
+
+  grafana.ini:
+    server:
+      root_url: https://application-quality.apx.develop.eoepca.org/dashboards

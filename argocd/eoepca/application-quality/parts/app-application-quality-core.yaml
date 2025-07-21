@@ -8,10 +8,17 @@ metadata:
 spec:
   # Ref. https://argo-cd.readthedocs.io/en/stable/user-guide/application-specification/
   project: eoepca
-  source:
-    repoURL: https://github.com/EOEPCA/application-quality
-    path: application-quality-reference-deployment
-    targetRevision: reference-deployment
+  sources:
+    - repoURL: https://github.com/EOEPCA/application-quality
+      path: application-quality-reference-deployment
+      targetRevision: reference-deployment
+      helm:
+        releaseName: application-quality
+        valueFiles:
+          - $values/argocd/eoepca/application-quality/parts/application-quality-values.yaml
+    - repoURL: https://github.com/EOEPCA/eoepca-plus
+      targetRevision: deploy-develop
+      ref: values
   destination:
     name: in-cluster
     namespace: application-quality
