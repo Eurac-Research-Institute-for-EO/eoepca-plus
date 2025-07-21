@@ -492,7 +492,7 @@ spec:
               script: "https://github.com/EOEPCA/resource-health/blob/main/pytest-health/lib/BB-examples/data_access_tests.py?raw=true"
               env:
                 - name: DATA_ACCESS_HOST
-                  value: https://eoapi.develop.eoepca.org
+                  value: https://eoapi.apx.develop.eoepca.org
               userid: "alice"
               annotations:
                 owner: "alice"
