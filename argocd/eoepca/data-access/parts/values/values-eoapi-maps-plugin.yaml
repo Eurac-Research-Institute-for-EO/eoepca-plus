@@ -5,7 +5,7 @@ ingress:
     cert-manager.io/cluster-issuer: letsencrypt-http01-apisix
     k8s.apisix.apache.org/upstream-read-timeout: "600s"
     k8s.apisix.apache.org/enable-cors: "true"
-    apisix.apache.org/ssl-redirect: "true"
+    k8s.apisix.apache.org/http-to-https: "true"
   hosts:
     - host: maps.apx.develop.eoepca.org
       paths:

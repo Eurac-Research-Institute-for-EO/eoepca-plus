@@ -38,7 +38,7 @@ application-quality:
       apisix.ingress.kubernetes.io/use-regex: "true"
       k8s.apisix.apache.org/upstream-read-timeout: "600s"
       k8s.apisix.apache.org/enable-cors: "true"
-      apisix.apache.org/ssl-redirect: "true"
+      k8s.apisix.apache.org/http-to-https: "true"
     tls:
       - hosts:
         - application-quality.apx.develop.eoepca.org
@@ -57,7 +57,7 @@ grafana:
       k8s.apisix.apache.org/rewrite-target-regex-template: "/$1"
       k8s.apisix.apache.org/upstream-read-timeout: "600s"
       k8s.apisix.apache.org/enable-cors: "true"
-      apisix.apache.org/ssl-redirect: "true"
+      k8s.apisix.apache.org/http-to-https: "true"
     path: /dashboards/?(.*)
     pathType: Prefix
     tls:

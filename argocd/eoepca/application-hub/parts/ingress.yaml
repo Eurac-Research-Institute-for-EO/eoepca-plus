@@ -5,7 +5,7 @@ metadata:
   namespace: app-hub
   annotations:
     kubernetes.io/ingress.class: apisix
-    apisix.apache.org/ssl-redirect: "true"
+    k8s.apisix.apache.org/http-to-https: "true"
     apisix.ingress.kubernetes.io/use-regex: "true"
     cert-manager.io/cluster-issuer: "letsencrypt-http01-apisix"
     k8s.apisix.apache.org/enable-cors: "true"
