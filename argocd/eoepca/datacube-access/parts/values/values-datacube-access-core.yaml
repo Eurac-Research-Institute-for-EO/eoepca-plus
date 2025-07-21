@@ -1,6 +1,6 @@
 ingress:
   enabled: true
-  className: nginx
+  className: apisix
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-http01-apisix
     apisix.ingress.kubernetes.io/use-regex: "true"
