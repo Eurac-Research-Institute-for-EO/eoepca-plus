@@ -48,12 +48,15 @@ spec:
               storageClass: managed-nfs-storage-retain
 
         externalURL: https://harbor.apx.develop.eoepca.org
+
         # initial password for logging in with user "admin"
-        harborAdminPassword:
-          valueFrom:
-            secretKeyRef:
-              name: harbor-auth
-              key: rootPassword
+        harborAdminPassword: changeme
+        # the following approach is not valid in a values file
+        # harborAdminPassword:
+        #   valueFrom:
+        #     secretKeyRef:
+        #       name: harbor-auth
+        #       key: rootPassword
 
         chartmuseum:
           enabled: false
