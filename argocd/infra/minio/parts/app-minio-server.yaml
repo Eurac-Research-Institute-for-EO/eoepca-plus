@@ -20,34 +20,38 @@ spec:
         replicas: 2
         ingress:
           enabled: true
-          ingressClassName: nginx
+          ingressClassName: apisix
           annotations:
-            cert-manager.io/cluster-issuer: letsencrypt-prod
-            nginx.ingress.kubernetes.io/ssl-redirect: "true"
-            nginx.ingress.kubernetes.io/proxy-body-size: "0"
-            nginx.ingress.kubernetes.io/proxy-read-timeout: '600'
+            k8s.apisix.apache.org/enable-websocket: "true"
+            apisix.apache.org/ssl-redirect: "true"
+            apisix.ingress.kubernetes.io/use-regex: "true"
+            cert-manager.io/cluster-issuer: "letsencrypt-http01-apisix"
+            k8s.apisix.apache.org/enable-cors: "true"
+            k8s.apisix.apache.org/upstream-read-timeout: "600s"
           path: /
           hosts:
-            - minio.develop.eoepca.org
+            - minio.apx.develop.eoepca.org
           tls:
-            - secretName: minio-tls
+            - secretName: minio-apx-tls
               hosts:
-                - minio.develop.eoepca.org
+                - minio.apx.develop.eoepca.org
         consoleIngress:
           enabled: true
-          ingressClassName: nginx
+          ingressClassName: apisix
           annotations:
-            cert-manager.io/cluster-issuer: letsencrypt-prod
-            nginx.ingress.kubernetes.io/ssl-redirect: "true"
-            nginx.ingress.kubernetes.io/proxy-body-size: "0"
-            nginx.ingress.kubernetes.io/proxy-read-timeout: '600'
+            k8s.apisix.apache.org/enable-websocket: "true"
+            apisix.apache.org/ssl-redirect: "true"
+            apisix.ingress.kubernetes.io/use-regex: "true"
+            cert-manager.io/cluster-issuer: "letsencrypt-http01-apisix"
+            k8s.apisix.apache.org/enable-cors: "true"
+            k8s.apisix.apache.org/upstream-read-timeout: "600s"
           path: /
           hosts:
-            - console.minio.develop.eoepca.org
+            - console.minio.apx.develop.eoepca.org
           tls:
-          - secretName: minio-console-tls
+          - secretName: minio-console-apx-tls
             hosts:
-              - console.minio.develop.eoepca.org
+              - console.minio.apx.develop.eoepca.org
         resources:
           requests:
             memory: 1Gi
