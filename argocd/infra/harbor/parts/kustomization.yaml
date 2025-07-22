@@ -1,3 +1,4 @@
 
 resources:
+  - app-harbor-server.yaml
   - ss-harbor-auth.yaml

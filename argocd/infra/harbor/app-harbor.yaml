@@ -10,58 +10,9 @@ spec:
   # Ref. https://argo-cd.readthedocs.io/en/stable/user-guide/application-specification/
   project: eoepca
   source:
-    repoURL: 'https://helm.goharbor.io'
-    chart: harbor
-    targetRevision: 1.7.3
-
-    helm:
-      releaseName: harbor
-      valuesObject:
-        expose:
-          ingress:
-            annotations:
-              kubernetes.io/ingress.class: apisix
-              cert-manager.io/cluster-issuer: letsencrypt-http01-apisix
-              k8s.apisix.apache.org/upstream-read-timeout: "600s"
-              k8s.apisix.apache.org/enable-cors: "true"
-              k8s.apisix.apache.org/http-to-https: "true"
-            hosts:
-              core: harbor.apx.develop.eoepca.org
-          tls:
-            enabled: true
-            certSource: secret
-            secret:
-              secretName: "harbor-apx-tls"
-
-        persistence:
-          persistentVolumeClaim:
-            registry:
-              storageClass: managed-nfs-storage-retain
-            chartmuseum:
-              storageClass: managed-nfs-storage-retain
-            jobservice:
-              storageClass: managed-nfs-storage-retain
-            database:
-              storageClass: managed-nfs-storage-retain
-            redis:
-              storageClass: managed-nfs-storage-retain
-            trivy:
-              storageClass: managed-nfs-storage-retain
-
-        externalURL: https://harbor.apx.develop.eoepca.org
-        # initial password for logging in with user "admin"
-        harborAdminPassword:
-          valueFrom:
-            secretKeyRef:
-              name: harbor-auth
-              key: rootPassword
-
-        chartmuseum:
-          enabled: false
-        trivy:
-          enabled: false
-        notary:
-          enabled: false
+    repoURL: https://github.com/EOEPCA/eoepca-plus
+    targetRevision: deploy-develop
+    path: argocd/infra/harbor/parts
 
   destination:
     name: in-cluster
