@@ -1,73 +1,38 @@
 apiVersion: apisix.apache.org/v2
 kind: ApisixRoute
 metadata:
-  name: eoapi
+  name: stac
   namespace: data-access
+  annotations:
+    argocd.argoproj.io/sync-options: skip
 spec:
   http:
-  - name: docs-redirect
+  - name: manager-route
+    websocket: true
     backends:
-    - serviceName: doc-server-eoapi
+    - serviceName: stac-manager
       servicePort: 80
     match:
       hosts:
-      - eoapi.apx.develop.eoepca.org
+      - eoapi.develop.eoepca.org
       paths:
-      - /docs
-      - /
-    plugins:
-    - name: redirect
-      enable: true
-      config:
-        uri: /docs/
-  - name: docs-route
-    backends:
-    - serviceName: doc-server-eoapi
-      servicePort: 80
-    match:
-      hosts:
-      - eoapi.apx.develop.eoepca.org
-      paths:
-      - /docs/
-      - /docs/*
+      - /manager*
+      - /manager/
+      - /manager/*
     plugins:
     - name: proxy-rewrite
       config:
         regex_uri:
-        - ^(/docs)($|/.*)
+        - ^(/manager)($|/.*)
         - $2
       enable: true
-  - name: stac-manager-redirect
-    backends:
-    - serviceName: stac-manager
-      servicePort: 80
-    match:
-      hosts:
-      - eoapi.apx.develop.eoepca.org
-      paths:
-      - /manager
-    plugins:
-    - name: redirect
-      enable: true
-      config:
-        uri: /manager/
-  - name: stac-manager-route
-    backends:
-    - serviceName: stac-manager
-      servicePort: 80
-    match:
-      hosts:
-      - eoapi.apx.develop.eoepca.org
-      paths:
-      - /manager/
-      - /manager/*
   - name: browser-redirect
     backends:
     - serviceName: browser-eoapi
       servicePort: 8080
     match:
       hosts:
-      - eoapi.apx.develop.eoepca.org
+      - eoapi.develop.eoepca.org
       paths:
       - /browser
     plugins:
@@ -81,7 +46,7 @@ spec:
       servicePort: 8080
     match:
       hosts:
-      - eoapi.apx.develop.eoepca.org
+      - eoapi.develop.eoepca.org
       paths:
       - /browser/
       - /browser/*
@@ -91,7 +56,7 @@ spec:
       servicePort: 8080
     match:
       hosts:
-      - eoapi.apx.develop.eoepca.org
+      - eoapi.develop.eoepca.org
       paths:
       - /vector
     plugins:
@@ -105,7 +70,7 @@ spec:
       servicePort: 8080
     match:
       hosts:
-      - eoapi.apx.develop.eoepca.org
+      - eoapi.develop.eoepca.org
       paths:
       - /vector/
       - /vector/*
@@ -116,13 +81,44 @@ spec:
         - ^(/vector)($|/.*)
         - $2
       enable: true
+  - name: multidim-redirect
+    backends:
+    - serviceName: multidim-eoapi
+      servicePort: 8080
+    match:
+      hosts:
+      - eoapi.develop.eoepca.org
+      paths:
+      - /multidim
+    plugins:
+    - name: redirect
+      enable: true
+      config:
+        uri: /multidim/
+  - name: multidim-route
+    backends:
+    - serviceName: multidim-eoapi
+      servicePort: 8080
+    match:
+      hosts:
+      - eoapi.develop.eoepca.org
+      paths:
+      - /multidim/
+      - /multidim/*
+    plugins:
+    - name: proxy-rewrite
+      config:
+        regex_uri:
+        - ^(/multidim)($|/.*)
+        - $2
+      enable: true
   - name: raster-redirect
     backends:
     - serviceName: raster-eoapi
       servicePort: 8080
     match:
       hosts:
-      - eoapi.apx.develop.eoepca.org
+      - eoapi.develop.eoepca.org
       paths:
       - /raster
     plugins:
@@ -136,7 +132,7 @@ spec:
       servicePort: 8080
     match:
       hosts:
-      - eoapi.apx.develop.eoepca.org
+      - eoapi.develop.eoepca.org
       paths:
       - /raster/
       - /raster/*
@@ -153,7 +149,7 @@ spec:
       servicePort: 8080
     match:
       hosts:
-      - eoapi.apx.develop.eoepca.org
+      - eoapi.develop.eoepca.org
       methods:
       - GET
       paths:
@@ -163,20 +159,28 @@ spec:
       enable: true
       config:
         uri: /stac/
+    - name: cors
+      enable: true
   - name: stac-open-route
     backends:
     - serviceName: stac-eoapi
       servicePort: 8080
     match:
       hosts:
-      - eoapi.apx.develop.eoepca.org
+        - eoapi.develop.eoepca.org
       methods:
-      - GET
+        - GET
       paths:
-      - /stac/
-      - /stac/collections
-      - /stac/collections/*
-      #- /stac/collections/public*
+        - /stac/
+        - /stac/api*
+        - /stac/collections
+        - /stac/collections/*
+      exprs:
+      - subject:
+          scope: Path
+          name: uri
+        op: RegexNotMatch
+        value: '^/stac/collections/ws-.*'
     plugins:
     - name: proxy-rewrite
       config:
@@ -184,13 +188,15 @@ spec:
         - ^(/stac)($|/.*)
         - $2
       enable: true
+    - name: cors
+      enable: true
   - name: stac-open-search-route
     backends:
     - serviceName: stac-eoapi
       servicePort: 8080
     match:
       hosts:
-      - eoapi.apx.develop.eoepca.org
+      - eoapi.develop.eoepca.org
       methods:
       - POST
       paths:
@@ -202,13 +208,15 @@ spec:
         - ^(/stac)($|/.*)
         - $2
       enable: true
+    - name: cors
+      enable: true
   - name: stac-protected-route
     backends:
     - serviceName: stac-eoapi
       servicePort: 8080
     match:
       hosts:
-      - eoapi.apx.develop.eoepca.org
+      - eoapi.develop.eoepca.org
       paths:
       - /stac/*
     plugins:
@@ -235,3 +243,37 @@ spec:
       config:
         host: http://iam-opal-opal-client.iam:8181
         policy: eoepca/dataaccess/eoapi
+    - name: cors
+      enable: true
+  - name: docs-redirect
+    backends:
+    - serviceName: doc-server-eoapi
+      servicePort: 80
+    match:
+      hosts:
+      - eoapi.develop.eoepca.org
+      paths:
+      - /docs
+      - /
+    plugins:
+    - name: redirect
+      enable: true
+      config:
+        uri: /docs/
+  - name: docs-route
+    backends:
+    - serviceName: doc-server-eoapi
+      servicePort: 80
+    match:
+      hosts:
+      - eoapi.develop.eoepca.org
+      paths:
+      - /docs/
+      - /docs/*
+    plugins:
+    - name: proxy-rewrite
+      config:
+        regex_uri:
+        - ^(/docs)($|/.*)
+        - $2
+      enable: true

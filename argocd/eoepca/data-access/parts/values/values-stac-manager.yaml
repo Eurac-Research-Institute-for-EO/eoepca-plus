@@ -11,12 +11,12 @@ image:
   tag: latest
   pullPolicy: Always
 
-publicUrl: https://eoapi.apx.develop.eoepca.org/manager/
-stacApi: https://eoapi.apx.develop.eoepca.org/stac/
+publicUrl: https://eoapi.develop.eoepca.org/manager/
+stacApi: https://eoapi.develop.eoepca.org/stac/
 primaryColor: "#005ACD"
 secondaryColor: "#048A81"
 
 oidc:
-  providerUrl: https://iam-auth.apx.develop.eoepca.org
+  providerUrl: https://iam-auth.develop.eoepca.org
   clientId: eoapi
   realm: eoepca

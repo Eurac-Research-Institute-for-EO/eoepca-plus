@@ -15,7 +15,7 @@ spec:
     directAccessGrantsEnabled: true # allow for now to simplify testing
     serviceAccountsEnabled: false
     oauth2DeviceAuthorizationGrantEnabled: true    
-    rootUrl: https://eoapi.apx.develop.eoepca.org
+    rootUrl: https://eoapi.develop.eoepca.org
     webOrigins: 
       - '*'
     validRedirectUris:

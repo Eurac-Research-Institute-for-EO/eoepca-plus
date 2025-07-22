@@ -1,20 +1,5 @@
 ingress:
-  enabled: true
-  className: apisix
-  annotations:
-    cert-manager.io/cluster-issuer: letsencrypt-http01-apisix
-    k8s.apisix.apache.org/upstream-read-timeout: "600s"
-    k8s.apisix.apache.org/enable-cors: "true"
-    k8s.apisix.apache.org/http-to-https: "true"
-  hosts:
-    - host: maps.apx.develop.eoepca.org
-      paths:
-        - path: /
-          pathType: ImplementationSpecific
-  tls:
-  - hosts:
-      - maps.apx.develop.eoepca.org
-    secretName: data-access-maps-apx-tls
+  enabled: false
 resources:
   requests:
     memory: "256Mi"
@@ -28,7 +13,7 @@ config:
     bind:
       host: 0.0.0.0
       port: 5000
-    url: https://maps.apx.develop.eoepca.org
+    url: https://maps.develop.eoepca.org
     mimetype: application/json; charset=UTF-8
     encoding: utf-8
     gzip: false
@@ -103,7 +88,7 @@ config:
         - type: text/html
           rel: canonical
           title: information
-          href: https://eoapi.apx.develop.eoepca.org/
+          href: https://eoapi.develop.eoepca.org/
           hreflang: en-US
       extents:
         spatial:
@@ -112,7 +97,7 @@ config:
       providers:
         - type: map
           name: eoapi_maps_plugin.EOAPIProvider
-          data: https://eoapi.apx.develop.eoepca.org/stac/collections/sentinel-2-l2a
+          data: https://eoapi.develop.eoepca.org/stac/collections/sentinel-2-l2a
           format:
             name: png
             mimetype: image/png
@@ -120,8 +105,8 @@ config:
 sync:
   enabled: true
   schedule: "*/10 * * * *"
-  eoapiUrl: "https://eoapi.apx.develop.eoepca.org"
-  pygeoapiUrl: "https://maps.apx.develop.eoepca.org"
+  eoapiUrl: "https://eoapi.develop.eoepca.org"
+  pygeoapiUrl: "https://maps.develop.eoepca.org"
   create: true
   update: true
   delete: true
