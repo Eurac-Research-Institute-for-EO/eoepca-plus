@@ -20,18 +20,13 @@ spec:
         expose:
           ingress:
             annotations:
-              kubernetes.io/ingress.class: nginx
-              cert-manager.io/cluster-issuer: "letsencrypt-prod"
-              nginx.ingress.kubernetes.io/proxy-read-timeout: '600'
-
-              # from chart:
-              ingress.kubernetes.io/ssl-redirect: "true"
-              ingress.kubernetes.io/proxy-body-size: "0"
-              nginx.ingress.kubernetes.io/ssl-redirect: "true"
-              nginx.ingress.kubernetes.io/proxy-body-size: "0"
-
+              kubernetes.io/ingress.class: apisix
+              cert-manager.io/cluster-issuer: letsencrypt-http01-apisix
+              k8s.apisix.apache.org/upstream-read-timeout: "600s"
+              k8s.apisix.apache.org/enable-cors: "true"
+              k8s.apisix.apache.org/http-to-https: "true"
             hosts:
-              core: harbor.develop.eoepca.org
+              core: harbor.apx.develop.eoepca.org
           tls:
             enabled: true
             certSource: secret
@@ -53,7 +48,7 @@ spec:
             trivy:
               storageClass: managed-nfs-storage-retain
 
-        externalURL: https://harbor.develop.eoepca.org
+        externalURL: https://harbor.apx.develop.eoepca.org
         # initial password for logging in with user "admin"
         harborAdminPassword:
           valueFrom:
