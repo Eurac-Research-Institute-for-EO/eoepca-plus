@@ -1,0 +1,28 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: sharinghub
+  namespace: sharinghub
+  annotations:
+    kubernetes.io/ingress.class: apisix
+    apisix.apache.org/ssl-redirect: "true"
+    cert-manager.io/cluster-issuer: "letsencrypt-http01-apisix"
+    k8s.apisix.apache.org/enable-cors: "true"
+    k8s.apisix.apache.org/upstream-read-timeout: "600s"
+spec:
+  ingressClassName: apisix
+  rules:
+    - host: apx.develop.eoepca.org
+      http:
+        paths:
+          - path: /sharinghub/
+            pathType: Prefix
+            backend:
+              service:
+                name: sharinghub
+                port:
+                  number: 8000
+  tls:
+    - hosts:
+        - apx.develop.eoepca.org
+      secretName: sharinghub-apx.develop.eoepca.org-tls

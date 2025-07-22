@@ -1,0 +1,47 @@
+#!/usr/bin/bash
+
+ORIG_DIR="$(pwd)"
+cd "$(dirname "$0")"
+BIN_DIR="$(pwd)"
+
+onExit() {
+  cd "${ORIG_DIR}"
+}
+trap onExit EXIT
+
+# Optional local .env file for secret values as env vars
+source .env 2>/dev/null
+
+SECRET_NAME="openid-connect"
+NAMESPACE="gitlab"
+
+providerYaml() {
+  cat <<EOF
+name: openid_connect
+label: EOEPCA
+icon: "https://eoepca.readthedocs.io/img/favicon.ico"
+args:
+  name: openid_connect
+  scope: ["openid", "profile", "email"]
+  response_type: "code"
+  issuer: "https://iam-auth.${DOMAIN}/realms/eoepca"
+  client_auth_method: "query"
+  discovery: true
+  uid_field: "preferred_username"
+  pkce: true
+  client_options:
+    identifier: "${MLOPS_GITLAB_CLIENT_ID}"
+    secret: "${MLOPS_GITLAB_CLIENT_SECRET}"
+    redirect_uri: "https://gitlab.${DOMAIN}/users/auth/openid_connect/callback"
+EOF
+}
+
+secretYaml() {
+  kubectl -n "${NAMESPACE}" create secret generic "${SECRET_NAME}" \
+    --from-literal="provider=$(providerYaml)" \
+    --dry-run=client -o yaml
+}
+
+# Create Secret and then pipe to kubeseal to create the SealedSecret
+secretYaml \
+  | kubeseal -o yaml --controller-name sealed-secrets --controller-namespace infra > parts/ss-gitlab-gitlab-openid.yaml

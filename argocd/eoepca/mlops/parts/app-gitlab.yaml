@@ -19,15 +19,19 @@ spec:
         global:
           edition: ce
           hosts:
-            domain: develop.eoepca.org
+            domain: apx.develop.eoepca.org
           ingress:
             configureCertmanager: false
-            class: nginx
+            class: apisix
+            provider: apisix
             tls:
               external: true
             annotations:
-              kubernetes.io/tls-acme: true
-              cert-manager.io/cluster-issuer: letsencrypt-prod
+              cert-manager.io/cluster-issuer: letsencrypt-http01-apisix
+              apisix.ingress.kubernetes.io/use-regex: "true"
+              k8s.apisix.apache.org/upstream-read-timeout: "600s"
+              k8s.apisix.apache.org/enable-cors: "true"
+              k8s.apisix.apache.org/http-to-https: "true"
 
           minio:
             enabled: false
@@ -71,12 +75,12 @@ spec:
           webservice:
             ingress:
               tls:
-                secretName: gitlab.develop.eoepca.org-tls
+                secretName: gitlab.apx.develop.eoepca.org-tls
 
           kas:
             ingress:
               tls:
-                secretName: kas.develop.eoepca.org-tls
+                secretName: kas.apx.develop.eoepca.org-tls
 
           toolbox:
             backups:
@@ -91,12 +95,12 @@ spec:
           enabled: false
           ingress:
             tls: 
-              secretName: registry.develop.eoepca.org-tls
+              secretName: registry.apx.develop.eoepca.org-tls
 
         minio:
           ingress:
             tls:
-              secretName: minio.develop.eoepca.org-tls
+              secretName: minio.apx.develop.eoepca.org-tls
 
         certmanager:
           install: false

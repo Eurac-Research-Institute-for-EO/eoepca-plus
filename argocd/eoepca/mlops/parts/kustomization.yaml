@@ -13,3 +13,5 @@ resources:
   - ss-mlflow-sharinghub.yaml
   - ss-mlflow-s3.yaml
   - app-mlflow-sharinghub.yaml
+  - ingress-mlflow-sharinghub.yaml
+  - ingress-app-sharinghub.yaml
