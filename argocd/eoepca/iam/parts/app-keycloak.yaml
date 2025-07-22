@@ -23,7 +23,7 @@ spec:
       chart: iam-bb
       targetRevision: 2.0.0-rc2
       helm:
-        releaseName: iam
+        #releaseName: iam-keycloak
         valueFiles:
           - $values/argocd/eoepca/iam/parts/values/iam-values.yaml
         # For now, all services are disabled by default in iam-values.yaml in order to
