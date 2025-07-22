@@ -31,7 +31,7 @@ spec:
             enabled: true
             certSource: secret
             secret:
-              secretName: "harbor-tls"
+              secretName: "harbor-apx-tls"
 
         persistence:
           persistentVolumeClaim:
