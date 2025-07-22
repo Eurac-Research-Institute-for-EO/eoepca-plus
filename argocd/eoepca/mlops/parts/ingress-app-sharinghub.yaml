@@ -6,7 +6,6 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: apisix
     apisix.apache.org/ssl-redirect: "true"
-    cert-manager.io/cluster-issuer: "letsencrypt-http01-apisix"
     k8s.apisix.apache.org/enable-cors: "true"
     k8s.apisix.apache.org/upstream-read-timeout: "600s"
 spec:
