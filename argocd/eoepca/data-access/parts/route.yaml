@@ -3,8 +3,8 @@ kind: ApisixRoute
 metadata:
   name: stac
   namespace: data-access
-  annotations:
-    argocd.argoproj.io/sync-options: skip
+  # annotations:
+  #   argocd.argoproj.io/sync-options: skip
 spec:
   http:
   - name: manager-route
