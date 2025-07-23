@@ -19,8 +19,8 @@ chmod +x tmp/bin/create-client
 
 # Create the client
 tmp/bin/create-client \
-  -a https://keycloak-v1x.develop.eoepca.org \
-  -i https://identity-api.develop.eoepca.org \
+  -a https://iam-auth.apx.develop.eoepca.org \
+  -i https://identity-api.apx.develop.eoepca.org \
   -r "master" \
   -u "admin" \
   -p "changeme" \
