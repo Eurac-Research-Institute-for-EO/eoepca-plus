@@ -1,5 +1,6 @@
 .vscode/
 kubeconfig
+kubeconfig.yaml
 argocd.yaml
 vcluster
 venv/
