@@ -16,7 +16,6 @@ spec:
       plugins:
         - redirect:
             uri: /flowable-rest/
-            ret_code: 301
       backends:  # never hit due to redirect
         - serviceName: registration-harvester-api-engine-flowable-rest
           servicePort: 8080
