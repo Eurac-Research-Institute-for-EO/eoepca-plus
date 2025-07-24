@@ -28,7 +28,7 @@ spec:
         hosts:
           - registration-harvester-api.apx.develop.eoepca.org
         paths:
-          - /flowable-rest/
+          - /flowable-rest/*
       # plugins:
       #   - name: proxy-rewrite
       #     enable: true
