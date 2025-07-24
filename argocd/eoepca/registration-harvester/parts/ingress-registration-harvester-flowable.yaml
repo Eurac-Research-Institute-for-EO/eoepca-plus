@@ -29,13 +29,13 @@ spec:
           - registration-harvester-api.apx.develop.eoepca.org
         paths:
           - /flowable-rest/
-      plugins:
-        - name: proxy-rewrite
-          enable: true
-          config:
-            regex_uri:
-              - "^/flowable-rest/(.*)"
-              - "/$1"
+      # plugins:
+      #   - name: proxy-rewrite
+      #     enable: true
+      #     config:
+      #       regex_uri:
+      #         - "^/flowable-rest/(.*)"
+      #         - "/$1"
       backends:
         - serviceName: registration-harvester-api-engine-flowable-rest
           servicePort: 8080
