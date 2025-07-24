@@ -14,9 +14,9 @@ spec:
           - /
           - /flowable-rest
       plugins:
-        redirect:
-          uri: /flowable-rest/
-          ret_code: 301
+        - redirect:
+            uri: /flowable-rest/
+            ret_code: 301
       backends:  # never hit due to redirect
         - serviceName: registration-harvester-api-engine-flowable-rest
           servicePort: 8080
@@ -29,10 +29,10 @@ spec:
         paths:
           - /flowable-rest/
       plugins:
-        proxy-rewrite:
-          regex_uri:
-            - "^/flowable-rest/(.*)"
-            - "/$1"
+        - proxy-rewrite:
+            regex_uri:
+              - "^/flowable-rest/(.*)"
+              - "/$1"
       backends:
         - serviceName: registration-harvester-api-engine-flowable-rest
           servicePort: 8080
