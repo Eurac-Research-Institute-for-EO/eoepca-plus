@@ -22,20 +22,13 @@ spec:
         - serviceName: registration-harvester-api-engine-flowable-rest
           servicePort: 8080
 
-    # 2. Rewrite /flowable-rest/(.*) → /(.*)
+    # 2. Main service handler
     - name: rewrite-flowable-path
       match:
         hosts:
           - registration-harvester-api.apx.develop.eoepca.org
         paths:
           - /flowable-rest/*
-      # plugins:
-      #   - name: proxy-rewrite
-      #     enable: true
-      #     config:
-      #       regex_uri:
-      #         - "^/flowable-rest/(.*)"
-      #         - "/$1"
       backends:
         - serviceName: registration-harvester-api-engine-flowable-rest
           servicePort: 8080
