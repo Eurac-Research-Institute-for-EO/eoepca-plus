@@ -39,6 +39,7 @@ ingress:
     ingress.kubernetes.io/ssl-redirect: "true"
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
     cert-manager.io/cluster-issuer: letsencrypt-dns-prod
+    argocd.argoproj.io/ignore-healthcheck: "true"
   hosts:
   - host: zoo.apx.develop.eoepca.org
     paths:

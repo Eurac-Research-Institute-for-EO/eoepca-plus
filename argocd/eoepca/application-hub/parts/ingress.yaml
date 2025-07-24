@@ -11,6 +11,7 @@ metadata:
     k8s.apisix.apache.org/enable-cors: "true"
     k8s.apisix.apache.org/upstream-read-timeout: "600s"
     k8s.apisix.apache.org/enable-websocket: "true"
+    argocd.argoproj.io/ignore-healthcheck: "true"
 spec:
   ingressClassName: apisix
   rules:

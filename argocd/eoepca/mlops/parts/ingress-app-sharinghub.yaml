@@ -8,6 +8,7 @@ metadata:
     apisix.apache.org/ssl-redirect: "true"
     k8s.apisix.apache.org/enable-cors: "true"
     k8s.apisix.apache.org/upstream-read-timeout: "600s"
+    argocd.argoproj.io/ignore-healthcheck: "true"
 spec:
   ingressClassName: apisix
   rules:

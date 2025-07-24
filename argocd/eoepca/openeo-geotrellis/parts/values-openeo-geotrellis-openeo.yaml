@@ -320,6 +320,7 @@ ingress:
     k8s.apisix.apache.org/upstream-read-timeout: "600s"
     k8s.apisix.apache.org/enable-cors: "true"
     k8s.apisix.apache.org/http-to-https: "true"
+    argocd.argoproj.io/ignore-healthcheck: "true"
   hosts:
     - host: openeo.apx.develop.eoepca.org
       paths:

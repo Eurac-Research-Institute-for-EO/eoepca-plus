@@ -15,6 +15,7 @@ ingress:
     k8s.apisix.apache.org/enable-cors: "true"
     k8s.apisix.apache.org/http-to-https: "true"
     k8s.apisix.apache.org/enable-websocket: "true"
+    argocd.argoproj.io/ignore-healthcheck: "true"
   hosts:
     - host: editor.apx.develop.eoepca.org
       paths:
