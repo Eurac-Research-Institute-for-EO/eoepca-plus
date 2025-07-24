@@ -39,7 +39,7 @@ application-quality:
       k8s.apisix.apache.org/upstream-read-timeout: "600s"
       k8s.apisix.apache.org/enable-cors: "true"
       k8s.apisix.apache.org/http-to-https: "true"
-      argocd.argoproj.io/health: ignore
+      argocd.argoproj.io/ignore-healthcheck: "true"
     tls:
       - hosts:
         - application-quality.apx.develop.eoepca.org
@@ -59,7 +59,7 @@ grafana:
       k8s.apisix.apache.org/upstream-read-timeout: "600s"
       k8s.apisix.apache.org/enable-cors: "true"
       k8s.apisix.apache.org/http-to-https: "true"
-      argocd.argoproj.io/health: ignore
+      argocd.argoproj.io/ignore-healthcheck: "true"
     path: /dashboards/?(.*)
     pathType: Prefix
     tls:
