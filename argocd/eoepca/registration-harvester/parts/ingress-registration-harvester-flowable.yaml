@@ -1,0 +1,67 @@
+apiVersion: apisix.apache.org/v2
+kind: ApisixRoute
+metadata:
+  name: registration-harvester-api
+  namespace: registration-harvester-api
+spec:
+  http:
+    # 1. Redirect to /flowable-rest/
+    - name: redirect-root
+      match:
+        hosts:
+          - registration-harvester-api.apx.develop.eoepca.org
+        paths:
+          - /
+          - /flowable-rest
+      plugins:
+        redirect:
+          uri: /flowable-rest/
+          ret_code: 301
+      backends:  # never hit due to redirect
+        - serviceName: registration-harvester-api-engine-flowable-rest
+          servicePort: 8080
+
+    # 2. Rewrite /flowable-rest/(.*) → /(.*)
+    - name: rewrite-flowable-path
+      match:
+        hosts:
+          - registration-harvester-api.apx.develop.eoepca.org
+        paths:
+          - /flowable-rest/
+      plugins:
+        proxy-rewrite:
+          regex_uri:
+            - "^/flowable-rest/(.*)"
+            - "/$1"
+      backends:
+        - serviceName: registration-harvester-api-engine-flowable-rest
+          servicePort: 8080
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: registration-harvester-api-tls
+  namespace: registration-harvester-api
+spec:
+  dnsNames:
+    - registration-harvester-api.apx.develop.eoepca.org
+  issuerRef:
+    kind: ClusterIssuer
+    name: letsencrypt-http01-apisix
+  secretName: registration-harvester-api-apx-tls
+  usages:
+    - digital signature
+    - key encipherment
+    - server auth
+---
+apiVersion: apisix.apache.org/v2
+kind: ApisixTls
+metadata:
+  name: registration-harvester-api-tls
+  namespace: registration-harvester-api
+spec:
+  hosts:
+    - registration-harvester-api.apx.develop.eoepca.org
+  secret:
+    name: registration-harvester-api-apx-tls
+    namespace: registration-harvester-api

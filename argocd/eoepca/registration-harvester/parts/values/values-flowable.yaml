@@ -1,5 +1,6 @@
 host:
-  external: registration-harvester-api.develop.eoepca.org
+  # suspect this is not needed since it is only used by the (disabled) ingress
+  external: registration-harvester-api.apx.develop.eoepca.org
 
 rest:
   admin:
@@ -7,9 +8,10 @@ rest:
     password: eoepca
 
 ingress:
-  useHost: "true"
-  sslRedirect: "true"
-  clusterIssuer: letsencrypt-prod
+  enabled: false
+  # useHost: "true"
+  # sslRedirect: "true"
+  # clusterIssuer: letsencrypt-http01-apisix
 
 # https://github.com/bitnami/charts/tree/postgresql/12.10.0/bitnami/postgresql
 global:
