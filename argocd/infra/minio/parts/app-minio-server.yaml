@@ -28,6 +28,7 @@ spec:
             cert-manager.io/cluster-issuer: "letsencrypt-http01-apisix"
             k8s.apisix.apache.org/enable-cors: "true"
             k8s.apisix.apache.org/upstream-read-timeout: "600s"
+            argocd.argoproj.io/ignore-healthcheck: "true"
           path: /
           hosts:
             - minio.apx.develop.eoepca.org
@@ -45,6 +46,7 @@ spec:
             cert-manager.io/cluster-issuer: "letsencrypt-http01-apisix"
             k8s.apisix.apache.org/enable-cors: "true"
             k8s.apisix.apache.org/upstream-read-timeout: "600s"
+            argocd.argoproj.io/ignore-healthcheck: "true"
           path: /
           hosts:
             - console.minio.apx.develop.eoepca.org
