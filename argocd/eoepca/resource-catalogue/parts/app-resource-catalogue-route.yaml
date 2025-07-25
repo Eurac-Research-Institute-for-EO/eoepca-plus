@@ -12,7 +12,7 @@ spec:
   - name: resource-catalogue-protected
     match:
       hosts:
-        - resource-catalogue-protected.apx.develop.eoepca.org
+        - resource-catalogue-protected.develop.eoepca.org
       paths:
         - /*
     backends:
@@ -26,13 +26,13 @@ spec:
           client_id: "TBD"
           client_secret: "TBD"
           access_token_in_authorization_header: true
-          discovery: "https://iam-auth.apx.develop.eoepca.org/realms/eoepca/.well-known/openid-configuration"
+          discovery: "https://iam-auth.develop.eoepca.org/realms/eoepca/.well-known/openid-configuration"
       - name: authz-keycloak
         enable: true
         config:
           client_id: "TBD"
           client_secret: "TBD"
-          discovery: "https://iam-auth.apx.develop.eoepca.org/realms/eoepca/.well-known/uma2-configuration"
+          discovery: "https://iam-auth.develop.eoepca.org/realms/eoepca/.well-known/uma2-configuration"
           lazy_load_paths: true
           ssl_verify: false
       - name: cors
@@ -40,7 +40,7 @@ spec:
   - name: resource-catalogue-open
     match:
       hosts:
-        - resource-catalogue.apx.develop.eoepca.org
+        - resource-catalogue.develop.eoepca.org
       paths:
         - /*
     backends:
