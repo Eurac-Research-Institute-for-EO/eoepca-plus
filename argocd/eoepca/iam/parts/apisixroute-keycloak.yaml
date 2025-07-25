@@ -17,7 +17,6 @@ spec:
     match:
       hosts:
       - iam-auth.develop.eoepca.org
-      - iam-auth.apx.develop.eoepca.org
       paths:
       - /*
     name: keycloak

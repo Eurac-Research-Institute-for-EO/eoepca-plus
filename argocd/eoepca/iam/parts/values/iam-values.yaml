@@ -26,7 +26,6 @@ iam: &iam
     internalUrl: ""
     hosts:
       - iam-auth.develop.eoepca.org
-      - iam-auth.apx.develop.eoepca.org
     paths:
       - /*
     # Optional configuration to apply as Crossplane CRs.
@@ -86,7 +85,6 @@ iam: &iam
     url: https://iam-opa.develop.eoepca.org
     hosts:
       - iam-opa.develop.eoepca.org
-      - iam-opa.apx.develop.eoepca.org
     paths:
       - /*
     # Client credentials:
@@ -107,7 +105,6 @@ iam: &iam
     url: https://identity-api.develop.eoepca.org
     hosts:
       - identity-api.develop.eoepca.org
-      - identity-api.apx.develop.eoepca.org
     paths:
       - /*
     docsPath: /docs/*
