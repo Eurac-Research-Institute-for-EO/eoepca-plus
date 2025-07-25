@@ -12,8 +12,8 @@ zookernel:
 customConfig:
   main:
     eoepca: |-
-      domain=apx.develop.eoepca.org
-      workspace_url=https://workspace-api.apx.develop.eoepca.org
+      domain=develop.eoepca.org
+      workspace_url=https://workspace-api.develop.eoepca.org
       workspace_prefix=ws
       workspace_catalog_register=false
 workflow:
@@ -33,7 +33,7 @@ workflow:
   storageClass: managed-nfs-storage-retain
 ingress:
   enabled: false
-  hosturl: https://zoo.apx.develop.eoepca.org
+  hosturl: https://zoo.develop.eoepca.org
   annotations:
     kubernetes.io/ingress.class: apisix
     ingress.kubernetes.io/ssl-redirect: "true"
@@ -41,13 +41,13 @@ ingress:
     cert-manager.io/cluster-issuer: letsencrypt-dns-prod
     argocd.argoproj.io/ignore-healthcheck: "true"
   hosts:
-  - host: zoo.apx.develop.eoepca.org
+  - host: zoo.develop.eoepca.org
     paths:
     - path: /
       pathType: ImplementationSpecific
   tls:
   - hosts:
-    - zoo.apx.develop.eoepca.org
+    - zoo.develop.eoepca.org
     secretName: zoo-tls
 persistence:
   procServicesStorageClass: managed-nfs-storage-retain
