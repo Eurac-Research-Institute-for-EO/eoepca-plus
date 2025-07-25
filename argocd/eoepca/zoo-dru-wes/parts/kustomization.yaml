@@ -1,4 +1,4 @@
 
 resources:
   - app-zoo-dru-core.yaml
-  - ingress-zoo-via-apx.yaml
+  - ingress-zoo.yaml
