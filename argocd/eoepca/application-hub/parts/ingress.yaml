@@ -15,7 +15,7 @@ metadata:
 spec:
   ingressClassName: apisix
   rules:
-    - host: applicationhub.apx.develop.eoepca.org
+    - host: applicationhub.develop.eoepca.org
       http:
         paths:
           - path: "/"
@@ -27,5 +27,5 @@ spec:
                   number: 80
   tls:
     - hosts:
-        - applicationhub.apx.develop.eoepca.org
-      secretName: applicationhub-apx-tls
+        - applicationhub.develop.eoepca.org
+      secretName: applicationhub-tls
