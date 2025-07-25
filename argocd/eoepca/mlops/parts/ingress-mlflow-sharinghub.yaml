@@ -10,6 +10,7 @@ spec:
       hosts:
       - develop.eoepca.org
       paths:
+      - /mlflow
       - /mlflow/*
     backends:
     - serviceName: mlflow-sharinghub
@@ -25,8 +26,8 @@ spec:
       enable: true
       config:
         regex_uri:
-          - "^/mlflow/(.*)"
-          - "/$1"
+          - ^/mlflow($|/)(.*)
+          - /$2
         scheme: https
         headers:
           set:
