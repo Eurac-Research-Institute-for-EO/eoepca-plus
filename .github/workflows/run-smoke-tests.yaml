@@ -7,10 +7,10 @@ name: ▶️ Smoke Tests
 on:
   # via github UI
   workflow_dispatch:
-  # # commits
-  # push:
-  #   branches:
-  #     - deploy-*
+  # commits
+  push:
+    branches:
+      - deploy-*
 
 jobs:
   run-smoke-tests:
