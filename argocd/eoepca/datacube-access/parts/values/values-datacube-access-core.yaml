@@ -9,14 +9,14 @@ ingress:
     k8s.apisix.apache.org/http-to-https: "true"
     argocd.argoproj.io/ignore-healthcheck: "true"
   hosts:
-    - host: datacube-access.apx.develop.eoepca.org
+    - host: datacube-access.develop.eoepca.org
       paths:
         - path: /
           pathType: Prefix
   tls:
   - hosts:
-      - datacube-access.apx.develop.eoepca.org
-    secretName: datacube-access-apx-tls
+      - datacube-access.develop.eoepca.org
+    secretName: datacube-access-tls
 resources:
   requests:
     memory: "256Mi"
@@ -25,4 +25,4 @@ resources:
     memory: "512Mi"
     cpu: "500m"
 config:
-  dataBackend: https://eoapi.apx.develop.eoepca.org/stac/
+  dataBackend: https://eoapi.develop.eoepca.org/stac/
