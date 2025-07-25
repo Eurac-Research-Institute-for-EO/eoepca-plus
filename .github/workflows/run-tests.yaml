@@ -40,9 +40,11 @@ jobs:
         uses: tvarohohlavy/inplace-envsubst-action@v1.0.0
         env:
           OAPIP_CLIENT_SECRET: ${{ secrets.OAPIP_CLIENT_SECRET }}
+          EOAPI_CLIENT_SECRET: ${{ secrets.EOAPI_CLIENT_SECRET }}
         with:
           variables: |
             $OAPIP_CLIENT_SECRET
+            $EOAPI_CLIENT_SECRET
           files: |
             pytest.env
 
