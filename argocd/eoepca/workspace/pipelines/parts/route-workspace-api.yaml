@@ -9,7 +9,7 @@ spec:
     - name: workspace-api-no-auth
       match:
         hosts:
-          - workspace-api.apx.develop.eoepca.org
+          - workspace-api.develop.eoepca.org
         paths:
           - "/metrics*"
           - "/probe*"
@@ -21,7 +21,7 @@ spec:
     - name: workspace-api-debug
       match:
         hosts:
-          - workspace-api.apx.develop.eoepca.org
+          - workspace-api.develop.eoepca.org
         paths:
           - /debug*
       backends:
@@ -31,7 +31,7 @@ spec:
         - name: openid-connect
           enable: true
           config:
-            discovery: "https://iam-auth.apx.develop.eoepca.org/realms/eoepca/.well-known/openid-configuration"
+            discovery: "https://iam-auth.develop.eoepca.org/realms/eoepca/.well-known/openid-configuration"
             use_jwks: true
             bearer_only: false
             set_access_token_header: false
@@ -49,7 +49,7 @@ spec:
     - name: workspace-api-docs
       match:
         hosts:
-          - workspace-api.apx.develop.eoepca.org
+          - workspace-api.develop.eoepca.org
         paths:
           - /docs*
           - /openapi.json*
@@ -61,12 +61,12 @@ spec:
       #     enable: true
       #     config:
       #       access_token_in_authorization_header: true
-      #       discovery: "https://iam-auth.apx.develop.eoepca.org/realms/eoepca/.well-known/openid-configuration"
+      #       discovery: "https://iam-auth.develop.eoepca.org/realms/eoepca/.well-known/openid-configuration"
       #     secretRef: workspace-api
     - name: workspace-api-admin
       match:  
         hosts:
-          - workspace-api.apx.develop.eoepca.org
+          - workspace-api.develop.eoepca.org
         paths:
           - /workspaces
           - /workspaces/*
@@ -80,14 +80,14 @@ spec:
         - name: authz-keycloak
           enable: true
           config:
-            discovery: https://iam-auth.apx.develop.eoepca.org/realms/eoepca/.well-known/uma2-configuration
+            discovery: https://iam-auth.develop.eoepca.org/realms/eoepca/.well-known/uma2-configuration
             lazy_load_paths: true
             ssl_verify: false
           secretRef: workspace-api
     - name: workspace-api-user
       match:
         hosts:
-          - workspace-api.apx.develop.eoepca.org
+          - workspace-api.develop.eoepca.org
         paths:
           - /*
       backends:
@@ -97,7 +97,7 @@ spec:
         - name: openid-connect
           enable: true
           config:
-            discovery: "https://iam-auth.apx.develop.eoepca.org/realms/eoepca/.well-known/openid-configuration"
+            discovery: "https://iam-auth.develop.eoepca.org/realms/eoepca/.well-known/openid-configuration"
             use_jwks: true
             bearer_only: false
             set_access_token_header: true

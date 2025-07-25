@@ -4,13 +4,13 @@ metadata:
   name: workspace
 data:
   domain: develop.eoepca.org
-  separator: ".apx."
+  separator: "."
   storage:
     provider: Minio
     endpoint: https://minio.develop.eoepca.org
     region: eoepca-demo
   iam:
-    discovery: https://iam-auth.apx.develop.eoepca.org/realms/eoepca/.well-known/openid-configuration
+    discovery: https://iam-auth.develop.eoepca.org/realms/eoepca/.well-known/openid-configuration
   opa: 
     host: http://iam-opal-opal-client.iam:8181
     policy: eoepca/workspace/wsui
