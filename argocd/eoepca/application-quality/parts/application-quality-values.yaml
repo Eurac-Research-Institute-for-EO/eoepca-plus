@@ -60,7 +60,7 @@ grafana:
       k8s.apisix.apache.org/enable-cors: "true"
       k8s.apisix.apache.org/http-to-https: "true"
       argocd.argoproj.io/ignore-healthcheck: "true"
-    path: /dashboards/?(.*)
+    path: /dashboards
     pathType: Prefix
     tls:
       - secretName: application-quality-tls
