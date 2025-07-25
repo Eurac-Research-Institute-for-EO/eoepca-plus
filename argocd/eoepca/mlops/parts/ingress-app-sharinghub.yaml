@@ -12,7 +12,7 @@ metadata:
 spec:
   ingressClassName: apisix
   rules:
-    - host: apx.develop.eoepca.org
+    - host: develop.eoepca.org
       http:
         paths:
           - path: /sharinghub/
@@ -24,5 +24,5 @@ spec:
                   number: 8000
   tls:
     - hosts:
-        - apx.develop.eoepca.org
-      secretName: sharinghub-apx.develop.eoepca.org-tls
+        - develop.eoepca.org
+      secretName: sharinghub-develop.eoepca.org-tls

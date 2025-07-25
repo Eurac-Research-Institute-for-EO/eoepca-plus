@@ -9,11 +9,14 @@ onExit() {
 }
 trap onExit EXIT
 
-# Optional local .env file for secret values as env vars
-source .env 2>/dev/null
-
 SECRET_NAME="openid-connect"
 NAMESPACE="gitlab"
+
+# Parameters from env
+source .env 2>/dev/null  # Optional local .env file for secret values as env vars
+DOMAIN=${DOMAIN:-develop.eoepca.org}
+MLOPS_GITLAB_CLIENT_ID=${MLOPS_GITLAB_CLIENT_ID:-mlopsbb-gitlab}
+MLOPS_GITLAB_CLIENT_SECRET=${MLOPS_GITLAB_CLIENT_SECRET:-changeme}
 
 providerYaml() {
   cat <<EOF

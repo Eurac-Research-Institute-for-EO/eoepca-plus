@@ -19,7 +19,7 @@ spec:
         global:
           edition: ce
           hosts:
-            domain: apx.develop.eoepca.org
+            domain: develop.eoepca.org
           ingress:
             configureCertmanager: false
             class: apisix
@@ -76,12 +76,12 @@ spec:
           webservice:
             ingress:
               tls:
-                secretName: gitlab.apx.develop.eoepca.org-tls
+                secretName: gitlab.develop.eoepca.org-tls
 
           kas:
             ingress:
               tls:
-                secretName: kas.apx.develop.eoepca.org-tls
+                secretName: kas.develop.eoepca.org-tls
 
           toolbox:
             backups:
@@ -96,12 +96,12 @@ spec:
           enabled: false
           ingress:
             tls: 
-              secretName: registry.apx.develop.eoepca.org-tls
+              secretName: registry.develop.eoepca.org-tls
 
         minio:
           ingress:
             tls:
-              secretName: minio.apx.develop.eoepca.org-tls
+              secretName: minio.develop.eoepca.org-tls
 
         certmanager:
           install: false

@@ -19,14 +19,14 @@ spec:
           pullPolicy: Always
 
         mlflowSharinghub:
-          sharinghubUrl: https://apx.develop.eoepca.org/sharinghub
+          sharinghubUrl: https://develop.eoepca.org/sharinghub
           sharinghubStacCollection: ai-model
           sharinghubAuthDefaultToken: false
           artifactsDestination: s3://mlopsbb-mlflow-sharinghub
 
         s3:
           enabled: true
-          endpointUrl: https://minio.apx.develop.eoepca.org
+          endpointUrl: https://minio.develop.eoepca.org
 
         persistence:
           enabled: false

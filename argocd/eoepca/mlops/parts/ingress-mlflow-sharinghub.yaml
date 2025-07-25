@@ -8,7 +8,7 @@ spec:
   - name: mlflow-sharinghub
     match:
       hosts:
-      - apx.develop.eoepca.org
+      - develop.eoepca.org
       paths:
       - /mlflow/*
     backends:
@@ -39,11 +39,11 @@ metadata:
   namespace: sharinghub
 spec:
   dnsNames:
-    - apx.develop.eoepca.org
+    - develop.eoepca.org
   issuerRef:
     kind: ClusterIssuer
     name: letsencrypt-http01-apisix
-  secretName: sharinghub-apx.develop.eoepca.org-tls
+  secretName: sharinghub-develop.eoepca.org-tls
   usages:
     - digital signature
     - key encipherment
@@ -56,7 +56,7 @@ metadata:
   namespace: sharinghub
 spec:
   hosts:
-    - apx.develop.eoepca.org
+    - develop.eoepca.org
   secret:
-    name: sharinghub-apx.develop.eoepca.org-tls
+    name: sharinghub-develop.eoepca.org-tls
     namespace: sharinghub
