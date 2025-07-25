@@ -9,6 +9,7 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt-dns-prod
 spec:
   hosts:
+    - "*.develop.eoepca.org"
     - "*.apx.develop.eoepca.org"
   secret:
     name: apx-all-tls
