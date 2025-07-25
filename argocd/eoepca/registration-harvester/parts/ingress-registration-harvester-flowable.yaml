@@ -9,7 +9,7 @@ spec:
     - name: redirect-root
       match:
         hosts:
-          - registration-harvester-api.apx.develop.eoepca.org
+          - registration-harvester-api.develop.eoepca.org
         paths:
           - /
           - /flowable-rest
@@ -26,7 +26,7 @@ spec:
     - name: rewrite-flowable-path
       match:
         hosts:
-          - registration-harvester-api.apx.develop.eoepca.org
+          - registration-harvester-api.develop.eoepca.org
         paths:
           - /flowable-rest/*
       backends:
@@ -40,11 +40,11 @@ metadata:
   namespace: registration-harvester-api
 spec:
   dnsNames:
-    - registration-harvester-api.apx.develop.eoepca.org
+    - registration-harvester-api.develop.eoepca.org
   issuerRef:
     kind: ClusterIssuer
     name: letsencrypt-http01-apisix
-  secretName: registration-harvester-api-apx-tls
+  secretName: registration-harvester-api-tls
   usages:
     - digital signature
     - key encipherment
@@ -57,7 +57,7 @@ metadata:
   namespace: registration-harvester-api
 spec:
   hosts:
-    - registration-harvester-api.apx.develop.eoepca.org
+    - registration-harvester-api.develop.eoepca.org
   secret:
-    name: registration-harvester-api-apx-tls
+    name: registration-harvester-api-tls
     namespace: registration-harvester-api
