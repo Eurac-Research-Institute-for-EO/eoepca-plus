@@ -31,11 +31,11 @@ spec:
             argocd.argoproj.io/ignore-healthcheck: "true"
           path: /
           hosts:
-            - minio.apx.develop.eoepca.org
+            - minio.develop.eoepca.org
           tls:
-            - secretName: minio-apx-tls
+            - secretName: minio-tls
               hosts:
-                - minio.apx.develop.eoepca.org
+                - minio.develop.eoepca.org
         consoleIngress:
           enabled: true
           ingressClassName: apisix
@@ -49,11 +49,11 @@ spec:
             argocd.argoproj.io/ignore-healthcheck: "true"
           path: /
           hosts:
-            - console.minio.apx.develop.eoepca.org
+            - console.minio.develop.eoepca.org
           tls:
-          - secretName: minio-console-apx-tls
+          - secretName: minio-console-tls
             hosts:
-              - console.minio.apx.develop.eoepca.org
+              - console.minio.develop.eoepca.org
         resources:
           requests:
             memory: 1Gi
