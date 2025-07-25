@@ -26,12 +26,12 @@ spec:
               k8s.apisix.apache.org/http-to-https: "true"
               argocd.argoproj.io/ignore-healthcheck: "true"
             hosts:
-              core: harbor.apx.develop.eoepca.org
+              core: harbor.develop.eoepca.org
           tls:
             enabled: true
             certSource: secret
             secret:
-              secretName: "harbor-apx-tls"
+              secretName: "harbor-tls"
 
         persistence:
           persistentVolumeClaim:
@@ -48,7 +48,7 @@ spec:
             trivy:
               storageClass: managed-nfs-storage-retain
 
-        externalURL: https://harbor.apx.develop.eoepca.org
+        externalURL: https://harbor.develop.eoepca.org
 
         # initial password for logging in with user "admin"
         harborAdminPassword: changeme
