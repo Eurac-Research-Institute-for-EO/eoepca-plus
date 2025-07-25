@@ -27,7 +27,7 @@ spec:
             pullPolicy: Always
           config:
             server:
-              url: https://resource-registration.apx.develop.eoepca.org/catalogue
+              url: https://resource-registration.develop.eoepca.org/catalogue
             manager:
               transactions: "true"
               allowed_ips:

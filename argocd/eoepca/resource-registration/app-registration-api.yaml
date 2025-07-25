@@ -25,7 +25,7 @@ spec:
             tag: "latest"
           config:
             server:
-              url: https://resource-registration.apx.develop.eoepca.org
+              url: https://resource-registration.develop.eoepca.org
             logging:
               level: ERROR
               # /tmp/pygeoapi.log
