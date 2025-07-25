@@ -1,4 +1,13 @@
 apiVersion: apisix.apache.org/v2
+kind: ApisixUpstream
+metadata:
+  name: mlflow-sharinghub
+  namespace: sharinghub
+spec:
+  timeout:
+    read: 600
+---
+apiVersion: apisix.apache.org/v2
 kind: ApisixRoute
 metadata:
   name: mlflow-sharinghub
@@ -18,10 +27,6 @@ spec:
     plugins:
     - name: cors
       enable: true
-    - name: proxy-timeout
-      enable: true
-      config:
-        read: 600
     - name: proxy-rewrite
       enable: true
       config:
