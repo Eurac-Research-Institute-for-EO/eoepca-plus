@@ -1,4 +1,5 @@
 
 resources:
   - app-harbor-server.yaml
+  - ingress-plugin.yaml
   - ss-harbor-auth.yaml
