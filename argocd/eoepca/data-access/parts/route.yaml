@@ -7,6 +7,21 @@ metadata:
   #   argocd.argoproj.io/sync-options: skip
 spec:
   http:
+  - name: manager-redirect
+    websocket: true
+    backends:
+    - serviceName: stac-manager
+      servicePort: 80
+    match:
+      hosts:
+      - eoapi.develop.eoepca.org
+      paths:
+      - /manager
+    plugins:
+    - name: redirect
+      enable: true
+      config:
+        uri: /manager/
   - name: manager-route
     websocket: true
     backends:
@@ -16,7 +31,6 @@ spec:
       hosts:
       - eoapi.develop.eoepca.org
       paths:
-      - /manager*
       - /manager/
       - /manager/*
     plugins:
