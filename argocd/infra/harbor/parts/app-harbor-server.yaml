@@ -25,7 +25,7 @@ spec:
               k8s.apisix.apache.org/enable-cors: "true"
               k8s.apisix.apache.org/http-to-https: "true"
               argocd.argoproj.io/ignore-healthcheck: "true"
-              k8s.apisix.apache.org/plugin-config-name: "unlimited-body-size"
+              k8s.apisix.apache.org/plugin-config-name: "harbor-ingress"
             hosts:
               core: harbor.develop.eoepca.org
           tls:
