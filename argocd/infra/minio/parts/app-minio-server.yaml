@@ -47,6 +47,7 @@ spec:
             k8s.apisix.apache.org/enable-cors: "true"
             k8s.apisix.apache.org/upstream-read-timeout: "600s"
             argocd.argoproj.io/ignore-healthcheck: "true"
+            k8s.apisix.apache.org/plugin-config-name: "unlimited-body-size"
           path: /
           hosts:
             - console.minio.develop.eoepca.org

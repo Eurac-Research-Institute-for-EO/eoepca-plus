@@ -1,4 +1,5 @@
 
 resources:
   - app-minio-server.yaml
+  - ingress-plugin.yaml
   - ss-minio-auth.yaml
