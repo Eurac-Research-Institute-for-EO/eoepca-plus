@@ -1,28 +1,20 @@
 ingress:
   enabled: false
 
-db:
-  enabled: false
+postgresql:
+  type: "external-secret"
+  external:
+    existingSecret:
+      name: "default-pguser-eoapi"
+      keys:
+        username: "user"
+        password: "password"
+        host: "host"
+        port: "port"
+        database: "dbname"
 
 postgrescluster:
-  enabled: true
-  postgresVersion: 16
-  postGISVersion: "3.4"
-  pgBouncerReplicas: 1
-  monitoring: false
-  instances:
-  - name: eoapi
-    replicas: 1
-    dataVolumeClaimSpec:
-      storageClassName: managed-nfs-storage-retain
-      accessModes:
-      - "ReadWriteMany"
-      resources:
-        requests:
-          storage: 1Gi
-  backupsStorageClassName: managed-nfs-storage-retain
-  nfsCustom:  # we added a manual option to our postgresql chart to try and accommodate this b/c it was hardcoded as ReadWriteOnce: https://github.com/developmentseed/eoapi-k8s/pull/147
-      - name: repo1
+  enabled: false
 
 pgstacBootstrap:
   enabled: true
