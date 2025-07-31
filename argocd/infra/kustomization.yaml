@@ -8,3 +8,4 @@ resources:
   - strimzi-operator
   - apisix
   - pgo
+  - gateway
