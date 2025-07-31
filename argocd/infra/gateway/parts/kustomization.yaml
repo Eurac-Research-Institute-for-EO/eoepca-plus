@@ -1,8 +1,8 @@
 
 resources:
   - app-envoy-gateway.yaml
-  - gateway-class-envoy.yaml
-  - envoy-proxy-eoepca-public.yaml
+  # - gateway-class-envoy.yaml
+  # - envoy-proxy-eoepca-public.yaml
   # - gateway-eoepca-public.yaml
   # - route-apisix.yaml
   # - route-nginx.yaml
