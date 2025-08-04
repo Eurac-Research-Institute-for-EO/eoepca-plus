@@ -10,12 +10,14 @@ metadata:
 spec:
   # Ref. https://argo-cd.readthedocs.io/en/stable/user-guide/application-specification/
   project: eoepca
-  sources:
-    - repoURL: oci://docker.io/envoyproxy/gateway-helm
-      chart: gateway-helm
-      targetRevision: v0.0.0-latest
-      helm:
-        releaseName: envoy-gateway
+  source:
+    # repoURL: oci://docker.io/envoyproxy/gateway-helm
+    # 'oci' not supported by ArgoCD yet - so use a mirrored version
+    repoURL: https://eoepca.github.io/helm-charts-dev
+    chart: gateway-helm
+    targetRevision: v0.0.0-latest
+    helm:
+      releaseName: envoy-gateway
   destination:
     name: in-cluster
     namespace: gateway
