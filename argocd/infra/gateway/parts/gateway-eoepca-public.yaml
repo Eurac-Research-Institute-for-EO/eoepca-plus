@@ -9,6 +9,9 @@ spec:
   gatewayClassName: envoy
   infrastructure:
     parametersRef:
+      #--------------------------------
+      # Patch the node port definitions
+      #--------------------------------
       group: gateway.envoyproxy.io
       kind: EnvoyProxy
       name: eoepca-public

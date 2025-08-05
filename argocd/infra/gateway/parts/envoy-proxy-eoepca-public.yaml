@@ -1,3 +1,16 @@
+#-------------------------------------------------------------------------------
+# EnvoyProxy
+# ----------
+# We only need this as we want to expose http/80 / https/443 on NodePorts 31080/31443
+# - rather than the default LoadBalancer on port 80/443.
+# Each `Gateway` resource instantiates a set of resources (deployment, pods, service, etc.)
+# that implement the `Gateway` - including a `Service` that exposes the listening ports
+# of the `Gateway`.
+# These resources are defined by a template that can be patched via an `EnvoyProxy` resource.
+# Thus, we patch the `envoyService` ports defintion to include the required `nodePort` values.
+# The `EnvoyProxy/eoepca-public` is then used as a parameter in the `Gateway` definition.
+#-------------------------------------------------------------------------------
+
 apiVersion: gateway.envoyproxy.io/v1alpha1
 kind: EnvoyProxy
 metadata:
