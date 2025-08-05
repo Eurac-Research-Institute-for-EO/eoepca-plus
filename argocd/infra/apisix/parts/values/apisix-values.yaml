@@ -4,9 +4,6 @@
 # separately in the demo environment and so this file remains relevant.
 # This may change in the future.
 
-service:
-  type: ClusterIP
-
 apisix:
 
   enableIPv6: false
