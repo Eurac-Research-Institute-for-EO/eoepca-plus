@@ -1,4 +1,4 @@
-# Wildcard certificate for preliminary APISIX ingress *.apx.develop.eoepca.org
+# Wildcard certificate for preliminary APISIX ingress *.develop.eoepca.org
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
@@ -14,7 +14,6 @@ spec:
     - client auth
   dnsNames:
     - "*.develop.eoepca.org"
-    - "*.apx.develop.eoepca.org"
   issuerRef:
     name: letsencrypt-dns-prod
     kind: ClusterIssuer
