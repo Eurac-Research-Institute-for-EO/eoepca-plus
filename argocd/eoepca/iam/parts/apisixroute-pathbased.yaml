@@ -14,6 +14,7 @@ spec:
   - name: keycloak
     match:
       hosts:
+        - develop.eoepca.org
         - ngx.develop.eoepca.org
       paths:
         - /iam/auth
@@ -31,6 +32,7 @@ spec:
   - name: opa
     match:
       hosts:
+        - develop.eoepca.org
         - ngx.develop.eoepca.org
       paths:
         - /iam/opa
