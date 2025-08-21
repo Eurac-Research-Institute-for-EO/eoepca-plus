@@ -256,12 +256,15 @@ keycloak:
       database: bitnami_keycloak
       existingSecret: "kc-postgres"
     architecture: standalone
-    # Optionally use PostgreSQL 16.4 for existing deployments instead of migrating the data.
-    # Fresh deployments should use PostgreSQL 17, which is the default.
     image:
+      repository: bitnamilegacy/postgresql
+      # Optionally use PostgreSQL 16.4 for existing deployments instead of migrating the data.
+      # Fresh deployments should use PostgreSQL 17, which is the default.
       tag: 16.4.0-debian-12-r14
   keycloakConfigCli:
     enabled: *useKeycloakConfigCli
+    image:
+      repository: bitnamilegacy/keycloak-config-cli
     ## @param keycloakConfigCli.extraEnvVars Additional environment variables to set
     ## Example:
     ## extraEnvVars:
@@ -514,6 +517,9 @@ apisix:
 #        # The following value must be adapted if the chart is not installed in the
 #        # namespace "ingress-apisix"
 #        #serviceNamespace: ingress-apisix
+  etcd:
+    image:
+      repository: bitnamilegacy/etcd
 
 # Configuration for iam-bb-config when applied as a subchart
 iam-bb-config:
