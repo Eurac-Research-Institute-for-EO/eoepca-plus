@@ -26,6 +26,8 @@ etcd:
   persistence:
     storageClass: managed-nfs-storage-retain
     size: 8Gi
+  image:
+    repository: bitnamilegacy/etcd
 
 # -- Ingress controller configuration
 ingress-controller:
