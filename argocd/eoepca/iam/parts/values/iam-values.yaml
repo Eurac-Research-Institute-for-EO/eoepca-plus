@@ -80,6 +80,11 @@ iam: &iam
           namespace: iam
   opa:
     enabled: &opaEnabled false
+    # inline: true: Use inline OPA; false: deploy and use OPA in a separate pod.
+    # If set to false, opal.client.extraEnv.OPAL_INLINE_OPA_ENABLED should
+    # be set to "False" to prevent inline OPA from being started.
+    # Furthermore OPAL_POLICY_STORE_URL should be changed to "http://iam-opa:8181".
+    inline: true
     createRoute: true
     # "Official" OPA URL (used as root URL for the client if one is created)
     url: https://iam-opa.develop.eoepca.org
@@ -94,6 +99,13 @@ iam: &iam
     clientSecret: "RkAUBGEzUCCgKBydiagDGqW5JJeXYdDQ"
     # clientSecretRef: Name of an existing secret that contains the client secret and maybe further values like the client ID
     clientSecretRef: ""
+    # OPA image to pull.
+    # Note: This does not have an effect if inline OPA is used.
+    image:
+      #registry: docker.io
+      #repository: openpolicyagent/opa
+      tag: 1.7.1
+      #pullPolicy: IfNotPresent
   identityApi:
     # Note: The use of Identity API in conjunction with the IAM BB is deprecated.
     # Installing Identity API as part of the IAM BB is still supported, but neither
@@ -175,7 +187,7 @@ keycloak:
   extraEnvVars:
     # KC_SPI_POLICY_OPA_OPA_BASE_URI must point to the base URI of the OPA service.
     - name: KC_SPI_POLICY_OPA_OPA_BASE_URI
-      value: "http://iam-opal-opal-client.iam:8181/v1/data/"
+      value: "http://iam-opa:8181/v1/data/"
     # KC_SPI_POLICY_OPA_OPA_POLICY_DIR points to a pod-internal config directory for
     # policies and should not be changed.
     - name: KC_SPI_POLICY_OPA_OPA_POLICY_DIR
@@ -421,7 +433,7 @@ opal:
         }
         default allow_policy_evaluation := false
         allow_policy_evaluation if {
-          # Generally allow GET and POST on /v1/data/**
+          # Generally allow GET and POST on /v1/data/** except /v1/data/system/** 
           #"GET" == input.method
           input.method in ["GET", "POST"]
           "v1" == input.path[0]
@@ -434,9 +446,9 @@ opal:
           ["v1", "query"] == input.path
         }
         allow_policy_evaluation if {
-          # Generally allow GET on /
+          # Generally allow GET on / and /health
           "GET" == input.method
-          [""] == input.path
+          input.path in [[""], ["health"]]
           print("GET /, Input: ", input)
         }
         # Claims from JWT if JWT is present and can be verified; null otherwise 
@@ -476,10 +488,12 @@ opal:
         }
     extraEnv:
       OPAL_POLICY_STORE_URL: http://localhost:8181
+      #OPAL_POLICY_STORE_URL: http://iam-opa:8181
       OPAL_POLICY_STORE_AUTH_TYPE: token
       OPAL_POLICY_STORE_AUTH_TOKEN: root$secret
-      OPAL_INLINE_OPA_LOG_FORMAT: full
       OPAL_DATA_UPDATER_ENABLED: False
+      OPAL_INLINE_OPA_ENABLED: True
+      OPAL_INLINE_OPA_LOG_FORMAT: full
       OPAL_INLINE_OPA_CONFIG: >-
         {
           "addr": "http://0.0.0.0:8181",

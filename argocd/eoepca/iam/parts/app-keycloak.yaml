@@ -21,7 +21,7 @@ spec:
 #          - $values/argocd/eoepca/iam/parts/values/keycloak-values.yaml
     - repoURL: https://eoepca.github.io/helm-charts-dev
       chart: iam-bb
-      targetRevision: 2.0.0-rc2
+      targetRevision: 2.0.0-rc2.1
       helm:
         #releaseName: iam-keycloak
         valueFiles:
