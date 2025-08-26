@@ -84,7 +84,7 @@ iam: &iam
     # If set to false, opal.client.extraEnv.OPAL_INLINE_OPA_ENABLED should
     # be set to "False" to prevent inline OPA from being started.
     # Furthermore OPAL_POLICY_STORE_URL should be changed to "http://iam-opa:8181".
-    inline: true
+    inline: false
     createRoute: true
     # "Official" OPA URL (used as root URL for the client if one is created)
     url: https://iam-opa.develop.eoepca.org
@@ -487,12 +487,12 @@ opal:
           print("External, Input: ", input, " Claims: ", claims)
         }
     extraEnv:
-      OPAL_POLICY_STORE_URL: http://localhost:8181
-      #OPAL_POLICY_STORE_URL: http://iam-opa:8181
+      #OPAL_POLICY_STORE_URL: http://localhost:8181
+      OPAL_POLICY_STORE_URL: http://iam-opa:8181
       OPAL_POLICY_STORE_AUTH_TYPE: token
       OPAL_POLICY_STORE_AUTH_TOKEN: root$secret
       OPAL_DATA_UPDATER_ENABLED: False
-      OPAL_INLINE_OPA_ENABLED: True
+      OPAL_INLINE_OPA_ENABLED: False
       OPAL_INLINE_OPA_LOG_FORMAT: full
       OPAL_INLINE_OPA_CONFIG: >-
         {

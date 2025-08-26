@@ -12,7 +12,7 @@ data:
   iam:
     discovery: https://iam-auth.develop.eoepca.org/realms/eoepca/.well-known/openid-configuration
   opa: 
-    host: http://iam-opal-opal-client.iam:8181
+    host: http://iam-opa.iam:8181
     policy: eoepca/workspace/wsui
   vcluster:
     separator: ".ngx."  

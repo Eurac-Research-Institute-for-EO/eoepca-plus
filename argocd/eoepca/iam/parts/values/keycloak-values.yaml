@@ -275,7 +275,7 @@ args: []
 ##
 extraEnvVars:
   - name: KC_SPI_POLICY_OPA_OPA_BASE_URI
-    value: "http://iam-opal-opal-client.iam:8181/v1/data/"
+    value: "http://iam-opa.iam:8181/v1/data/"
   - name: KC_SPI_POLICY_OPA_OPA_POLICY_DIR
     value: "/opt/bitnami/keycloak/conf/opa-policies"
   # KC_HOSTNAME and optionally KC_HOSTNAME_ADMIN should be set to the official base

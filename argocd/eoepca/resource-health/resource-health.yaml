@@ -505,7 +505,7 @@ spec:
                 - name: OPEN_ID_CONFIGURATION_HOST
                   value: https://iam-auth.develop.eoepca.org/realms/eoepca/.well-known
                 - name: OPA_ENDPOINT
-                  value: http://iam-opal-opal-client.iam.svc.cluster.local:8181/
+                  value: http://iam-opa.iam.svc.cluster.local:8181/
                 - name: IDENTITY_API_ENDPOINT
                   value: http://identity-api.iam.svc.cluster.local:8080/
               userid: "alice"
