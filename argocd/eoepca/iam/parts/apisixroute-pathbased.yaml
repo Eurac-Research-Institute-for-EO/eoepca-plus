@@ -42,7 +42,7 @@ spec:
         - /iam/policies
         - /iam/policies/*
     backends:
-      - serviceName: iam-opal-opal-client
+      - serviceName: iam-opa
         servicePort: 8181
     plugins:
       # TODO: Configure client secrets through secretRef

@@ -43,7 +43,7 @@ spec:
       paths:
         - /*
     backends:
-      - serviceName: iam-opal-opal-client
+      - serviceName: iam-opa
         servicePort: 8181
     plugins:
       - name: openid-connect
