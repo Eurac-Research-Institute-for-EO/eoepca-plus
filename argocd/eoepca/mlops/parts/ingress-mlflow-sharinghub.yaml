@@ -5,7 +5,7 @@ metadata:
   namespace: sharinghub
 spec:
   timeout:
-    read: "600"
+    read: "600s"
 ---
 apiVersion: apisix.apache.org/v2
 kind: ApisixRoute
