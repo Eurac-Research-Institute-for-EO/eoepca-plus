@@ -9,3 +9,7 @@ resources:
   - apisix
   - pgo
   - gateway
+  - app-monitoring.yaml
+  - route-monitoring.yaml
+  - app-logging.yaml
+
