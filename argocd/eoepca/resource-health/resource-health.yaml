@@ -256,6 +256,7 @@ spec:
                 from eoepca_security import OIDCProxyScheme, Tokens
                 from typing import TypedDict
                 import os
+                from fastapi import Request
 
 
                 class UserInfo(TypedDict):
@@ -346,9 +347,14 @@ spec:
                     return "resource-health"
 
 
-                def on_k8s_cronjob_access(
-                    userinfo: UserInfo, client: hu.K8sClient, cronjob: hu.K8sCronJob
+                async def on_k8s_cronjob_access(
+                    userinfo: UserInfo,
+                    check_id: hu.CheckId,
+                    client: hu.K8sClient,
+                    cronjob: hu.K8sCronJob,
                 ) -> None:
+                    print("on_k8s_cronjob_access")
+
                     if cronjob.metadata.annotations.get("owner") != userinfo["username"]:
                         raise hu.CheckIdError(check_id)
 
