@@ -12,7 +12,7 @@ spec:
   project: eoepca
   sources:
     - repoURL: https://github.com/EOEPCA/workspace
-      targetRevision: v2025.07.04
+      targetRevision: deploy-develop
       path: setup/common/main
   destination:
     name: in-cluster
