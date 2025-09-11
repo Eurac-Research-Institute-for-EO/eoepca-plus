@@ -20,8 +20,8 @@ spec:
     namespace: infra
   syncPolicy:
     automated:
-      prune: true
-      selfHeal: true
+      prune: false # never prune
+      selfHeal: false # only manual sync
       allowEmpty: true
     syncOptions:
       - Validate=true
