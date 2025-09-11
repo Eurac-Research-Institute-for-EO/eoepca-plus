@@ -5,3 +5,4 @@ resources:
   - app-data-access-ui.yaml
   - iam.yaml
   - route.yaml
+  - eso-pgo.yaml
