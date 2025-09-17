@@ -108,37 +108,39 @@ spec:
             use_hook_configmap: True
             hooks:
               oidc_auth_hooks.py: |
+                from fastapi import Request
                 import python_opentelemetry_access.telemetry_hooks.utils as hu
                 from eoepca_security import OIDCProxyScheme, Tokens
                 from typing import TypedDict
                 import os
 
+
                 class UserInfo(TypedDict):
                     username: str | None
                     access_token: str
 
-                def get_fastapi_security() -> OIDCProxyScheme:
-                    return OIDCProxyScheme(
-                        openIdConnectUrl=os.environ["OPEN_ID_CONNECT_URL"],
-                        audience=os.environ["OPEN_ID_CONNECT_AUDIENCE"],
-                        id_token_header="x-id-token",
-                        refresh_token_header="x-refresh-token",
-                        auth_token_header="Authorization",
-                        auth_token_in_authorization=True,
-                        auto_error=True,  ## Set False to allow unauthenticated access!
-                        scheme_name="OIDC behind auth proxy",
-                    )
+
+                oidc_proxy_scheme = OIDCProxyScheme(
+                    openIdConnectUrl=os.environ["OPEN_ID_CONNECT_URL"],
+                    audience=os.environ["OPEN_ID_CONNECT_AUDIENCE"],
+                    id_token_header="x-id-token",
+                    refresh_token_header="x-refresh-token",
+                    auth_token_header="Authorization",
+                    auth_token_in_authorization=True,
+                    auto_error=True,  ## Set False to allow unauthenticated access!
+                    scheme_name="OIDC behind auth proxy",
+                )
+
+
+                async def get_fastapi_security(request: Request) -> Tokens | None:
+                    return await oidc_proxy_scheme(request)
 
 
                 def on_auth(tokens: Tokens | None) -> UserInfo:
                     if tokens is None or tokens["auth"] is None:
-                        raise hu.APIException(
-                            hu.Error(
-                                status="403",
-                                code="MissingTokens",
-                                title="Missing authentication token",
-                                detail="Potentially missing authenticating proxy",
-                            )
+                        raise hu.APIForbiddenError(
+                            title="Missing authentication token",
+                            detail="Potentially missing authenticating proxy",
                         )
 
                     username_claim = (
@@ -152,7 +154,9 @@ spec:
                         access_token=tokens["auth"].raw,
                     )
 
+
                 ## For the OpenSearch proxy/backend
+
 
                 def get_opensearch_config(userinfo: UserInfo) -> hu.OpensearchConfig:
                     return hu.OpensearchConfig(
