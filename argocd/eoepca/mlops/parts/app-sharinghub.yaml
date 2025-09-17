@@ -17,6 +17,8 @@ spec:
     helm:
       releaseName: sharinghub
       valuesObject:
+        image:
+          tag: latest
         config: |-
           services:
             store:
