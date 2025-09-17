@@ -17,8 +17,6 @@ spec:
     helm:
       releaseName: sharinghub
       valuesObject:
-        image:
-          tag: latest
         config: |-
           services:
             store:
@@ -147,6 +145,7 @@ spec:
 
         image:
           repository: eoepca/sharinghub
+          tag: latest
           pullPolicy: Always
 
         ingress:
