@@ -17,7 +17,7 @@ spec:
       releaseName: minio
       valuesObject:
         existingSecret: minio-auth
-        replicas: 4
+        replicas: 2
         ingress:
           enabled: true
           ingressClassName: apisix
