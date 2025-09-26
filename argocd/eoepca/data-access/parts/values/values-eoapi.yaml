@@ -80,21 +80,26 @@ eoapi-notifier:
   enabled: true
   config:
     sources:
-      - type: postgres
-        config:
-          channel: pgstac_items_change
+      - type: pgstac
     outputs:
-      - type: cloudevents
-        config:
-          source: /eoapi/pgstac
-          event_type: org.eoapi.stac.item
-          destination:
-            ref:
-              apiVersion: serving.knative.dev/v1
-              kind: Service
-              name: eoapi-cloudevents-sink
+      # CloudEvents output - currently disabled until proper sink service is configured
+      # - type: cloudevents
+      #   config:
+      #     source: /eoapi/pgstac
+      #     event_type: org.eoapi.stac.item
+      #     endpoint: https://your-webhook-endpoint.com/events  # or set via K_SINK env var
   secrets:
     postgresql:
       create: false
-  env:
-    POSTGRES_CHANNEL: "pgstac_items_change"
+      existingSecret:
+        name: "default-pguser-eoapi"
+        keys:
+          user: "user"
+          password: "password"
+          host: "host"
+          port: "port"
+          database: "dbname"
+  envFrom:
+    - secretRef:
+        name: default-pguser-eoapi
+
