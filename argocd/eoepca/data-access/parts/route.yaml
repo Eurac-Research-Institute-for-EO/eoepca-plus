@@ -42,7 +42,7 @@ spec:
       enable: true
   - name: browser-redirect
     backends:
-    - serviceName: browser-eoapi
+    - serviceName: eoapi-browser
       servicePort: 8080
     match:
       hosts:
@@ -56,7 +56,7 @@ spec:
         uri: /browser/
   - name: browser-route
     backends:
-    - serviceName: browser-eoapi
+    - serviceName: eoapi-browser
       servicePort: 8080
     match:
       hosts:
@@ -66,7 +66,7 @@ spec:
       - /browser/*
   - name: vector-redirect
     backends:
-    - serviceName: vector-eoapi
+    - serviceName: eoapi-vector
       servicePort: 8080
     match:
       hosts:
@@ -80,7 +80,7 @@ spec:
         uri: /vector/
   - name: vector-route
     backends:
-    - serviceName: vector-eoapi
+    - serviceName: eoapi-vector
       servicePort: 8080
     match:
       hosts:
@@ -97,7 +97,7 @@ spec:
       enable: true
   - name: multidim-redirect
     backends:
-    - serviceName: multidim-eoapi
+    - serviceName: eoapi-multidim
       servicePort: 8080
     match:
       hosts:
@@ -111,7 +111,7 @@ spec:
         uri: /multidim/
   - name: multidim-route
     backends:
-    - serviceName: multidim-eoapi
+    - serviceName: eoapi-multidim
       servicePort: 8080
     match:
       hosts:
@@ -128,7 +128,7 @@ spec:
       enable: true
   - name: raster-redirect
     backends:
-    - serviceName: raster-eoapi
+    - serviceName: eoapi-raster
       servicePort: 8080
     match:
       hosts:
@@ -142,7 +142,7 @@ spec:
         uri: /raster/
   - name: raster-route
     backends:
-    - serviceName: raster-eoapi
+    - serviceName: eoapi-raster
       servicePort: 8080
     match:
       hosts:
@@ -159,7 +159,7 @@ spec:
       enable: true
   - name: stac-redirect
     backends:
-    - serviceName: stac-eoapi
+    - serviceName: eoapi-stac
       servicePort: 8080
     match:
       hosts:
@@ -177,7 +177,7 @@ spec:
       enable: true
   - name: stac-open-route
     backends:
-    - serviceName: stac-eoapi
+    - serviceName: eoapi-stac
       servicePort: 8080
     match:
       hosts:
@@ -206,7 +206,7 @@ spec:
       enable: true
   - name: stac-open-search-route
     backends:
-    - serviceName: stac-eoapi
+    - serviceName: eoapi-stac
       servicePort: 8080
     match:
       hosts:
@@ -226,7 +226,7 @@ spec:
       enable: true
   - name: stac-protected-route
     backends:
-    - serviceName: stac-eoapi
+    - serviceName: eoapi-stac
       servicePort: 8080
     match:
       hosts:
@@ -292,7 +292,7 @@ spec:
       enable: true
   - name: docs-redirect
     backends:
-    - serviceName: doc-server-eoapi
+    - serviceName: eoapi-doc-server
       servicePort: 80
     match:
       hosts:
@@ -307,7 +307,7 @@ spec:
         uri: /docs/
   - name: docs-route
     backends:
-    - serviceName: doc-server-eoapi
+    - serviceName: eoapi-doc-server
       servicePort: 80
     match:
       hosts:
