@@ -78,16 +78,22 @@ vector:
 
 eoapi-notifier:
   enabled: true
+  env:
+    CLOUDEVENTS_MODE: "structured"
   config:
     sources:
       - type: pgstac
     outputs:
-      # CloudEvents output - currently disabled until proper sink service is configured
-      # - type: cloudevents
-      #   config:
-      #     source: /eoapi/pgstac
-      #     event_type: org.eoapi.stac.item
-      #     endpoint: https://your-webhook-endpoint.com/events  # or set via K_SINK env var
+      - type: cloudevents
+        config:
+          source: /eoapi/pgstac
+          event_type: org.eoapi.stac.item
+          destination:
+            ref:
+              apiVersion: eventing.knative.dev/v1
+              kind: Broker
+              name: default
+              namespace: data-access
   secrets:
     postgresql:
       create: false
@@ -102,4 +108,3 @@ eoapi-notifier:
   envFrom:
     - secretRef:
         name: default-pguser-eoapi
-
