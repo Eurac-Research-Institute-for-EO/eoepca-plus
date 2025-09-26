@@ -75,3 +75,26 @@ vector:
       # needs to on so we can call /refresh for integration tests
       TIPG_DEBUG: "True"
       TIPG_CATALOG_TTL: "30"
+
+eoapi-notifier:
+  enabled: true
+  config:
+    sources:
+      - type: postgres
+        config:
+          channel: pgstac_items_change
+    outputs:
+      - type: cloudevents
+        config:
+          source: /eoapi/pgstac
+          event_type: org.eoapi.stac.item
+          destination:
+            ref:
+              apiVersion: serving.knative.dev/v1
+              kind: Service
+              name: eoapi-cloudevents-sink
+  secrets:
+    postgresql:
+      create: false
+  env:
+    POSTGRES_CHANNEL: "pgstac_items_change"
