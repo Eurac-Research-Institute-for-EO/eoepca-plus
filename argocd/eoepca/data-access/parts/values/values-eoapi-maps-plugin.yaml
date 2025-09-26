@@ -13,7 +13,7 @@ config:
     bind:
       host: 0.0.0.0
       port: 5000
-    url: https://maps.develop.eoepca.org
+    url: https://eoapi.develop.eoepca.org/maps
     mimetype: application/json; charset=UTF-8
     encoding: utf-8
     gzip: false
@@ -106,7 +106,7 @@ sync:
   enabled: true
   schedule: "*/10 * * * *"
   eoapiUrl: "https://eoapi.develop.eoepca.org"
-  pygeoapiUrl: "https://maps.develop.eoepca.org"
+  pygeoapiUrl: "https://eoapi.develop.eoepca.org/maps"
   create: true
   update: true
   delete: true
