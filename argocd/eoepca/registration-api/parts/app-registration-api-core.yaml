@@ -23,8 +23,8 @@ spec:
         pygeoapi:
           image:
             repository: eoepca/registration-api
-            # pullPolicy: Always
-            # tag: "latest"
+            pullPolicy: Always
+            tag: "latest"
           config:
             server:
               url: https://registration-api.develop.eoepca.org
