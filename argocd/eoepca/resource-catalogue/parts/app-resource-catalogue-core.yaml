@@ -31,7 +31,7 @@ spec:
             cert-manager.io/cluster-issuer: letsencrypt-prod
         db:
           volume_storageclass: managed-nfs-storage-retain
-          volume_access_modes: ReadWriteOnce
+          # volume_access_modes: ReadWriteOnce  # FIXME - should be `ReadWriteOnce` - fix the default in the helm chart
         pycsw:
           image:
             # repository: geopython/pycsw
