@@ -1,4 +1,3 @@
 
 resources:
-  - ss-registration-api-secret.yaml
   - app-registration-api.yaml
