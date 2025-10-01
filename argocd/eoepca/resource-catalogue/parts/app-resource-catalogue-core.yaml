@@ -30,7 +30,8 @@ spec:
             nginx.ingress.kubernetes.io/ssl-redirect: "true"
             cert-manager.io/cluster-issuer: letsencrypt-prod
         db:
-          volume_storage_type: managed-nfs-storage-retain
+          volume_storageclass: managed-nfs-storage-retain
+          volume_access_modes: ReadWriteOnce
         pycsw:
           image:
             # repository: geopython/pycsw
