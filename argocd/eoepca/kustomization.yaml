@@ -6,6 +6,7 @@ resources:
   - datacube-access
   - zoo-dru
   - zoo-dru-wes
+  - zoo-dru-std
   - workspace
   - mlops
   - application-quality
