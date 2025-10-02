@@ -57,12 +57,8 @@ persistence:
   storageClass: managed-nfs-storage-retain
   tmpStorageClass: managed-nfs-storage
 postgresql:
-  primary:
-    persistence:
-      storageClass: managed-nfs-storage-retain
-  readReplicas:
-    persistence:
-      storageClass: managed-nfs-storage-retain
+  persistence:
+    storageClass: managed-nfs-storage-retain
 rabbitmq:
   autoSetup:
     enabled: false
