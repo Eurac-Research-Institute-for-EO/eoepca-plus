@@ -16,7 +16,7 @@ spec:
         releaseName: zoo-project-dru-std
         valueFiles:
           - $values/argocd/eoepca/zoo-dru-std/parts/values-zoo.yaml
-          - $values/argocd/eoepca/zoo-dru-std/parts/values-stageout.yaml
+          # - $values/argocd/eoepca/zoo-dru-std/parts/values-stageout.yaml
     - repoURL: https://github.com/EOEPCA/eoepca-plus
       targetRevision: deploy-develop
       ref: values
