@@ -5,7 +5,7 @@ metadata:
   namespace: argocd
   labels:
     eoepca/is-root-app: "true"
-    eoepca/app-name: zoo-project-dru
+    eoepca/app-name: zoo-project-dru-std
 spec:
   # Ref. https://argo-cd.readthedocs.io/en/stable/user-guide/application-specification/
   project: eoepca
