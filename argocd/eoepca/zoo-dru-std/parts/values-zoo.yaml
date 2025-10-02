@@ -1,6 +1,9 @@
 cookiecutter:
   templateUrl: https://github.com/gfenoy/eoepca-proc-service-template.git
   templateBranch: feature/output-handling
+zoo:
+  openapi:
+    enabled: true
 zoofpm:
   image:
     tag: eoepca-39b6fc74b6592b4584be5a0b2740dde11a1ffafc
