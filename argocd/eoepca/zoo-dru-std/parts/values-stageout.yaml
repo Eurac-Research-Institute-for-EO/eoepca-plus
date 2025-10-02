@@ -23,7 +23,10 @@ files:
       outputs:
         StacCatalogUri:
           outputBinding:
-            outputEval: ${  return { "value": self[0].contents, "type": "https://raw.githubusercontent.com/eoap/schemas/main/string_format.yaml#URI" }; }
+            outputEval: |
+              ${ 
+                return { "value": self[0].contents, "type": "https://raw.githubusercontent.com/eoap/schemas/main/string_format.yaml#URI" };
+              }
           type: https://raw.githubusercontent.com/eoap/schemas/main/string_format.yaml#URI
       baseCommand:
         - python
