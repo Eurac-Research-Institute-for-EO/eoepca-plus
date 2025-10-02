@@ -20,6 +20,8 @@ files:
           type: string
         STAGEOUT_AWS_SERVICEURL:
           type: string
+        stac_catalog:
+          type: Directory
       outputs:
         StacCatalogUri:
           outputBinding:
