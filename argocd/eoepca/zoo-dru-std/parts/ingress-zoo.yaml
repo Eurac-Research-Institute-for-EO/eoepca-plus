@@ -14,7 +14,7 @@ spec:
         paths:
           - /*
       backends:
-        - serviceName: zoostd-project-dru-service
+        - serviceName: zoo-project-dru-std-service
           servicePort: 80
       plugins:
         # Allow CORS access
@@ -33,7 +33,7 @@ spec:
             op: RegexMatch
             value: "^/(ogc-api/api.*|swagger-ui.*|conformance.*)"
       backends:
-        - serviceName: zoo-project-dru-service
+        - serviceName: zoo-project-dru-std-service
           servicePort: 80
       plugins:
         # Allow CORS access
@@ -47,7 +47,7 @@ spec:
         paths:
           - /*
       backends:
-        - serviceName: zoo-project-dru-service
+        - serviceName: zoo-project-dru-std-service
           servicePort: 80
       plugins:
         # Authn - expect JWT in `Authorization: Bearer` header
