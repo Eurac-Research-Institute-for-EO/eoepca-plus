@@ -25,6 +25,7 @@ spec:
         storageSecretNameTemplate: "<principal>"
         endpoint: "https://minio.develop.eoepca.org"
         region: "eoepca-demo"
+        uiMode: "no"
   destination:
     name: in-cluster
     namespace: workspace
