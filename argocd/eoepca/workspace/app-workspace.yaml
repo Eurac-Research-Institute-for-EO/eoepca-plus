@@ -14,13 +14,7 @@ spec:
   sources:
     - repoURL: https://github.com/EOEPCA/eoepca-plus
       targetRevision: deploy-develop
-      path: argocd/eoepca/workspace/common
-    - repoURL: https://github.com/EOEPCA/eoepca-plus
-      targetRevision: deploy-develop
-      path: argocd/eoepca/workspace/pipelines
-    - repoURL: https://github.com/EOEPCA/eoepca-plus
-      targetRevision: deploy-develop
-      path: argocd/eoepca/workspace/admin
+      path: argocd/eoepca/workspace/parts
   destination:
     name: in-cluster
     namespace: workspace

@@ -1,0 +1,6 @@
+
+resources:
+  - app-workspace-admin.yaml
+  - app-workspace-api.yaml
+  - route.yaml
+  - ss-workspace-api.yaml

@@ -1,20 +1,30 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: workspace-common
+  name: workspace-api
   namespace: argocd
   labels:
-    eoepca/is-root-app: "true"
-    eoepca/app-name: workspace
-  annotations:
-    argocd.argoproj.io/sync-wave: "10"
+    eoepca/app-name: workspace-api
 spec:
   # Ref. https://argo-cd.readthedocs.io/en/stable/user-guide/application-specification/
   project: eoepca
   source:
-    repoURL: https://github.com/EOEPCA/eoepca-plus
-    targetRevision: deploy-develop
-    path: argocd/eoepca/workspace/common/parts
+    repoURL: https://eoepca.github.io/helm-charts
+    chart: rm-workspace-api
+    targetRevision: 2.0.0-rc.3
+    helm:
+      releaseName: workspace-api
+      valuesObject:
+        fullnameOverride: workspace-api
+        image:
+          tag: 2.0.0-rc.3
+          pullPolicy: Always
+        ingress:
+          enabled: false
+        prefixForName: "ws"
+        storageSecretNameTemplate: "<principal>"
+        endpoint: "https://minio.develop.eoepca.org"
+        region: "eoepca-demo"
   destination:
     name: in-cluster
     namespace: workspace
