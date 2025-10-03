@@ -2,6 +2,8 @@ apiVersion: apiextensions.crossplane.io/v1alpha1
 kind: ManagedResourceActivationPolicy
 metadata:
   name: provider-minio
+  annotations:
+    argocd.argoproj.io/sync-wave: "10"
 spec:
   activate:
     - buckets.minio.crossplane.io
@@ -12,6 +14,8 @@ apiVersion: apiextensions.crossplane.io/v1alpha1
 kind: ManagedResourceActivationPolicy
 metadata:
   name: provider-kubernetes
+  annotations:
+    argocd.argoproj.io/sync-wave: "10"
 spec:
   activate:
     - objects.kubernetes.m.crossplane.io

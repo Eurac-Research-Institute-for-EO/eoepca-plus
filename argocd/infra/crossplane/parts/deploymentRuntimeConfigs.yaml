@@ -2,6 +2,8 @@ apiVersion: pkg.crossplane.io/v1beta1
 kind: DeploymentRuntimeConfig
 metadata:
   name: provider-minio
+  annotations:
+    argocd.argoproj.io/sync-wave: "11"
 spec:
   deploymentTemplate:
     metadata:
@@ -31,6 +33,8 @@ apiVersion: pkg.crossplane.io/v1beta1
 kind: DeploymentRuntimeConfig
 metadata:
   name: provider-kubernetes
+  annotations:
+    argocd.argoproj.io/sync-wave: "11"
 spec:
   deploymentTemplate:
     metadata:

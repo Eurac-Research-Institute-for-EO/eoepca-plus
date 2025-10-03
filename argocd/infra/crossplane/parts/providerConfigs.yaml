@@ -2,6 +2,8 @@ apiVersion: minio.crossplane.io/v1
 kind: ProviderConfig
 metadata:
   name: provider-minio
+  annotations:
+    argocd.argoproj.io/sync-wave: "13"
 spec:
   credentials:
     apiSecretRef:
@@ -14,6 +16,8 @@ apiVersion: kubernetes.m.crossplane.io/v1alpha1
 kind: ProviderConfig
 metadata:
   name: provider-kubernetes
+  annotations:
+    argocd.argoproj.io/sync-wave: "13"
   # don't specify namespace
 spec:
   credentials:

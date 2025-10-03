@@ -13,4 +13,5 @@ resources:
   - route-monitoring.yaml
   - app-logging.yaml
   - eso
+  - crossplane
 
