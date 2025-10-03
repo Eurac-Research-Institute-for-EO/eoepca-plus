@@ -1,0 +1,23 @@
+apiVersion: apiextensions.crossplane.io/v1beta1
+kind: EnvironmentConfig
+metadata:
+  name: datalab
+  annotations:
+    argocd.argoproj.io/sync-wave: "100"
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+data:
+  iam:
+    realm: eoepca
+  ingress:
+    class: nginx
+    domain: ngx.develop.eoepca.org
+    secret: wildcard-tls
+  storage:
+    endpoint: https://minio.develop.eoepca.org
+    force_path_style: "true"
+    provider: Other
+    region: eoepca-demo
+    secretNamespace: workspace
+    type: s3
+  network:
+    serviceCIDR: "10.43.0.0/12"

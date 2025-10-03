@@ -4,3 +4,5 @@ resources:
   - app-workspace-api.yaml
   - route.yaml
   - ss-workspace-api.yaml
+  - configurations.yaml
+  - environment.yaml
