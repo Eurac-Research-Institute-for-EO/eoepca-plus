@@ -8,10 +8,10 @@ metadata:
 spec:
   credentials:
     apiSecretRef:
-      name: default-env-configuration
-      namespace: minio
+      name: minio-auth
+      namespace: infra
     source: InjectedIdentity
-  minioURL: http://default-hl.minio:9000
+  minioURL: http://minio-svc.infra:9000
 ---
 apiVersion: kubernetes.m.crossplane.io/v1alpha1
 kind: ProviderConfig
