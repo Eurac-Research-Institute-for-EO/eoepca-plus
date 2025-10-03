@@ -4,6 +4,7 @@ metadata:
   name: provider-minio
   annotations:
     argocd.argoproj.io/sync-wave: "11"
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
   deploymentTemplate:
     metadata:
@@ -35,6 +36,7 @@ metadata:
   name: provider-kubernetes
   annotations:
     argocd.argoproj.io/sync-wave: "11"
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
   deploymentTemplate:
     metadata:

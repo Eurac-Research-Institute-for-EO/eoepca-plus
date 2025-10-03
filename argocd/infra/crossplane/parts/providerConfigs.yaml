@@ -4,6 +4,7 @@ metadata:
   name: provider-minio
   annotations:
     argocd.argoproj.io/sync-wave: "13"
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
   credentials:
     apiSecretRef:
@@ -16,9 +17,10 @@ apiVersion: kubernetes.m.crossplane.io/v1alpha1
 kind: ProviderConfig
 metadata:
   name: provider-kubernetes
+  namespace: workspace
   annotations:
     argocd.argoproj.io/sync-wave: "13"
-  # don't specify namespace
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true  
 spec:
   credentials:
     source: InjectedIdentity

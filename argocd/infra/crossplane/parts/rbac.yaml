@@ -8,6 +8,7 @@ metadata:
   namespace: infra
   annotations:
     argocd.argoproj.io/sync-wave: "30"
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
@@ -29,6 +30,7 @@ metadata:
   name: provider-kubernetes-minio
   annotations:
     argocd.argoproj.io/sync-wave: "30"
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
