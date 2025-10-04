@@ -21,14 +21,13 @@ spec:
           pullPolicy: Always
         ingress:
           enabled: false        
-        storageSecretName: "<principal>"
         prefixForName: "ws"
         endpoint: "https://minio.develop.eoepca.org"
         region: "eoepca-demo"
-        forwardedAllowIps: "true"
+        forwardedAllowIps: "*"
         sessionMode: "on"
         useVcluster: "true"
-        gunicornWorkers: "5"
+        gunicornWorkers: "4"
         uiMode: "ui"
   destination:
     name: in-cluster
