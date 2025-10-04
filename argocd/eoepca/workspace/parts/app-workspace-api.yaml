@@ -9,23 +9,26 @@ spec:
   # Ref. https://argo-cd.readthedocs.io/en/stable/user-guide/application-specification/
   project: eoepca
   source:
-    repoURL: https://eoepca.github.io/helm-charts
+    repoURL: https://eoepca.github.io/helm-charts-dev
     chart: rm-workspace-api
-    targetRevision: 2.0.0-rc.5
     helm:
       releaseName: workspace-api
       valuesObject:
         fullnameOverride: workspace-api
         image:
-          tag: 2.0.0-rc.3
+          tag: 2.0.0-rc.4
           pullPolicy: Always
         ingress:
-          enabled: false
+          enabled: false        
+        storageSecretName: "<principal>"
         prefixForName: "ws"
-        storageSecretNameTemplate: "<principal>"
         endpoint: "https://minio.develop.eoepca.org"
         region: "eoepca-demo"
-        uiMode: "no"
+        forwardedAllowIps: "true"
+        sessionMode: "on"
+        useVcluster: "true"
+        gunicornWorkers: "5"
+        uiMode: "ui"
   destination:
     name: in-cluster
     namespace: workspace
