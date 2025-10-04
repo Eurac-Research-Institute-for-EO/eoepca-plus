@@ -9,8 +9,9 @@ spec:
   # Ref. https://argo-cd.readthedocs.io/en/stable/user-guide/application-specification/
   project: eoepca
   source:
-    repoURL: https://eoepca.github.io/helm-charts-dev
+    repoURL: https://eoepca.github.io/helm-charts
     chart: rm-workspace-api
+    targetRevision: 2.0.0-rc.7
     helm:
       releaseName: workspace-api
       valuesObject:
