@@ -2,6 +2,7 @@
 resources:
   - app-workspace-admin.yaml
   - app-workspace-api.yaml
+  - app-workspace-dependencies.yaml
   - route.yaml
   - ss-workspace-api.yaml
   - configurations.yaml
