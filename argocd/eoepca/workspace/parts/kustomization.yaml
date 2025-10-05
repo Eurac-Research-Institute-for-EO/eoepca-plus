@@ -6,3 +6,4 @@ resources:
   - ss-workspace-api.yaml
   - configurations.yaml
   - environment.yaml
+  - oci://ghcr.io/versioneer-tech/bases:csi-rclone-f2d955940e1e
