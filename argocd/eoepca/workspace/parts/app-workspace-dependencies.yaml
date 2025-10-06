@@ -1,0 +1,55 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: workspace-dependencies
+  namespace: argocd
+  labels:
+    eoepca/app-name: workspace-dependencies
+spec:
+  project: eoepca
+  sources:
+    - repoURL: https://github.com/versioneer-tech/bases
+      targetRevision: HEAD
+      path: csi-rclone
+      kustomize:
+        namespace: workspace
+        commonLabels:
+          app.kubernetes.io/part-of: workspace
+          app.kubernetes.io/name: csi-rclone
+        patches:
+          - target:
+              kind: DaemonSet
+            patch: |-
+              - op: add
+                path: /spec/template/spec/nodeSelector
+                value:
+                  node-role.kubernetes.io/worker: "true"
+          - target:
+              kind: Deployment
+            patch: |-
+              - op: add
+                path: /spec/template/spec/nodeSelector
+                value:
+                  node-role.kubernetes.io/worker: "true"
+          - target:
+              kind: StatefulSet
+            patch: |-
+              - op: add
+                path: /spec/template/spec/nodeSelector
+                value:
+                  node-role.kubernetes.io/worker: "true"
+  destination:
+    name: in-cluster
+    namespace: workspace
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      allowEmpty: true
+    syncOptions:
+      - Validate=true
+      - CreateNamespace=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
+      - RespectIgnoreDifferences=true
+      - ApplyOutOfSyncOnly=true
