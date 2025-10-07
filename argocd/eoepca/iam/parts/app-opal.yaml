@@ -22,7 +22,7 @@ spec:
 ##          - $values/argocd/eoepca/identity-service/parts/values/values-identity-service.yaml
     - repoURL: https://eoepca.github.io/helm-charts-dev
       chart: iam-bb
-      targetRevision: 2.0.0-rc2.1
+      targetRevision: 2.0.0-rc2.2
       helm:
         #releaseName: iam-opal
         valueFiles:
