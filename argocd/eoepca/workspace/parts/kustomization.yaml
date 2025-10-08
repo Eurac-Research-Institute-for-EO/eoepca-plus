@@ -7,3 +7,4 @@ resources:
   - ss-workspace-api.yaml
   - configurations.yaml
   - environment.yaml
+  - secret.yaml
