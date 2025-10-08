@@ -1,14 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: workspace-dependencies-csi-rclone
+  name: workspace-dependencies
   namespace: argocd
   labels:
     eoepca/app-name: workspace-dependencies
 spec:
   project: eoepca
-  source:
-    repoURL: oci://ghcr.io/eoepca/workspace
+  sources:
+  - repoURL: oci://ghcr.io/eoepca/workspace
     chart: dependencies-csi-rclone
     targetRevision: 2.0.0-rc.1
     helm:
