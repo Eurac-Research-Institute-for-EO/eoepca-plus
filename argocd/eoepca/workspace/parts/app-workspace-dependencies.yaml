@@ -10,29 +10,27 @@ spec:
   sources:
     - repoURL: ghcr.io/eoepca/workspace
       chart: dependencies-csi-rclone
-      targetRevision: 2.0.0-rc.2
+      targetRevision: 2.0.0-rc.3
       helm:
         releaseName: workspace-dependencies-csi-rclone
-        values: |
-          NAMESPACE: workspace
     - repoURL: ghcr.io/eoepca/workspace
       chart: dependencies-educates
-      targetRevision: 2.0.0-rc.2
+      targetRevision: 2.0.0-rc.3
       helm:
         releaseName: workspace-dependencies-educates
         values: |
-          NAMESPACE: workspace
-          CLUSTER_INGRESS_DOMAIN: ngx.develop.eoepca.org
-          CLUSTER_INGRESS_CLASS: nginx
-          TLS_CERTIFICATE_REF_NAME: workspace-tls
-          TLS_CERTIFICATE_REF_NAMESPACE: workspace
+          clusterIngressDomain: ngx.develop.eoepca.org
+          clusterIngressClass: nginx
+          tlsCertificateRef:
+            name: workspace-tls
+            namespace: workspace
   destination:
     name: in-cluster
     namespace: workspace
   syncPolicy:
     automated:
-      prune: true
-      selfHeal: true
+      prune: false # never prune
+      selfHeal: false # only manual sync
       allowEmpty: true
     syncOptions:
       - Validate=true
