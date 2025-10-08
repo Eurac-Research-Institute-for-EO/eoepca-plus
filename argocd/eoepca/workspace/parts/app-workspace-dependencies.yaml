@@ -12,17 +12,16 @@ spec:
     chart: dependencies-csi-rclone
     targetRevision: 2.0.0-rc.2
     values: |
-      namespace: workspace
+      NAMESPACE: workspace
   - repoURL: ghcr.io/eoepca/workspace
     chart: dependencies-educates
     targetRevision: 2.0.0-rc.2
     values: |
-      namespace: workspace
-      clusterIngressDomain: ngx.develop.eoepca.org
-      clusterIngressClass: nginx
-      tlsCertificateRef:
-        name: workspace-tls
-        namespace: workspace        
+      NAMESPACE: workspace
+      CLUSTER_INGRESS_DOMAIN: ngx.develop.eoepca.org
+      CLUSTER_INGRESS_CLASS: nginx
+      TLS_CERTIFICATE_REF_NAME: workspace-tls
+      TLS_CERTIFICATE_REF_NAMESPACE: workspace
   destination:
     name: in-cluster
     namespace: workspace
