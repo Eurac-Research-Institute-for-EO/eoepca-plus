@@ -10,13 +10,13 @@ metadata:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: provider-kubernetes-minio
+  name: provider-kubernetes
   annotations:
     argocd.argoproj.io/sync-wave: "0"
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 rules:
 - apiGroups:
-  - "minio.crossplane.io"
+  - "*"
   resources:
   - "*"
   verbs:
@@ -25,14 +25,14 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: provider-kubernetes-minio
+  name: provider-kubernetes
   annotations:
     argocd.argoproj.io/sync-wave: "0"
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: provider-kubernetes-minio
+  name: provider-kubernetes
 subjects:
 - kind: ServiceAccount
   name: provider-kubernetes
