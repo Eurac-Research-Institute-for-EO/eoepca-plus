@@ -8,20 +8,24 @@ metadata:
 spec:
   project: eoepca
   sources:
-  - repoURL: ghcr.io/eoepca/workspace
-    chart: dependencies-csi-rclone
-    targetRevision: 2.0.0-rc.2
-    values: |
-      NAMESPACE: workspace
-  - repoURL: ghcr.io/eoepca/workspace
-    chart: dependencies-educates
-    targetRevision: 2.0.0-rc.2
-    values: |
-      NAMESPACE: workspace
-      CLUSTER_INGRESS_DOMAIN: ngx.develop.eoepca.org
-      CLUSTER_INGRESS_CLASS: nginx
-      TLS_CERTIFICATE_REF_NAME: workspace-tls
-      TLS_CERTIFICATE_REF_NAMESPACE: workspace
+    - repoURL: ghcr.io/eoepca/workspace
+      chart: dependencies-csi-rclone
+      targetRevision: 2.0.0-rc.2
+      helm:
+        releaseName: workspace-dependencies-csi-rclone
+        values: |
+          NAMESPACE: workspace
+    - repoURL: ghcr.io/eoepca/workspace
+      chart: dependencies-educates
+      targetRevision: 2.0.0-rc.2
+      helm:
+        releaseName: workspace-dependencies-educates
+        values: |
+          NAMESPACE: workspace
+          CLUSTER_INGRESS_DOMAIN: ngx.develop.eoepca.org
+          CLUSTER_INGRESS_CLASS: nginx
+          TLS_CERTIFICATE_REF_NAME: workspace-tls
+          TLS_CERTIFICATE_REF_NAMESPACE: workspace
   destination:
     name: in-cluster
     namespace: workspace
