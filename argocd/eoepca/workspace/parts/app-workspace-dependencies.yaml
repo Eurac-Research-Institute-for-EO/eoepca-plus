@@ -1,43 +1,18 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: workspace-dependencies
+  name: workspace-dependencies-csi-rclone
   namespace: argocd
   labels:
     eoepca/app-name: workspace-dependencies
 spec:
   project: eoepca
-  sources:
-    - repoURL: https://github.com/versioneer-tech/bases
-      targetRevision: HEAD
-      path: csi-rclone
-      kustomize:
-        namespace: workspace
-        commonLabels:
-          app.kubernetes.io/part-of: workspace
-          app.kubernetes.io/name: csi-rclone
-        patches:
-          - target:
-              kind: DaemonSet
-            patch: |-
-              - op: add
-                path: /spec/template/spec/nodeSelector
-                value:
-                  node-role.kubernetes.io/worker: "true"
-          - target:
-              kind: Deployment
-            patch: |-
-              - op: add
-                path: /spec/template/spec/nodeSelector
-                value:
-                  node-role.kubernetes.io/worker: "true"
-          - target:
-              kind: StatefulSet
-            patch: |-
-              - op: add
-                path: /spec/template/spec/nodeSelector
-                value:
-                  node-role.kubernetes.io/worker: "true"
+  source:
+    repoURL: oci://ghcr.io/eoepca/workspace
+    chart: dependencies-csi-rclone
+    targetRevision: 2.0.0-rc.1
+    helm:
+      releaseName: workspace-dependencies-csi-rclone
   destination:
     name: in-cluster
     namespace: workspace
