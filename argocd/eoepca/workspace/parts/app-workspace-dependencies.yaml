@@ -8,11 +8,9 @@ metadata:
 spec:
   project: eoepca
   sources:
-  - repoURL: oci://ghcr.io/eoepca/workspace
+  - repoURL: ghcr.io/eoepca/workspace
     chart: dependencies-csi-rclone
     targetRevision: 2.0.0-rc.1
-    helm:
-      releaseName: workspace-dependencies-csi-rclone
   destination:
     name: in-cluster
     namespace: workspace
