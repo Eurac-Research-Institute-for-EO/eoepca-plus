@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: workspace-pipeline
+  name: workspace-dependencies
   namespace: argocd
   labels:
     eoepca/app-name: workspace-dependencies
