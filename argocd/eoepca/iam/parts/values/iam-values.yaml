@@ -147,7 +147,7 @@ keycloak:
     # If you do not need the Keycloak OPA Plugin, you may also use the standard Keycloak image instead.
     registry: byud8gih.c1.de1.container-registry.ovh.net
     repository: eoepca/keycloak-with-opa-plugin
-    tag: 0.5.0
+    tag: 0.5.1
     digest: ""
     pullPolicy: IfNotPresent
   auth:
