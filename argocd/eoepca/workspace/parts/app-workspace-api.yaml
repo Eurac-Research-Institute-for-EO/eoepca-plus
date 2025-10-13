@@ -25,7 +25,7 @@ spec:
         endpoint: "https://minio.develop.eoepca.org"
         region: "eoepca-demo"
         forwardedAllowIps: "*"
-        sessionMode: "on"
+        sessionMode: "auto" # "on"
         useVcluster: "true"
         gunicornWorkers: "4"
         uiMode: "ui"
