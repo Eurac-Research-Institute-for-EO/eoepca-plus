@@ -41,6 +41,15 @@ spec:
               type: s3
             network:
               serviceCIDR: "10.43.0.0/12"
+            packages:
+              - name: awscli
+                files:
+                  - image:
+                      url: ghcr.io/versioneer-tech/educates-extension-packages/awscli:v2.29.0
+              - name: rclone
+                files:
+                  - image:
+                      url: ghcr.io/versioneer-tech/educates-extension-packages/rclone:v1.71.0
   destination:
     name: in-cluster
     namespace: workspace
