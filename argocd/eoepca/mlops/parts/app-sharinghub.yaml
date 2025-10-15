@@ -13,7 +13,7 @@ spec:
   source:
     repoURL: https://github.com/csgroup-oss/sharinghub.git
     path: deploy/helm/sharinghub
-    targetRevision: "0.4.0"
+    targetRevision: "0.4.1"
     helm:
       releaseName: sharinghub
       valuesObject:
@@ -145,7 +145,6 @@ spec:
 
         image:
           repository: eoepca/sharinghub
-          tag: latest
           pullPolicy: Always
 
         ingress:
