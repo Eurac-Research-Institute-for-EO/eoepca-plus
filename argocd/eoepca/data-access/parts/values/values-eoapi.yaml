@@ -54,8 +54,7 @@ stac:
   enabled: true
   settings:
     envVars:
-      EOAPI_STAC_EXTENSIONS: "filter,query,sort,fields,pagination,transaction"
-      EOAPI_STAC_CORS_METHODS: "GET,POST,PUT,OPTIONS"
+      CORS_METHODS: "GET,POST,PUT,OPTIONS"
       ENABLE_TRANSACTIONS_EXTENSIONS: "TRUE"
     resources:
       limits:
