@@ -78,34 +78,4 @@ vector:
       TIPG_CATALOG_TTL: "30"
 
 eoapi-notifier:
-  enabled: true
-  env:
-    CLOUDEVENTS_MODE: "structured"
-  config:
-    sources:
-      - type: pgstac
-    outputs:
-      - type: cloudevents
-        config:
-          source: /eoapi/pgstac
-          event_type: org.eoapi.stac.item
-          destination:
-            ref:
-              apiVersion: eventing.knative.dev/v1
-              kind: Broker
-              name: default
-              namespace: data-access
-  secrets:
-    postgresql:
-      create: false
-      existingSecret:
-        name: "default-pguser-eoapi"
-        keys:
-          user: "user"
-          password: "password"
-          host: "host"
-          port: "port"
-          database: "dbname"
-  envFrom:
-    - secretRef:
-        name: default-pguser-eoapi
+  enabled: false
