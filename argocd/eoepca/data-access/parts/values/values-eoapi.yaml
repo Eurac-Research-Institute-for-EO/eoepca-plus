@@ -81,15 +81,16 @@ eoapi-notifier:
   config:
     sources:
       - type: pgstac
-        connection:
-          existingSecret:
-            name: "default-pguser-eoapi"
-            keys:
-              username: "user"
-              password: "password"
-              host: "host"
-              port: "port"
-              database: "dbname"
+        config:
+          connection:
+            existingSecret:
+              name: "default-pguser-eoapi"
+              keys:
+                username: "user"
+                password: "password"
+                host: "host"
+                port: "port"
+                database: "dbname"
     outputs:
       - type: cloudevents
         config:
