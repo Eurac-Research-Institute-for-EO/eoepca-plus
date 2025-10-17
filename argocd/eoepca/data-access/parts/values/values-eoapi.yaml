@@ -80,7 +80,7 @@ eoapi-notifier:
   enabled: true
   config:
     sources:
-      - type: postgres
+      - type: pgstac
         config:
           channel: pgstac_items_change
     outputs:
