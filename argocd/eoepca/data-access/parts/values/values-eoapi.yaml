@@ -81,8 +81,6 @@ eoapi-notifier:
   config:
     sources:
       - type: pgstac
-        config:
-          channel: pgstac_items_change
     outputs:
       - type: cloudevents
         config:
