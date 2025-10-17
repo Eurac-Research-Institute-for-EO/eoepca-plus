@@ -82,6 +82,7 @@ eoapi-notifier:
     sources:
       - type: pgstac
         config:
+          channel: "pgstac_items_change"
           connection:
             existingSecret:
               name: "default-pguser-eoapi"
