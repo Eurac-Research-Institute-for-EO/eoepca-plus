@@ -53,6 +53,7 @@ spec:
             defaults:
               quota:
                 storage: 8Gi
+                budget: x-large
   destination:
     name: in-cluster
     namespace: workspace
