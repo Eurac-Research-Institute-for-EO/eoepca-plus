@@ -10,7 +10,7 @@ spec:
   sources:
     - repoURL: ghcr.io/eoepca/workspace
       chart: workspace-pipeline
-      targetRevision: 2.0.0-rc.10
+      targetRevision: 2.0.0-rc.11
       helm:
         releaseName: workspace-pipeline
         values: |
@@ -50,6 +50,9 @@ spec:
                 files:
                   - image:
                       url: ghcr.io/versioneer-tech/educates-extension-packages/rclone:v1.71.0
+            defaults:
+              quota:
+                storage: 8Gi
   destination:
     name: in-cluster
     namespace: workspace
