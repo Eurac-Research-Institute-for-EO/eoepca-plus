@@ -18,5 +18,6 @@ resources:
   - openeo-geotrellis
   - openeo-web-editor
   - openeofed
+  - openeo-argoworkflows
   - notification-automation
   # - identity-service

@@ -1,0 +1,104 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+spec:
+  project: openeo-argoworkflows
+  source:
+    repoURL: https://github.com/jzvolensky/charts
+    targetRevision: eoepca-fix
+    path: eodc/openeo-argo
+    helm:
+      releaseName: openeo
+      valuesObject:
+        global:
+          env:
+            alembicDir: "/opt/openeo_argoworkflows_api/psql"
+            apiDns: "127.0.0.1:8000"
+            apiTLS: false
+            apiTitle: "OpenEO ArgoWorkflows"
+            apiDescription: "A K8S deployment of the openeo api for argoworkflows."
+            oidcUrl: "https://aai.egi.eu/auth/realms/egi"
+            odicOrganisation: "egi"
+            oidcPolicies: ""
+            stacCatalogueUrl: "https://stac.eodc.eu/api/v1"
+            workspaceRoot: "/user_workspaces"
+            executorImage: "ghcr.io/eodcgmbh/openeo-argoworkflows:executor-2025.5.1"
+            daskWorkerCores: "4"
+            daskWorkerMemory: "8"
+            daskWorkerLimit: "6"
+            daskClusterTimeout: "3600"
+
+        replicaCount: 1
+
+        image:
+          repository: ghcr.io/eodcgmbh/openeo-argoworkflows
+          pullPolicy: IfNotPresent
+          tag: "api-2025.5.1"
+
+        postgresql:
+          enabled: true
+          image:
+            repository: postgres
+            tag: "16-alpine"
+            pullPolicy: IfNotPresent
+          auth:
+            username: "postgres"
+            password: "openeo123"
+            database: "postgres"
+          persistence:
+            size: "8Gi"
+
+        redis:
+          image:
+            repository: redis
+            tag: "7-alpine"
+            pullPolicy: IfNotPresent
+          persistence:
+            size: "8Gi"
+          replicas:
+            enabled: true
+            count: 1
+
+        service:
+          type: ClusterIP
+          port: 8000
+
+        ingress:
+          enabled: false
+
+        resources:
+          limits:
+            cpu: 500m
+            memory: 512Mi
+          requests:
+            cpu: 250m
+            memory: 256Mi
+
+        autoscaling:
+          enabled: false
+
+        nodeSelector: {}
+        tolerations: []
+        affinity: {}
+
+  destination:
+    server: in-cluster
+    namespace: openeo
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      allowEmpty: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
+      - Validate=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
+      - RespectIgnoreDifferences=true
+      - ApplyOutOfSyncOnly=true
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
