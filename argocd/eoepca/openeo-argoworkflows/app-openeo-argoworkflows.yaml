@@ -3,16 +3,17 @@ kind: Application
 metadata:
   name: openeo-argoworkflows
   namespace: argocd
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
+  labels:
+    eoepca/is-root-app: "true"
+    eoepca/app-name: openeo-argoworkflows
 spec:
-  project: openeo-argoworkflows
+  project: eoepca
   source:
     repoURL: https://github.com/EOEPCA/eoepca-plus
     targetRevision: deploy-develop
     path: argocd/eoepca/openeo-argoworkflows/parts
   destination:
-    server: in-cluster
+    name: in-cluster
     namespace: openeo
   syncPolicy:
     automated:

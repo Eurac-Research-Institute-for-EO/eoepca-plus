@@ -1,7 +1,12 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
+metadata:
+  name: openeo-argoworkflows-core
+  namespace: argocd
+  labels:
+    eoepca/app-name: openeo-argoworkflows
 spec:
-  project: openeo-argoworkflows
+  project: eoepca
   source:
     repoURL: https://github.com/jzvolensky/charts
     targetRevision: eoepca-fix
@@ -81,7 +86,7 @@ spec:
         affinity: {}
 
   destination:
-    server: in-cluster
+    name: in-cluster
     namespace: openeo
   syncPolicy:
     automated:
