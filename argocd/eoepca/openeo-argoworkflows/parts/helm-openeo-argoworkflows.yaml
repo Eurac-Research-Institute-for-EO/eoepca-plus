@@ -1,23 +1,18 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
-metadata:
-  name: openeo-argoworkflows-helm
-  namespace: argocd
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
 spec:
-  project: default
+  project: openeo-argoworkflows
   source:
     repoURL: https://github.com/jzvolensky/charts
     targetRevision: eoepca-fix
-    path: charts/eodc/openeo-argo
+    path: eodc/openeo-argo
     helm:
       releaseName: openeo
-      values: |
+      valuesObject:
         global:
           env:
             alembicDir: "/opt/openeo_argoworkflows_api/psql"
-            apiDns: 127.0.0.1:8000
+            apiDns: "127.0.0.1:8000"
             apiTLS: false
             apiTitle: "OpenEO ArgoWorkflows"
             apiDescription: "A K8S deployment of the openeo api for argoworkflows."
@@ -86,15 +81,21 @@ spec:
         affinity: {}
 
   destination:
-    server: https://kubernetes.default.svc
+    server: in-cluster
     namespace: openeo
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
+      allowEmpty: true
     syncOptions:
       - CreateNamespace=true
       - ServerSideApply=true
+      - Validate=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
+      - RespectIgnoreDifferences=true
+      - ApplyOutOfSyncOnly=true
     retry:
       limit: 5
       backoff:
