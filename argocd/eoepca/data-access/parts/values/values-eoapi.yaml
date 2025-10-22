@@ -54,7 +54,7 @@ stac:
   enabled: true
   settings:
     envVars:
-      CORS_METHODS: "GET,POST,PUT,OPTIONS"
+      # CORS_METHODS: "GET,POST,PUT,OPTIONS"
       ENABLE_TRANSACTIONS_EXTENSIONS: "TRUE"
     resources:
       limits:
