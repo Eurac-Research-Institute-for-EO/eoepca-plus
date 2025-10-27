@@ -8,7 +8,7 @@ metadata:
 spec:
   project: eoepca
   source:
-    repoURL: https://github.com/eodcgmbh/charts
+    repoURL: https://github.com/jzvolensky/charts
     targetRevision: main
     path: eodc/openeo-argo
     helm:
