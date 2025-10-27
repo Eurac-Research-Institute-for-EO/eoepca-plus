@@ -9,7 +9,7 @@ spec:
   project: eoepca
   source:
     repoURL: https://github.com/eodcgmbh/charts
-    targetRevision: eoepca-fix
+    targetRevision: main
     path: eodc/openeo-argo
     helm:
       releaseName: openeo
