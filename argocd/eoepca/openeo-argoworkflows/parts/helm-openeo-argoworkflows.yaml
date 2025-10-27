@@ -42,9 +42,7 @@ spec:
         postgresql:
           enabled: true
           image:
-            repository: postgres
-            tag: "16-alpine"
-            pullPolicy: IfNotPresent
+            repository: bitnamilegacy/postgresql
           auth:
             username: "postgres"
             password: "openeo123"
@@ -54,9 +52,7 @@ spec:
 
         redis:
           image:
-            repository: redis
-            tag: "7-alpine"
-            pullPolicy: IfNotPresent
+            repository: bitnamilegacy/redis
           persistence:
             size: "8Gi"
           replicas:
