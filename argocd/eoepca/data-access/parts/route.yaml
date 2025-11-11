@@ -212,6 +212,7 @@ spec:
       hosts:
       - eoapi.develop.eoepca.org
       methods:
+      - GET
       - POST
       paths:
       - /stac/search
