@@ -36,6 +36,26 @@ configMaps:
 
     oidc_providers = [
         OidcProvider(
+            id="eurac",
+            title="EURAC Research",
+            issuer="https://cssauth01.eurac.edu:8443/auth/realms/edp",
+            scopes=["openid", "email"],
+            default_clients=[
+                {
+                    "id": "openEO",
+                    "grant_types": [
+                        "authorization_code+pkce",
+                        "refresh_token",
+                    ],
+                    "redirect_urls": [
+                        "https://editor.openeo.org",
+                        "https://eoepca.github.io/processing-editor",
+                        "http://localhost:1410/",
+                    ],
+                }
+            ],
+        ),
+        OidcProvider(
             id="eoepca-iam",
             title="EOEPCA IAM",
             issuer="https://iam-auth.develop.eoepca.org/realms/eoepca/",

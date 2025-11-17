@@ -1,0 +1,143 @@
+apiVersion: keycloak.crossplane.io/v1alpha1
+kind: IdentityProviderMapper
+metadata:
+  name: eurac-email-mapper
+  namespace: iam
+spec:
+  forProvider:
+    realmRef:
+      name: eoepca
+    identityProviderAlias: eurac-research
+    name: email
+    identityProviderMapper: saml-user-attribute-idp-mapper
+    config:
+      syncMode: "INHERIT"
+      attribute.name: "urn:oid:0.9.2342.19200300.100.1.3"
+      attribute.friendly.name: "mail"
+      user.attribute: "email"
+  providerConfigRef:
+    name: iam-keycloak-keycloak-provider-config
+
+---
+apiVersion: keycloak.crossplane.io/v1alpha1
+kind: IdentityProviderMapper
+metadata:
+  name: eurac-firstname-mapper
+  namespace: iam
+spec:
+  forProvider:
+    realmRef:
+      name: eoepca
+    identityProviderAlias: eurac-research
+    name: firstName
+    identityProviderMapper: saml-user-attribute-idp-mapper
+    config:
+      syncMode: "INHERIT"
+      attribute.name: "urn:oid:2.5.4.42"
+      attribute.friendly.name: "givenName"
+      user.attribute: "firstName"
+  providerConfigRef:
+    name: iam-keycloak-keycloak-provider-config
+
+---
+apiVersion: keycloak.crossplane.io/v1alpha1
+kind: IdentityProviderMapper
+metadata:
+  name: eurac-lastname-mapper
+  namespace: iam
+spec:
+  forProvider:
+    realmRef:
+      name: eoepca
+    identityProviderAlias: eurac-research
+    name: lastName
+    identityProviderMapper: saml-user-attribute-idp-mapper
+    config:
+      syncMode: "INHERIT"
+      attribute.name: "urn:oid:2.5.4.4"
+      attribute.friendly.name: "sn"
+      user.attribute: "lastName"
+  providerConfigRef:
+    name: iam-keycloak-keycloak-provider-config
+
+---
+apiVersion: keycloak.crossplane.io/v1alpha1
+kind: IdentityProviderMapper
+metadata:
+  name: eurac-displayname-mapper
+  namespace: iam
+spec:
+  forProvider:
+    realmRef:
+      name: eoepca
+    identityProviderAlias: eurac-research
+    name: displayName
+    identityProviderMapper: saml-user-attribute-idp-mapper
+    config:
+      syncMode: "INHERIT"
+      attribute.name: "urn:oid:2.16.840.1.113730.3.1.241"
+      attribute.friendly.name: "displayName"
+      user.attribute: "displayName"
+  providerConfigRef:
+    name: iam-keycloak-keycloak-provider-config
+
+---
+apiVersion: keycloak.crossplane.io/v1alpha1
+kind: IdentityProviderMapper
+metadata:
+  name: eurac-affiliation-mapper
+  namespace: iam
+spec:
+  forProvider:
+    realmRef:
+      name: eoepca
+    identityProviderAlias: eurac-research
+    name: affiliation
+    identityProviderMapper: saml-user-attribute-idp-mapper
+    config:
+      syncMode: "INHERIT"
+      attribute.name: "urn:oid:1.3.6.1.4.1.5923.1.1.1.9"
+      attribute.friendly.name: "eduPersonScopedAffiliation"
+      user.attribute: "affiliation"
+  providerConfigRef:
+    name: iam-keycloak-keycloak-provider-config
+
+---
+apiVersion: keycloak.crossplane.io/v1alpha1
+kind: IdentityProviderMapper
+metadata:
+  name: eurac-eppn-mapper
+  namespace: iam
+spec:
+  forProvider:
+    realmRef:
+      name: eoepca
+    identityProviderAlias: eurac-research
+    name: eppn
+    identityProviderMapper: saml-user-attribute-idp-mapper
+    config:
+      syncMode: "INHERIT"
+      attribute.name: "urn:oid:1.3.6.1.4.1.5923.1.1.1.6"
+      attribute.friendly.name: "eduPersonPrincipalName"
+      user.attribute: "eppn"
+  providerConfigRef:
+    name: iam-keycloak-keycloak-provider-config
+
+---
+apiVersion: keycloak.crossplane.io/v1alpha1
+kind: IdentityProviderMapper
+metadata:
+  name: eurac-username-mapper
+  namespace: iam
+spec:
+  forProvider:
+    realmRef:
+      name: eoepca
+    identityProviderAlias: eurac-research
+    name: username
+    identityProviderMapper: saml-username-idp-mapper
+    config:
+      syncMode: "INHERIT"
+      template: "${NAMEID}@eurac"
+  providerConfigRef:
+    name: iam-keycloak-keycloak-provider-config

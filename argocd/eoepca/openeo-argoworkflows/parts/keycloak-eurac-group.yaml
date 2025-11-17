@@ -1,0 +1,21 @@
+apiVersion: keycloak.crossplane.io/v1alpha1
+kind: Group
+metadata:
+  name: eurac-researchers
+  namespace: iam
+spec:
+  forProvider:
+    realmRef:
+      name: eoepca
+    name: eurac-researchers
+    path: /organizations/eurac
+    attributes:
+      organization: ["eurac"]
+      organization_name: ["EURAC Research"]
+      organization_url: ["https://www.eurac.edu"]
+      max_concurrent_jobs: ["10"]
+      max_storage_gb: ["100"]
+      priority: ["high"]
+      
+  providerConfigRef:
+    name: iam-keycloak-keycloak-provider-config

@@ -1,0 +1,59 @@
+apiVersion: keycloak.crossplane.io/v1alpha1
+kind: IdentityProvider
+metadata:
+  name: eurac-research-saml
+  namespace: iam
+spec:
+  forProvider:
+    realmRef:
+      name: eoepca
+    
+    # Identity Provider basic configuration
+    alias: eurac-research
+    displayName: "EURAC Research"
+    enabled: true
+    providerId: saml
+    
+    # Trust and flow settings
+    trustEmail: true
+    storeToken: false
+    addReadTokenRoleOnCreate: false
+    linkOnly: false
+    firstBrokerLoginFlowAlias: "first broker login"
+    
+    # SAML-specific configuration
+    config:
+      # EURAC SAML IdP endpoints
+      singleSignOnServiceUrl: "https://sso.eurac.edu/simplesaml/saml2/idp/SSOService.php"
+      singleLogoutServiceUrl: ""
+      
+      # Metadata
+      metadataDescriptorUrl: "https://sso.eurac.edu/simplesaml/saml2/idp/metadata.php"
+      useMetadataDescriptorUrl: "true"
+      
+      # Entity IDs
+      entityId: "https://sso.eurac.edu/simplesaml/saml2/idp/metadata.php"
+      
+      # Binding and signature settings
+      postBindingResponse: "true"
+      postBindingAuthnRequest: "true"
+      wantAuthnRequestsSigned: "false"
+      wantAssertionsSigned: "true"
+      wantAssertionsEncrypted: "false"
+      forceAuthn: "false"
+      validateSignature: "true"
+      signSpMetadata: "false"
+      
+      # NameID settings
+      nameIDPolicyFormat: "urn:oasis:names:tc:SAML:2.0:nameid-format:persistent"
+      principalType: "SUBJECT"
+      principalAttribute: ""
+      
+      # Synchronization
+      syncMode: "IMPORT"
+      
+      # backchannel logout
+      backchannelSupported: "false"
+      
+  providerConfigRef:
+    name: iam-keycloak-keycloak-provider-config
