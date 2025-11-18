@@ -1,28 +1,30 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: openeo-argoworkflows-core
+  name: openeo-argoworkflows-helm
   namespace: argocd
-  labels:
-    eoepca/app-name: openeo-argoworkflows
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
 spec:
-  project: eoepca
+  project: default
   source:
     repoURL: https://github.com/jzvolensky/charts
     targetRevision: eoepca-fix
-    path: eodc/openeo-argo
+    path: charts/eodc/openeo-argo
     helm:
       releaseName: openeo
-      valuesObject:
+      values: |
         global:
           env:
             alembicDir: "/opt/openeo_argoworkflows_api/psql"
-            apiDns: "127.0.0.1:8000"
-            apiTLS: false
+            apiDns: openeo.develop.eoepca.org
+            apiTLS: true
             apiTitle: "OpenEO ArgoWorkflows"
             apiDescription: "A K8S deployment of the openeo api for argoworkflows."
-            oidcUrl: "https://aai.egi.eu/auth/realms/egi"
-            odicOrganisation: "egi"
+            oidcUrl: "https://edp-portal.eurac.edu/auth/realms/edp"
+            oidcClientId: "openEO"
+            oidcClientSecret: "d00875a6-7967-44fd-b597-bd39fb0f4473"
+            odicOrganisation: "eurac"
             oidcPolicies: ""
             stacCatalogueUrl: "https://stac.eodc.eu/api/v1"
             workspaceRoot: "/user_workspaces"
@@ -86,21 +88,15 @@ spec:
         affinity: {}
 
   destination:
-    name: in-cluster
+    server: https://kubernetes.default.svc
     namespace: openeo
   syncPolicy:
     automated:
       prune: true
-      selfHeal: false
-      allowEmpty: true
+      selfHeal: true
     syncOptions:
       - CreateNamespace=true
       - ServerSideApply=true
-      - Validate=true
-      - PrunePropagationPolicy=foreground
-      - PruneLast=true
-      - RespectIgnoreDifferences=true
-      - ApplyOutOfSyncOnly=true
     retry:
       limit: 5
       backoff:
