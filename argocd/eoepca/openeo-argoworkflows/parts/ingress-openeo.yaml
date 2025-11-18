@@ -45,10 +45,12 @@ spec:
             discovery: "https://edp-portal.eurac.edu/auth/realms/edp/.well-known/openid-configuration"
             realm: edp
             redirect_uri: "https://openeo-eurac.develop.eoepca.org/apisix/redirect"
+            session_secret: "d00875a6796744fdb597bd39fb0f4473eurac"
             use_jwks: true
             bearer_only: false # redirect to login screen if not authenticated
             set_access_token_header: true
             access_token_in_authorization_header: true
+            scope: "openid email profile"
         # Allow CORS access
         - name: cors
           enable: true
