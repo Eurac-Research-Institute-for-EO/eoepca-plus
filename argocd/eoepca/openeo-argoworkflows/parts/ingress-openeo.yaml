@@ -44,6 +44,7 @@ spec:
             client_secret: "d00875a6-7967-44fd-b597-bd39fb0f4473"
             discovery: "https://edp-portal.eurac.edu/auth/realms/edp/.well-known/openid-configuration"
             realm: edp
+            redirect_uri: "https://openeo-eurac.develop.eoepca.org/apisix/redirect"
             use_jwks: true
             bearer_only: false # redirect to login screen if not authenticated
             set_access_token_header: true
