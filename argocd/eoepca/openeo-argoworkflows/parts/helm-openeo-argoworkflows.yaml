@@ -1,16 +1,16 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: openeo-argoworkflows-helm
+  name: openeo-argoworkflows-core
   namespace: argocd
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
+  labels:
+    eoepca/app-name: openeo-argoworkflows
 spec:
-  project: default
+  project: eoepca
   source:
     repoURL: https://github.com/jzvolensky/charts
     targetRevision: eoepca-fix
-    path: charts/eodc/openeo-argo
+    path: eodc/openeo-argo
     helm:
       releaseName: openeo
       valuesObject:
@@ -88,18 +88,17 @@ spec:
         affinity: {}
 
   destination:
-    server: https://kubernetes.default.svc
+    name: in-cluster
     namespace: openeo
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
+      allowEmpty: true
     syncOptions:
+      - Validate=true
       - CreateNamespace=true
-      - ServerSideApply=true
-    retry:
-      limit: 5
-      backoff:
-        duration: 5s
-        factor: 2
-        maxDuration: 3m
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
+      - RespectIgnoreDifferences=true
+      - ApplyOutOfSyncOnly=true
