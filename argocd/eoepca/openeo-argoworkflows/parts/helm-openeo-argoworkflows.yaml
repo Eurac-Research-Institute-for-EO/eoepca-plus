@@ -17,7 +17,7 @@ spec:
         global:
           env:
             alembicDir: "/opt/openeo_argoworkflows_api/psql"
-            apiDns: openeo.develop.eoepca.org
+            apiDns: openeo-eurac.develop.eoepca.org
             apiTLS: true
             apiTitle: "OpenEO ArgoWorkflows"
             apiDescription: "A K8S deployment of the openeo api for argoworkflows."

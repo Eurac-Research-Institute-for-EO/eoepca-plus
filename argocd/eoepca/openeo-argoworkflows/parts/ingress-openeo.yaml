@@ -10,7 +10,7 @@ spec:
     - name: openeo-docs
       match:
         hosts:
-          - openeo.develop.eoepca.org
+          - openeo-eurac.develop.eoepca.org
         paths:
           - /*
         exprs:
@@ -29,7 +29,7 @@ spec:
     - name: openeo-protected
       match:
         hosts:
-          - openeo.develop.eoepca.org
+          - openeo-eurac.develop.eoepca.org
         paths:
           - /*
       backends:
@@ -66,7 +66,7 @@ metadata:
   namespace: openeo
 spec:
   dnsNames:
-    - openeo.develop.eoepca.org
+    - openeo-eurac.develop.eoepca.org
   issuerRef:
     kind: ClusterIssuer
     name: letsencrypt-dns-prod
@@ -83,7 +83,7 @@ metadata:
   namespace: openeo
 spec:
   hosts:
-    - openeo.develop.eoepca.org
+    - openeo-eurac.develop.eoepca.org
   secret:
     name: openeo-tls
     namespace: openeo
