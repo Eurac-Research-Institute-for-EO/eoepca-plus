@@ -17,12 +17,14 @@ spec:
         global:
           env:
             alembicDir: "/opt/openeo_argoworkflows_api/psql"
-            apiDns: "127.0.0.1:8000"
-            apiTLS: false
+            apiDns: openeo.develop.eoepca.org
+            apiTLS: true
             apiTitle: "OpenEO ArgoWorkflows"
             apiDescription: "A K8S deployment of the openeo api for argoworkflows."
-            oidcUrl: "https://aai.egi.eu/auth/realms/egi"
-            odicOrganisation: "egi"
+            oidcUrl: "https://edp-portal.eurac.edu/auth/realms/edp"
+            oidcClientId: "openEO"
+            oidcClientSecret: "d00875a6-7967-44fd-b597-bd39fb0f4473"
+            odicOrganisation: "eurac"
             oidcPolicies: ""
             stacCatalogueUrl: "https://stac.eodc.eu/api/v1"
             workspaceRoot: "/user_workspaces"
@@ -87,19 +89,12 @@ spec:
   syncPolicy:
     automated:
       prune: true
-      selfHeal: false
+      selfHeal: true
       allowEmpty: true
     syncOptions:
-      - CreateNamespace=true
-      - ServerSideApply=true
       - Validate=true
+      - CreateNamespace=true
       - PrunePropagationPolicy=foreground
       - PruneLast=true
       - RespectIgnoreDifferences=true
       - ApplyOutOfSyncOnly=true
-    retry:
-      limit: 5
-      backoff:
-        duration: 5s
-        factor: 2
-        maxDuration: 3m
