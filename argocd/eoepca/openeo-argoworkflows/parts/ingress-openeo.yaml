@@ -41,14 +41,24 @@ spec:
           enable: true
           config:
             client_id: "openEO"
-            client_secret: "d00875a6-7967-44fd-b597-bd39fb0f4473"
+            client_secret: "8f7f2fb0-4347-44be-b5be-d752cbd3de11"
             discovery: "https://edp-portal.eurac.edu/auth/realms/edp/.well-known/openid-configuration"
+            scope: "openid email profile"
             realm: edp
             redirect_uri: "https://openeo-eurac.develop.eoepca.org/apisix/redirect"
+            session_secret: "d00875a6796744fdb597bd39fb0f4473"
             use_jwks: true
-            bearer_only: false # redirect to login screen if not authenticated
+            bearer_only: false
             set_access_token_header: true
             access_token_in_authorization_header: true
+            unauth_action: "auth"
+            timeout: 30
+            ssl_verify: false
+            set_userinfo_header: true
+            response_type: "code"
+            access_token_expires_in: 3600
+            access_token_expires_leeway: 60
+            refresh_session_interval: 900
         # Allow CORS access
         - name: cors
           enable: true
