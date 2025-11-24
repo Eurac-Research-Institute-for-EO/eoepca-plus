@@ -6,3 +6,9 @@ namespace: openeo
 resources:
   - helm-openeo-argoworkflows.yaml
   - ingress-openeo.yaml
+
+patches:
+  - path: deployment-patch.yaml
+    target:
+      kind: Deployment
+      name: openeo-openeo-argo
