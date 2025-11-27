@@ -15,18 +15,12 @@ source .env 2>/dev/null
 SECRET_NAME="resource-catalogue-secret"
 NAMESPACE="rm"
 
-EOEPCA_DB_HOST="${1:-${EOEPCA_DB_HOST:-somehost}}"
-EOEPCA_DB_NAME="${2:-${EOEPCA_DB_NAME:-somedbname}}"
-EOEPCA_PORT="${3:-${EOEPCA_PORT:-someport}}"
-EOEPCA_USER="${4:-${EOEPCA_USER:-someuser}}"
-EOEPCA_PASSWORD="${5:-${EOEPCA_PASSWORD:-somesecret}}"
+EOEPCA_USERNAME="${1:-${EOEPCA_USERNAME:-someusername}}"
+EOEPCA_PASSWORD="${2:-${EOEPCA_PASSWORD:-somesecret}}"
 
 secretYaml() {
   kubectl -n "${NAMESPACE}" create secret generic "${SECRET_NAME}" \
-    --from-literal="host=${EOEPCA_DB_HOST}" \
-    --from-literal="dbname=${EOEPCA_DB_NAME}" \
-    --from-literal="port=${EOEPCA_PORT}" \
-    --from-literal="user=${EOEPCA_USER}" \
+    --from-literal="username=${EOEPCA_USERNAME}" \
     --from-literal="password=${EOEPCA_PASSWORD}" \
     --dry-run=client -o yaml
 }
