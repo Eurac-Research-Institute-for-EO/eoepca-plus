@@ -1,4 +1,5 @@
 
 resources:
+  - ss-resource-catalogue-secret.yaml
   - app-resource-catalogue-core.yaml
   - app-resource-catalogue-route.yaml
