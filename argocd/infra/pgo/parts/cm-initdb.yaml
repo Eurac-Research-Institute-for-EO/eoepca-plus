@@ -22,3 +22,5 @@ data:
     GRANT pgstac_read TO eoapi WITH ADMIN OPTION;
     GRANT pgstac_ingest TO eoapi WITH ADMIN OPTION;
     GRANT pgstac_admin TO eoapi WITH ADMIN OPTION;
+    \c pycsw
+    CREATE EXTENSION IF NOT EXISTS postgis;
