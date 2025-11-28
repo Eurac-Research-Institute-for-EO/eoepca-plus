@@ -4,3 +4,4 @@ resources:
   - app-resource-catalogue-core.yaml
   - app-resource-catalogue-protected.yaml
   - app-resource-catalogue-route.yaml
+  - app-resource-catalogue-protected-route.yaml
