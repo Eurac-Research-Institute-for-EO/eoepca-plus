@@ -16,7 +16,7 @@ spec:
       paths:
         - /*
     backends:
-      - serviceName: resource-catalogue-service
+      - serviceName: resource-catalogue-protected-service
         servicePort: 80
     plugins:
       # TODO: Configure client secrets through secretRef
