@@ -157,6 +157,37 @@ spec:
         - ^(/raster)($|/.*)
         - $2
       enable: true
+  - name: openeo-redirect
+    backends:
+    - serviceName: titiler-openeo
+      servicePort: 80
+    match:
+      hosts:
+      - eoapi.develop.eoepca.org
+      paths:
+      - /openeo
+    plugins:
+    - name: redirect
+      enable: true
+      config:
+        uri: /openeo/
+  - name: openeo-route
+    backends:
+    - serviceName: titiler-openeo
+      servicePort: 80
+    match:
+      hosts:
+      - eoapi.develop.eoepca.org
+      paths:
+      - /openeo/
+      - /openeo/*
+    plugins:
+    - name: proxy-rewrite
+      config:
+        regex_uri:
+        - ^(/openeo)($|/.*)
+        - $2
+      enable: true
   - name: stac-redirect
     backends:
     - serviceName: eoapi-stac
