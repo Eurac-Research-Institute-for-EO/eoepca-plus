@@ -24,6 +24,7 @@ spec:
       helm:
         releaseName: titiler-openeo
         values: |
+          nameOverride: "eoapi-titiler-openeo"
           stac:
             apiUrl: "https://eoapi.develop.eoepca.org/stac"
 
