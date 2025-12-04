@@ -17,6 +17,16 @@ spec:
         releaseName: eoapi
         valueFiles:
           - $values/argocd/eoepca/data-access/parts/values/values-eoapi.yaml
+
+    - repoURL: https://github.com/sentinel-hub/titiler-openeo
+      path: deployment/k8s/charts
+      targetRevision: main
+      helm:
+        releaseName: titiler-openeo
+        values: |
+          stac:
+            apiUrl: "https://eoapi.develop.eoepca.org/stac"
+
     - repoURL: https://github.com/EOEPCA/eoepca-plus
       targetRevision: deploy-develop
       ref: values
