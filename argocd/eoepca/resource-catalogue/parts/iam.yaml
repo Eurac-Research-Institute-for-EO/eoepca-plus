@@ -1,21 +1,21 @@
 apiVersion: openidclient.keycloak.crossplane.io/v1alpha1
 kind: Client
 metadata: 
-  name: eoapi
+  name: resource-catalogue
 spec:
   providerConfigRef:
     name: iam-keycloak-keycloak-provider-config
   forProvider:
     realmId: eoepca
-    name: eoapi
+    name: resource-catalogue
     accessType: PUBLIC
-    clientId: eoapi
+    clientId: resource-catalogue
     standardFlowEnabled: true
     implicitFlowEnabled: true
     directAccessGrantsEnabled: true # allow for now to simplify testing
     serviceAccountsEnabled: false
     oauth2DeviceAuthorizationGrantEnabled: true    
-    rootUrl: https://eoapi.develop.eoepca.org
+    rootUrl: https://resource-catalogue-protected.develop.eoepca.org
     webOrigins: 
       - '*'
     validRedirectUris:
@@ -24,43 +24,43 @@ spec:
 apiVersion: role.keycloak.crossplane.io/v1alpha1
 kind: Role
 metadata: 
-  name: stac-editor
+  name: records-editor
 spec:
   providerConfigRef:
     name: iam-keycloak-keycloak-provider-config
   forProvider:
     realmId: eoepca
-    name: stac_editor
+    name: records_editor
     clientIdRef:
-      name: eoapi
+      name: resource-catalogue
       policy:
         resolution: Required
 ---
 apiVersion: group.keycloak.crossplane.io/v1alpha1
 kind: Group
 metadata: 
-  name: data-access-admin
+  name: resource-catalogue-admin
 spec:
   providerConfigRef:
     name: iam-keycloak-keycloak-provider-config
   forProvider:
     realmId: eoepca
-    name: data-access-admin    
+    name: resource-catalogue-admin
 ---
 apiVersion: group.keycloak.crossplane.io/v1alpha1
 kind: Roles
 metadata: 
-  name: data-access-admin
+  name: resource-catalogue-admin
 spec:
   providerConfigRef:
     name: iam-keycloak-keycloak-provider-config
   forProvider:
     realmId: eoepca
     groupIdRef:
-      name: data-access-admin
+      name: resource-catalogue-admin
       policy:
         resolution: Required
     roleIdsRefs:
-      - name: stac-editor
+      - name: records-editor
         policy:
           resolution: Required
