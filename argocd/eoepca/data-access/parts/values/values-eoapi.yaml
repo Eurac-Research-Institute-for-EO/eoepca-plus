@@ -19,8 +19,15 @@ postgrescluster:
 pgstacBootstrap:
   enabled: true
   settings:
+    pgstacSettings:
+      use_queue: "true"
+      update_collection_extent: "false"
     envVars:
       KEEP_ALIVE: "false"
+  queueProcessor:
+    schedule: "0 * * * *"
+  extentUpdater:
+    schedule: "0 */12 * * *"
 
 raster:
   enabled: true
