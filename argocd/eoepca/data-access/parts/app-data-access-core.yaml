@@ -28,6 +28,14 @@ spec:
           stac:
             apiUrl: "https://eoapi.develop.eoepca.org/stac"
 
+    - repoURL: https://stac-manager.ds.io/
+      chart: stac-manager
+      targetRevision: 0.0.11
+      helm:
+        releaseName: stac-manager
+        valueFiles:
+          - $values/argocd/eoepca/data-access/parts/values/values-stac-manager.yaml
+
     - repoURL: https://github.com/EOEPCA/eoepca-plus
       targetRevision: deploy-develop
       ref: values
