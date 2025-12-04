@@ -10,7 +10,7 @@ spec:
   - name: manager-redirect
     websocket: true
     backends:
-    - serviceName: stac-manager
+    - serviceName: eoapi-stac-manager
       servicePort: 80
     match:
       hosts:
@@ -25,7 +25,7 @@ spec:
   - name: manager-route
     websocket: true
     backends:
-    - serviceName: stac-manager
+    - serviceName: eoapi-stac-manager
       servicePort: 80
     match:
       hosts:
@@ -159,7 +159,7 @@ spec:
       enable: true
   - name: openeo-redirect
     backends:
-    - serviceName: titiler-openeo
+    - serviceName: eoapi-titiler-openeo
       servicePort: 80
     match:
       hosts:
@@ -173,7 +173,7 @@ spec:
         uri: /openeo/
   - name: openeo-route
     backends:
-    - serviceName: titiler-openeo
+    - serviceName: eoapi-titiler-openeo
       servicePort: 80
     match:
       hosts:

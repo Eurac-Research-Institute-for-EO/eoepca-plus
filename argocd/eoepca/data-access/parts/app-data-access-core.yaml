@@ -22,9 +22,8 @@ spec:
       path: deployment/k8s/charts
       targetRevision: main
       helm:
-        releaseName: titiler-openeo
+        releaseName: eoapi-titiler-openeo
         values: |
-          nameOverride: "eoapi-titiler-openeo"
           stac:
             apiUrl: "https://eoapi.develop.eoepca.org/stac"
 
@@ -32,7 +31,7 @@ spec:
       chart: stac-manager
       targetRevision: 0.0.11
       helm:
-        releaseName: stac-manager
+        releaseName: eoapi-stac-manager
         valueFiles:
           - $values/argocd/eoepca/data-access/parts/values/values-stac-manager.yaml
 
