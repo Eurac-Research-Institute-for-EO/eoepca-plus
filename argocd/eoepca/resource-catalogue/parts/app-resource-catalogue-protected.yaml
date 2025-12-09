@@ -11,7 +11,7 @@ spec:
   source:
     repoURL: 'https://eoepca.github.io/helm-charts-dev'
     chart: rm-resource-catalogue
-    targetRevision: 2.0.0-rc2
+    targetRevision: 2.0.0-dev9
     helm:
       releaseName: resource-catalogue
       valuesObject:
@@ -28,6 +28,7 @@ spec:
           auth:
             secret_name: resource-catalogue-secret
         pycsw:
+          name: pycsw-protected
           service_name: resource-catalogue-protected-service
           configmap_name: resource-catalogue-protected-configmap
           image:
