@@ -26,12 +26,14 @@ spec:
         hosts:
           - zoostd.develop.eoepca.org
         paths:
-          - /*
-        exprs:
-          - subject:
-              scope: Path
-            op: RegexMatch
-            value: "^/(ogc-api/api.*|swagger-ui.*|conformance.*)"
+          - /ogc-api/api*
+          - /swagger-ui*
+          - /conformance*
+        # exprs:
+        #   - subject:
+        #       scope: Path
+        #     op: RegexMatch
+        #     value: "^/(ogc-api/api.*|swagger-ui.*|conformance.*)"
       backends:
         - serviceName: zoo-project-dru-std-service
           servicePort: 80
