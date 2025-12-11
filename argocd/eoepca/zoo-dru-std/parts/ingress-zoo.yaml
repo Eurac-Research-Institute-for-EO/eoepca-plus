@@ -26,6 +26,7 @@ spec:
         hosts:
           - zoostd.develop.eoepca.org
         paths:
+          - /ogc-api
           - /ogc-api/
           - /ogc-api/api*
           - /swagger-ui*
