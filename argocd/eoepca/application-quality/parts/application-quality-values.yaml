@@ -45,6 +45,19 @@ application-quality:
         - application-quality.develop.eoepca.org
         secretName: application-quality-tls
 
+  notifications:
+    enabled: true
+    middleware: "knative"
+    brokerName: "primary"
+    brokerNamespace: "default"
+    # Also used as type prefix for incoming notifications
+    channelPrefix: "org.eoepca.application-quality"
+    responseSource: "/eoepca/application-quality"
+    responseTypePrefix: "org.eoepca.application-quality.response"
+
+  automations:
+    enabled: false
+
 # https://github.com/grafana/helm-charts/blob/main/charts/grafana/values.yaml
 grafana:
   ingress:
