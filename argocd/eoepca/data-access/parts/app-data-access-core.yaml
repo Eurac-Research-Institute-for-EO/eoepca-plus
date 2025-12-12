@@ -26,6 +26,15 @@ spec:
         values: |
           stac:
             apiUrl: "https://eoapi.develop.eoepca.org/stac"
+            serviceStoreUrl: "/app/services/eoapi.json"
+          extraVolumes:
+            - name: services
+              configMap:
+                name: titiler-openeo-services
+          extraVolumeMounts:
+            - name: services
+              mountPath: /app/services
+              readOnly: true
 
     - repoURL: https://stac-manager.ds.io/
       chart: stac-manager

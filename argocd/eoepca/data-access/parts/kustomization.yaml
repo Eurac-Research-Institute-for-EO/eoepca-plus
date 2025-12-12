@@ -10,3 +10,6 @@ configMapGenerator:
   - name: stac-auth-proxy-filters
     files:
       - eoepca_filters.py=stac-auth-proxy/eoepca_filters.py
+  - name: titiler-openeo-services
+    files:
+      - eoapi.json=titiler-openeo/eoapi.json
