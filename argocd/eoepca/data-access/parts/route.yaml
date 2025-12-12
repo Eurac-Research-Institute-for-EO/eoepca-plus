@@ -190,7 +190,7 @@ spec:
       enable: true
   - name: stac-redirect
     backends:
-    - serviceName: eoapi-stac
+    - serviceName: eoapi-stac-auth-proxy
       servicePort: 8080
     match:
       hosts:
@@ -208,7 +208,7 @@ spec:
       enable: true
   - name: stac-open-route
     backends:
-    - serviceName: eoapi-stac
+    - serviceName: eoapi-stac-auth-proxy
       servicePort: 8080
     match:
       hosts:
@@ -237,7 +237,7 @@ spec:
       enable: true
   - name: stac-open-search-route
     backends:
-    - serviceName: eoapi-stac
+    - serviceName: eoapi-stac-auth-proxy
       servicePort: 8080
     match:
       hosts:
@@ -258,7 +258,7 @@ spec:
       enable: true
   - name: stac-protected-route
     backends:
-    - serviceName: eoapi-stac
+    - serviceName: eoapi-stac-auth-proxy
       servicePort: 8080
     match:
       hosts:

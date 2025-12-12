@@ -125,6 +125,5 @@ stac-auth-proxy:
         name: stac-auth-proxy-filters
   extraVolumeMounts:
     - name: filters
-      mountPath: /app/src/stac_auth_proxy/eoepca_filters.py
-      subPath: eoepca_filters.py
+      mountPath: /app/src/stac_auth_proxy
       readOnly: true
