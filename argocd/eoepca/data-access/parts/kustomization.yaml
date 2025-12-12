@@ -5,3 +5,8 @@ resources:
   - iam.yaml
   - route.yaml
   - eso-pgo.yaml
+
+configMapGenerator:
+  - name: stac-auth-proxy-filters
+    files:
+      - eoepca_filters.py=stac-auth-proxy/eoepca_filters.py
