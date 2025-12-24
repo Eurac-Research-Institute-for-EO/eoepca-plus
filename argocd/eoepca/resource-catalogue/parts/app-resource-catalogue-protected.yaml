@@ -11,7 +11,7 @@ spec:
   source:
     repoURL: 'https://eoepca.github.io/helm-charts-dev'
     chart: rm-resource-catalogue
-    targetRevision: 2.0.0-rc3
+    targetRevision: 2.0.0-rc4
     helm:
       releaseName: resource-catalogue
       valuesObject:
@@ -32,9 +32,9 @@ spec:
           service_name: resource-catalogue-protected-service
           configmap_name: resource-catalogue-protected-configmap
           image:
-            # repository: geopython/pycsw
-            tag: "eoepca-staging"
-            pullPolicy: Always
+            repository: geopython/pycsw
+            # tag: "eoepca-staging"
+            # pullPolicy: Always
           replicas: 1
           config:
             server:
