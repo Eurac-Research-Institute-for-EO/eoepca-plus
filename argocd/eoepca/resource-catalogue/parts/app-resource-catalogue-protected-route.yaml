@@ -19,5 +19,22 @@ spec:
       - serviceName: resource-catalogue-protected-service
         servicePort: 80
     plugins:
-      - name: cors
-        enable: true
+    - name: openid-connect
+      enable: true
+      config:
+        discovery: "https://iam-auth.develop.eoepca.org/realms/eoepca/.well-known/openid-configuration"
+        use_jwks: true
+        bearer_only: true #as not working in browser, i.e. only usable via API
+        set_access_token_header: true
+        access_token_in_authorization_header: true
+        set_id_token_header: false
+        set_userinfo_header: false
+        client_id: resource-catalogue
+        client_secret: ""
+    - name: opa
+      enable: true
+      config:
+        host: http://iam-opa.iam:8181
+        policy: eoepca/resourceregistration/registrationapi
+    - name: cors
+      enable: true
