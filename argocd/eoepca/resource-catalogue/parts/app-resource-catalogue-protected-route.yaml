@@ -9,24 +9,25 @@ metadata:
     argocd.argoproj.io/sync-wave: "2"
 spec:
   http:
-  - name: resource-catalogue-protected-static
+  - name: resource-catalogue-protected-public
     match:
       hosts:
         - resource-catalogue-protected.develop.eoepca.org
       paths:
         - /static*
+        - /conformance*
     backends:
       - serviceName: resource-catalogue-protected-service
         servicePort: 80
     plugins:
       - name: cors
         enable: true
-  - name: resource-catalogue-protected-collections
+  - name: resource-catalogue-protected
     match:
       hosts:
         - resource-catalogue-protected.develop.eoepca.org
       paths:
-        - /collection*
+        - /*
     backends:
       - serviceName: resource-catalogue-protected-service
         servicePort: 80
@@ -48,17 +49,10 @@ spec:
       config:
         host: http://iam-opa.iam:8181
         policy: eoepca/resourceregistration/registrationapi
+    - name: proxy-rewrite
+      enable: true
+      config:
+        headers:
+          Cookie: ""
     - name: cors
       enable: true
-  - name: resource-catalogue-protected-others
-    match:
-      hosts:
-        - resource-catalogue-protected.develop.eoepca.org
-      paths:
-        - /*
-    backends:
-      - serviceName: resource-catalogue-protected-service
-        servicePort: 80
-    plugins:
-      - name: cors
-        enable: true
