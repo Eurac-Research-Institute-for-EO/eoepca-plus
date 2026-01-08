@@ -20,8 +20,13 @@ spec:
       - serviceName: resource-catalogue-protected-service
         servicePort: 80
     plugins:
-      - name: cors
-        enable: true
+    - name: proxy-rewrite
+      enable: true
+      config:
+        headers:
+          Cookie: ""
+    - name: cors
+      enable: true
   - name: resource-catalogue-protected
     match:
       hosts:
