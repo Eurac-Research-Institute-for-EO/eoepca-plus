@@ -56,6 +56,13 @@ spec:
               quota:
                 storage: 8Gi
                 budget: x-large
+            database: 
+              gateway:
+                parentName: eoepca-public
+                parentNamespace: gateway
+                sectionName: https
+              storageClassName: ""
+              backupStorageClassName: ""
   destination:
     name: in-cluster
     namespace: workspace
