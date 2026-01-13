@@ -236,6 +236,7 @@ spec:
           set:
             X-Forwarded-Port: "443"
             X-Forwarded-Proto: "https"
+            X-Forwarded-Host: "eoapi.develop.eoepca.org"
       enable: true
     - name: cors
       enable: true
@@ -261,6 +262,7 @@ spec:
           set:
             X-Forwarded-Port: "443"
             X-Forwarded-Proto: "https"
+            X-Forwarded-Host: "eoapi.develop.eoepca.org"
       enable: true
     - name: cors
       enable: true
@@ -283,6 +285,7 @@ spec:
           set:
             X-Forwarded-Port: "443"
             X-Forwarded-Proto: "https"
+            X-Forwarded-Host: "eoapi.develop.eoepca.org"
       enable: true
     - name: openid-connect
       enable: true
