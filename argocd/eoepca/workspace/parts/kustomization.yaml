@@ -5,5 +5,6 @@ resources:
   - app-workspace-dependencies.yaml
   - app-workspace-pipeline.yaml
   - route.yaml
-  - ss-workspace-api.yaml
+  - iam.yaml
   - secret.yaml
+  - certificate.yaml
