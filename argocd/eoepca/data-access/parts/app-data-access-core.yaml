@@ -29,11 +29,14 @@ spec:
             serviceStoreUrl: "/app/services/eoapi.json"
           env:
             TITILER_OPENEO_API_ROOT_PATH: "/openeo/"
-            TITILER_OPENEO_REQUIRE_AUTH: "false"
-            TITILER_OPENEO_AUTH_METHOD: "oidc"
-            TITILER_OPENEO_AUTH_OIDC_WK_URL: "https://iam-auth.develop.eoepca.org/realms/eoepca/.well-known/openid-configuration"
-            TITILER_OPENEO_AUTH_OIDC_CLIENT_ID: "stac-browser"
-            TITILER_OPENEO_AUTH_OIDC_REDIRECT_URL: "https://eoapi.develop.eoepca.org/openeo/"
+          auth:
+            requireAuth: false
+            method: "oidc"
+            oidc:
+              enabled: true
+              clientId: "stac-browser"
+              wellKnownUrl: "https://iam-auth.develop.eoepca.org/realms/eoepca/.well-known/openid-configuration"
+              redirectUrl: "https://eoapi.develop.eoepca.org/openeo/"
           extraVolumes:
             - name: services
               configMap:
