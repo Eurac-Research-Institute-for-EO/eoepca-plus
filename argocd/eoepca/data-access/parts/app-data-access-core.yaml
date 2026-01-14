@@ -28,7 +28,7 @@ spec:
             apiUrl: "https://eoapi.develop.eoepca.org/stac"
             serviceStoreUrl: "/app/services/eoapi.json"
           env:
-            TITILER_OPENEO_API_ROOT_PATH: "https://eoapi.develop.eoepca.org/openeo/"
+            TITILER_OPENEO_API_ROOT_PATH: "/openeo/"
           extraVolumes:
             - name: services
               configMap:
