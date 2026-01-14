@@ -116,6 +116,7 @@ stac-auth-proxy:
   service:
     port: 8080
   env:
+    ROOT_PATH: ""
     UPSTREAM_URL: "http://eoapi-stac.data-access.svc.cluster.local:8080"
     OIDC_DISCOVERY_URL: "https://iam-auth.develop.eoepca.org/realms/eoepca/.well-known/openid-configuration"
     COLLECTIONS_FILTER_CLS: stac_auth_proxy.eoepca_filters:CollectionsFilter
