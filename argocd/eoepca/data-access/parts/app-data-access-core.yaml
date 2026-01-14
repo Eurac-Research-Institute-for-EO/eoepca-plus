@@ -29,8 +29,8 @@ spec:
             serviceStoreUrl: "/app/services/eoapi.json"
           env:
             TITILER_OPENEO_API_ROOT_PATH: "/openeo/"
+            TITILER_OPENEO_REQUIRE_AUTH: "false"
           auth:
-            requireAuth: false
             method: "oidc"
             oidc:
               enabled: true
