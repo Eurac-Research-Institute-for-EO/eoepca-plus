@@ -231,6 +231,9 @@ spec:
     plugins:
     - name: proxy-rewrite
       config:
+        regex_uri:
+        - ^(/stac)($|/.*)
+        - $2
         headers:
           set:
             X-Forwarded-Port: "443"
@@ -255,6 +258,9 @@ spec:
     plugins:
     - name: proxy-rewrite
       config:
+        regex_uri:
+        - ^(/stac)($|/.*)
+        - $2
         headers:
           set:
             X-Forwarded-Port: "443"
@@ -276,6 +282,9 @@ spec:
     plugins:
     - name: proxy-rewrite
       config:
+        regex_uri:
+        - ^(/stac)($|/.*)
+        - $2
         headers:
           set:
             X-Forwarded-Port: "443"
