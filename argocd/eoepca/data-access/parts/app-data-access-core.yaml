@@ -29,11 +29,12 @@ spec:
             serviceStoreUrl: "/app/services/eoapi.json"
           env:
             TITILER_OPENEO_API_ROOT_PATH: "/openeo/"
-            TITILER_OPENEO_REQUIRE_AUTH: "false"
           auth:
-            method: "oidc"
+            method: "basic"
+            basic:
+              enabled: false
             oidc:
-              enabled: true
+              enabled: false
               clientId: "stac-browser"
               wellKnownUrl: "https://iam-auth.develop.eoepca.org/realms/eoepca/.well-known/openid-configuration"
               redirectUrl: "https://eoapi.develop.eoepca.org/openeo/"
