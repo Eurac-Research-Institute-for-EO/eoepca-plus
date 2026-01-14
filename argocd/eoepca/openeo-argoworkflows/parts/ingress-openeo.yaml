@@ -25,6 +25,14 @@ spec:
         # Allow CORS access
         - name: cors
           enable: true
+        # Fix the well-known endpoint URL response
+        - name: response-rewrite
+          enable: true
+          config:
+            body_base64: false
+            filters:
+              - regex: "http://127\\.0\\.0\\.1:8000/openeo/1\\.1\\.0/"
+                replace: "https://openeo-eurac.develop.eoepca.org/openeo/1.1.0/"
     # Authorized access to OpenEO API (job submission, user workspaces, etc.)
     - name: openeo-protected
       match:
