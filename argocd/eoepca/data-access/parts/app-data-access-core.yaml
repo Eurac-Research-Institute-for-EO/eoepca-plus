@@ -29,8 +29,6 @@ spec:
             serviceStoreUrl: "/app/services/eoapi.json"
           env:
             TITILER_OPENEO_API_ROOT_PATH: "/openeo/"
-          podSecurityContext:
-            fsGroup: 1000
           auth:
             method: "basic"
             basic:
