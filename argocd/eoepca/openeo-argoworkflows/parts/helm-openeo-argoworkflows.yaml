@@ -23,7 +23,8 @@ spec:
             apiTitle: "OpenEO ArgoWorkflows"
             apiDescription: "A K8S deployment of the openeo api for argoworkflows."
             oidcUrl: "https://edp-portal.eurac.edu/auth/realms/edp"
-            odicOrganisation: "eurac-keycloak"
+            oidcOrganisation: "eurac-keycloak"
+            oidcProviderTitle: "EURAC Keycloak"
             oidcPolicies: ""
             stacCatalogueUrl: "https://stac.eodc.eu/api/v1"
             workspaceRoot: "/user_workspaces"
@@ -36,9 +37,9 @@ spec:
         replicaCount: 1
 
         image:
-          repository: ghcr.io/eodcgmbh/openeo-argoworkflows
-          pullPolicy: IfNotPresent
-          tag: "api-2025.5.1"
+          repository: yuvraj1989/openeo-argoworkflows-api
+          pullPolicy: Always
+          tag: "eurac-custom-oidc"
 
         postgresql:
           enabled: true
