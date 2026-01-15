@@ -8,7 +8,7 @@ metadata:
 spec:
   project: eoepca
   source:
-    repoURL: https://github.com/jzvolensky/charts
+    repoURL: https://github.com/Eurac-Research-Institute-for-EO/charts
     targetRevision: main
     path: eodc/openeo-argo
     helm:
@@ -23,7 +23,7 @@ spec:
             apiTitle: "OpenEO ArgoWorkflows"
             apiDescription: "A K8S deployment of the openeo api for argoworkflows."
             oidcUrl: "https://edp-portal.eurac.edu/auth/realms/edp"
-            odicOrganisation: "eurac-keycloak"
+            oidcOrganisation: "eurac-keycloak"
             oidcPolicies: ""
             stacCatalogueUrl: "https://stac.eodc.eu/api/v1"
             workspaceRoot: "/user_workspaces"
