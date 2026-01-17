@@ -1,0 +1,16 @@
+# Patched OpenEO API image with fixed OIDC scopes for EURAC Keycloak
+FROM ghcr.io/eodcgmbh/openeo-argoworkflows:api-2025.5.1
+
+USER root
+
+# Patch the core.py to fix OIDC scopes
+# - Use only standard Keycloak scopes (openid, email, profile)
+# - Remove EGI-specific scopes (eduperson_entitlement, eduperson_scoped_affiliation)
+# - Add local editor URLs to redirect_urls
+COPY core_patched.py /opt/openeo_argoworkflows_api/.venv/lib/python3.11/site-packages/openeo_fastapi/client/core.py
+
+# Patch the jobs.py to fix logs endpoint
+# - Return proper LogEntry format with 'id' field required by OpenEO spec
+COPY jobs_patched.py /opt/openeo_argoworkflows_api/jobs.py
+
+USER 1000
